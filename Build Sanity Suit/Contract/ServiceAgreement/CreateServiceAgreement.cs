@@ -59,6 +59,7 @@ namespace Build_Sanity_Suit
                 global.xrmApp.Dialogs.ConfirmationDialog(true);
             });
 
+
             //Master pathways
             var MasterPathwaysCreate = new Action(() =>
             {
@@ -73,221 +74,6 @@ namespace Build_Sanity_Suit
                 global.xrmApp.ThinkTime(1000);
                 global.xrmApp.Entity.Save();
             });
-
-            //Contract Products and Services
-            var ContractProductServicesCreate = new Action(() =>
-            {
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.Entity.SelectTab("Contract Products and Services");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.Entity.SubGrid.ClickCommand("ContractLines", "New Contract Line");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.LookupQuickCreate("mzk_product", productname);
-                global.xrmApp.ThinkTime(5000);
-                global.xrmApp.QuickCreate.SetValue(new OptionSet { Name = "mzk_fundingorganizationtype", Value = "Master Contract Party" });
-                global.xrmApp.ThinkTime(500);
-                global.xrmApp.QuickCreate.SetValue("mzk_quantity", "100");
-                global.xrmApp.ThinkTime(5000);
-                global.xrmApp.QuickCreate.SetValue(new BooleanItem { Name = "mzk_keydrug", Value = true });
-                global.xrmApp.ThinkTime(5000);
-                global.xrmApp.QuickCreate.SetValue(new OptionSet { Name = "mzk_billingfrequency", Value = "Weekly" });
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.QuickCreate.SetValue("mzk_orderquantity", "2");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.QuickCreate.Save();
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.Entity.Save();
-            });
-            ///Contract SLA
-            var ContractSLA = new Action(() =>
-            {
-                global.xrmApp.Entity.SelectTab("Contract SLA");
-                global.xrmApp.ThinkTime(5000);
-                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_deliveryconfirmationmethod", Value = "PIN" });
-                global.xrmApp.ThinkTime(5000);
-                global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_capturegppracticedetailsatregistration", Value = true });
-                global.xrmApp.ThinkTime(5000);
-                Lookupobj.Lookup("mzk_purchaseordernumberonholdprescription", "A");
-                global.xrmApp.ThinkTime(5000);
-                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_deliverypurchaseordersource", Value = "Delivery Date" });
-                global.xrmApp.ThinkTime(5000);
-                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_accountmanagementchargings", Value = "Yes" });
-                global.xrmApp.Entity.SetValue("mzk_bufferstockdays", "2");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_returnsresponsibility", "HaH");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_telephonecallschargingmodel", "Flat Rate");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_textmessagechargingmodel", "Flat Rate");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_nonstandardvisitdaycharging", "Yes");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_pvreportcharging", "Flat Rate");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_pqcreturnmodel", "HaH Collect and dispose");
-                global.xrmApp.ThinkTime(1000);
-                //Lookupobj.Lookup("mzk_prescriptionportalapprovalmethod", "HaH Collect and dispose");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_methodofpayment", "BACS");
-                global.xrmApp.ThinkTime(5000);
-                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_manualbillingreleases", Value = "Yes" });
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_patientculpabledeliveryfailurecharging", "Yes");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_patientregistrationcharging", "Yes");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_pvreportchargingmodel", "Flat Rate");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_contractreportingchargingmodel", "Flat Rate");
-                global.xrmApp.ThinkTime(5000);
-                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_printcreditreasononcreditnote", Value = "Yes" });
-                global.xrmApp.ThinkTime(5000);
-                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_invoiceconsolidationtype", Value = "Patient" });
-                global.xrmApp.ThinkTime(5000);
-                global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_billingreferencenumber", Value = true });
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_pharmacistscreeningonholdprescription", "Archive prescription");
-                global.xrmApp.ThinkTime(5000);
-                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_invoicedeliverymethod", Value = "Email" });
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_invoicecurrency", "Pound Sterling");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_ancillaryitemscharging", "Yes");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_carebureaucallschargingmodel", "Activity Based");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_nonstandarddeliverydaycharging", "Yes");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_patientculpablevisitfailurecharging", "Yes");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_pqcreimbursementmodel", "Supplier Credit");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_medicaldevicechargingmodel", "Activity Based");
-                global.xrmApp.ThinkTime(5000);
-                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_printcommentlinesoninvoice", Value = "Yes" });
-                global.xrmApp.ThinkTime(3000);
-                global.xrmApp.Entity.SubGrid.ClickCommand("VisitRules", "New Contract Visit Rule");
-                global.xrmApp.ThinkTime(5000);
-                global.xrmApp.QuickCreate.SetValue(new OptionSet { Name = "mzk_type", Value = "Wholesale Order" });
-                global.xrmApp.ThinkTime(2000);
-                Lookupobj.LookupQuickCreate("mzk_visittype", "Employee Visit type");
-                global.xrmApp.ThinkTime(2000);
-                global.xrmApp.QuickCreate.SetValue("mzk_allowedvisits", "2");
-                global.xrmApp.ThinkTime(500);
-                global.xrmApp.QuickCreate.Save();
-                global.xrmApp.ThinkTime(3000);
-                global.xrmApp.Entity.SubGrid.ClickCommand("DeliveryFrequency", "New Contract Delivery Frequency");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.Entity.SetValue("mzk_frequency", "2");
-                global.xrmApp.ThinkTime(5000);
-                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_unit", Value = "Days" });
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.CommandBar.ClickCommand("Save & Close");
-                global.xrmApp.ThinkTime(5000);
-                global.xrmApp.Entity.SubGrid.ClickCommand("PurchaseOrderRules", "New Purchase Order Rule");
-                global.xrmApp.ThinkTime(5000);
-                global.xrmApp.QuickCreate.SetValue(new OptionSet { Name = "mzk_criteria", Value = "Blank" });
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.QuickCreate.SetValue("mzk_format", "mzk_format");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.QuickCreate.SetValue("mzk_description", "mzk_description");
-                //global.xrmApp.ThinkTime(1000);
-                //DateTime mzk_effectivestartdate = DateTime.Today.AddDays(1);
-                //global.xrmApp.QuickCreate.SetValue("mzk_effectivestartdate", mzk_effectivestartdate);
-                //global.xrmApp.ThinkTime(1000);
-                //DateTime mzk_effectiveenddate = DateTime.Today.AddDays(2);
-                //global.xrmApp.QuickCreate.SetValue("mzk_effectiveenddate", mzk_effectiveenddate);
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.QuickCreate.Save();
-                global.xrmApp.ThinkTime(3000);
-                global.xrmApp.Entity.SubGrid.ClickCommand("ContractualKPICriterias", "New Contractual KPI Criteria");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.LookupQuickCreate("mzk_kpi", "A");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.QuickCreate.SetValue("mzk_performancevalue", "2");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.LookupQuickCreate("mzk_kpiunit", "Number");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.QuickCreate.Save();
-                global.xrmApp.ThinkTime(3000);
-                global.xrmApp.Entity.SubGrid.ClickCommand("DeliveryMethod", "New Contract Delivery Method");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_deliverymethod", "INT");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.CommandBar.ClickCommand("Save & Close");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.Entity.Save();
-                global.xrmApp.ThinkTime(1000);
-            });
-
-            // Contract Price List
-            var ContractPriceListCreate = new Action(() =>
-            {
-                global.xrmApp.Entity.SelectTab("Contract Price Lists");
-                global.xrmApp.ThinkTime(1000);
-                // use this line to click on related grid
-                global.xrmApp.Entity.SubGrid.ClickCommand("ContractPriceList", "New Contract Price List");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.LookupQuickCreate("mzk_contractpricelist", "Price01");
-                global.xrmApp.ThinkTime(1000);
-                Lookupobj.LookupQuickCreate("mzk_reducedpricelist", "Price01");
-                //Lookupobj.LookupQuickCreate("mzk_contractdiagnosisgroup", "A010");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.QuickCreate.Save();
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.Entity.Save();
-
-            });
-
-            // Contract Diagnosis Group
-            var ContractDignosisCreate = new Action(() =>
-            {
-                global.xrmApp.Entity.SelectTab("Contract Diagnosis Group");
-                global.xrmApp.ThinkTime(1000);
-                // use this line to click on related grid
-                global.xrmApp.Entity.SubGrid.ClickCommand("ContractDiagnosisGroup_new_Grid", "New Contract Diagnosis Group");
-                global.xrmApp.ThinkTime(1500);
-                Lookupobj.Lookup("mzk_operationaldiagnosisgroup", "aHUS");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.CommandBar.ClickCommand("Save & Close");
-                global.xrmApp.ThinkTime(1000);
-                //global.xrmApp.ThinkTime(1000);
-                //global.xrmApp.Entity.SelectTab("General");
-                //global.xrmApp.ThinkTime(1000);
-                //global.xrmApp.Entity.SubGrid.ClickCommand("BillingAddress", "New Contract Billing Address");
-                //global.xrmApp.ThinkTime(1500);
-                ////Lookupobj.LookupQuickCreate("mzk_diagnosisgroup","aHus");
-                ////global.xrmApp.ThinkTime(3000);
-                ////Lookupobj.LookupQuickCreate("mzk_address", "Default address");
-                //global.xrmApp.QuickCreate.Save();
-                global.xrmApp.ThinkTime(1500);
-
-            });
-
-            //InvoiceDeliveryCreate
-            var InvoiceDeliveryCreate = new Action(() =>
-            {
-                global.xrmApp.Entity.SelectTab("Invoice Delivery");
-                global.xrmApp.ThinkTime(3000);
-
-
-                //global.xrmApp.Entity.SetValue(new MultiValueOptionSet
-                //{
-                //    Name = "mzk_invoice",
-                //    Values = new string[] {"Egress","Trust SFTP"},
-                //});
-
-                //global.xrmApp.ThinkTime(1000);
-                //global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_pod", Value = "Egress" });
-                //global.xrmApp.ThinkTime(1000);
-                //global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_posd", Value = "Egress" });
-                //global.xrmApp.Entity.SetValue("mzk_workspacename", "mzk_workspacename");
-                //global.xrmApp.ThinkTime(1000);
-                //global.xrmApp.Entity.Save();
-
-            });
-
-            // Other Information
             var OtherInformation = new Action(() =>
             {
                 global.xrmApp.Entity.SelectTab("Other Information");
@@ -336,15 +122,232 @@ namespace Build_Sanity_Suit
 
             });
 
+            ////Contract Products and Services
+            //var ContractProductServicesCreate = new Action(() =>
+            //{
+            //    global.xrmApp.ThinkTime(1000);
+            //    global.xrmApp.Entity.SelectTab("Contract Products and Services");
+            //    global.xrmApp.ThinkTime(1000);
+            //    global.xrmApp.Entity.SubGrid.ClickCommand("ContractLines", "New Contract Line");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.LookupQuickCreate("mzk_product", productname);
+            //    global.xrmApp.ThinkTime(5000);
+            //    global.xrmApp.QuickCreate.SetValue(new OptionSet { Name = "mzk_fundingorganizationtype", Value = "Master Contract Party" });
+            //    global.xrmApp.ThinkTime(500);
+            //    global.xrmApp.QuickCreate.SetValue("mzk_quantity", "100");
+            //    global.xrmApp.ThinkTime(5000);
+            //    global.xrmApp.QuickCreate.SetValue(new BooleanItem { Name = "mzk_keydrug", Value = true });
+            //    global.xrmApp.ThinkTime(5000);
+            //    global.xrmApp.QuickCreate.SetValue(new OptionSet { Name = "mzk_billingfrequency", Value = "Weekly" });
+            //    global.xrmApp.ThinkTime(1000);
+            //    global.xrmApp.QuickCreate.SetValue("mzk_orderquantity", "2");
+            //    global.xrmApp.ThinkTime(1000);
+            //    global.xrmApp.QuickCreate.Save();
+            //    global.xrmApp.ThinkTime(1000);
+            //    global.xrmApp.Entity.Save();
+            //});
+            /////Contract SLA
+            //var ContractSLA = new Action(() =>
+            //{
+            //    global.xrmApp.Entity.SelectTab("Contract SLA");
+            //    global.xrmApp.ThinkTime(5000);
+            //    global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_deliveryconfirmationmethod", Value = "PIN" });
+            //    global.xrmApp.ThinkTime(5000);
+            //    global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_capturegppracticedetailsatregistration", Value = true });
+            //    global.xrmApp.ThinkTime(5000);
+            //    Lookupobj.Lookup("mzk_purchaseordernumberonholdprescription", "A");
+            //    global.xrmApp.ThinkTime(5000);
+            //    global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_deliverypurchaseordersource", Value = "Delivery Date" });
+            //    global.xrmApp.ThinkTime(5000);
+            //    global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_accountmanagementchargings", Value = "Yes" });
+            //    global.xrmApp.Entity.SetValue("mzk_bufferstockdays", "2");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_returnsresponsibility", "HaH");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_telephonecallschargingmodel", "Flat Rate");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_textmessagechargingmodel", "Flat Rate");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_nonstandardvisitdaycharging", "Yes");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_pvreportcharging", "Flat Rate");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_pqcreturnmodel", "HaH Collect and dispose");
+            //    global.xrmApp.ThinkTime(1000);
+            //    //Lookupobj.Lookup("mzk_prescriptionportalapprovalmethod", "HaH Collect and dispose");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_methodofpayment", "BACS");
+            //    global.xrmApp.ThinkTime(5000);
+            //    global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_manualbillingreleases", Value = "Yes" });
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_patientculpabledeliveryfailurecharging", "Yes");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_patientregistrationcharging", "Yes");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_pvreportchargingmodel", "Flat Rate");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_contractreportingchargingmodel", "Flat Rate");
+            //    global.xrmApp.ThinkTime(5000);
+            //    global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_printcreditreasononcreditnote", Value = "Yes" });
+            //    global.xrmApp.ThinkTime(5000);
+            //    global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_invoiceconsolidationtype", Value = "Patient" });
+            //    global.xrmApp.ThinkTime(5000);
+            //    global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_billingreferencenumber", Value = true });
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_pharmacistscreeningonholdprescription", "Archive prescription");
+            //    global.xrmApp.ThinkTime(5000);
+            //    global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_invoicedeliverymethod", Value = "Email" });
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_invoicecurrency", "Pound Sterling");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_ancillaryitemscharging", "Yes");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_carebureaucallschargingmodel", "Activity Based");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_nonstandarddeliverydaycharging", "Yes");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_patientculpablevisitfailurecharging", "Yes");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_pqcreimbursementmodel", "Supplier Credit");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_medicaldevicechargingmodel", "Activity Based");
+            //    global.xrmApp.ThinkTime(5000);
+            //    global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_printcommentlinesoninvoice", Value = "Yes" });
+            //    global.xrmApp.ThinkTime(3000);
+            //    global.xrmApp.Entity.SubGrid.ClickCommand("VisitRules", "New Contract Visit Rule");
+            //    global.xrmApp.ThinkTime(5000);
+            //    global.xrmApp.QuickCreate.SetValue(new OptionSet { Name = "mzk_type", Value = "Wholesale Order" });
+            //    global.xrmApp.ThinkTime(2000);
+            //    Lookupobj.LookupQuickCreate("mzk_visittype", "Employee Visit type");
+            //    global.xrmApp.ThinkTime(2000);
+            //    global.xrmApp.QuickCreate.SetValue("mzk_allowedvisits", "2");
+            //    global.xrmApp.ThinkTime(500);
+            //    global.xrmApp.QuickCreate.Save();
+            //    global.xrmApp.ThinkTime(3000);
+            //    global.xrmApp.Entity.SubGrid.ClickCommand("DeliveryFrequency", "New Contract Delivery Frequency");
+            //    global.xrmApp.ThinkTime(1000);
+            //    global.xrmApp.Entity.SetValue("mzk_frequency", "2");
+            //    global.xrmApp.ThinkTime(5000);
+            //    global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_unit", Value = "Days" });
+            //    global.xrmApp.ThinkTime(1000);
+            //    global.xrmApp.CommandBar.ClickCommand("Save & Close");
+            //    global.xrmApp.ThinkTime(5000);
+            //    global.xrmApp.Entity.SubGrid.ClickCommand("PurchaseOrderRules", "New Purchase Order Rule");
+            //    global.xrmApp.ThinkTime(5000);
+            //    global.xrmApp.QuickCreate.SetValue(new OptionSet { Name = "mzk_criteria", Value = "Blank" });
+            //    global.xrmApp.ThinkTime(1000);
+            //    global.xrmApp.QuickCreate.SetValue("mzk_format", "mzk_format");
+            //    global.xrmApp.ThinkTime(1000);
+            //    global.xrmApp.QuickCreate.SetValue("mzk_description", "mzk_description");
+            //    //global.xrmApp.ThinkTime(1000);
+            //    //DateTime mzk_effectivestartdate = DateTime.Today.AddDays(1);
+            //    //global.xrmApp.QuickCreate.SetValue("mzk_effectivestartdate", mzk_effectivestartdate);
+            //    //global.xrmApp.ThinkTime(1000);
+            //    //DateTime mzk_effectiveenddate = DateTime.Today.AddDays(2);
+            //    //global.xrmApp.QuickCreate.SetValue("mzk_effectiveenddate", mzk_effectiveenddate);
+            //    global.xrmApp.ThinkTime(1000);
+            //    global.xrmApp.QuickCreate.Save();
+            //    global.xrmApp.ThinkTime(3000);
+            //    global.xrmApp.Entity.SubGrid.ClickCommand("ContractualKPICriterias", "New Contractual KPI Criteria");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.LookupQuickCreate("mzk_kpi", "A");
+            //    global.xrmApp.ThinkTime(1000);
+            //    global.xrmApp.QuickCreate.SetValue("mzk_performancevalue", "2");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.LookupQuickCreate("mzk_kpiunit", "Number");
+            //    global.xrmApp.ThinkTime(1000);
+            //    global.xrmApp.QuickCreate.Save();
+            //    global.xrmApp.ThinkTime(3000);
+            //    global.xrmApp.Entity.SubGrid.ClickCommand("DeliveryMethod", "New Contract Delivery Method");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.Lookup("mzk_deliverymethod", "INT");
+            //    global.xrmApp.ThinkTime(1000);
+            //    global.xrmApp.CommandBar.ClickCommand("Save & Close");
+            //    global.xrmApp.ThinkTime(1000);
+            //    global.xrmApp.Entity.Save();
+            //    global.xrmApp.ThinkTime(1000);
+            //});
+
+            //// Contract Price List
+            //var ContractPriceListCreate = new Action(() =>
+            //{
+            //    global.xrmApp.Entity.SelectTab("Contract Price Lists");
+            //    global.xrmApp.ThinkTime(1000);
+            //    // use this line to click on related grid
+            //    global.xrmApp.Entity.SubGrid.ClickCommand("ContractPriceList", "New Contract Price List");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.LookupQuickCreate("mzk_contractpricelist", "Price01");
+            //    global.xrmApp.ThinkTime(1000);
+            //    Lookupobj.LookupQuickCreate("mzk_reducedpricelist", "Price01");
+            //    //Lookupobj.LookupQuickCreate("mzk_contractdiagnosisgroup", "A010");
+            //    global.xrmApp.ThinkTime(1000);
+            //    global.xrmApp.QuickCreate.Save();
+            //    global.xrmApp.ThinkTime(1000);
+            //    global.xrmApp.Entity.Save();
+
+            //});
+
+            //// Contract Diagnosis Group
+            //var ContractDignosisCreate = new Action(() =>
+            //{
+            //    global.xrmApp.Entity.SelectTab("Contract Diagnosis Group");
+            //    global.xrmApp.ThinkTime(1000);
+            //    // use this line to click on related grid
+            //    global.xrmApp.Entity.SubGrid.ClickCommand("ContractDiagnosisGroup_new_Grid", "New Contract Diagnosis Group");
+            //    global.xrmApp.ThinkTime(1500);
+            //    Lookupobj.Lookup("mzk_operationaldiagnosisgroup", "aHUS");
+            //    global.xrmApp.ThinkTime(1000);
+            //    global.xrmApp.CommandBar.ClickCommand("Save & Close");
+            //    global.xrmApp.ThinkTime(1000);
+            //    //global.xrmApp.ThinkTime(1000);
+            //    //global.xrmApp.Entity.SelectTab("General");
+            //    //global.xrmApp.ThinkTime(1000);
+            //    //global.xrmApp.Entity.SubGrid.ClickCommand("BillingAddress", "New Contract Billing Address");
+            //    //global.xrmApp.ThinkTime(1500);
+            //    ////Lookupobj.LookupQuickCreate("mzk_diagnosisgroup","aHus");
+            //    ////global.xrmApp.ThinkTime(3000);
+            //    ////Lookupobj.LookupQuickCreate("mzk_address", "Default address");
+            //    //global.xrmApp.QuickCreate.Save();
+            //    global.xrmApp.ThinkTime(1500);
+
+            //});
+
+            ////InvoiceDeliveryCreate
+            //var InvoiceDeliveryCreate = new Action(() =>
+            //{
+            //    global.xrmApp.Entity.SelectTab("Invoice Delivery");
+            //    global.xrmApp.ThinkTime(3000);
+
+
+            //    //global.xrmApp.Entity.SetValue(new MultiValueOptionSet
+            //    //{
+            //    //    Name = "mzk_invoice",
+            //    //    Values = new string[] {"Egress","Trust SFTP"},
+            //    //});
+
+            //    //global.xrmApp.ThinkTime(1000);
+            //    //global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_pod", Value = "Egress" });
+            //    //global.xrmApp.ThinkTime(1000);
+            //    //global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_posd", Value = "Egress" });
+            //    //global.xrmApp.Entity.SetValue("mzk_workspacename", "mzk_workspacename");
+            //    //global.xrmApp.ThinkTime(1000);
+            //    //global.xrmApp.Entity.Save();
+
+            //});
+
+            // Other Information
+
+
             GeneralCreate();
-            MasterPathwaysCreate();
-            ContractProductServicesCreate();
-            ContractSLA();
-            ContractPriceListCreate();
-            ContractDignosisCreate();
             OtherInformation();
-            //InvoiceDeliveryCreate();
             global.client.Browser.Driver.Navigate().Back();
+            //MasterPathwaysCreate();
+            //ContractProductServicesCreate();
+            //ContractSLA();
+            //ContractPriceListCreate();
+            //ContractDignosisCreate();
+            //InvoiceDeliveryCreate();
+
 
         }
     }
