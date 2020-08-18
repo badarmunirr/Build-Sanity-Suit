@@ -136,7 +136,7 @@ namespace Build_Sanity_Suit
             global.xrmApp.Dialogs.ConfirmationDialog(true);
             global.xrmApp.ThinkTime(5000);
             global.client.Browser.Driver.FindElement(By.CssSelector("*[aria-label='Validated: Yes']")).IsVisible();
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Save & Close')]")));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.ThinkTime(5000);
             global.xrmApp.CommandBar.ClickCommand("Save & Close");
 

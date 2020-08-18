@@ -224,6 +224,7 @@ namespace Build_Sanity_Suit
             string mzk_pincode = global.xrmApp.Entity.GetValue("mzk_pincode");
             Assert.IsNotNull(mzk_pincode);
             global.xrmApp.ThinkTime(2000);
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("Save & Close");
 
         }

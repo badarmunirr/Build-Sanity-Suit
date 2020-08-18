@@ -128,7 +128,7 @@ namespace Build_Sanity_Suit
             //global.xrmApp.Entity.SetValue("mzk_sites", Healthcareproviderdata.telephone1);
             //global.xrmApp.ThinkTime(1000);
             //global.xrmApp.Entity.SetValue("mzk_department", Healthcareproviderdata.telephone1);
-            //wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Save & Close')]")));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.ThinkTime(5000);
             global.xrmApp.CommandBar.ClickCommand("Save & Close");
 
