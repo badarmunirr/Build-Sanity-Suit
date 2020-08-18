@@ -24,21 +24,21 @@ namespace Build_Sanity_Suit
             global.xrmApp.CommandBar.ClickCommand("New");
             global.xrmApp.ThinkTime(1000);
             Lookupobj.Lookup("parentcontactid", ReferraltoNurseOrderdata.PatientName);
-            global.xrmApp.ThinkTime(1000);
+
             global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_patientconsent", Value = true });
-            global.xrmApp.ThinkTime(1000);
+
             global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_patientswitchstatus", Value = ReferraltoNurseOrderdata.patientswitchstatus });
-            global.xrmApp.ThinkTime(1000);
+
             global.xrmApp.Entity.SetValue("mzk_anonymousreference", ReferraltoNurseOrderdata.anonymousreference);
-            global.xrmApp.ThinkTime(1000);
+
             global.xrmApp.Entity.SetValue("mzk_hospitalreferencenumber", ReferraltoNurseOrderdata.hospitalreferencenumber);
-            global.xrmApp.ThinkTime(1000);
+
             global.xrmApp.Entity.SelectTab("General");
-            global.xrmApp.ThinkTime(1000);
+
             global.xrmApp.Entity.SetValue("name", ReferraltoNurseOrderdata.ReferalName);
-            global.xrmApp.ThinkTime(1000);
+
             Lookupobj.Lookup("mzk_diagnosisgroup", ReferraltoNurseOrderdata.diagnosisgroup);
-            global.xrmApp.ThinkTime(1000);
+
             global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_nursingstatus", Value = ReferraltoNurseOrderdata.nursingstatus });
             //global.xrmApp.ThinkTime(1000);
             ////Lookupobj.Lookup("mzk_contractdeliverymethod", "aHUS");
@@ -55,20 +55,20 @@ namespace Build_Sanity_Suit
             }
             global.xrmApp.ThinkTime(1000);
             Lookupobj.Lookup("pricelevelid", ReferraltoNurseOrderdata.PriceList);
-            global.xrmApp.ThinkTime(2000);
+
             Lookupobj.Lookup("mzk_contract", ReferraltoNurseOrderdata.ServiceAgreement);
-            global.xrmApp.ThinkTime(2000);
+
             //Lookupobj.Lookup("mzk_masterpathway", ReferraltoNurseOrderdata.MasterPathway);
             //Referrer
-            global.xrmApp.ThinkTime(1000);
+
             //Lookupobj.Lookup("mzk_referringprescriber", ReferraltoNurseOrderdata.refferingprescriber);
-            global.xrmApp.ThinkTime(1000);
+
             global.xrmApp.Entity.SetValue("mzk_pmireferencenumber", ReferraltoNurseOrderdata.pmireferencenumber);
-            global.xrmApp.ThinkTime(1000);
+
             global.xrmApp.Entity.SetValue("mzk_billingreferencenumber", ReferraltoNurseOrderdata.billingreferencenumber);
-            global.xrmApp.ThinkTime(1000);
+
             global.xrmApp.Entity.SetValue("mzk_pmipolicynumber", ReferraltoNurseOrderdata.pmipolicynumber);
-            global.xrmApp.ThinkTime(1000);
+
             global.xrmApp.Entity.SetValue("mzk_legacyreferralnumber", ReferraltoNurseOrderdata.legacyreferralnumber);
             global.xrmApp.ThinkTime(3000);
             global.xrmApp.Entity.Save();
@@ -84,12 +84,14 @@ namespace Build_Sanity_Suit
             //global.xrmApp.BusinessProcessFlow.Close("Confirm");
             //global.xrmApp.ThinkTime(3000);
             //global.xrmApp.Entity.Save();
-            global.xrmApp.ThinkTime(7000);
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")));
             // when support for hidden field is added need to replace this line of code
             string casenumber = global.client.Browser.Driver.FindElement(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")).Text;
             global.xrmApp.ThinkTime(2000);
             var mzk_visitstatus = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_status" });
             Assert.IsTrue(mzk_visitstatus.StartsWith("Active"));
+            string address1_postalcode = global.xrmApp.Entity.GetValue("address1_postalcode");
+            Assert.IsNotNull(address1_postalcode);
             global.xrmApp.ThinkTime(3000);
             global.xrmApp.Navigation.OpenSubArea("Referral", "Cases");
             global.xrmApp.ThinkTime(2000);
@@ -139,15 +141,17 @@ namespace Build_Sanity_Suit
             global.xrmApp.ThinkTime(3000);
             var mzk_visitstatus2 = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus2.StartsWith("Proposed"));
+            string msdyn_postalcode = global.xrmApp.Entity.GetValue("msdyn_postalcode");
+            Assert.IsNotNull(msdyn_postalcode);
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Entity.SelectTab("Products And Services");
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Entity.SubGrid.ClickCommand("workorderservicesgrid", "New Work Order Service");
-            global.xrmApp.ThinkTime(1000);
+    
             Lookupobj.LookupQuickCreate("msdyn_service", ReferraltoNurseOrderdata.servicename);
-            global.xrmApp.ThinkTime(2000);
+   
             //Lookupobj.LookupQuickCreate("msdyn_unit", Referraldata.unit);
-            global.xrmApp.ThinkTime(2000);
+   
             global.xrmApp.QuickCreate.SetValue("mzk_quantity", ReferraltoNurseOrderdata.qunantity);
             global.xrmApp.ThinkTime(2000);
             global.xrmApp.QuickCreate.Save();

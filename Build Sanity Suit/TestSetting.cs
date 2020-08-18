@@ -85,9 +85,9 @@ namespace Build_Sanity_Suit
             {
                 Console.WriteLine("No 'Stay Signed In' Dialog appeared");
             }
-            global.xrmApp.ThinkTime(20000);
+            global.xrmApp.ThinkTime(5000);
             global.client.Browser.Driver.Navigate().GoToUrl(Variables.url + "main.aspx?forceUCI=1&pagetype=apps");
-            global.xrmApp.ThinkTime(20000);
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[contains(@data-id,'userInformationLauncher')]")));
             global.xrmApp.Navigation.OpenApp(Variables.AppName);
             global.xrmApp.ThinkTime(2000);
             //if (global.client.Browser.Driver.HasElement(By.Id("i0116")))

@@ -17,15 +17,16 @@ namespace Build_Sanity_Suit
             Create_WholesaleOrders newwholesaleorder = new Create_WholesaleOrders();
             Create_ReferralstoNurseOrder newreferraltonurseorder = new Create_ReferralstoNurseOrder();
 
-
             //Sanity 
             loginobj.Login();
             newpatient.CreatePatient();
             newprovider.CreateProvider();
             newpayer.CreatePayer();
             newwholesaleorder.CreateWholesaleOrder();
-            newreferraltodelivry.CreateReferral();
-            newreferraltonurseorder.CreateReferraltoNurseOrder();
+
+            //newreferraltodelivry.CreateReferral();
+            //newreferraltonurseorder.CreateReferraltoNurseOrder();
+
 
 
 
