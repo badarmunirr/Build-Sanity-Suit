@@ -70,9 +70,9 @@ namespace Build_Sanity_Suit
                 global.xrmApp.ThinkTime(5000);
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")).Click();
                 global.xrmApp.Entity.SetValue("address1_name", Payerdata.address1name);
-                global.xrmApp.ThinkTime(5000);
+                global.xrmApp.ThinkTime(2000);
                 global.xrmApp.Entity.SetValue("address1_line1", Payerdata.fulladdress);
-                global.xrmApp.ThinkTime(5000);
+                global.xrmApp.ThinkTime(2000);
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
             }
             else
@@ -88,9 +88,9 @@ namespace Build_Sanity_Suit
                 global.client.Browser.Driver.FindElement(By.XPath("//div[contains(@class,'data8-pa-countryselector data8-pa-visible')]")).Click();
                 global.xrmApp.ThinkTime(5000);
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")).Click();
-                global.xrmApp.ThinkTime(5000);
+                global.xrmApp.ThinkTime(2000);
                 global.xrmApp.Entity.SetValue("address2_name", Payerdata.address2name);
-                global.xrmApp.ThinkTime(5000);
+                global.xrmApp.ThinkTime(2000);
                 global.xrmApp.Entity.SetValue("address2_line1", Payerdata.fulladdress);
                 global.xrmApp.ThinkTime(5000);
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
@@ -137,7 +137,7 @@ namespace Build_Sanity_Suit
             global.xrmApp.ThinkTime(5000);
             global.client.Browser.Driver.FindElement(By.CssSelector("*[aria-label='Validated: Yes']")).IsVisible();
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-            global.xrmApp.ThinkTime(5000);
+            global.xrmApp.ThinkTime(2000);
             global.xrmApp.CommandBar.ClickCommand("Save & Close");
 
         }

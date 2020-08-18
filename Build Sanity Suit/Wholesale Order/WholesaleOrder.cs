@@ -92,7 +92,8 @@ namespace Build_Sanity_Suit
             //global.xrmApp.Entity.SetValue("mzk_drivercomments", Wholesaleorderdata.drivercomments);
             //global.xrmApp.ThinkTime(1000);
             global.xrmApp.Entity.Save();
-            global.xrmApp.ThinkTime(2000);
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            global.xrmApp.ThinkTime(1000);
             var mzk_visitstatus = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });//msdyn_servicerequest
             Assert.IsTrue(mzk_visitstatus.StartsWith("Draft"));
             global.xrmApp.ThinkTime(2000);

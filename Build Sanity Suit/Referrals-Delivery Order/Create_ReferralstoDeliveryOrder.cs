@@ -22,7 +22,7 @@ namespace Build_Sanity_Suit
             global.xrmApp.Navigation.OpenSubArea("Referral", "Referrals");
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("New");
-            global.xrmApp.ThinkTime(30000);
+            global.xrmApp.ThinkTime(1000);
             Lookupobj.Lookup("parentcontactid", ReferraltodeliviryOrderdata.PatientName);
             global.xrmApp.ThinkTime(1000);
             global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_patientconsent", Value = true });
@@ -147,13 +147,13 @@ namespace Build_Sanity_Suit
             global.xrmApp.Entity.SelectTab("Products And Services");
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Ancillary Item");
-            global.xrmApp.ThinkTime(3000);
+            global.xrmApp.ThinkTime(1000);
             Lookupobj.LookupQuickCreate("msdyn_product", ReferraltodeliviryOrderdata.productname);
             //global.xrmApp.ThinkTime(2000);
             //Lookupobj.LookupQuickCreate("msdyn_unit", ReferraltodeliviryOrderdata.unit);
             global.xrmApp.ThinkTime(2000);
             global.xrmApp.QuickCreate.SetValue("msdyn_quantity", ReferraltodeliviryOrderdata.qunantity);
-            global.xrmApp.ThinkTime(5000);
+            global.xrmApp.ThinkTime(2000);
             global.xrmApp.QuickCreate.Save();
             ////Service
             //global.xrmApp.ThinkTime(5000);

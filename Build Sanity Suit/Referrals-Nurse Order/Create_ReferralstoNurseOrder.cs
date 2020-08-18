@@ -18,7 +18,7 @@ namespace Build_Sanity_Suit
             HelperFunction Lookupobj = new HelperFunction();
             //LOGIN loginobj = new LOGIN();
             //loginobj.Login();
-            global.xrmApp.ThinkTime(5000);
+            global.xrmApp.ThinkTime(4000);
             global.xrmApp.Navigation.OpenSubArea("Referral", "Referrals");
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("New");

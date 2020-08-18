@@ -17,8 +17,8 @@ namespace Build_Sanity_Suit
         {
             WebDriverWait wait = new WebDriverWait(global.client.Browser.Driver, TimeSpan.FromSeconds(120000));
             HelperFunction Lookupobj = new HelperFunction();
-            LOGIN loginobj = new LOGIN();
-            loginobj.Login();
+            //LOGIN loginobj = new LOGIN();
+            //loginobj.Login();
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Navigation.OpenSubArea("Customers", "Patients");
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
@@ -36,7 +36,7 @@ namespace Build_Sanity_Suit
             global.xrmApp.ThinkTime(1000);
             DateTime birthday = new DateTime(1995, 3, 1);
             global.xrmApp.ThinkTime(1000);
-            global.xrmApp.Entity.SetValue("birthdate", birthday);
+            global.xrmApp.Entity.SetValue("birthdate", birthday, "dd/MM/yyyy");
             global.xrmApp.ThinkTime(1000);
             global.xrmApp.Entity.SetValue("mzk_mothersidentifier", Patientdata.motherifentification);//optional
             global.xrmApp.ThinkTime(1000);
@@ -120,9 +120,9 @@ namespace Build_Sanity_Suit
                 global.client.Browser.Driver.FindElement(By.XPath("//div[contains(@class,'data8-pa-countryselector data8-pa-visible')]")).Click();
                 global.xrmApp.ThinkTime(5000);
                 global.client.Browser.Driver.FindElement(By.XPath("//*[contains(@data-countrycode,'GB')]")).Click();
-                global.xrmApp.ThinkTime(5000);
+                global.xrmApp.ThinkTime(2000);
                 global.xrmApp.Entity.SetValue("address1_name", Patientdata.address1name);
-                global.xrmApp.ThinkTime(5000);
+                global.xrmApp.ThinkTime(2000);
                 global.xrmApp.Entity.SetValue("address1_line1", Patientdata.fulladdress);
                 global.xrmApp.ThinkTime(5000);
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
@@ -140,9 +140,9 @@ namespace Build_Sanity_Suit
                 global.client.Browser.Driver.FindElement(By.XPath("//div[contains(@class,'data8-pa-countryselector data8-pa-visible')]")).Click();
                 global.xrmApp.ThinkTime(5000);
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")).Click();
-                global.xrmApp.ThinkTime(5000);
+                global.xrmApp.ThinkTime(2000);
                 global.xrmApp.Entity.SetValue("address2_name", Patientdata.address2name);
-                global.xrmApp.ThinkTime(5000);
+                global.xrmApp.ThinkTime(2000);
                 global.xrmApp.Entity.SetValue("address2_line1", Patientdata.fulladdress);
                 global.xrmApp.ThinkTime(5000);
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
@@ -160,9 +160,9 @@ namespace Build_Sanity_Suit
                 global.client.Browser.Driver.FindElement(By.XPath("//div[contains(@class,'data8-pa-countryselector data8-pa-visible')]")).Click();
                 global.xrmApp.ThinkTime(5000);
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")).Click();
-                global.xrmApp.ThinkTime(5000);
+                global.xrmApp.ThinkTime(2000);
                 global.xrmApp.Entity.SetValue("address3_name", Patientdata.address3name);
-                global.xrmApp.ThinkTime(5000);
+                global.xrmApp.ThinkTime(2000);
                 global.xrmApp.Entity.SetValue("address3_line1", Patientdata.fulladdress);
                 global.xrmApp.ThinkTime(5000);
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
@@ -225,6 +225,7 @@ namespace Build_Sanity_Suit
             Assert.IsNotNull(mzk_pincode);
             global.xrmApp.ThinkTime(2000);
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            global.xrmApp.ThinkTime(2000);
             global.xrmApp.CommandBar.ClickCommand("Save & Close");
 
         }

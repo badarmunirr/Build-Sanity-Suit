@@ -19,14 +19,13 @@ namespace Build_Sanity_Suit
 
 
             //Sanity 
-
             loginobj.Login();
-            //newpatient.CreatePatient();
+            newpatient.CreatePatient();
             newprovider.CreateProvider();
             newpayer.CreatePayer();
             newwholesaleorder.CreateWholesaleOrder();
-            newreferraltodelivry.CreateReferral();
-            newreferraltonurseorder.CreateReferraltoNurseOrder();
+            //newreferraltodelivry.CreateReferral();
+            //newreferraltonurseorder.CreateReferraltoNurseOrder();
 
 
 
