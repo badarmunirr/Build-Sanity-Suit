@@ -21,11 +21,11 @@ namespace Build_Sanity_Suit
             //Sanity 
             loginobj.Login();
             //newpatient.CreatePatient();
-            //newprovider.CreateProvider();
-            //newpayer.CreatePayer();
-            //newwholesaleorder.CreateWholesaleOrder();
-            //newreferraltodelivry.CreateReferral();
-            //newreferraltonurseorder.CreateReferraltoNurseOrder();
+            newprovider.CreateProvider();
+            newpayer.CreatePayer();
+            newwholesaleorder.CreateWholesaleOrder();
+            newreferraltodelivry.CreateReferral();
+            newreferraltonurseorder.CreateReferraltoNurseOrder();
 
 
 

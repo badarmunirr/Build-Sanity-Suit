@@ -16,8 +16,8 @@ namespace Build_Sanity_Suit
         {
             WebDriverWait wait = new WebDriverWait(global.client.Browser.Driver, TimeSpan.FromSeconds(120000));
             HelperFunction Lookupobj = new HelperFunction();
-            LOGIN loginobj = new LOGIN();
-            loginobj.Login();
+            //LOGIN loginobj = new LOGIN();
+            //loginobj.Login();
             global.xrmApp.ThinkTime(5000);
             global.xrmApp.Navigation.OpenSubArea("Referral", "Referrals");
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
