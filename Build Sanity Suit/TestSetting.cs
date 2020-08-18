@@ -138,14 +138,14 @@ namespace Build_Sanity_Suit
         {
             LookupItem LookupVeriable = new LookupItem { Name = LookupFieldName, Value = LookupFieldValue, Index = 0 };
             global.xrmApp.Entity.SetValue(LookupVeriable);
-            global.xrmApp.ThinkTime(1000);
+
         }
         public void LookupQuickCreate(String LookupFieldName, String LookupFieldValue)
         {
 
             LookupItem LookupQuickVeriable = new LookupItem { Name = LookupFieldName, Value = LookupFieldValue, Index = 0 };
             global.xrmApp.QuickCreate.SetValue(LookupQuickVeriable);
-            global.xrmApp.ThinkTime(1000);
+   
         }
 
     }

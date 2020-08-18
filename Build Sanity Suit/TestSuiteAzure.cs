@@ -2,7 +2,7 @@
 
 namespace Build_Sanity_Suit
 {
-    //[TestClass]
+    [TestClass]
     public class TestSuiteAzure
     {
         [TestMethod, TestCategory("BuildAutomation")]

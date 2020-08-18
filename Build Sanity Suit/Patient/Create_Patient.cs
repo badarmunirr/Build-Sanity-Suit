@@ -23,7 +23,7 @@ namespace Build_Sanity_Suit
             global.xrmApp.Navigation.OpenSubArea("Customers", "Patients");
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("New");
-            global.xrmApp.ThinkTime(2000);
+            global.xrmApp.ThinkTime(1000);
             Lookupobj.Lookup("mzk_title", Patientdata.title);
             global.xrmApp.ThinkTime(1000);
             global.xrmApp.Entity.SetValue("firstname", Patientdata.name);
@@ -223,7 +223,7 @@ namespace Build_Sanity_Suit
             global.xrmApp.ThinkTime(2000);
             string mzk_pincode = global.xrmApp.Entity.GetValue("mzk_pincode");
             Assert.IsNotNull(mzk_pincode);
-            global.xrmApp.ThinkTime(5000);
+            global.xrmApp.ThinkTime(2000);
             global.xrmApp.CommandBar.ClickCommand("Save & Close");
 
         }
