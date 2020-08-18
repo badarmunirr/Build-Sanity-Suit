@@ -24,8 +24,8 @@ namespace Build_Sanity_Suit
             newprovider.CreateProvider();
             newpayer.CreatePayer();
             newwholesaleorder.CreateWholesaleOrder();
-            //newreferraltodelivry.CreateReferral();
-            //newreferraltonurseorder.CreateReferraltoNurseOrder();
+            newreferraltodelivry.CreateReferral();
+            newreferraltonurseorder.CreateReferraltoNurseOrder();
 
 
 

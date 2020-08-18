@@ -20,7 +20,7 @@ namespace Build_Sanity_Suit
             //loginobj.Login();
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Navigation.OpenSubArea("Customers", "Payers");
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("New");
             global.xrmApp.ThinkTime(2000);
             global.xrmApp.Entity.SetValue("name", Payerdata.name);
@@ -44,7 +44,7 @@ namespace Build_Sanity_Suit
             global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_showcreditlimit", Value = true });
             // unable to set value in credit limit field 
             //global.xrmApp.Entity.SetValue("Creditlimit", "12345");
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//input[contains(@aria-label,'Credit Limit')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[contains(@aria-label,'Credit Limit')]")));
             global.client.Browser.Driver.FindElement(By.XPath("//input[contains(@aria-label,'Credit Limit')]")).SendKeys("5555");
             global.xrmApp.ThinkTime(1000);
             Lookupobj.Lookup("mzk_paymentterms", Payerdata.paymentterms);
@@ -127,16 +127,16 @@ namespace Build_Sanity_Suit
             {
                 Console.WriteLine("Update Duplicate Record");
             }
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Save & Close')]")));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Vaildate Payer')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Save & Close')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Vaildate Payer')]")));
             global.xrmApp.CommandBar.ClickCommand("Vaildate Payer");
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("confirmButton")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("confirmButton")));
             global.xrmApp.Dialogs.ConfirmationDialog(true);
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("confirmButton")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("confirmButton")));
             global.xrmApp.Dialogs.ConfirmationDialog(true);
             global.xrmApp.ThinkTime(5000);
             global.client.Browser.Driver.FindElement(By.CssSelector("*[aria-label='Validated: Yes']")).IsVisible();
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.ThinkTime(2000);
             global.xrmApp.CommandBar.ClickCommand("Save & Close");
 

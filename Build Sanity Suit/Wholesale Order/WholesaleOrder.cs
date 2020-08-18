@@ -20,7 +20,7 @@ namespace Build_Sanity_Suit
             //loginobj.Login();
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Navigation.OpenSubArea("Referral", "Wholesale Orders");
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("New");
             global.xrmApp.ThinkTime(2000);
             global.xrmApp.Entity.SelectForm("Wholesale Order");
@@ -92,7 +92,7 @@ namespace Build_Sanity_Suit
             //global.xrmApp.Entity.SetValue("mzk_drivercomments", Wholesaleorderdata.drivercomments);
             //global.xrmApp.ThinkTime(1000);
             global.xrmApp.Entity.Save();
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.ThinkTime(1000);
             var mzk_visitstatus = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });//msdyn_servicerequest
             Assert.IsTrue(mzk_visitstatus.StartsWith("Draft"));

@@ -20,7 +20,7 @@ namespace Build_Sanity_Suit
             //loginobj.Login();
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Navigation.OpenSubArea("Referral", "Referrals");
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("New");
             global.xrmApp.ThinkTime(1000);
             Lookupobj.Lookup("parentcontactid", ReferraltoNurseOrderdata.PatientName);
@@ -138,27 +138,26 @@ namespace Build_Sanity_Suit
             global.xrmApp.Entity.Save();
             global.xrmApp.ThinkTime(3000);
             var mzk_visitstatus2 = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
-            Assert.IsTrue(mzk_visitstatus2.StartsWith("Completed"));
-            global.xrmApp.ThinkTime(5000);
+            Assert.IsTrue(mzk_visitstatus2.StartsWith("Proposed"));
+            global.xrmApp.ThinkTime(4000);
             global.xrmApp.Entity.SelectTab("Products And Services");
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Entity.SubGrid.ClickCommand("workorderservicesgrid", "New Work Order Service");
-            global.xrmApp.ThinkTime(4000);
+            global.xrmApp.ThinkTime(1000);
             Lookupobj.LookupQuickCreate("msdyn_service", ReferraltoNurseOrderdata.servicename);
             global.xrmApp.ThinkTime(2000);
             //Lookupobj.LookupQuickCreate("msdyn_unit", Referraldata.unit);
             global.xrmApp.ThinkTime(2000);
             global.xrmApp.QuickCreate.SetValue("mzk_quantity", ReferraltoNurseOrderdata.qunantity);
-            global.xrmApp.ThinkTime(5000);
+            global.xrmApp.ThinkTime(2000);
             global.xrmApp.QuickCreate.Save();
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Complete')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Complete')]")));
             global.xrmApp.CommandBar.ClickCommand("Complete");
-            global.xrmApp.ThinkTime(4000);
+            global.xrmApp.ThinkTime(2000);
             var mzk_visitstatus3 = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus3.StartsWith("Completed"));
-            global.xrmApp.ThinkTime(5000);
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("Save & Close");
-            global.xrmApp.ThinkTime(5000);
 
         }
     }

@@ -20,9 +20,9 @@ namespace Build_Sanity_Suit
             //loginobj.Login();
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Navigation.OpenSubArea("Referral", "Referrals");
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("New");
-            global.xrmApp.ThinkTime(1000);
+            global.xrmApp.ThinkTime(2000);
             Lookupobj.Lookup("parentcontactid", ReferraltodeliviryOrderdata.PatientName);
             global.xrmApp.ThinkTime(1000);
             global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_patientconsent", Value = true });
@@ -89,8 +89,8 @@ namespace Build_Sanity_Suit
             // when support for hidden field is added need to replace this line of code
             string casenumber = global.client.Browser.Driver.FindElement(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")).Text;
             global.xrmApp.ThinkTime(2000);
-            var mzk_visitstatus2 = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
-            Assert.IsTrue(mzk_visitstatus2.StartsWith("Completed"));
+            var mzk_visitstatus2 = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_status" });
+            Assert.IsTrue(mzk_visitstatus2.StartsWith("Active"));
             global.xrmApp.ThinkTime(3000);
             global.xrmApp.Navigation.OpenSubArea("Referral", "Cases");
             global.xrmApp.ThinkTime(3000);
@@ -103,10 +103,10 @@ namespace Build_Sanity_Suit
             global.xrmApp.Entity.SubGrid.ClickCommand("DeliveryAndNursingVisitGrid", "New Work Order");
             global.xrmApp.ThinkTime(2000);
             global.xrmApp.Entity.SelectForm("Visit Detail");
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@data-id,'cancelButton')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@data-id,'cancelButton')]")));
             global.client.Browser.Driver.FindElement(By.XPath("//button[contains(@data-id,'cancelButton')]")).Click();
             global.xrmApp.ThinkTime(5000);
-            wait.Until(ExpectedConditions.ElementIsVisible(By.CssSelector("div[data-id='msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag_text']")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div[data-id='msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag_text']")));
             string casenumber2 = global.client.Browser.Driver.FindElement(By.CssSelector("div[data-id='msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag_text']")).Text;
             Assert.IsTrue(casenumber2.StartsWith(casenumber));
             global.xrmApp.ThinkTime(3000);
@@ -162,12 +162,12 @@ namespace Build_Sanity_Suit
             //Lookupobj.Lookup("msdyn_service", ReferraltodeliviryOrderdata.servicename);
             //global.xrmApp.ThinkTime(5000);
             //global.xrmApp.CommandBar.ClickCommand("Save & Close");
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));
             global.xrmApp.CommandBar.ClickCommand("Propose Order");
             global.xrmApp.ThinkTime(2000);
             var mzk_visitstatus3 = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus3.StartsWith("Proposed"));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Save & Close')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("Save & Close");
 
         }

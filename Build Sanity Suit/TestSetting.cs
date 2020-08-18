@@ -40,21 +40,21 @@ namespace Build_Sanity_Suit
     public class LOGIN
     {
         [TestMethod, TestCategory("BuildAutomation")]
-        [Obsolete]
+
         public void Login()
         {
             WebDriverWait wait = new WebDriverWait(global.client.Browser.Driver, TimeSpan.FromSeconds(120000));
             global.xrmApp.ThinkTime(5000);
             global.client.Browser.Driver.Navigate().GoToUrl(Variables.url);
             global.xrmApp.ThinkTime(5000);
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("i0116")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("i0116")));
             global.client.Browser.Driver.FindElement(By.Id("i0116")).SendKeys(Variables.user);
             global.client.Browser.Driver.FindElement(By.Id("i0116")).SendKeys(Keys.Enter);
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("passwordInput")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("passwordInput")));
             global.client.Browser.Driver.FindElement(By.Id("passwordInput")).SendKeys(Variables.pwd);
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("submitButton")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("submitButton")));
             global.client.Browser.Driver.FindElement(By.Id("submitButton")).Click();
-            wait.Until(ExpectedConditions.ElementIsVisible(By.Id("idSIButton9")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("idSIButton9")));
             global.client.Browser.Driver.FindElement(By.Id("idSIButton9")).SendKeys(Keys.Enter);
             global.xrmApp.ThinkTime(1000);
             if (global.client.Browser.Driver.HasElement(By.Id("idSubmit_ProofUp_Redirect")))

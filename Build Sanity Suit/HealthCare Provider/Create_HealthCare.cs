@@ -20,7 +20,7 @@ namespace Build_Sanity_Suit
             //loginobj.Login();
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Navigation.OpenSubArea("Customers", "Healthcare Providers");
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("New");
             global.xrmApp.ThinkTime(2000);
             global.xrmApp.Entity.SetValue("name", Healthcareproviderdata.name);
@@ -128,7 +128,7 @@ namespace Build_Sanity_Suit
             //global.xrmApp.Entity.SetValue("mzk_sites", Healthcareproviderdata.telephone1);
             //global.xrmApp.ThinkTime(1000);
             //global.xrmApp.Entity.SetValue("mzk_department", Healthcareproviderdata.telephone1);
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.ThinkTime(2000);
             global.xrmApp.CommandBar.ClickCommand("Save & Close");
 

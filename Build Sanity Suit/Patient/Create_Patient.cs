@@ -21,7 +21,7 @@ namespace Build_Sanity_Suit
             //loginobj.Login();
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Navigation.OpenSubArea("Customers", "Patients");
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("New");
             global.xrmApp.ThinkTime(1000);
             Lookupobj.Lookup("mzk_title", Patientdata.title);
@@ -219,12 +219,12 @@ namespace Build_Sanity_Suit
             {
                 Console.WriteLine("Update Duplicate Record");
             }
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Save & Close')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Save & Close')]")));
             global.xrmApp.ThinkTime(2000);
             string mzk_pincode = global.xrmApp.Entity.GetValue("mzk_pincode");
             Assert.IsNotNull(mzk_pincode);
             global.xrmApp.ThinkTime(2000);
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.ThinkTime(2000);
             global.xrmApp.CommandBar.ClickCommand("Save & Close");
 
