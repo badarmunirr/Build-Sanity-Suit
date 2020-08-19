@@ -54,8 +54,8 @@ namespace Build_Sanity_Suit
                 global.client.Browser.Driver.FindElement(By.XPath("//div[contains(@class,'data8-pa-countryselector data8-pa-visible')]")).Click();
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[contains(@data-countrycode,'GB')]")));
                 global.client.Browser.Driver.FindElement(By.XPath("//*[contains(@data-countrycode,'GB')]")).Click();
-                global.xrmApp.Entity.SetValue("address1_name", Patientdata.address1name);
-                global.xrmApp.Entity.SetValue("address1_line1", Patientdata.fulladdress);
+                global.xrmApp.Entity.SetValue("address1_name", Payerdata.address1name);
+                global.xrmApp.Entity.SetValue("address1_line1", Payerdata.fulladdress);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")));
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
             }
@@ -72,8 +72,8 @@ namespace Build_Sanity_Suit
                 global.client.Browser.Driver.FindElement(By.XPath("//div[contains(@class,'data8-pa-countryselector data8-pa-visible')]")).Click();
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")));
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")).Click();
-                global.xrmApp.Entity.SetValue("address2_name", Patientdata.address2name);
-                global.xrmApp.Entity.SetValue("address2_line1", Patientdata.fulladdress);
+                global.xrmApp.Entity.SetValue("address2_name", Payerdata.address2name);
+                global.xrmApp.Entity.SetValue("address2_line1", Payerdata.fulladdress);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")));
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
             }

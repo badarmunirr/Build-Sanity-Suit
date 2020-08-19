@@ -23,7 +23,6 @@ namespace Build_Sanity_Suit
             global.xrmApp.Navigation.OpenSubArea("Customers", "Patients");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("New");
-
             Lookupobj.Lookup("mzk_title", Patientdata.title);
 
             global.xrmApp.Entity.SetValue("firstname", Patientdata.name);

@@ -46,100 +46,111 @@ namespace Build_Sanity_Suit
 
             WebDriverWait wait = new WebDriverWait(global.client.Browser.Driver, TimeSpan.FromSeconds(120000));
             global.client.Browser.Driver.Navigate().GoToUrl(Variables.url);
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("i0116")));
-            global.client.Browser.Driver.FindElement(By.Id("i0116")).SendKeys(Variables.user);
-            global.client.Browser.Driver.FindElement(By.Id("i0116")).SendKeys(Keys.Enter);
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("passwordInput")));
-            global.client.Browser.Driver.FindElement(By.Id("passwordInput")).SendKeys(Variables.pwd);
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("submitButton")));
-            global.client.Browser.Driver.FindElement(By.Id("submitButton")).Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("idSIButton9")));
-            global.client.Browser.Driver.FindElement(By.Id("idSIButton9")).SendKeys(Keys.Enter);
-            if (global.client.Browser.Driver.HasElement(By.Id("idSubmit_ProofUp_Redirect")))
+            if (global.client.Browser.Driver.HasElement(By.Id("i0116")))
             {
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("idSubmit_ProofUp_Redirect")));
-                global.client.Browser.Driver.FindElement(By.Id("idSubmit_ProofUp_Redirect")).SendKeys(Keys.Enter);
-            }
-            else
-            {
-                Console.WriteLine("No 'Stay Signed In' Dialog appeared");
-            }
-            if (global.client.Browser.Driver.HasElement(By.PartialLinkText("Skip setup")))
-            {
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.PartialLinkText("Skip setup")));
-                global.client.Browser.Driver.FindElement(By.PartialLinkText("Skip setup")).Click();
-            }
-            else
-            {
-                Console.WriteLine("No 'Stay Signed In' Dialog appeared");
-            }
-            if (global.client.Browser.Driver.HasElement(By.Id("idSIButton9")))
-            {
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("i0116")));
+                global.client.Browser.Driver.FindElement(By.Id("i0116")).SendKeys(Variables.user);
+                global.client.Browser.Driver.FindElement(By.Id("i0116")).SendKeys(Keys.Enter);
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("passwordInput")));
+                global.client.Browser.Driver.FindElement(By.Id("passwordInput")).SendKeys(Variables.pwd);
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("submitButton")));
+                global.client.Browser.Driver.FindElement(By.Id("submitButton")).Click();
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("idSIButton9")));
                 global.client.Browser.Driver.FindElement(By.Id("idSIButton9")).SendKeys(Keys.Enter);
+                if (global.client.Browser.Driver.HasElement(By.Id("idSubmit_ProofUp_Redirect")))
+                {
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("idSubmit_ProofUp_Redirect")));
+                    global.client.Browser.Driver.FindElement(By.Id("idSubmit_ProofUp_Redirect")).SendKeys(Keys.Enter);
+                }
+                else
+                {
+                    Console.WriteLine("No 'Stay Signed In' Dialog appeared");
+                }
+                if (global.client.Browser.Driver.HasElement(By.PartialLinkText("Skip setup")))
+                {
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.PartialLinkText("Skip setup")));
+                    global.client.Browser.Driver.FindElement(By.PartialLinkText("Skip setup")).Click();
+                }
+                else
+                {
+                    Console.WriteLine("No 'Stay Signed In' Dialog appeared");
+                }
+                if (global.client.Browser.Driver.HasElement(By.Id("idSIButton9")))
+                {
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("idSIButton9")));
+                    global.client.Browser.Driver.FindElement(By.Id("idSIButton9")).SendKeys(Keys.Enter);
+                }
+                else
+                {
+                    Console.WriteLine("No 'Stay Signed In' Dialog appeared");
+                }
+                global.client.Browser.Driver.Navigate().GoToUrl(Variables.url + "main.aspx?forceUCI=1&pagetype=apps");
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[contains(@data-id,'userInformationLauncher')]")));
+                global.xrmApp.Navigation.OpenApp(Variables.AppName);
+
+                //if (global.client.Browser.Driver.HasElement(By.Id("i0116")))
+                //{
+                //    global.client.Browser.Driver.FindElement(By.Id("i0116")).SendKeys(Variables.user);
+                //}
+                //else
+                //{
+                //    Console.WriteLine("No 'Stay Signed In' Dialog appeared");
+                //}
+                //global.xrmApp.ThinkTime(25000);
+                //if (global.client.Browser.Driver.HasElement(By.Id("i0116")))
+                //{
+                //    global.client.Browser.Driver.FindElement(By.Id("i0116")).SendKeys(Keys.Enter);
+                //}
+                //else
+                //{
+                //    Console.WriteLine("No 'Stay Signed In' Dialog appeared");
+                //}
+
+                //global.xrmApp.ThinkTime(20000);
+                //if (global.client.Browser.Driver.HasElement(By.Id("passwordInput")))
+                //{
+                //    global.client.Browser.Driver.FindElement(By.Id("passwordInput")).SendKeys(Variables.pwd);
+                //}
+                //else
+                //{
+                //    Console.WriteLine("No 'Stay Signed In' Dialog appeared");
+                //}
+                //global.xrmApp.ThinkTime(10000);
+                //global.client.Browser.Driver.FindElement(By.Id("submitButton")).Click();
+                //global.xrmApp.ThinkTime(10000);
+                //if (global.client.Browser.Driver.HasElement(By.Id("idSIButton9")))
+                //{
+                //    global.client.Browser.Driver.FindElement(By.Id("idSIButton9")).SendKeys(Keys.Enter);
+                //}
+                //else
+                //{
+                //    Console.WriteLine("No 'Stay Signed In' Dialog appeared");
+                //}
             }
             else
             {
-                Console.WriteLine("No 'Stay Signed In' Dialog appeared");
+                Console.WriteLine("Element is visible");
             }
-            global.client.Browser.Driver.Navigate().GoToUrl(Variables.url + "main.aspx?forceUCI=1&pagetype=apps");
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[contains(@data-id,'userInformationLauncher')]")));
-            global.xrmApp.Navigation.OpenApp(Variables.AppName);
-
-            //if (global.client.Browser.Driver.HasElement(By.Id("i0116")))
-            //{
-            //    global.client.Browser.Driver.FindElement(By.Id("i0116")).SendKeys(Variables.user);
-            //}
-            //else
-            //{
-            //    Console.WriteLine("No 'Stay Signed In' Dialog appeared");
-            //}
-            //global.xrmApp.ThinkTime(25000);
-            //if (global.client.Browser.Driver.HasElement(By.Id("i0116")))
-            //{
-            //    global.client.Browser.Driver.FindElement(By.Id("i0116")).SendKeys(Keys.Enter);
-            //}
-            //else
-            //{
-            //    Console.WriteLine("No 'Stay Signed In' Dialog appeared");
-            //}
-
-            //global.xrmApp.ThinkTime(20000);
-            //if (global.client.Browser.Driver.HasElement(By.Id("passwordInput")))
-            //{
-            //    global.client.Browser.Driver.FindElement(By.Id("passwordInput")).SendKeys(Variables.pwd);
-            //}
-            //else
-            //{
-            //    Console.WriteLine("No 'Stay Signed In' Dialog appeared");
-            //}
-            //global.xrmApp.ThinkTime(10000);
-            //global.client.Browser.Driver.FindElement(By.Id("submitButton")).Click();
-            //global.xrmApp.ThinkTime(10000);
-            //if (global.client.Browser.Driver.HasElement(By.Id("idSIButton9")))
-            //{
-            //    global.client.Browser.Driver.FindElement(By.Id("idSIButton9")).SendKeys(Keys.Enter);
-            //}
-            //else
-            //{
-            //    Console.WriteLine("No 'Stay Signed In' Dialog appeared");
-            //}
         }
 
         public void Login2()
         {
-
             WebDriverWait wait = new WebDriverWait(global.client.Browser.Driver, TimeSpan.FromSeconds(120000));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[contains(@data-test-id,'testuser2-d365@hah.co.uk')]")));
-            global.client.Browser.Driver.FindElement(By.XPath("//*[contains(@data-test-id,'testuser2-d365@hah.co.uk')]")).Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("passwordInput")));
-            global.client.Browser.Driver.FindElement(By.Id("passwordInput")).SendKeys(Variables.pwd);
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("submitButton")));
-            global.client.Browser.Driver.FindElement(By.Id("submitButton")).Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("idSIButton9")));
-            global.client.Browser.Driver.FindElement(By.Id("idSIButton9")).SendKeys(Keys.Enter);
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[contains(@data-id,'userInformationLauncher')]")));
-
+            if (global.client.Browser.Driver.HasElement(By.XPath("//*[contains(@data-test-id,'testuser2-d365@hah.co.uk')]"))) {
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[contains(@data-test-id,'testuser2-d365@hah.co.uk')]")));
+                global.client.Browser.Driver.FindElement(By.XPath("//*[contains(@data-test-id,'testuser2-d365@hah.co.uk')]")).Click();
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("passwordInput")));
+                global.client.Browser.Driver.FindElement(By.Id("passwordInput")).SendKeys(Variables.pwd);
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("submitButton")));
+                global.client.Browser.Driver.FindElement(By.Id("submitButton")).Click();
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("idSIButton9")));
+                global.client.Browser.Driver.FindElement(By.Id("idSIButton9")).SendKeys(Keys.Enter);
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[contains(@data-id,'userInformationLauncher')]")));
+            }
+            else
+            {
+                Console.WriteLine("Element is visible");
+            }
         }
 
     }
