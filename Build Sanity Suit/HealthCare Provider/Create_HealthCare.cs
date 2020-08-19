@@ -16,8 +16,8 @@ namespace Build_Sanity_Suit
         {
             WebDriverWait wait = new WebDriverWait(global.client.Browser.Driver, TimeSpan.FromSeconds(120000));
             HelperFunction Lookupobj = new HelperFunction();
-            //LOGIN loginobj = new LOGIN();
-            //loginobj.Login();
+            LOGIN loginobj = new LOGIN();
+            loginobj.Login();
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Navigation.OpenSubArea("Customers", "Healthcare Providers");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
@@ -105,7 +105,6 @@ namespace Build_Sanity_Suit
             global.xrmApp.ThinkTime(1000);
             string mzk_address2countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address2countrycodeiso");
             Assert.IsTrue(mzk_address2countrycodeiso.StartsWith("GB"));
-
             global.xrmApp.Entity.Save();
             global.xrmApp.ThinkTime(2000);
             if (global.client.Browser.Driver.HasElement(By.CssSelector("button[data-id='ignore_save']")))
@@ -134,13 +133,14 @@ namespace Build_Sanity_Suit
             global.xrmApp.CommandBar.ClickCommand("Save & Close");
 
         }
-
+        [TestCleanup]
+        public void teardown()
+        {
+            global.xrmApp.Navigation.SignOut();
+            //global.client.Browser.Driver.Quit();
+        }
     }
 
-    //[TestCleanup]
-    //public void teardown()
-    //{
-    //    global.client.Browser.Driver.Quit();
-    //}
+
 }
 

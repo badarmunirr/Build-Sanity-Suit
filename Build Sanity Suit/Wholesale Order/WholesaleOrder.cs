@@ -17,14 +17,14 @@ namespace Build_Sanity_Suit
             WebDriverWait wait = new WebDriverWait(global.client.Browser.Driver, TimeSpan.FromSeconds(120000));
             HelperFunction Lookupobj = new HelperFunction();
             LOGIN loginobj = new LOGIN();
-            loginobj.Login();
+            loginobj.Login2();
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Navigation.OpenSubArea("Referral", "Wholesale Orders");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("New");
-            global.xrmApp.ThinkTime(2000);
-            global.xrmApp.Entity.SelectForm("Wholesale Order");
-            global.xrmApp.ThinkTime(1000);
+            //global.xrmApp.ThinkTime(2000);
+            //global.xrmApp.Entity.SelectForm("Wholesale Order");
+            //global.xrmApp.ThinkTime(1000);
             if (global.client.Browser.Driver.HasElement(By.XPath("//button[contains(@data-id,'cancelButton')]")))
             {
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@data-id,'cancelButton')]")));
@@ -135,6 +135,12 @@ namespace Build_Sanity_Suit
             //    Console.WriteLine("Update Duplicate Record");
             //}
             //global.xrmApp.ThinkTime(1000);
+        }
+        [TestCleanup]
+        public void teardown()
+        {
+            global.xrmApp.Navigation.SignOut();
+            //global.client.Browser.Driver.Quit();
         }
 
     }

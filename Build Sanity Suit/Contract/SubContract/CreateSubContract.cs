@@ -8,7 +8,7 @@ namespace Build_Sanity_Suit
     public class CreateSubContract
     {
 
-        public void Create(string contractname, string productname)
+        public void Create(string contractname)
         {
 
 
@@ -25,37 +25,37 @@ namespace Build_Sanity_Suit
                 global.xrmApp.Entity.SetHeaderValue(new OptionSet { Name = "mzk_contracttypevalue", Value = "Sub-Contract" });
                 global.xrmApp.ThinkTime(1000);
                 global.xrmApp.Entity.SetHeaderValue(new OptionSet { Name = "mzk_contractstatus", Value = "Live" });
-                global.xrmApp.ThinkTime(1000);
+
                 global.xrmApp.Entity.SetValue("mzk_name", contractname);
-                global.xrmApp.ThinkTime(500);
+     
                 Lookupobj.Lookup("mzk_payer", "AKU Trust");
-                global.xrmApp.ThinkTime(500);
+
                 Lookupobj.Lookup("mzk_mastercontractagreement", "CON");
-                global.xrmApp.ThinkTime(500);
+ 
                 Lookupobj.Lookup("mzk_service", "Ajovy");
-                global.xrmApp.ThinkTime(500);
+
                 Lookupobj.Lookup("mzk_contractsubtype", "MC - NHS Funded");
-                global.xrmApp.ThinkTime(500);
+
                 global.xrmApp.Entity.SetValue("mzk_keycontractinformation", "mzk_keycontractinformation");
-                global.xrmApp.ThinkTime(500);
+
                 DateTime startdate = DateTime.Today.AddDays(1);
                 global.xrmApp.Entity.SetValue("mzk_startdate", startdate);
-                global.xrmApp.ThinkTime(500);
+
                 DateTime enddate = startdate.AddDays(2);
                 global.xrmApp.Entity.SetValue("mzk_enddate", enddate);
-                global.xrmApp.ThinkTime(500);
+   
                 DateTime issuedate = DateTime.Today.AddDays(1);
                 global.xrmApp.Entity.SetValue("mzk_issuedate", issuedate);
-                global.xrmApp.ThinkTime(500);
+  
                 DateTime reviewdate = DateTime.Today.AddDays(1);
                 global.xrmApp.Entity.SetValue("mzk_reviewdate", reviewdate);
-                global.xrmApp.ThinkTime(500);
+
                 global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_inherit", Value = "Yes" });
-                global.xrmApp.ThinkTime(500);
+
                 global.xrmApp.Entity.SetValue("mzk_description", "mzk_description");
-                global.xrmApp.ThinkTime(500);
+
                 global.xrmApp.Entity.SetValue("mzk_contractspecialinstructions", "mzk_contractspecialinstructions");
-                global.xrmApp.ThinkTime(500);
+
                 global.xrmApp.Entity.SetValue("mzk_frameworkreference", "mzk_frameworkreference");
                 global.xrmApp.Entity.Save();
                 global.xrmApp.ThinkTime(1000);
@@ -67,56 +67,56 @@ namespace Build_Sanity_Suit
             {
                 global.xrmApp.ThinkTime(2000);
                 global.xrmApp.Entity.SelectTab("Other Information");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.Entity.SetValue("mzk_serviceoverview", "mzk_serviceoverview");
-                global.xrmApp.ThinkTime(1000);
-                DateTime mzk_contractrenewaldate = DateTime.Today.AddDays(1);
-                global.xrmApp.Entity.SetValue("mzk_contractrenewaldate", mzk_contractrenewaldate);
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.Entity.ClearValue("mzk_contractedkpissummary");
-                global.xrmApp.Entity.SetValue("mzk_contractedkpissummary", "mzk_contractedkpissummary");
-                global.xrmApp.ThinkTime(500);
-                global.xrmApp.Entity.SetValue("mzk_operationalkpissummary", "mzk_operationalkpissummary");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.Entity.SetValue("mzk_stockterms", "mzk_stockterms");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.Entity.SetValue("mzk_productcountryoforiginmanufacturer", "mzk_productcountryoforiginmanufacturer");
-                global.xrmApp.ThinkTime(1000);
+                //global.xrmApp.ThinkTime(1000);
+                //global.xrmApp.Entity.SetValue("mzk_serviceoverview", "mzk_serviceoverview");
+                //global.xrmApp.ThinkTime(1000);
+                //DateTime mzk_contractrenewaldate = DateTime.Today.AddDays(1);
+                //global.xrmApp.Entity.SetValue("mzk_contractrenewaldate", mzk_contractrenewaldate);
+                //global.xrmApp.ThinkTime(1000);
+                //global.xrmApp.Entity.ClearValue("mzk_contractedkpissummary");
+                //global.xrmApp.Entity.SetValue("mzk_contractedkpissummary", "mzk_contractedkpissummary");
+                //global.xrmApp.ThinkTime(500);
+                //global.xrmApp.Entity.SetValue("mzk_operationalkpissummary", "mzk_operationalkpissummary");
+                //global.xrmApp.ThinkTime(1000);
+                //global.xrmApp.Entity.SetValue("mzk_stockterms", "mzk_stockterms");
+                //global.xrmApp.ThinkTime(1000);
+                //global.xrmApp.Entity.SetValue("mzk_productcountryoforiginmanufacturer", "mzk_productcountryoforiginmanufacturer");
+                //global.xrmApp.ThinkTime(1000);
                 Lookupobj.Lookup("mzk_dispensinglocationwarehouse", "107");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.Entity.SetValue("mzk_productsupplyroute", "mzk_productsupplyroute");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.Entity.SetValue("mzk_logisticstermssummary", "mzk_logisticstermssummary");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.Entity.SetValue("mzk_compoundingstorageneeds", "mzk_compoundingstorageneeds");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.Entity.SetValue("mzk_pasterms", "mzk_pasterms");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.Entity.SetValue("mzk_terminationterms", "mzk_terminationterms");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.Entity.SetValue("mzk_tuperecruitment", "mzk_tuperecruitment");
-                global.xrmApp.ThinkTime(2000);
-                global.xrmApp.Entity.SetValue("mzk_pvterms", "mzk_pvterms");
-                global.xrmApp.ThinkTime(2000);
-                global.xrmApp.Entity.SetValue("mzk_paymentterms", "mzk_paymentterms");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.Entity.SetValue("mzk_workingcapitalmanagementcreditordays", "2145");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.Entity.SetValue("mzk_changeofcontrol", "mzk_changeofcontrol");
-                global.xrmApp.ThinkTime(1000);
-                global.xrmApp.Entity.SetValue("mzk_debtreviewprocess", "mzk_debtreviewprocess");
-                global.xrmApp.ThinkTime(1000);
+                //global.xrmApp.ThinkTime(1000);
+                //global.xrmApp.Entity.SetValue("mzk_productsupplyroute", "mzk_productsupplyroute");
+                //global.xrmApp.ThinkTime(1000);
+                //global.xrmApp.Entity.SetValue("mzk_logisticstermssummary", "mzk_logisticstermssummary");
+                //global.xrmApp.ThinkTime(1000);
+                //global.xrmApp.Entity.SetValue("mzk_compoundingstorageneeds", "mzk_compoundingstorageneeds");
+                //global.xrmApp.ThinkTime(1000);
+                //global.xrmApp.Entity.SetValue("mzk_pasterms", "mzk_pasterms");
+                //global.xrmApp.ThinkTime(1000);
+                //global.xrmApp.Entity.SetValue("mzk_terminationterms", "mzk_terminationterms");
+                //global.xrmApp.ThinkTime(1000);
+                //global.xrmApp.Entity.SetValue("mzk_tuperecruitment", "mzk_tuperecruitment");
+                //global.xrmApp.ThinkTime(2000);
+                //global.xrmApp.Entity.SetValue("mzk_pvterms", "mzk_pvterms");
+                //global.xrmApp.ThinkTime(2000);
+                //global.xrmApp.Entity.SetValue("mzk_paymentterms", "mzk_paymentterms");
+                //global.xrmApp.ThinkTime(1000);
+                //global.xrmApp.Entity.SetValue("mzk_workingcapitalmanagementcreditordays", "2145");
+                //global.xrmApp.ThinkTime(1000);
+                //global.xrmApp.Entity.SetValue("mzk_changeofcontrol", "mzk_changeofcontrol");
+                //global.xrmApp.ThinkTime(1000);
+                //global.xrmApp.Entity.SetValue("mzk_debtreviewprocess", "mzk_debtreviewprocess");
+                //global.xrmApp.ThinkTime(1000);
                 Lookupobj.Lookup("mzk_orderreleasetype", "BULK");
-                global.xrmApp.ThinkTime(2000);
-                global.xrmApp.Entity.SetValue("mzk_contractnoticeperioddays", "2");
-                global.xrmApp.ThinkTime(2000);
-                global.xrmApp.Entity.SetValue("mzk_contractualsreportingsummary", "mzk_contractualsreportingsummary");
-                global.xrmApp.ThinkTime(2000);
-                //Lookupobj.Lookup("mzk_therapyarea", "2");
-                global.xrmApp.ThinkTime(2000);
-                global.xrmApp.Entity.SetValue("mzk_contractbreakpointsfeereviews", "mzk_contractbreakpointsfeereviews");
-                global.xrmApp.ThinkTime(2000);
-                global.xrmApp.Entity.SetValue("mzk_servicecreditdetails", "mzk_servicecreditdetails");
+                //global.xrmApp.ThinkTime(2000);
+                //global.xrmApp.Entity.SetValue("mzk_contractnoticeperioddays", "2");
+                //global.xrmApp.ThinkTime(2000);
+                //global.xrmApp.Entity.SetValue("mzk_contractualsreportingsummary", "mzk_contractualsreportingsummary");
+                //global.xrmApp.ThinkTime(2000);
+                ////Lookupobj.Lookup("mzk_therapyarea", "2");
+                //global.xrmApp.ThinkTime(2000);
+                //global.xrmApp.Entity.SetValue("mzk_contractbreakpointsfeereviews", "mzk_contractbreakpointsfeereviews");
+                //global.xrmApp.ThinkTime(2000);
+                //global.xrmApp.Entity.SetValue("mzk_servicecreditdetails", "mzk_servicecreditdetails");
                 global.xrmApp.Entity.Save();
             });
             

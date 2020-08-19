@@ -2,7 +2,7 @@
 
 namespace Build_Sanity_Suit
 {
-    [TestClass]
+    //[TestClass]
     public class TestSuiteAzure
     {
         [TestMethod, TestCategory("BuildAutomation")]
@@ -19,11 +19,10 @@ namespace Build_Sanity_Suit
 
             //Sanity 
             loginobj.Login();
-            newpatient.CreatePatient();
-            newprovider.CreateProvider();
-            newpayer.CreatePayer();
-            newwholesaleorder.CreateWholesaleOrder();
-
+            //newpatient.CreatePatient();
+            //newprovider.CreateProvider();
+            //newpayer.CreatePayer();
+            //newwholesaleorder.CreateWholesaleOrder();
             //newreferraltodelivry.CreateReferral();
             //newreferraltonurseorder.CreateReferraltoNurseOrder();
 

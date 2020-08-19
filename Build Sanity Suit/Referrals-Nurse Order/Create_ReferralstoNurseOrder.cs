@@ -16,8 +16,8 @@ namespace Build_Sanity_Suit
         {
             WebDriverWait wait = new WebDriverWait(global.client.Browser.Driver, TimeSpan.FromSeconds(120000));
             HelperFunction Lookupobj = new HelperFunction();
-            //LOGIN loginobj = new LOGIN();
-            //loginobj.Login();
+            LOGIN loginobj = new LOGIN();
+            loginobj.Login2();
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Navigation.OpenSubArea("Referral", "Referrals");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
@@ -102,9 +102,9 @@ namespace Build_Sanity_Suit
             global.xrmApp.Entity.SelectTab("Delivery and Nursing Visit");
             global.xrmApp.ThinkTime(5000);
             global.xrmApp.Entity.SubGrid.ClickCommand("DeliveryAndNursingVisitGrid", "New Work Order");
-            global.xrmApp.ThinkTime(2000);
-            global.xrmApp.Entity.SelectForm("Visit Detail");
-            global.xrmApp.ThinkTime(5000);
+            //global.xrmApp.ThinkTime(2000);
+            //global.xrmApp.Entity.SelectForm("Visit Detail");
+            //global.xrmApp.ThinkTime(5000);
             if (global.client.Browser.Driver.HasElement(By.XPath("//button[contains(@data-id,'cancelButton')]")))
             {
                 global.client.Browser.Driver.FindElement(By.XPath("//button[contains(@data-id,'cancelButton')]")).Click();
@@ -163,6 +163,12 @@ namespace Build_Sanity_Suit
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("Save & Close");
 
+        }
+        [TestCleanup]
+        public void teardown()
+        {
+            global.xrmApp.Navigation.SignOut();
+            //global.client.Browser.Driver.Quit();
         }
     }
 
