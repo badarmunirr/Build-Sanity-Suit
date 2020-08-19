@@ -36,7 +36,7 @@ steps:
     testSelector: 'testAssemblies'
     testAssemblyVer2: '$(System.DefaultWorkingDirectory)\Build Sanity Suit\bin\Release\Build Sanity Suit.dll'
     searchFolder: '$(System.DefaultWorkingDirectory)\Build Sanity Suit'
-    testFiltercriteria: 'Priority=1|Name=Executetest' 
+    #testFiltercriteria: 'Priority=1|Name=Executetest' 
     uiTests: true
     vsTestVersion: 'toolsInstaller'
 
