@@ -4,11 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Microsoft.Dynamics365.UIAutomation.Browser;
 using OpenQA.Selenium.Support.UI;
+using System.Diagnostics;
 
 namespace Build_Sanity_Suit
 {
     [TestClass]
-    public class Create_HealthCare
+    public class A1_Create_HealthCare
     {
         [TestMethod, TestCategory("BuildAutomation")]
 
@@ -136,8 +137,7 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void teardown()
         {
-            global.xrmApp.Navigation.SignOut();
-            //global.client.Browser.Driver.Quit();
+            
         }
     }
 

@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="Contract\MasterContract\CreateMasterContract.cs" />
     <Compile Include="Contract\ServiceAgreement\CreateServiceAgreement.cs" />
+    <Compile Include="Contract\ServiceAgreement\CreateServiceAgreementWholeSales.cs" />
     <Compile Include="Contract\SubContract\CreateSubContract.cs" />
     <Compile Include="HealthCare Provider\Create_HealthCare.cs" />
     <Compile Include="Patient\Create_Patient.cs" />

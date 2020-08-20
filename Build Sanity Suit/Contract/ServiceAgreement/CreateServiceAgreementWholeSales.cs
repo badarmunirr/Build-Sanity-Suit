@@ -8,12 +8,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Build_Sanity_Suit
 {
    // [TestClass]
-    public class A6_CreateServiceAgreement
+    public class A9_CreateServiceAgreementWholeSales
     {
         [TestMethod]
         public void Create()
         {
             HelperFunction Lookupobj = new HelperFunction();
+            LOGIN loginobj = new LOGIN();
+            loginobj.Login();
             global.xrmApp.Navigation.OpenSubArea("Referral", "Contract Management");
             global.xrmApp.ThinkTime(2000);
             global.xrmApp.CommandBar.ClickCommand("New");
@@ -26,19 +28,19 @@ namespace Build_Sanity_Suit
                 global.xrmApp.ThinkTime(5000);
                 global.xrmApp.Entity.SetHeaderValue(new OptionSet { Name = "mzk_contractstatus", Value = "Live" });
                 global.xrmApp.ThinkTime(5000);
-                global.xrmApp.Entity.SetValue("mzk_name", ServiceAgreementData.name);
+                global.xrmApp.Entity.SetValue("mzk_name", ServiceAgreementWholeSaleData.name);
                 global.xrmApp.ThinkTime(500);
-                Lookupobj.Lookup("mzk_payer", ServiceAgreementData.payer);
+                Lookupobj.Lookup("mzk_payer", ServiceAgreementWholeSaleData.payer);
                 global.xrmApp.ThinkTime(500);
-                Lookupobj.Lookup("mzk_provider", ServiceAgreementData.provider);
+                Lookupobj.Lookup("mzk_provider", ServiceAgreementWholeSaleData.provider);
                 global.xrmApp.ThinkTime(500);
-                Lookupobj.Lookup("mzk_mastercontractagreement", ServiceAgreementData.mastercontractagreement);
+                Lookupobj.Lookup("mzk_mastercontractagreement", ServiceAgreementWholeSaleData.mastercontractagreement);
                 global.xrmApp.ThinkTime(500);
-                Lookupobj.Lookup("mzk_subcontract", ServiceAgreementData.subcontract);
+                Lookupobj.Lookup("mzk_subcontract", ServiceAgreementWholeSaleData.subcontract);
                 global.xrmApp.ThinkTime(500);
-                Lookupobj.Lookup("mzk_service", ServiceAgreementData.service);
+                Lookupobj.Lookup("mzk_service", ServiceAgreementWholeSaleData.service);
                 global.xrmApp.ThinkTime(500);
-                Lookupobj.Lookup("mzk_contractsubtype", ServiceAgreementData.contractsubtype);
+                Lookupobj.Lookup("mzk_contractsubtype", ServiceAgreementWholeSaleData.contractsubtype);
                 //global.xrmApp.ThinkTime(2000);
                 //global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_pediatric", Value = "No" });
                 //global.xrmApp.ThinkTime(2000);
@@ -56,7 +58,7 @@ namespace Build_Sanity_Suit
                 //global.xrmApp.Entity.SetValue("mzk_description", "mzk_description");
                 //global.xrmApp.Entity.SetValue("mzk_contractspecialinstructions", "mzk_contractspecialinstructions");
                 //global.xrmApp.Entity.SetValue("mzk_frameworkreference", "mzk_frameworkreference");
-                global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_wholesalecontract", Value = ServiceAgreementData.WholeSale });
+                global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_wholesalecontract", Value = ServiceAgreementWholeSaleData.WholeSale });
                 global.xrmApp.Entity.Save();
                 global.xrmApp.ThinkTime(1000);
                 global.xrmApp.Dialogs.ConfirmationDialog(true);
@@ -93,7 +95,7 @@ namespace Build_Sanity_Suit
                 //global.xrmApp.Entity.SetValue("mzk_stockterms", "mzk_stockterms");
                 //global.xrmApp.Entity.SetValue("mzk_productcountryoforiginmanufacturer", "mzk_productcountryoforiginmanufacturer");
                 global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_dispensinglocationwarehouse", ServiceAgreementData.dispensinglocationwarehouse);
+                Lookupobj.Lookup("mzk_dispensinglocationwarehouse", ServiceAgreementWholeSaleData.dispensinglocationwarehouse);
                 //global.xrmApp.Entity.SetValue("mzk_productsupplyroute", "mzk_productsupplyroute");
                 //global.xrmApp.Entity.SetValue("mzk_logisticstermssummary", "mzk_logisticstermssummary");
                 //global.xrmApp.Entity.SetValue("mzk_compoundingstorageneeds", "mzk_compoundingstorageneeds");
@@ -106,7 +108,7 @@ namespace Build_Sanity_Suit
                 //global.xrmApp.Entity.SetValue("mzk_changeofcontrol", "mzk_changeofcontrol");
                 //global.xrmApp.Entity.SetValue("mzk_debtreviewprocess", "mzk_debtreviewprocess");
                 global.xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_orderreleasetype", ServiceAgreementData.orderreleasetype);
+                Lookupobj.Lookup("mzk_orderreleasetype",ServiceAgreementWholeSaleData.orderreleasetype);
                 //global.xrmApp.ThinkTime(2000);
                 //global.xrmApp.Entity.SetValue("mzk_contractnoticeperioddays", "2");
                 //global.xrmApp.ThinkTime(2000);
@@ -120,7 +122,7 @@ namespace Build_Sanity_Suit
                 global.xrmApp.Entity.Save();
                 global.xrmApp.ThinkTime(2000);
                 global.xrmApp.CommandBar.ClickCommand("Save & Close");
-
+               
 
 
             });

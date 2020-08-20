@@ -1,4 +1,6 @@
-﻿namespace Build_Sanity_Suit
+﻿using System;
+
+namespace Build_Sanity_Suit
 {
 
     public class Patientdata
@@ -127,29 +129,6 @@
         public static string qunantity = "5";
         public static string servicename = "Clinical Call";
     }
-    public class wholesaleCollectionOrderdata
-    {
-        public static int noofwholesaleCollectionorder = 2;
-        public static string wholesaleordertype = "Wholesale order";
-        public static string prescriptionponumber = "PO-124";
-        public static string district = "North";
-        public static string contractname = "CON-SA-007013";
-        public static string deliveryfrequency = "5 Days";
-        public static string deliverymethods = "INT";
-        public static string deliveryroute = "0101";
-        public static string drivername = "James";
-        public static string vanid = "1234";
-        public static string visitnotes = "mzk_visitnotes";
-        public static string drivercomments = "mzk_drivercomments";
-        public static string productname = "7L CYTO BIN";
-        public static string unit = "EA";
-        public static string qunantity = "5";
-
-        public static string wholesalecollectionordertype = "Routine collection order";
-        public static string ordertype = "Return Collection";
-        public static string reasonforcollection = "Change of Dose";
-        public static string wholesalecollectiondeliverymethods = "INT";
-    }
     public class ReferraltoNurseOrderdata
     {
         public static int Noofrefferal = 1;
@@ -175,18 +154,129 @@
         public static string qunantity = "1";
 
     }
-    public class EmployeeOrderdata
+    public class MasterContractData
     {
-        public static int Nooforders = 1;
-        public static string workordertype = "Employee order ";
-        
-        
-        public static string district = "North";
-        public static string visitnotes = "mzk_visitnotes";
-        public static string deliverymethods = "INT";
-        public static string warehouse = "CP";
-        public static string productname = "BIN- SHARPS Updated";
-        public static string qunantity = "1";
+        //Date
+        public static DateTime startdate = DateTime.Today.AddDays(1);
+        public static DateTime enddate = startdate.AddDays(365);
+        public static DateTime issuedate = DateTime.Today.AddDays(1);
+        //General
+        public static string contractName = "Master Contract";
+        public static string contractingParty = "AbbVie UK";
+        public static string service = "Aspergillosis";
+        public static string contractSubtype = "MC - HAH Funded";
+
+        //Contract Products and Services
+        public static string product = "PRO-001178";
+        public static string serviceName = "Delivery Fee";
+
+        public static string maxQty = "2";
+        public static string orderQty = "100";
+        //SLA
+        public static string bufferstockdays = "2";
+        public static string returnsresponsibility = "HaH";
+        public static string telephonecallschargingmodel = "Flat Rate";
+        public static string textmessagechargingmodel = "Flat Rate";
+        public static string nonstandardvisitdaycharging = "Yes";
+        public static string pvreportcharging = "Flat Rate";
+        public static string pqcreturnmodel = "HaH Collect and dispose";
+        public static string methodofpayment = "BACS";
+        public static string patientculpabledeliveryfailurecharging = "Yes";
+        public static string patientregistrationcharging = "Yes";
+        public static string pvreportchargingmodel = "Flat Rate";
+        public static string contractreportingchargingmodel = "Flat Rate";
+
+        public static string invoicecurrency = "Pound Sterling";
+        public static string ancillaryitemscharging = "Yes";
+        public static string carebureaucallschargingmodel = "Activity Based";
+        public static string nonstandarddeliverydaycharging = "Yes";
+        public static string patientculpablevisitfailurecharging = "Yes";
+
+        public static string pqcreimbursementmodel = "Supplier Credit";
+        public static string medicaldevicechargingmodel = "Activity Based";
+
+        public static string visittype = "5FU Visit";
+        public static string allowedvisits = "2";
+
+        public static string frequency = "2";
+        public static string format = "mzk_format";
+        public static string description = "mzk_description";
+
+        public static string performancevalue = "2";
+        public static string kpi = "Credits Issued";
+        public static string kpiunit = "Days";
+        public static string deliverymethod = "INT";
+
+
+        // Contract Diagnosis Group
+        public static string operationaldiagnosisgroup = "aHUS";
+        // Contract Price List
+        public static string contractpricelist = "ESD Rate Card";
+        public static string reducedpricelist = "ESD Rate Card";
+        public static string contractdiagnosisgroup = operationaldiagnosisgroup;
+
+        // Other Information
+        public static string mzk_dispensinglocationwarehouse = "107";
+        public static string mzk_orderreleasetype = "BULK";
+
+    }
+    public class SubContractData
+    {
+        //General
+        public static string SubContract = "Sub Contract";
+        public static string payer = "1st Assist Group Limited";
+        public static string mastercontractagreement = MasterContractData.contractName;
+        public static string contractsubtype = "MC - NHS Funded";
+        // Other Information
+        public static string dispensinglocationwarehouse = "107";
+        public static string orderreleasetype = "BULK";
+
+
+    }
+    public class ServiceAgreementData
+    {
+        //General
+        public static bool WholeSale = false;
+
+        public static string name = "Service Agreement";
+        public static string payer = "1st Assist Group Limited";
+
+        public static string provider = "1 Harley Street";
+        public static string mastercontractagreement = MasterContractData.contractName;
+
+        public static string subcontract = SubContractData.SubContract;
+        public static string service = "Adempas";
+
+        public static string contractsubtype = "MC - NHS Funded";
+
+
+        // Other Information
+        public static string dispensinglocationwarehouse = "107";
+        public static string orderreleasetype = "BULK";
+
+
+    }
+    public class ServiceAgreementWholeSaleData
+    {
+        //General
+        public static bool WholeSale = true;
+
+        public static string name = "Service Agreement Wholesale";
+        public static string payer = "1st Assist Group Limited";
+
+        public static string provider = "1 Harley Street";
+        public static string mastercontractagreement = MasterContractData.contractName;
+
+        public static string subcontract = SubContractData.SubContract;
+        public static string service = "Adempas";
+
+        public static string contractsubtype = "MC - NHS Funded";
+
+
+        // Other Information
+        public static string dispensinglocationwarehouse = "107";
+        public static string orderreleasetype = "BULK";
+
 
     }
 }

@@ -8,7 +8,7 @@ using OpenQA.Selenium.Support.UI;
 namespace Build_Sanity_Suit
 {
     [TestClass]
-    public class Create_WholesaleOrders
+    public class B10_Create_WholesaleOrders
     {
         [TestMethod, TestCategory("BuildAutomation")]
 
@@ -17,7 +17,7 @@ namespace Build_Sanity_Suit
             WebDriverWait wait = new WebDriverWait(global.client.Browser.Driver, TimeSpan.FromSeconds(120000));
             HelperFunction Lookupobj = new HelperFunction();
             LOGIN loginobj = new LOGIN();
-            loginobj.Login2();
+            loginobj.Login();
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Navigation.OpenSubArea("Referral", "Wholesale Orders");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
@@ -45,7 +45,7 @@ namespace Build_Sanity_Suit
             //global.xrmApp.ThinkTime(1000);
             //global.xrmApp.Entity.SetValue("mzk_region", "Khi");
       
-            global.xrmApp.Entity.SetValue("mzk_district", Wholesaleorderdata.district);
+            //global.xrmApp.Entity.SetValue("mzk_district", Wholesaleorderdata.district);
    
             //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_emergencyorder", Value = false });
             //Visit Date and Time Information
@@ -55,11 +55,10 @@ namespace Build_Sanity_Suit
 
             DateTime mzk_proposedvisitenddatetime = DateTime.Today.AddDays(1).AddHours(12);
             global.xrmApp.Entity.SetValue("mzk_proposedvisitenddatetime", mzk_proposedvisitenddatetime, "dd/MM/yyyy", "hh:mm");
-
-            DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(1).AddHours(12);
+            DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
             global.xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, "dd/MM/yyyy", "hh:mm");
-           
-            DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(1).AddHours(12);
+
+            DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(2).AddHours(12);
             global.xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, "dd/MM/yyyy", "hh:mm");
             //Visit Reasons
             //global.xrmApp.ThinkTime(1000);
@@ -115,7 +114,12 @@ namespace Build_Sanity_Suit
             global.xrmApp.QuickCreate.SetValue("msdyn_quantity", Wholesaleorderdata.qunantity);
 
             global.xrmApp.QuickCreate.Save();
+            global.xrmApp.ThinkTime(2000);
+            global.xrmApp.CommandBar.ClickCommand("Propose Order");
+            global.xrmApp.ThinkTime(2000);
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            var mzk_visitstatus2 = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
+            Assert.IsTrue(mzk_visitstatus2.StartsWith("Proposed"));
             global.xrmApp.ThinkTime(1000);
             global.xrmApp.CommandBar.ClickCommand("Save & Close");
             //Service
@@ -139,8 +143,8 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void teardown()
         {
-            global.xrmApp.Navigation.SignOut();
-            //global.client.Browser.Driver.Quit();
+            //global.xrmApp.Navigation.SignOut();
+            ////global.client.Browser.Driver.Quit();
         }
 
     }

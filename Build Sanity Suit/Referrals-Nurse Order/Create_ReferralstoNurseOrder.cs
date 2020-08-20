@@ -8,7 +8,7 @@ using OpenQA.Selenium.Support.UI;
 namespace Build_Sanity_Suit
 {
     [TestClass]
-    public class Create_ReferralstoNurseOrder
+    public class A8_Create_ReferralstoNurseOrder
     {
         [TestMethod, TestCategory("BuildAutomation")]
 
@@ -17,12 +17,12 @@ namespace Build_Sanity_Suit
             WebDriverWait wait = new WebDriverWait(global.client.Browser.Driver, TimeSpan.FromSeconds(120000));
             HelperFunction Lookupobj = new HelperFunction();
             LOGIN loginobj = new LOGIN();
-            loginobj.Login2();
+            loginobj.Login();
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Navigation.OpenSubArea("Referral", "Referrals");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("New");
-            global.xrmApp.ThinkTime(1000);
+
             Lookupobj.Lookup("parentcontactid", ReferraltoNurseOrderdata.PatientName);
 
             global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_patientconsent", Value = true });
@@ -53,7 +53,7 @@ namespace Build_Sanity_Suit
             {
                 Console.WriteLine("No Element found");
             }
-            global.xrmApp.ThinkTime(1000);
+
             Lookupobj.Lookup("pricelevelid", ReferraltoNurseOrderdata.PriceList);
 
             Lookupobj.Lookup("mzk_contract", ReferraltoNurseOrderdata.ServiceAgreement);
@@ -101,18 +101,18 @@ namespace Build_Sanity_Suit
             global.xrmApp.ThinkTime(5000);
             global.xrmApp.Entity.SelectTab("Delivery and Nursing Visit");
             global.xrmApp.ThinkTime(5000);
-            global.xrmApp.Entity.SubGrid.ClickCommand("DeliveryAndNursingVisitGrid", "New Work Order");
+            global.xrmApp.Entity.SubGrid.ClickCommand("DeliveryAndNursingVisitGrid", "Add New Work Order");
             //global.xrmApp.ThinkTime(2000);
             //global.xrmApp.Entity.SelectForm("Visit Detail");
             //global.xrmApp.ThinkTime(5000);
             if (global.client.Browser.Driver.HasElement(By.XPath("//button[contains(@data-id,'cancelButton')]")))
             {
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@data-id,'cancelButton')]")));
                 global.client.Browser.Driver.FindElement(By.XPath("//button[contains(@data-id,'cancelButton')]")).Click();
-
             }
             else
             {
-                Console.WriteLine("No Element found");
+                Console.WriteLine("No 'Stay Signed In' Dialog appeared");
             }
             global.xrmApp.ThinkTime(3000);
             string casenumber2 = global.client.Browser.Driver.FindElement(By.CssSelector("div[data-id='msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag_text']")).Text;
@@ -167,8 +167,8 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void teardown()
         {
-            global.xrmApp.Navigation.SignOut();
-            //global.client.Browser.Driver.Quit();
+            //global.xrmApp.Navigation.SignOut();
+            ////global.client.Browser.Driver.Quit();
         }
     }
 

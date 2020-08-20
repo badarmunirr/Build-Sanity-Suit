@@ -8,7 +8,7 @@ using OpenQA.Selenium.Support.UI;
 namespace Build_Sanity_Suit
 {
     [TestClass]
-    public class Create_Payers
+    public class A3_Create_Payers
     {
         [TestMethod, TestCategory("BuildAutomation")]
 
@@ -17,7 +17,7 @@ namespace Build_Sanity_Suit
             WebDriverWait wait = new WebDriverWait(global.client.Browser.Driver, TimeSpan.FromSeconds(120000));
             HelperFunction Lookupobj = new HelperFunction();
             LOGIN loginobj = new LOGIN();
-            loginobj.Login2();
+            loginobj.Login();
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Navigation.OpenSubArea("Customers", "Payers");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
@@ -125,8 +125,7 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void teardown()
         {
-            global.xrmApp.Navigation.SignOut();
-            //global.client.Browser.Driver.Quit();
+
         }
     }
 }
