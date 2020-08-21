@@ -7,12 +7,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Build_Sanity_Suit
 {
-   // [TestClass]
+    [TestClass]
     public class A6_CreateServiceAgreement
     {
         [TestMethod]
-        public void Create()
+        public void CreateService()
         {
+            LOGIN loginobj = new LOGIN();
+            loginobj.Login();
             HelperFunction Lookupobj = new HelperFunction();
             global.xrmApp.Navigation.OpenSubArea("Referral", "Contract Management");
             global.xrmApp.ThinkTime(2000);
@@ -271,49 +273,68 @@ namespace Build_Sanity_Suit
             //    global.xrmApp.ThinkTime(1000);
             //});
 
-            //// Contract Price List
-            //var ContractPriceListCreate = new Action(() =>
-            //{
-            //    global.xrmApp.Entity.SelectTab("Contract Price Lists");
-            //    global.xrmApp.ThinkTime(1000);
-            //    // use this line to click on related grid
-            //    global.xrmApp.Entity.SubGrid.ClickCommand("ContractPriceList", "New Contract Price List");
-            //    global.xrmApp.ThinkTime(1000);
-            //    Lookupobj.LookupQuickCreate("mzk_contractpricelist", "Price01");
-            //    global.xrmApp.ThinkTime(1000);
-            //    Lookupobj.LookupQuickCreate("mzk_reducedpricelist", "Price01");
-            //    //Lookupobj.LookupQuickCreate("mzk_contractdiagnosisgroup", "A010");
-            //    global.xrmApp.ThinkTime(1000);
-            //    global.xrmApp.QuickCreate.Save();
-            //    global.xrmApp.ThinkTime(1000);
-            //    global.xrmApp.Entity.Save();
+            // Contract Price List
+            var ContractPriceListCreate = new Action(() =>
+            {
+                global.xrmApp.Entity.SelectTab("Contract Price Lists");
+                global.xrmApp.ThinkTime(1000);
+                // use this line to click on related grid
+                global.xrmApp.Entity.SubGrid.ClickCommand("ContractPriceList", "New Contract Price List");
+                Lookupobj.LookupQuickCreate("mzk_contractpricelist", MasterContractData.contractpricelist);
+                Lookupobj.LookupQuickCreate("mzk_reducedpricelist", MasterContractData.reducedpricelist);
+                Lookupobj.LookupQuickCreate("mzk_contractdiagnosisgroup", MasterContractData.contractdiagnosisgroup);
+                global.xrmApp.ThinkTime(1000);
+                global.xrmApp.QuickCreate.Save();
+               
 
-            //});
+                /*  global.xrmApp.Entity.SelectTab("Contract Price Lists");
+                  global.xrmApp.ThinkTime(1000);
+                  // use this line to click on related grid
+                  global.xrmApp.Entity.SubGrid.ClickCommand("ContractPriceList", "New Contract Price List");
+                  global.xrmApp.ThinkTime(1000);
+                  Lookupobj.LookupQuickCreate("mzk_contractpricelist", "Price01");
+                  global.xrmApp.ThinkTime(1000);
+                  Lookupobj.LookupQuickCreate("mzk_reducedpricelist", "Price01");
+                  //Lookupobj.LookupQuickCreate("mzk_contractdiagnosisgroup", "A010");
+                  global.xrmApp.ThinkTime(1000);
+                  global.xrmApp.QuickCreate.Save();
+                  global.xrmApp.ThinkTime(1000);
+                  global.xrmApp.Entity.Save();*/
 
-            //// Contract Diagnosis Group
-            //var ContractDignosisCreate = new Action(() =>
-            //{
-            //    global.xrmApp.Entity.SelectTab("Contract Diagnosis Group");
-            //    global.xrmApp.ThinkTime(1000);
-            //    // use this line to click on related grid
-            //    global.xrmApp.Entity.SubGrid.ClickCommand("ContractDiagnosisGroup_new_Grid", "New Contract Diagnosis Group");
-            //    global.xrmApp.ThinkTime(1500);
-            //    Lookupobj.Lookup("mzk_operationaldiagnosisgroup", "aHUS");
-            //    global.xrmApp.ThinkTime(1000);
-            //    global.xrmApp.CommandBar.ClickCommand("Save & Close");
-            //    global.xrmApp.ThinkTime(1000);
-            //    //global.xrmApp.ThinkTime(1000);
-            //    //global.xrmApp.Entity.SelectTab("General");
-            //    //global.xrmApp.ThinkTime(1000);
-            //    //global.xrmApp.Entity.SubGrid.ClickCommand("BillingAddress", "New Contract Billing Address");
-            //    //global.xrmApp.ThinkTime(1500);
-            //    ////Lookupobj.LookupQuickCreate("mzk_diagnosisgroup","aHus");
-            //    ////global.xrmApp.ThinkTime(3000);
-            //    ////Lookupobj.LookupQuickCreate("mzk_address", "Default address");
-            //    //global.xrmApp.QuickCreate.Save();
-            //    global.xrmApp.ThinkTime(1500);
+            });
 
-            //});
+            // Contract Diagnosis Group
+            var ContractDignosisCreate = new Action(() =>
+            {
+                global.xrmApp.Entity.SelectTab("Contract Diagnosis Group");
+                global.xrmApp.ThinkTime(1000);
+                // use this line to click on related grid
+                global.xrmApp.Entity.SubGrid.ClickCommand("ContractDiagnosisGroup_new_Grid", "New Contract Diagnosis Group");
+                Lookupobj.LookupQuickCreate("mzk_operationaldiagnosisgroup", MasterContractData.operationaldiagnosisgroup);
+                global.xrmApp.ThinkTime(1000);
+                global.xrmApp.QuickCreate.Save();
+                /*  global.xrmApp.Entity.SelectTab("Contract Diagnosis Group");
+                  global.xrmApp.ThinkTime(1000);
+                  // use this line to click on related grid
+                  global.xrmApp.Entity.SubGrid.ClickCommand("ContractDiagnosisGroup_new_Grid", "New Contract Diagnosis Group");
+                  global.xrmApp.ThinkTime(1500);
+                  Lookupobj.Lookup("mzk_operationaldiagnosisgroup", "aHUS");
+                  global.xrmApp.ThinkTime(1000);
+                  global.xrmApp.CommandBar.ClickCommand("Save & Close");
+                  global.xrmApp.ThinkTime(1000);
+                  //global.xrmApp.ThinkTime(1000);
+                  //global.xrmApp.Entity.SelectTab("General");
+                  //global.xrmApp.ThinkTime(1000);
+                  //global.xrmApp.Entity.SubGrid.ClickCommand("BillingAddress", "New Contract Billing Address");
+                  //global.xrmApp.ThinkTime(1500);
+                  ////Lookupobj.LookupQuickCreate("mzk_diagnosisgroup","aHus");
+                  ////global.xrmApp.ThinkTime(3000);
+                  ////Lookupobj.LookupQuickCreate("mzk_address", "Default address");
+                  //global.xrmApp.QuickCreate.Save();
+                  global.xrmApp.ThinkTime(1500);
+                  */
+
+            });
 
             ////InvoiceDeliveryCreate
             //var InvoiceDeliveryCreate = new Action(() =>
@@ -342,6 +363,8 @@ namespace Build_Sanity_Suit
 
 
             GeneralCreate();
+            ContractDignosisCreate();
+            ContractPriceListCreate();
             OtherInformation();
             //global.client.Browser.Driver.Navigate().Back();
             //MasterPathwaysCreate();

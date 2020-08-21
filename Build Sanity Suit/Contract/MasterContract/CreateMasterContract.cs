@@ -9,13 +9,14 @@ using OpenQA.Selenium;
 
 namespace Build_Sanity_Suit
 {
-   // [TestClass]
+    [TestClass]
     public class A4_CreateMasterContract
     {
         [TestMethod]
         public void CreateMaster()
         {
-            global.xrmApp.ThinkTime(3000);
+            LOGIN loginobj = new LOGIN();
+            loginobj.Login();
             global.xrmApp.Navigation.OpenSubArea("Referral", "Contract Management");
             global.xrmApp.ThinkTime(3000);
             global.xrmApp.CommandBar.ClickCommand("New");
@@ -114,9 +115,10 @@ namespace Build_Sanity_Suit
                 global.xrmApp.ThinkTime(3000);
                 //handling flipswitches 
                 var allTextBoxes = global.client.Browser.Driver.FindElements(By.XPath("//*[contains(@class,'ui-flipswitch ui-shadow-inset ui-bar-c crm-jqm-flipswitch-wrapper ui-corner-all')]"));
-
+                global.xrmApp.ThinkTime(2000);
                 for (int i = 0; i < allTextBoxes.Count; i++)
                 {
+            
                     allTextBoxes[i].Click();
                 }
 
@@ -303,8 +305,8 @@ namespace Build_Sanity_Suit
                 //global.xrmApp.Entity.SetValue("mzk_changeofcontrol", "mzk_changeofcontrol");
                 //global.xrmApp.ThinkTime(1000);
                 //global.xrmApp.Entity.SetValue("mzk_debtreviewprocess", "mzk_debtreviewprocess");
-                Lookupobj.Lookup("mzk_dispensinglocationwarehouse", MasterContractData.mzk_dispensinglocationwarehouse);
-                Lookupobj.Lookup("mzk_orderreleasetype", MasterContractData.mzk_orderreleasetype);
+                Lookupobj.Lookup("mzk_dispensinglocationwarehouse", "107");
+                Lookupobj.Lookup("mzk_orderreleasetype", "BULK");
                 //global.xrmApp.ThinkTime(2000);
                 //global.xrmApp.Entity.SetValue("mzk_contractnoticeperioddays", "2");
                 //global.xrmApp.ThinkTime(2000);

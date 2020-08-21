@@ -7,15 +7,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Build_Sanity_Suit
 {
-   // [TestClass]
+    [TestClass]
     public class A9_CreateServiceAgreementWholeSales
     {
         [TestMethod]
-        public void Create()
+        public void CreateWholesaleService()
         {
-            HelperFunction Lookupobj = new HelperFunction();
             LOGIN loginobj = new LOGIN();
             loginobj.Login();
+            HelperFunction Lookupobj = new HelperFunction();
             global.xrmApp.Navigation.OpenSubArea("Referral", "Contract Management");
             global.xrmApp.ThinkTime(2000);
             global.xrmApp.CommandBar.ClickCommand("New");

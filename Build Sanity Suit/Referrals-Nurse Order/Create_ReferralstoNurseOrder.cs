@@ -131,7 +131,7 @@ namespace Build_Sanity_Suit
             DateTime mzk_proposedvisitenddatetime = DateTime.Today.AddDays(1).AddHours(10);
             global.xrmApp.Entity.SetValue("mzk_proposedvisitenddatetime", mzk_proposedvisitenddatetime, "dd/MM/yyyy", "hh:mm");
             global.xrmApp.ThinkTime(2000);
-            DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
+            DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(2).AddHours(10);
             global.xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, "dd/MM/yyyy", "hh:mm");
             global.xrmApp.ThinkTime(2000);
             DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(1).AddHours(10);
