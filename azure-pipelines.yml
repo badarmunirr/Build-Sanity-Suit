@@ -31,7 +31,7 @@ steps:
     versionSelector: 'latestPreRelease'
     
 - task: VSTest@2
-  timeoutInMinutes: 60
+  timeoutInMinutes: 120
   inputs:
     testSelector: 'testAssemblies'
     testAssemblyVer2: '$(System.DefaultWorkingDirectory)\Build Sanity Suit\bin\Release\Build Sanity Suit.dll'
@@ -39,10 +39,3 @@ steps:
     #testFiltercriteria: 'Priority=1|Name=Executetest' 
     uiTests: true
     vsTestVersion: 'toolsInstaller'
-
-
-
-
-
-
-
