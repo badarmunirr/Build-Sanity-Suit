@@ -12,7 +12,7 @@ namespace Build_Sanity_Suit
     {
         [TestMethod, TestCategory("BuildAutomation")]
 
-        public void CreatePayer()
+        public void A3_CreatePayer()
         {
             WebDriverWait wait = new WebDriverWait(global.client.Browser.Driver, TimeSpan.FromSeconds(120000));
             HelperFunction Lookupobj = new HelperFunction();
@@ -93,13 +93,14 @@ namespace Build_Sanity_Suit
             //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "donotfax", Value = false });
             //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "donotpostalmail", Value = false });
             //global.xrmApp.ThinkTime(5000);
+            global.xrmApp.Entity.Save();
             global.xrmApp.ThinkTime(1000);
             string mzk_address1countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address1countrycodeiso");
             Assert.IsTrue(mzk_address1countrycodeiso.StartsWith("GB"));
             global.xrmApp.ThinkTime(1000);
             string mzk_address2countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address2countrycodeiso");
             Assert.IsTrue(mzk_address2countrycodeiso.StartsWith("GB"));
-            global.xrmApp.Entity.Save();
+
             global.xrmApp.ThinkTime(2000);
             if (global.client.Browser.Driver.HasElement(By.CssSelector("button[data-id='ignore_save']")))
             {

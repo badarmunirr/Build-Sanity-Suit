@@ -12,7 +12,7 @@ namespace Build_Sanity_Suit
     {
         [TestMethod, TestCategory("BuildAutomation")]
 
-        public void CreateReferral()
+        public void A7_CreateReferral()
         {
             WebDriverWait wait = new WebDriverWait(global.client.Browser.Driver, TimeSpan.FromSeconds(120000));
             HelperFunction Lookupobj = new HelperFunction();
@@ -49,6 +49,7 @@ namespace Build_Sanity_Suit
 
             if (global.client.Browser.Driver.HasElement(By.XPath("//a[contains(@aria-label,'Reduced Price Patient')]")))
             {
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//a[contains(@aria-label,'Reduced Price Patient')]")));
                 global.client.Browser.Driver.FindElement(By.XPath("//a[contains(@aria-label,'Reduced Price Patient')]")).Click();
 
             }
@@ -56,7 +57,7 @@ namespace Build_Sanity_Suit
             {
                 Console.WriteLine("No Element found");
             }
-
+            global.xrmApp.ThinkTime(2000);
             Lookupobj.Lookup("pricelevelid", ReferraltodeliviryOrderdata.PriceList);
             //global.xrmApp.ThinkTime(2000);
             //Lookupobj.Lookup("mzk_masterpathway", ReferraltodeliviryOrderdata.MasterPathway);
@@ -149,7 +150,8 @@ namespace Build_Sanity_Suit
             //Lookupobj.Lookup("mzk_contractdeliveryfrequency", ReferraltodeliviryOrderdata.contractdeliveryfrequency);
             global.xrmApp.ThinkTime(3000);
             global.xrmApp.Entity.Save();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            global.xrmApp.ThinkTime(3000);
             var mzk_visitstatus = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus.StartsWith("Draft"));
             string msdyn_postalcode = global.xrmApp.Entity.GetValue("msdyn_postalcode");
@@ -178,7 +180,7 @@ namespace Build_Sanity_Suit
             global.xrmApp.ThinkTime(2000);
             var mzk_visitstatus3 = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus3.StartsWith("Proposed"));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("Save & Close");
 
         }

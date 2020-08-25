@@ -7,11 +7,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Build_Sanity_Suit
 {
-    [TestClass]
+   // [TestClass]
     public class A6_CreateServiceAgreement
     {
         [TestMethod]
-        public void CreateService()
+        public void A6_CreateService()
         {
             LOGIN loginobj = new LOGIN();
             loginobj.Login();

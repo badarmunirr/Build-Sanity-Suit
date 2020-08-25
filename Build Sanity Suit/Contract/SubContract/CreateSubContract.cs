@@ -4,11 +4,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Build_Sanity_Suit
 {
-    [TestClass]
+    //[TestClass]
     public class A5_CreateSubContract
     {
         [TestMethod]
-        public void CreateSub()
+        public void A5_CreateSub()
         {
 
             LOGIN loginobj = new LOGIN();

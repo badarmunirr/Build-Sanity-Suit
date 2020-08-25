@@ -13,7 +13,7 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("BuildAutomation")]
 
 
-        public void CreatePatient()
+        public void A2_CreatePatient()
         {
             WebDriverWait wait = new WebDriverWait(global.client.Browser.Driver, TimeSpan.FromSeconds(120000));
             HelperFunction Lookupobj = new HelperFunction();
@@ -198,7 +198,7 @@ namespace Build_Sanity_Suit
             //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_schedulepreferencesaturday", Value = false });
             //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_schedulepreferencesunday", Value = true });
             //global.xrmApp.ThinkTime(5000);
-            
+            global.xrmApp.Entity.Save();
             string mzk_address1countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address1countrycodeiso");
             Assert.IsTrue(mzk_address1countrycodeiso.StartsWith("GB"));
             global.xrmApp.ThinkTime(1000);
@@ -208,7 +208,7 @@ namespace Build_Sanity_Suit
             string mzk_address3countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address3countrycodeiso");
             Assert.IsTrue(mzk_address3countrycodeiso.StartsWith("GB"));
 
-            global.xrmApp.Entity.Save();
+
             global.xrmApp.ThinkTime(2000);
             if (global.client.Browser.Driver.HasElement(By.CssSelector("button[data-id='ignore_save']")))
             {

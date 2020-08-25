@@ -12,7 +12,7 @@ namespace Build_Sanity_Suit
     {
         [TestMethod, TestCategory("BuildAutomation")]
 
-        public void CreateReferraltoNurseOrder()
+        public void A8_CreateReferraltoNurseOrder()
         {
             WebDriverWait wait = new WebDriverWait(global.client.Browser.Driver, TimeSpan.FromSeconds(120000));
             HelperFunction Lookupobj = new HelperFunction();
@@ -46,6 +46,7 @@ namespace Build_Sanity_Suit
             ////global.xrmApp.Entity.SetValue("description", "description");
             if (global.client.Browser.Driver.HasElement(By.XPath("//a[contains(@aria-label,'Reduced Price Patient')]")))
             {
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//a[contains(@aria-label,'Reduced Price Patient')]")));
                 global.client.Browser.Driver.FindElement(By.XPath("//a[contains(@aria-label,'Reduced Price Patient')]")).Click();
 
             }
@@ -53,7 +54,7 @@ namespace Build_Sanity_Suit
             {
                 Console.WriteLine("No Element found");
             }
-
+            global.xrmApp.ThinkTime(2000);
             Lookupobj.Lookup("pricelevelid", ReferraltoNurseOrderdata.PriceList);
 
             Lookupobj.Lookup("mzk_contract", ReferraltoNurseOrderdata.ServiceAgreement);
@@ -131,10 +132,10 @@ namespace Build_Sanity_Suit
             DateTime mzk_proposedvisitenddatetime = DateTime.Today.AddDays(1).AddHours(10);
             global.xrmApp.Entity.SetValue("mzk_proposedvisitenddatetime", mzk_proposedvisitenddatetime, "dd/MM/yyyy", "hh:mm");
             global.xrmApp.ThinkTime(2000);
-            DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(2).AddHours(10);
+            DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
             global.xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, "dd/MM/yyyy", "hh:mm");
             global.xrmApp.ThinkTime(2000);
-            DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(1).AddHours(10);
+            DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(2).AddHours(10);
             global.xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, "dd/MM/yyyy", "hh:mm");
             global.xrmApp.ThinkTime(3000);
             global.xrmApp.Entity.Save();
@@ -160,7 +161,7 @@ namespace Build_Sanity_Suit
             global.xrmApp.ThinkTime(2000);
             var mzk_visitstatus3 = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus3.StartsWith("Completed"));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("Save & Close");
 
         }

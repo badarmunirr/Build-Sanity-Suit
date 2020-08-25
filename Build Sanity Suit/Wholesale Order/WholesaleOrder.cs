@@ -12,7 +12,7 @@ namespace Build_Sanity_Suit
     {
         [TestMethod, TestCategory("BuildAutomation")]
 
-        public void CreateWholesaleOrder()
+        public void B10_CreateWholesaleOrder()
         {
             WebDriverWait wait = new WebDriverWait(global.client.Browser.Driver, TimeSpan.FromSeconds(120000));
             HelperFunction Lookupobj = new HelperFunction();

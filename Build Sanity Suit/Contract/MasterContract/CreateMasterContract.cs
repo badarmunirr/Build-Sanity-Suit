@@ -1,24 +1,24 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+
 using Microsoft.Dynamics365.UIAutomation.Api.UCI;
 using Microsoft.Dynamics365.UIAutomation.Browser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
-    [TestClass]
+    //[TestClass]
     public class A4_CreateMasterContract
     {
         [TestMethod]
-        public void CreateMaster()
+        public void A4_CreateMaster()
         {
+            WebDriverWait wait = new WebDriverWait(global.client.Browser.Driver, TimeSpan.FromSeconds(120000));
             LOGIN loginobj = new LOGIN();
             loginobj.Login();
             global.xrmApp.Navigation.OpenSubArea("Referral", "Contract Management");
-            global.xrmApp.ThinkTime(3000);
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("New");
 
             HelperFunction Lookupobj = new HelperFunction();
@@ -164,6 +164,8 @@ namespace Build_Sanity_Suit
                 Lookupobj.Lookup("mzk_medicaldevicechargingmodel", MasterContractData.medicaldevicechargingmodel);
                 global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_printcommentlinesoninvoice", Value = "Yes" });
                 global.xrmApp.ThinkTime(1000);
+
+
                 global.xrmApp.Entity.SubGrid.ClickCommand("VisitRules", "New Contract Visit Rule");
                 global.xrmApp.QuickCreate.SetValue(new OptionSet { Name = "mzk_type", Value = "Wholesale Order" });
                 Lookupobj.LookupQuickCreate("mzk_visittype", MasterContractData.visittype);
@@ -171,12 +173,18 @@ namespace Build_Sanity_Suit
                 global.xrmApp.ThinkTime(500);
                 global.xrmApp.QuickCreate.Save();
                 global.xrmApp.ThinkTime(1000);
+
+
                 global.xrmApp.Entity.SubGrid.ClickCommand("DeliveryFrequency", "New Contract Delivery Frequency");
                 global.xrmApp.Entity.SetValue("mzk_frequency", MasterContractData.frequency);
                 global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_unit", Value = "Days" });
                 global.xrmApp.ThinkTime(1000);
                 global.xrmApp.CommandBar.ClickCommand("Save & Close");
-                global.xrmApp.ThinkTime(1000);
+                global.xrmApp.ThinkTime(2000);
+
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+                
+
                 global.xrmApp.Entity.SubGrid.ClickCommand("PurchaseOrderRules", "New Purchase Order Rule");
                 global.xrmApp.QuickCreate.SetValue(new OptionSet { Name = "mzk_criteria", Value = "Blank" });
                 global.xrmApp.QuickCreate.SetValue("mzk_format", MasterContractData.format);
@@ -189,6 +197,7 @@ namespace Build_Sanity_Suit
                 global.xrmApp.ThinkTime(1000);
                 global.xrmApp.QuickCreate.Save();
                 global.xrmApp.ThinkTime(1000);
+
                 global.xrmApp.Entity.SubGrid.ClickCommand("ContractualKPICriterias", "New Contractual KPI Criteria");
                 Lookupobj.LookupQuickCreate("mzk_kpi", MasterContractData.kpi);
                 global.xrmApp.QuickCreate.SetValue("mzk_performancevalue", MasterContractData.performancevalue);
@@ -196,6 +205,7 @@ namespace Build_Sanity_Suit
                 global.xrmApp.ThinkTime(1000);
                 global.xrmApp.QuickCreate.Save();
                 global.xrmApp.ThinkTime(1000);
+
                 global.xrmApp.Entity.SubGrid.ClickCommand("DeliveryMethod", "New Contract Delivery Method");
                 Lookupobj.Lookup("mzk_deliverymethod", MasterContractData.deliverymethod);
                 global.xrmApp.ThinkTime(1000);
