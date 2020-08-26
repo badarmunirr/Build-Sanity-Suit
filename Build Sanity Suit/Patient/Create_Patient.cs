@@ -197,8 +197,6 @@ namespace Build_Sanity_Suit
             }
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Save & Close')]")));
             global.xrmApp.ThinkTime(1000);
-
-            global.xrmApp.ThinkTime(1000);
             string[] identificationtype = { "National ID", "Passport", "Work Permit", "Driver's License Number", "Other", "National Health Care ID" };
             foreach (string idtype in identificationtype)
             {
@@ -220,8 +218,6 @@ namespace Build_Sanity_Suit
             global.xrmApp.ThinkTime(1000);
             string mzk_address3countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address3countrycodeiso");
             Assert.IsTrue(mzk_address3countrycodeiso.StartsWith("GB"));
-
-
             string mzk_pincode = global.xrmApp.Entity.GetValue("mzk_pincode");
             Assert.IsNotNull(mzk_pincode);
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
