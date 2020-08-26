@@ -102,12 +102,6 @@ namespace Build_Sanity_Suit
             //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "donotpostalmail", Value = false });
             //global.xrmApp.ThinkTime(1000);
             global.xrmApp.Entity.Save();
-            string mzk_address1countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address1countrycodeiso");
-            Assert.IsTrue(mzk_address1countrycodeiso.StartsWith("GB"));
-            global.xrmApp.ThinkTime(1000);
-            string mzk_address2countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address2countrycodeiso");
-            Assert.IsTrue(mzk_address2countrycodeiso.StartsWith("GB"));
-  
             global.xrmApp.ThinkTime(2000);
             if (global.client.Browser.Driver.HasElement(By.CssSelector("button[data-id='ignore_save']")))
             {
@@ -117,6 +111,14 @@ namespace Build_Sanity_Suit
             {
                 Console.WriteLine("Update Duplicate Record");
             }
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            string mzk_address1countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address1countrycodeiso");
+            Assert.IsTrue(mzk_address1countrycodeiso.StartsWith("GB"));
+            global.xrmApp.ThinkTime(1000);
+            string mzk_address2countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address2countrycodeiso");
+            Assert.IsTrue(mzk_address2countrycodeiso.StartsWith("GB"));
+  
+            
 
             //global.xrmApp.ThinkTime(1000);
             //global.xrmApp.Entity.SelectTab("Referrers");
@@ -130,7 +132,7 @@ namespace Build_Sanity_Suit
             //global.xrmApp.Entity.SetValue("mzk_sites", Healthcareproviderdata.telephone1);
             //global.xrmApp.ThinkTime(1000);
             //global.xrmApp.Entity.SetValue("mzk_department", Healthcareproviderdata.telephone1);
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+
             global.xrmApp.ThinkTime(2000);
             global.xrmApp.CommandBar.ClickCommand("Save & Close");
 

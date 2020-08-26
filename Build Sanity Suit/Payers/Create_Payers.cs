@@ -94,14 +94,6 @@ namespace Build_Sanity_Suit
             //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "donotpostalmail", Value = false });
             //global.xrmApp.ThinkTime(5000);
             global.xrmApp.Entity.Save();
-            global.xrmApp.ThinkTime(1000);
-            string mzk_address1countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address1countrycodeiso");
-            Assert.IsTrue(mzk_address1countrycodeiso.StartsWith("GB"));
-            global.xrmApp.ThinkTime(1000);
-            string mzk_address2countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address2countrycodeiso");
-            Assert.IsTrue(mzk_address2countrycodeiso.StartsWith("GB"));
-
-            global.xrmApp.ThinkTime(2000);
             if (global.client.Browser.Driver.HasElement(By.CssSelector("button[data-id='ignore_save']")))
             {
                 global.client.Browser.Driver.FindElement(By.CssSelector("button[data-id='ignore_save']")).SendKeys(Keys.Enter);
@@ -111,6 +103,15 @@ namespace Build_Sanity_Suit
                 Console.WriteLine("Update Duplicate Record");
             }
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Vaildate Payer')]")));
+
+            global.xrmApp.ThinkTime(1000);
+            string mzk_address1countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address1countrycodeiso");
+            Assert.IsTrue(mzk_address1countrycodeiso.StartsWith("GB"));
+            global.xrmApp.ThinkTime(1000);
+            string mzk_address2countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address2countrycodeiso");
+            Assert.IsTrue(mzk_address2countrycodeiso.StartsWith("GB"));
+
+            global.xrmApp.ThinkTime(2000);
             global.xrmApp.CommandBar.ClickCommand("Vaildate Payer");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("confirmButton")));
             global.xrmApp.Dialogs.ConfirmationDialog(true);

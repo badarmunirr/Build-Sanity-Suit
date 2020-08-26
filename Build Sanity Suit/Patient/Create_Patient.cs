@@ -67,20 +67,7 @@ namespace Build_Sanity_Suit
             //Identification
             //global.xrmApp.ThinkTime(1000);
             //global.xrmApp.Entity.SetValue("mzk_legacyhahnumber", Patientdata.legacyhahnumber);
-            global.xrmApp.ThinkTime(1000);
-            string[] identificationtype = { "National ID", "Passport", "Work Permit", "Driver's License Number", "Other", "National Health Care ID" };
-            foreach (string idtype in identificationtype)
-            {
-                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_patientidentificationtype", Value = idtype });
-                Field primaryfield = global.xrmApp.Entity.GetField("mzk_primaryidentificationnumber");
-                Assert.IsTrue(primaryfield.IsRequired);
-                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_secondaryidentificationtype", Value = idtype });
-                Field secondryfield = global.xrmApp.Entity.GetField("mzk_secondaryidentificationnumber");
-                Assert.IsTrue(secondryfield.IsRequired);
-                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_otheridentificationtype", Value = idtype });
-                Field otherField = global.xrmApp.Entity.GetField("mzk_otheridentificationnumber");
-                Assert.IsTrue(otherField.IsRequired);
-            }
+            
 
             global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_patientidentificationtype", Value = "National ID" });
             global.xrmApp.ThinkTime(1000);
@@ -199,16 +186,6 @@ namespace Build_Sanity_Suit
             //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_schedulepreferencesunday", Value = true });
             //global.xrmApp.ThinkTime(5000);
             global.xrmApp.Entity.Save();
-            string mzk_address1countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address1countrycodeiso");
-            Assert.IsTrue(mzk_address1countrycodeiso.StartsWith("GB"));
-            global.xrmApp.ThinkTime(1000);
-            string mzk_address2countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address2countrycodeiso");
-            Assert.IsTrue(mzk_address2countrycodeiso.StartsWith("GB"));
-            global.xrmApp.ThinkTime(1000);
-            string mzk_address3countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address3countrycodeiso");
-            Assert.IsTrue(mzk_address3countrycodeiso.StartsWith("GB"));
-
-
             global.xrmApp.ThinkTime(2000);
             if (global.client.Browser.Driver.HasElement(By.CssSelector("button[data-id='ignore_save']")))
             {
@@ -220,6 +197,31 @@ namespace Build_Sanity_Suit
             }
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Save & Close')]")));
             global.xrmApp.ThinkTime(1000);
+
+            global.xrmApp.ThinkTime(1000);
+            string[] identificationtype = { "National ID", "Passport", "Work Permit", "Driver's License Number", "Other", "National Health Care ID" };
+            foreach (string idtype in identificationtype)
+            {
+                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_patientidentificationtype", Value = idtype });
+                Field primaryfield = global.xrmApp.Entity.GetField("mzk_primaryidentificationnumber");
+                Assert.IsTrue(primaryfield.IsRequired);
+                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_secondaryidentificationtype", Value = idtype });
+                Field secondryfield = global.xrmApp.Entity.GetField("mzk_secondaryidentificationnumber");
+                Assert.IsTrue(secondryfield.IsRequired);
+                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_otheridentificationtype", Value = idtype });
+                Field otherField = global.xrmApp.Entity.GetField("mzk_otheridentificationnumber");
+                Assert.IsTrue(otherField.IsRequired);
+            }
+            string mzk_address1countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address1countrycodeiso");
+            Assert.IsTrue(mzk_address1countrycodeiso.StartsWith("GB"));
+            global.xrmApp.ThinkTime(1000);
+            string mzk_address2countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address2countrycodeiso");
+            Assert.IsTrue(mzk_address2countrycodeiso.StartsWith("GB"));
+            global.xrmApp.ThinkTime(1000);
+            string mzk_address3countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address3countrycodeiso");
+            Assert.IsTrue(mzk_address3countrycodeiso.StartsWith("GB"));
+
+
             string mzk_pincode = global.xrmApp.Entity.GetValue("mzk_pincode");
             Assert.IsNotNull(mzk_pincode);
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));

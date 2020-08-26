@@ -9,7 +9,7 @@ namespace Build_Sanity_Suit
         public static string title = "MR";
         public static string name = "Jake";
         public static string lname = "Hughes";
-        public static string gender = "Male ";
+        public static string gender = "Male";
         public static string preferredname = "mzk_preferredname ";
         public static string motherifentification = "123";
         public static string familystatuscode = "Married";
