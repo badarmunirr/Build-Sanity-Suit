@@ -102,7 +102,7 @@ namespace Build_Sanity_Suit
         public static string district = "North";
         public static string deliverymethods = "INT";
         public static string deliveryroute = "0102";
-        public static string productname = "STERILE C/WOOL BALLS   D279";
+        public static string productname = "0.6L YELLOW SHARPS BIN  41502430";
         public static string unit = "EA";
         public static string qunantity = "1";
         //public static string servicename = "Clinical Call";

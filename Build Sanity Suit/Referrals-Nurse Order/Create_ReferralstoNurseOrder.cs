@@ -97,7 +97,7 @@ namespace Build_Sanity_Suit
             global.xrmApp.Navigation.OpenSubArea("Referral", "Cases");
             global.xrmApp.ThinkTime(2000);
             global.xrmApp.Grid.Search(casenumber);
-            global.xrmApp.ThinkTime(2000);
+            global.xrmApp.ThinkTime(5000);
             global.xrmApp.Grid.OpenRecord(0);
             global.xrmApp.ThinkTime(5000);
             global.xrmApp.Entity.SelectTab("Delivery and Nursing Visit");

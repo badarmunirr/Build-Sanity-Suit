@@ -44,12 +44,12 @@ namespace Build_Sanity_Suit
             //global.xrmApp.Entity.SetValue("mzk_distributioncenter", "Khi");
             //global.xrmApp.ThinkTime(1000);
             //global.xrmApp.Entity.SetValue("mzk_region", "Khi");
-      
+
             //global.xrmApp.Entity.SetValue("mzk_district", Wholesaleorderdata.district);
-   
+
             //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_emergencyorder", Value = false });
             //Visit Date and Time Information
- 
+            global.xrmApp.ThinkTime(3000);
             DateTime mzk_proposedvisitdatetime = DateTime.Today.AddDays(1).AddHours(12);
             global.xrmApp.Entity.SetValue("mzk_proposedvisitdatetime", mzk_proposedvisitdatetime, "dd/MM/yyyy", "hh:mm");
 
