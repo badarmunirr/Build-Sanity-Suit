@@ -117,9 +117,10 @@ namespace Build_Sanity_Suit
             {
                 Console.WriteLine("No Element found");
             }
-            global.xrmApp.ThinkTime(2000);
+            global.xrmApp.ThinkTime(5000);
             if (global.client.Browser.Driver.HasElement(By.XPath("//div[contains(@data-id,'address2_line1.fieldControl_container')]")))
             {
+                global.xrmApp.ThinkTime(5000);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@data-id,'address2_line1.fieldControl_container')]")));
                 global.client.Browser.Driver.FindElement(By.XPath("//div[contains(@data-id,'address2_line1.fieldControl_container')]")).Click();
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@class,'data8-pa-countryselector data8-pa-visible')]")));
@@ -140,6 +141,7 @@ namespace Build_Sanity_Suit
             global.xrmApp.ThinkTime(2000);
             if (global.client.Browser.Driver.HasElement(By.XPath("//div[contains(@data-id,'address3_line1.fieldControl_container')]")))
             {
+                global.xrmApp.ThinkTime(5000);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@data-id,'address3_line1.fieldControl_container')]")));
                 global.client.Browser.Driver.FindElement(By.XPath("//div[contains(@data-id,'address3_line1.fieldControl_container')]")).Click();
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@class,'data8-pa-countryselector data8-pa-visible')]")));
@@ -196,6 +198,8 @@ namespace Build_Sanity_Suit
                 Console.WriteLine("Update Duplicate Record");
             }
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Save & Close')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+
             global.xrmApp.ThinkTime(1000);
             string[] identificationtype = { "National ID", "Passport", "Work Permit", "Driver's License Number", "Other", "National Health Care ID" };
             foreach (string idtype in identificationtype)
@@ -222,7 +226,6 @@ namespace Build_Sanity_Suit
             Assert.IsNotNull(mzk_pincode);
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.ThinkTime(2000);
-            global.xrmApp.CommandBar.ClickCommand("Save & Close");
 
         }
         [TestCleanup]
