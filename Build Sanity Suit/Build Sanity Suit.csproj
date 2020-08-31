@@ -83,6 +83,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Referrals-Delivery Order\Create_ReferralstoDeliveryOrder.cs" />
     <Compile Include="Referrals-Nurse Order\Create_ReferralstoNurseOrder.cs" />
+    <Compile Include="Resource\CreateResource.cs" />
     <Compile Include="TestData.cs" />
     <Compile Include="TestSetting.cs" />
     <Compile Include="TestSuiteAzure.cs" />
