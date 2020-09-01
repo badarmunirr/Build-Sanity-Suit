@@ -290,4 +290,12 @@ namespace Build_Sanity_Suit
         public static string language = "en-GB";
         
     }
+
+    public class EmployeeOrder
+    {
+        public static string workordertype = "Employee order";
+        public static string deliverymethods = "INT";
+        public static string productname = "0.6L YELLOW SHARPS BIN  41502430";
+        public static string qunantity = "1";
+    }
 }

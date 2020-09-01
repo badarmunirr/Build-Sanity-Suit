@@ -77,6 +77,7 @@
     <Compile Include="Contract\ServiceAgreement\CreateServiceAgreement.cs" />
     <Compile Include="Contract\ServiceAgreement\CreateServiceAgreementWholeSales.cs" />
     <Compile Include="Contract\SubContract\CreateSubContract.cs" />
+    <Compile Include="Employee Order\Create_EmployeeOrder.cs" />
     <Compile Include="HealthCare Provider\Create_HealthCare.cs" />
     <Compile Include="Patient\Create_Patient.cs" />
     <Compile Include="Payers\Create_Payers.cs" />
