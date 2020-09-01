@@ -129,18 +129,18 @@ namespace Build_Sanity_Suit
             //global.xrmApp.Entity.SetValue("mzk_region", ReferraltodeliviryOrderdata.region);
             //global.xrmApp.Entity.SetValue("mzk_district", ReferraltodeliviryOrderdata.district);
             
-            DateTime mzk_proposedvisitdatetime = DateTime.Today.AddDays(1).AddHours(10);
-            global.xrmApp.Entity.SetValue("mzk_proposedvisitdatetime", mzk_proposedvisitdatetime,"dd/MM/yyyy", "hh:mm");
+            //DateTime mzk_proposedvisitdatetime = DateTime.Today.AddDays(1).AddHours(10);
+            //global.xrmApp.Entity.SetValue("mzk_proposedvisitdatetime", mzk_proposedvisitdatetime,"dd/MM/yyyy", "hh:mm");
             
-            DateTime mzk_proposedvisitenddatetime = DateTime.Today.AddDays(1).AddHours(10);
-            global.xrmApp.Entity.SetValue("mzk_proposedvisitenddatetime", mzk_proposedvisitenddatetime, "dd/MM/yyyy", "hh:mm");
-           
+            //DateTime mzk_proposedvisitenddatetime = DateTime.Today.AddDays(1).AddHours(10);
+            //global.xrmApp.Entity.SetValue("mzk_proposedvisitenddatetime", mzk_proposedvisitenddatetime, "dd/MM/yyyy", "hh:mm");
+           //code change suggested by faiza
             DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
             global.xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, "dd/MM/yyyy", "hh:mm");
             
-            DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(2).AddHours(10);
+            DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(3).AddHours(10);
             global.xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, "dd/MM/yyyy", "hh:mm");
-
+            
             Lookupobj.Lookup("mzk_deliverymethods", ReferraltodeliviryOrderdata.deliverymethods);
 
             //Lookupobj.Lookup("mzk_deliveryroute", ReferraltodeliviryOrderdata.deliveryroute);

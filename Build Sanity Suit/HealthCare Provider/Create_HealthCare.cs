@@ -59,7 +59,8 @@ namespace Build_Sanity_Suit
                 global.client.Browser.Driver.FindElement(By.XPath("//*[contains(@data-countrycode,'GB')]")).Click();
 
                 global.xrmApp.Entity.SetValue("address1_name", Healthcareproviderdata.address1name);
-
+                Field address1_line1 = global.xrmApp.Entity.GetField("address1_line1");
+                Assert.IsTrue(address1_line1.IsRequired);
                 global.xrmApp.Entity.SetValue("address1_line1", Healthcareproviderdata.fulladdress);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")));
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
@@ -79,7 +80,8 @@ namespace Build_Sanity_Suit
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")).Click();
 
                 global.xrmApp.Entity.SetValue("address2_name", Healthcareproviderdata.address2name);
-
+                Field address2_line1 = global.xrmApp.Entity.GetField("address2_line1");
+                Assert.IsTrue(address2_line1.IsRequired);
                 global.xrmApp.Entity.SetValue("address2_line1", Healthcareproviderdata.fulladdress);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")));
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();

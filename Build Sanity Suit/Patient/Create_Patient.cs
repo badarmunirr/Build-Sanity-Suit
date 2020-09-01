@@ -37,7 +37,7 @@ namespace Build_Sanity_Suit
 
             global.xrmApp.Entity.SetValue("birthdate", birthday, "dd/MM/yyyy");
 
-            global.xrmApp.Entity.SetValue("mzk_mothersidentifier", Patientdata.motherifentification);//optional
+           // global.xrmApp.Entity.SetValue("mzk_mothersidentifier", Patientdata.motherifentification);//optional
 
             global.xrmApp.Entity.SetValue(new OptionSet { Name = "familystatuscode", Value = Patientdata.familystatuscode });//optional
             //global.xrmApp.ThinkTime(1000);
@@ -53,7 +53,7 @@ namespace Build_Sanity_Suit
             //global.xrmApp.ThinkTime(1000);
             //Lookupobj.Lookup("mzk_carerresponsibility", "Vision Impairment");//optional
 
-            global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_vippatient", Value = true });//optional
+            //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_vippatient", Value = true });//optional
 
             global.xrmApp.Entity.SetValue("mzk_patientinstructions", Patientdata.patientinstruction);//optional
 
@@ -108,8 +108,10 @@ namespace Build_Sanity_Suit
                 global.client.Browser.Driver.FindElement(By.XPath("//*[contains(@data-countrycode,'GB')]")).Click();
 
                 global.xrmApp.Entity.SetValue("address1_name", Patientdata.address1name);
-
+                Field address1_line1 = global.xrmApp.Entity.GetField("address1_line1");
+                Assert.IsTrue(address1_line1.IsRequired);
                 global.xrmApp.Entity.SetValue("address1_line1", Patientdata.fulladdress);
+
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")));
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
             }
@@ -129,7 +131,8 @@ namespace Build_Sanity_Suit
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")).Click();
 
                 global.xrmApp.Entity.SetValue("address2_name", Patientdata.address2name);
- 
+                Field address2_line1 = global.xrmApp.Entity.GetField("address2_line1");
+                Assert.IsTrue(address2_line1.IsRequired);
                 global.xrmApp.Entity.SetValue("address2_line1", Patientdata.fulladdress);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")));
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
@@ -148,9 +151,10 @@ namespace Build_Sanity_Suit
                 global.client.Browser.Driver.FindElement(By.XPath("//div[contains(@class,'data8-pa-countryselector data8-pa-visible')]")).Click();
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")));
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")).Click();
-    
+
                 global.xrmApp.Entity.SetValue("address3_name", Patientdata.address3name);
-    
+                Field address3_line1 = global.xrmApp.Entity.GetField("address3_line1");
+                Assert.IsTrue(address3_line1.IsRequired);
                 global.xrmApp.Entity.SetValue("address3_line1", Patientdata.fulladdress);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")));
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
@@ -161,15 +165,15 @@ namespace Build_Sanity_Suit
             }
             //Contact Methods
 
-            global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_emailpreferences", Value = Patientdata.emailpreferences });
+            //global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_emailpreferences", Value = Patientdata.emailpreferences });
 
-            global.xrmApp.Entity.SetValue(new BooleanItem { Name = "donotphone", Value = true });
-            global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_smstextingpreferences", Value = false });
-            global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_letterpreferences", Value = false });
+            //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "donotphone", Value = true });
+            //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_smstextingpreferences", Value = false });
+            //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_letterpreferences", Value = false });
 
-            //global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_contactpreferredtime", Value = "12:00 AM" });
-            //global.xrmApp.ThinkTime(500);
-            //global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_contactpreferredtimeto", Value = "12:00 AM" });
+            ////global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_contactpreferredtime", Value = "12:00 AM" });
+            ////global.xrmApp.ThinkTime(500);
+            ////global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_contactpreferredtimeto", Value = "12:00 AM" });
             //global.xrmApp.ThinkTime(500);
             //global.xrmApp.Entity.SetValue(new OptionSet { Name = "preferredcontactmethodcode", Value = Patientdata.preferdcontactmethod });
             //global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_survey", Value = Patientdata.survey });
@@ -186,7 +190,21 @@ namespace Build_Sanity_Suit
             //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_schedulepreferencefriday", Value = false });
             //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_schedulepreferencesaturday", Value = false });
             //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_schedulepreferencesunday", Value = true });
-            //global.xrmApp.ThinkTime(5000);
+
+            string[] identificationtype = { "National ID", "Passport", "Work Permit", "Driver's License Number", "Other", "National Health Care ID" };
+            foreach (string idtype in identificationtype)
+            {
+                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_patientidentificationtype", Value = idtype });
+                Field primaryfield = global.xrmApp.Entity.GetField("mzk_primaryidentificationnumber");
+                Assert.IsTrue(primaryfield.IsRequired);
+                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_secondaryidentificationtype", Value = idtype });
+                Field secondryfield = global.xrmApp.Entity.GetField("mzk_secondaryidentificationnumber");
+                Assert.IsTrue(secondryfield.IsRequired);
+                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_otheridentificationtype", Value = idtype });
+                Field otherField = global.xrmApp.Entity.GetField("mzk_otheridentificationnumber");
+                Assert.IsTrue(otherField.IsRequired);
+            }
+            global.xrmApp.ThinkTime(5000);
             global.xrmApp.Entity.Save();
             global.xrmApp.ThinkTime(2000);
             if (global.client.Browser.Driver.HasElement(By.CssSelector("button[data-id='ignore_save']")))
@@ -201,31 +219,30 @@ namespace Build_Sanity_Suit
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
 
             global.xrmApp.ThinkTime(1000);
-            string[] identificationtype = { "National ID", "Passport", "Work Permit", "Driver's License Number", "Other", "National Health Care ID" };
-            foreach (string idtype in identificationtype)
-            {
-                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_patientidentificationtype", Value = idtype });
-                Field primaryfield = global.xrmApp.Entity.GetField("mzk_primaryidentificationnumber");
-                Assert.IsTrue(primaryfield.IsRequired);
-                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_secondaryidentificationtype", Value = idtype });
-                Field secondryfield = global.xrmApp.Entity.GetField("mzk_secondaryidentificationnumber");
-                Assert.IsTrue(secondryfield.IsRequired);
-                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_otheridentificationtype", Value = idtype });
-                Field otherField = global.xrmApp.Entity.GetField("mzk_otheridentificationnumber");
-                Assert.IsTrue(otherField.IsRequired);
-            }
+
             string mzk_address1countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address1countrycodeiso");
             Assert.IsTrue(mzk_address1countrycodeiso.StartsWith("GB"));
             global.xrmApp.ThinkTime(1000);
             string mzk_address2countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address2countrycodeiso");
             Assert.IsTrue(mzk_address2countrycodeiso.StartsWith("GB"));
             global.xrmApp.ThinkTime(1000);
-            string mzk_address3countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address3countrycodeiso");
-            Assert.IsTrue(mzk_address3countrycodeiso.StartsWith("GB"));
+            //string mzk_address3countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address3countrycodeiso");
+            //Assert.IsTrue(mzk_address3countrycodeiso.StartsWith("GB"));
+            string mzk_patientmrn = global.xrmApp.Entity.GetValue("mzk_patientmrn");
+            string mzk_agecalculated = global.xrmApp.Entity.GetValue("mzk_agecalculated");
             string mzk_pincode = global.xrmApp.Entity.GetValue("mzk_pincode");
-            Assert.IsNotNull(mzk_pincode);
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-            global.xrmApp.ThinkTime(2000);
+            string mzk_failedpincode = global.xrmApp.Entity.GetValue("mzk_failedpincode");
+            //Assert.IsNotNull(mzk_agecalculated);
+            //Assert.IsNotNull(mzk_patientmrn);
+            //Assert.IsNotNull(mzk_failedpincode);
+            ////Assert.IsNotNull(mzk_pincode);
+
+            Assert.IsFalse(mzk_patientmrn.StartsWith("---"));
+            Assert.IsFalse(mzk_agecalculated.StartsWith("---"));
+            Assert.IsFalse(mzk_pincode.StartsWith("---"));
+            Assert.IsFalse(mzk_failedpincode.StartsWith("---"));
+
+
 
         }
         [TestCleanup]

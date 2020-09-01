@@ -68,7 +68,7 @@ namespace Build_Sanity_Suit
                 Console.WriteLine("No Element found");
             }
             global.client.Browser.Driver.Navigate().GoToUrl(Variables.url);
-
+            global.xrmApp.ThinkTime(5000);
             if (global.client.Browser.Driver.HasElement(By.Id("i0116")))
             {
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("i0116")));

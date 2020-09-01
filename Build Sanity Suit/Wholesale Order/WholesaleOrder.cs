@@ -50,15 +50,15 @@ namespace Build_Sanity_Suit
             //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_emergencyorder", Value = false });
             //Visit Date and Time Information
             global.xrmApp.ThinkTime(3000);
-            DateTime mzk_proposedvisitdatetime = DateTime.Today.AddDays(1).AddHours(12);
-            global.xrmApp.Entity.SetValue("mzk_proposedvisitdatetime", mzk_proposedvisitdatetime, "dd/MM/yyyy", "hh:mm");
+            //DateTime mzk_proposedvisitdatetime = DateTime.Today.AddDays(1).AddHours(12);
+            //global.xrmApp.Entity.SetValue("mzk_proposedvisitdatetime", mzk_proposedvisitdatetime, "dd/MM/yyyy", "hh:mm");
 
-            DateTime mzk_proposedvisitenddatetime = DateTime.Today.AddDays(1).AddHours(12);
-            global.xrmApp.Entity.SetValue("mzk_proposedvisitenddatetime", mzk_proposedvisitenddatetime, "dd/MM/yyyy", "hh:mm");
+            //DateTime mzk_proposedvisitenddatetime = DateTime.Today.AddDays(1).AddHours(12);
+            //global.xrmApp.Entity.SetValue("mzk_proposedvisitenddatetime", mzk_proposedvisitenddatetime, "dd/MM/yyyy", "hh:mm");
             DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
             global.xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, "dd/MM/yyyy", "hh:mm");
 
-            DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(2).AddHours(12);
+            DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(3).AddHours(12);
             global.xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, "dd/MM/yyyy", "hh:mm");
             //Visit Reasons
             //global.xrmApp.ThinkTime(1000);
@@ -112,7 +112,8 @@ namespace Build_Sanity_Suit
             //Lookupobj.LookupQuickCreate("msdyn_unit", Wholesaleorderdata.unit);
             //global.xrmApp.ThinkTime(1000);
             global.xrmApp.QuickCreate.SetValue("msdyn_quantity", Wholesaleorderdata.qunantity);
-
+            global.xrmApp.QuickCreate.SetValue("msdyn_description", "description");
+            global.xrmApp.QuickCreate.SetValue("msdyn_internaldescription", "internaldescription");
             global.xrmApp.QuickCreate.Save();
             global.xrmApp.ThinkTime(2000);
             global.xrmApp.CommandBar.ClickCommand("Propose Order");

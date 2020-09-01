@@ -35,8 +35,10 @@ namespace Build_Sanity_Suit
             global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_billingfrequency", Value = Payerdata.billingfrequency });
             global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_showcreditlimit", Value = true });
             // unable to set value in credit limit field 
-            //global.xrmApp.Entity.SetValue("Creditlimit", "12345");
+            //global.xrmApp.Entity.SetValue("creditlimit", "555");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[contains(@aria-label,'Credit Limit')]")));
+            global.xrmApp.ThinkTime(5000);
+            global.client.Browser.Driver.FindElement(By.XPath("//input[contains(@aria-label,'Credit Limit')]")).Click();
             global.client.Browser.Driver.FindElement(By.XPath("//input[contains(@aria-label,'Credit Limit')]")).SendKeys("5555");
             Lookupobj.Lookup("mzk_paymentterms", Payerdata.paymentterms);
             //Lookupobj.Lookup("mzk_patientlanguage", Payerdata.patientlanguage);
@@ -56,6 +58,8 @@ namespace Build_Sanity_Suit
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[contains(@data-countrycode,'GB')]")));
                 global.client.Browser.Driver.FindElement(By.XPath("//*[contains(@data-countrycode,'GB')]")).Click();
                 global.xrmApp.Entity.SetValue("address1_name", Payerdata.address1name);
+                Field address1_line1 = global.xrmApp.Entity.GetField("address1_line1");
+                Assert.IsTrue(address1_line1.IsRequired);
                 global.xrmApp.Entity.SetValue("address1_line1", Payerdata.fulladdress);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")));
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
@@ -75,6 +79,8 @@ namespace Build_Sanity_Suit
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")));
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")).Click();
                 global.xrmApp.Entity.SetValue("address2_name", Payerdata.address2name);
+                Field address2_line1 = global.xrmApp.Entity.GetField("address2_line1");
+                Assert.IsTrue(address2_line1.IsRequired);
                 global.xrmApp.Entity.SetValue("address2_line1", Payerdata.fulladdress);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")));
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
@@ -112,7 +118,8 @@ namespace Build_Sanity_Suit
             global.xrmApp.ThinkTime(1000);
             string mzk_address2countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address2countrycodeiso");
             Assert.IsTrue(mzk_address2countrycodeiso.StartsWith("GB"));
-
+            string accountnumber = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "accountnumber" });
+            Assert.IsFalse(accountnumber.StartsWith("---"));
             global.xrmApp.ThinkTime(2000);
             global.xrmApp.CommandBar.ClickCommand("Vaildate Payer");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("confirmButton")));

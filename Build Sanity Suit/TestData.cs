@@ -279,4 +279,15 @@ namespace Build_Sanity_Suit
 
 
     }
+
+    public class ResourceToPatData
+    {
+
+        public static string resourcetype = "User";
+        public static string resourcesubtype = "Nurse";
+        public static string userid = "testuser2-d365@hah.co.uk";
+        public static string gender = "Male";
+        public static string language = "en-GB";
+        
+    }
 }
