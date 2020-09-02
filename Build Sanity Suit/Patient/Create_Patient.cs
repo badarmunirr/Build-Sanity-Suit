@@ -108,8 +108,7 @@ namespace Build_Sanity_Suit
                 global.client.Browser.Driver.FindElement(By.XPath("//*[contains(@data-countrycode,'GB')]")).Click();
 
                 global.xrmApp.Entity.SetValue("address1_name", Patientdata.address1name);
-                Field address1_line1 = global.xrmApp.Entity.GetField("address1_line1");
-                Assert.IsTrue(address1_line1.IsRequired);
+
                 global.xrmApp.Entity.SetValue("address1_line1", Patientdata.fulladdress);
 
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")));
@@ -131,8 +130,7 @@ namespace Build_Sanity_Suit
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")).Click();
 
                 global.xrmApp.Entity.SetValue("address2_name", Patientdata.address2name);
-                Field address2_line1 = global.xrmApp.Entity.GetField("address2_line1");
-                Assert.IsTrue(address2_line1.IsRequired);
+
                 global.xrmApp.Entity.SetValue("address2_line1", Patientdata.fulladdress);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")));
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
@@ -153,8 +151,7 @@ namespace Build_Sanity_Suit
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")).Click();
 
                 global.xrmApp.Entity.SetValue("address3_name", Patientdata.address3name);
-                Field address3_line1 = global.xrmApp.Entity.GetField("address3_line1");
-                Assert.IsTrue(address3_line1.IsRequired);
+
                 global.xrmApp.Entity.SetValue("address3_line1", Patientdata.fulladdress);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")));
                 global.client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
@@ -191,19 +188,7 @@ namespace Build_Sanity_Suit
             //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_schedulepreferencesaturday", Value = false });
             //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_schedulepreferencesunday", Value = true });
 
-            string[] identificationtype = { "National ID", "Passport", "Work Permit", "Driver's License Number", "Other", "National Health Care ID" };
-            foreach (string idtype in identificationtype)
-            {
-                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_patientidentificationtype", Value = idtype });
-                Field primaryfield = global.xrmApp.Entity.GetField("mzk_primaryidentificationnumber");
-                Assert.IsTrue(primaryfield.IsRequired);
-                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_secondaryidentificationtype", Value = idtype });
-                Field secondryfield = global.xrmApp.Entity.GetField("mzk_secondaryidentificationnumber");
-                Assert.IsTrue(secondryfield.IsRequired);
-                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_otheridentificationtype", Value = idtype });
-                Field otherField = global.xrmApp.Entity.GetField("mzk_otheridentificationnumber");
-                Assert.IsTrue(otherField.IsRequired);
-            }
+
             global.xrmApp.ThinkTime(5000);
             global.xrmApp.Entity.Save();
             global.xrmApp.ThinkTime(2000);
@@ -226,8 +211,28 @@ namespace Build_Sanity_Suit
             string mzk_address2countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address2countrycodeiso");
             Assert.IsTrue(mzk_address2countrycodeiso.StartsWith("GB"));
             global.xrmApp.ThinkTime(1000);
-            //string mzk_address3countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address3countrycodeiso");
-            //Assert.IsTrue(mzk_address3countrycodeiso.StartsWith("GB"));
+            string mzk_address3countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address3countrycodeiso");
+            Assert.IsTrue(mzk_address3countrycodeiso.StartsWith("GB"));
+            string[] identificationtype = { "National ID", "Passport", "Work Permit", "Driver's License Number", "Other", "National Health Care ID" };
+            foreach (string idtype in identificationtype)
+            {
+                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_patientidentificationtype", Value = idtype });
+                Field primaryfield = global.xrmApp.Entity.GetField("mzk_primaryidentificationnumber");
+                Assert.IsTrue(primaryfield.IsRequired);
+                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_secondaryidentificationtype", Value = idtype });
+                Field secondryfield = global.xrmApp.Entity.GetField("mzk_secondaryidentificationnumber");
+                Assert.IsTrue(secondryfield.IsRequired);
+                global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_otheridentificationtype", Value = idtype });
+                Field otherField = global.xrmApp.Entity.GetField("mzk_otheridentificationnumber");
+                Assert.IsTrue(otherField.IsRequired);
+            }
+            Field address1_line1 = global.xrmApp.Entity.GetField("address1_line1");
+            Assert.IsTrue(address1_line1.IsRequired);
+            Field address2_line1 = global.xrmApp.Entity.GetField("address2_line1");
+            Assert.IsTrue(address2_line1.IsRequired);
+            Field address3_line1 = global.xrmApp.Entity.GetField("address3_line1");
+            Assert.IsTrue(address3_line1.IsRequired);
+
             string mzk_patientmrn = global.xrmApp.Entity.GetValue("mzk_patientmrn");
             string mzk_agecalculated = global.xrmApp.Entity.GetValue("mzk_agecalculated");
             string mzk_pincode = global.xrmApp.Entity.GetValue("mzk_pincode");

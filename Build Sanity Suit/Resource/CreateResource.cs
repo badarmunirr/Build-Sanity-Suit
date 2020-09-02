@@ -37,6 +37,34 @@ namespace Build_Sanity_Suit
 
             Lookupobj.Lookup("mzk_language", ResourceToPatData.language);
 
+            global.xrmApp.ThinkTime(1000);
+            global.xrmApp.Entity.SetValue("mzk_address1name", "Deployment ");
+            global.xrmApp.ThinkTime(1000);
+            global.xrmApp.Entity.SetValue("mzk_address1line1", "10 Bridge Close");
+
+            global.xrmApp.ThinkTime(1000);
+            global.xrmApp.Entity.SetValue("mzk_city1", "BRISTOL");
+
+            global.xrmApp.ThinkTime(1000);
+            global.xrmApp.Entity.SetValue("mzk_postalcode1", "BS14 0TS");
+            global.xrmApp.ThinkTime(1000);
+            global.xrmApp.Entity.SetValue("mzk_country1", "United Kingdom");
+            global.xrmApp.ThinkTime(1000);
+            global.xrmApp.Entity.SetValue("mzk_address1countrycodeiso", "GB");
+            global.xrmApp.ThinkTime(1000);
+
+            //Default Delivery Address
+            global.xrmApp.Entity.SetValue("mzk_address2name", "Delivery ");
+            global.xrmApp.ThinkTime(1000);
+            global.xrmApp.Entity.SetValue("mzk_address2line1", "10 Bridge Close");
+            global.xrmApp.ThinkTime(1000);
+
+            global.xrmApp.Entity.SetValue("mzk_city2", "BRISTOL");
+
+            global.xrmApp.Entity.SetValue("mzk_postalcode2", "BS14 0TS");
+            global.xrmApp.Entity.SetValue("mzk_country2", "United Kingdom");
+            global.xrmApp.Entity.SetValue("mzk_address2countrycodeiso", "GB");
+
             global.xrmApp.Entity.Save();
             global.xrmApp.ThinkTime(2000);
             if (global.client.Browser.Driver.HasElement(By.XPath("//a[contains(@aria-label,'Convert into Contact')]")))
@@ -49,14 +77,14 @@ namespace Build_Sanity_Suit
             {
                 Console.WriteLine("No Element found");
             }
-            Field gender = global.xrmApp.Entity.GetField("mzk_gendervalue");
+            //Field gender = global.xrmApp.Entity.GetField("mzk_gendervalue");
 
-            Assert.IsTrue(gender.IsRequired);
+            //Assert.IsTrue(gender.IsRequired);
 
 
-            Field language = global.xrmApp.Entity.GetField("mzk_language");
+            //Field language = global.xrmApp.Entity.GetField("mzk_language");
 
-            Assert.IsTrue(language.IsRequired);
+            //Assert.IsTrue(language.IsRequired);
 
 
             Random random = new Random();

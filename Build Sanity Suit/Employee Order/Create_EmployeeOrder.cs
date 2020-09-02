@@ -20,8 +20,9 @@ namespace Build_Sanity_Suit
             loginobj.Login();
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Navigation.OpenSubArea("Order Management", "Work Orders");
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.Grid.SwitchView("All Employee Orders");
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+
 
             global.xrmApp.CommandBar.ClickCommand("New");
 
@@ -41,12 +42,12 @@ namespace Build_Sanity_Suit
             global.xrmApp.Entity.Save();
 
             global.xrmApp.ThinkTime(3000);
-            var mzk_visitstatus = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
-            Assert.IsTrue(mzk_visitstatus.StartsWith("Draft"));
+            //string mzk_visitstatus = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
+            //Assert.IsTrue(mzk_visitstatus.StartsWith("Draft"));
             string msdyn_postalcode = global.xrmApp.Entity.GetValue("msdyn_postalcode");
             Assert.IsNotNull(msdyn_postalcode);
-            global.xrmApp.ThinkTime(4000);
-            global.xrmApp.Entity.SelectTab("Products And Services");
+            global.xrmApp.ThinkTime(5000);
+            global.xrmApp.Entity.SelectTab("Products and Services");
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Work Order Product");
 
@@ -62,7 +63,7 @@ namespace Build_Sanity_Suit
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));
             global.xrmApp.CommandBar.ClickCommand("Propose Order");
             global.xrmApp.ThinkTime(2000);
-            var mzk_visitstatus3 = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
+            string mzk_visitstatus3 = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus3.StartsWith("Proposed"));
               
 

@@ -89,7 +89,7 @@ namespace Build_Sanity_Suit
             // when support for hidden field is added need to replace this line of code
             string casenumber = global.client.Browser.Driver.FindElement(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")).Text;
             global.xrmApp.ThinkTime(2000);
-            var mzk_visitstatus = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_status" });
+            string mzk_visitstatus = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_status" });
             Assert.IsTrue(mzk_visitstatus.StartsWith("Active"));
             string address1_postalcode = global.xrmApp.Entity.GetValue("address1_postalcode");
             Assert.IsNotNull(address1_postalcode);
@@ -140,7 +140,7 @@ namespace Build_Sanity_Suit
             global.xrmApp.ThinkTime(3000);
             global.xrmApp.Entity.Save();
             global.xrmApp.ThinkTime(3000);
-            var mzk_visitstatus2 = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
+            string mzk_visitstatus2 = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus2.StartsWith("Proposed"));
             string msdyn_postalcode = global.xrmApp.Entity.GetValue("msdyn_postalcode");
             Assert.IsNotNull(msdyn_postalcode);
@@ -159,7 +159,7 @@ namespace Build_Sanity_Suit
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Complete')]")));
             global.xrmApp.CommandBar.ClickCommand("Complete");
             global.xrmApp.ThinkTime(2000);
-            var mzk_visitstatus3 = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
+            string mzk_visitstatus3 = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus3.StartsWith("Completed"));
             //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.CommandBar.ClickCommand("Save & Close");
