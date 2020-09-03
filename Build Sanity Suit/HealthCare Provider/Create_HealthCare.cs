@@ -5,12 +5,29 @@ using OpenQA.Selenium;
 using Microsoft.Dynamics365.UIAutomation.Browser;
 using OpenQA.Selenium.Support.UI;
 using System.Diagnostics;
+using System.IO;
 
 namespace Build_Sanity_Suit
 {
     [TestClass]
     public class A1_Create_HealthCare
     {
+        private TestContext testContextInstance;
+
+        public TestContext TestContext
+        {
+            get
+            {
+                return testContextInstance;
+            }
+            set
+            {
+                testContextInstance = value;
+            }
+        }
+
+
+
         [TestMethod, TestCategory("BuildAutomation")]
 
         public void A1_CreateProvider()
@@ -139,11 +156,20 @@ namespace Build_Sanity_Suit
             global.xrmApp.CommandBar.ClickCommand("Save & Close");
 
         }
+        
         [TestCleanup]
         public void teardown()
         {
-            
-        }
+
+
+
+        Screenshot ss = ((ITakesScreenshot)global.client.Browser.Driver).GetScreenshot();
+            string path = Directory.GetCurrentDirectory() + "A1_Create_HealthCare.png";
+            ss.SaveAsFile(path);
+            TestContext.AddResultFile(path);
+
+
+    }
     }
 
 

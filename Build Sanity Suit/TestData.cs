@@ -126,7 +126,7 @@ namespace Build_Sanity_Suit
         public static string drivercomments = "mzk_drivercomments";
         public static string productname = "IMRALDI PEN SINGLE REPLACEMENT";
         public static string unit = "EA";
-        public static string qunantity = "5";
+        public static string qunantity = "1";
         public static string servicename = "Clinical Call";
     }
     public class ReferraltoNurseOrderdata

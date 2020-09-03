@@ -20,6 +20,7 @@ namespace Build_Sanity_Suit
             loginobj.Login();
             global.xrmApp.ThinkTime(4000);
             global.xrmApp.Navigation.OpenSubArea("Order Management", "Work Orders");
+            global.xrmApp.ThinkTime(4000);
             global.xrmApp.Grid.SwitchView("All Employee Orders");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
 

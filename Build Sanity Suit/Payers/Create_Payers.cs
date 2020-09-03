@@ -110,6 +110,11 @@ namespace Build_Sanity_Suit
                 Console.WriteLine("Update Duplicate Record");
             }
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Vaildate Payer')]")));
+            global.xrmApp.CommandBar.ClickCommand("Vaildate Payer");
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("confirmButton")));
+            global.xrmApp.Dialogs.ConfirmationDialog(true);
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("confirmButton")));
+            global.xrmApp.Dialogs.ConfirmationDialog(true);
 
             global.xrmApp.ThinkTime(1000);
             string mzk_address1countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address1countrycodeiso");
@@ -124,12 +129,7 @@ namespace Build_Sanity_Suit
             string accountnumber = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "accountnumber" });
             Assert.IsFalse(accountnumber.StartsWith("---"));
             global.xrmApp.ThinkTime(2000);
-            global.xrmApp.CommandBar.ClickCommand("Vaildate Payer");
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("confirmButton")));
-            global.xrmApp.Dialogs.ConfirmationDialog(true);
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("confirmButton")));
-            global.xrmApp.Dialogs.ConfirmationDialog(true);
-            global.xrmApp.ThinkTime(2000);
+
             global.client.Browser.Driver.FindElement(By.CssSelector("*[aria-label='Validated: Yes']")).IsVisible();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             global.xrmApp.ThinkTime(2000);

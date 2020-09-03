@@ -77,14 +77,7 @@ namespace Build_Sanity_Suit
             {
                 Console.WriteLine("No Element found");
             }
-            //Field gender = global.xrmApp.Entity.GetField("mzk_gendervalue");
 
-            //Assert.IsTrue(gender.IsRequired);
-
-
-            //Field language = global.xrmApp.Entity.GetField("mzk_language");
-
-            //Assert.IsTrue(language.IsRequired);
 
 
             Random random = new Random();
@@ -92,6 +85,12 @@ namespace Build_Sanity_Suit
             string payrollnumber = "EMP_" + randomnumber.ToString();
             global.xrmApp.Entity.SetValue("mzk_payrollnumberemployeeref", payrollnumber);
             global.xrmApp.Entity.Save();
+            global.xrmApp.ThinkTime(5000);
+            Field gender = global.xrmApp.Entity.GetField("mzk_gendervalue");
+            Assert.IsTrue(gender.IsRequired);
+            global.xrmApp.ThinkTime(5000);
+            Field language = global.xrmApp.Entity.GetField("mzk_language");
+            Assert.IsTrue(language.IsRequired);
             global.xrmApp.ThinkTime(5000);
             global.xrmApp.Navigation.OpenArea("MazikCare Referral Management");
             global.xrmApp.ThinkTime(5000);
