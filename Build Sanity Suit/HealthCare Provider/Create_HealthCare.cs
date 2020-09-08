@@ -134,11 +134,11 @@ namespace Build_Sanity_Suit
             global.xrmApp.ThinkTime(1000);
             string mzk_address2countrycodeiso = global.xrmApp.Entity.GetValue("mzk_address2countrycodeiso");
             Assert.IsTrue(mzk_address2countrycodeiso.StartsWith("GB"));
-            Field address1_line1 = global.xrmApp.Entity.GetField("address1_line1");
-            Assert.IsTrue(address1_line1.IsRequired);
+            //Field address1_line1 = global.xrmApp.Entity.GetField("address1_line1");
+            //Assert.IsTrue(address1_line1.IsRequired);
 
-            Field address2_line1 = global.xrmApp.Entity.GetField("address2_line1");
-            Assert.IsTrue(address2_line1.IsRequired);
+            //Field address2_line1 = global.xrmApp.Entity.GetField("address2_line1");
+            //Assert.IsTrue(address2_line1.IsRequired);
             //global.xrmApp.ThinkTime(1000);
             //global.xrmApp.Entity.SelectTab("Referrers");
             //global.xrmApp.ThinkTime(1000);

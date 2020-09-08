@@ -76,9 +76,9 @@ namespace Build_Sanity_Suit
             //global.xrmApp.ThinkTime(1000);
             //Lookupobj.Lookup("mzk_cancelledby", "Alex");
             //Delivery Information
-    
+
             //Lookupobj.Lookup("mzk_contractdeliveryfrequency", Wholesaleorderdata.deliveryfrequency);
-       
+            global.xrmApp.ThinkTime(5000);
             Lookupobj.Lookup("mzk_deliverymethods", Wholesaleorderdata.deliverymethods);
          
             //Lookupobj.Lookup("mzk_deliveryroute", Wholesaleorderdata.deliveryroute);

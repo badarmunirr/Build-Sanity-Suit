@@ -86,11 +86,11 @@ namespace Build_Sanity_Suit
             global.xrmApp.Entity.SetValue("mzk_payrollnumberemployeeref", payrollnumber);
             global.xrmApp.Entity.Save();
             global.xrmApp.ThinkTime(5000);
-            Field gender = global.xrmApp.Entity.GetField("mzk_gendervalue");
-            Assert.IsTrue(gender.IsRequired);
-            global.xrmApp.ThinkTime(5000);
-            Field language = global.xrmApp.Entity.GetField("mzk_language");
-            Assert.IsTrue(language.IsRequired);
+            //Field gender = global.xrmApp.Entity.GetField("mzk_gendervalue");
+            //Assert.IsTrue(gender.IsRequired);
+            //global.xrmApp.ThinkTime(5000);
+            //Field language = global.xrmApp.Entity.GetField("mzk_language");
+            //Assert.IsTrue(language.IsRequired);
             global.xrmApp.ThinkTime(5000);
             global.xrmApp.Navigation.OpenArea("MazikCare Referral Management");
             global.xrmApp.ThinkTime(5000);

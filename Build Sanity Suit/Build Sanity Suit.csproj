@@ -79,6 +79,10 @@
     <Compile Include="Contract\SubContract\CreateSubContract.cs" />
     <Compile Include="Employee Order\Create_EmployeeOrder.cs" />
     <Compile Include="HealthCare Provider\Create_HealthCare.cs" />
+    <Compile Include="ManualInvoiceCredit\19273_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryOrganization.cs" />
+    <Compile Include="ManualInvoiceCredit\19346_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedType=CreditCategoryOrganization.cs" />
+    <Compile Include="ManualInvoiceCredit\19347_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedTypeCreditandCategoryPatient.cs" />
+    <Compile Include="ManualInvoiceCredit\19348_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryPatient.cs" />
     <Compile Include="Patient\Create_Patient.cs" />
     <Compile Include="Payers\Create_Payers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

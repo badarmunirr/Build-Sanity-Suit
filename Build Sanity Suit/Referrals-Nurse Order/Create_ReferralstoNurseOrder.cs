@@ -54,7 +54,7 @@ namespace Build_Sanity_Suit
             {
                 Console.WriteLine("No Element found");
             }
-            global.xrmApp.ThinkTime(2000);
+            global.xrmApp.ThinkTime(5000);
             Lookupobj.Lookup("pricelevelid", ReferraltoNurseOrderdata.PriceList);
 
             Lookupobj.Lookup("mzk_contract", ReferraltoNurseOrderdata.ServiceAgreement);

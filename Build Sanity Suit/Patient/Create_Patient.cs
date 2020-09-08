@@ -226,12 +226,12 @@ namespace Build_Sanity_Suit
                 Field otherField = global.xrmApp.Entity.GetField("mzk_otheridentificationnumber");
                 Assert.IsTrue(otherField.IsRequired);
             }
-            Field address1_line1 = global.xrmApp.Entity.GetField("address1_line1");
-            Assert.IsTrue(address1_line1.IsRequired);
-            Field address2_line1 = global.xrmApp.Entity.GetField("address2_line1");
-            Assert.IsTrue(address2_line1.IsRequired);
-            Field address3_line1 = global.xrmApp.Entity.GetField("address3_line1");
-            Assert.IsTrue(address3_line1.IsRequired);
+            //Field address1_line1 = global.xrmApp.Entity.GetField("address1_line1");
+            //Assert.IsTrue(address1_line1.IsRequired);
+            //Field address2_line1 = global.xrmApp.Entity.GetField("address2_line1");
+            //Assert.IsTrue(address2_line1.IsRequired);
+            //Field address3_line1 = global.xrmApp.Entity.GetField("address3_line1");
+            //Assert.IsTrue(address3_line1.IsRequired);
 
             string mzk_patientmrn = global.xrmApp.Entity.GetValue("mzk_patientmrn");
             string mzk_agecalculated = global.xrmApp.Entity.GetValue("mzk_agecalculated");

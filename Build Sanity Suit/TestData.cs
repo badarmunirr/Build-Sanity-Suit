@@ -298,4 +298,79 @@ namespace Build_Sanity_Suit
         public static string productname = "0.6L YELLOW SHARPS BIN  41502430";
         public static string qunantity = "1";
     }
+
+    public class TestData19273
+    {
+        //it requires validation from FINOPS
+        public static string Category = "Organization";
+        public static string manualworkordertype = "Invoice";
+        public static string payer = "Aviva Health";
+        public static string billingfrequency = "Daily";
+        public static string prescriptionponumber = "1234";
+        public static string account = "1 Harley Street";
+        public static string contract = "BMA Wholesale Contract";
+        public static string product = "0.6L YELLOW SHARPS BIN  41502430";
+        public static string servicename = "Delivery Fee";
+        public static string quantity = "1";
+        public static string cancelreason = "DUI raised";
+    }
+    //19346,19378,19417,19419
+    public class TestData19346
+    {
+        //it requires validation from FINOPS
+        public static string Category = "Organization";
+        public static string manualworkordertype = "Credit";
+        public static string payer = "NHS Greater Glasgow, Clyde";
+        public static string billingfrequency = "Weekly Consolidated";
+        public static string prescriptionponumber = "1234";
+        public static string account = "AKU Hospital";
+        public static string contract = "BMA Wholesale Contract";
+        public static string servicename = "Delivery Fee";
+        public static string product = "0.6L YELLOW SHARPS BIN  41502430";
+        public static string quantity = "1";
+    }
+    //19347,19380,19418
+    public class TestData19347
+    {
+        //it requires validation from FINOPS
+        public static string Category = "Patient";
+        public static string manualworkordertype = "Credit";
+        public static string payer = "WORCESTERSHIRE ACUTE HOSPITALS NHS TRUST";
+        public static string billingfrequency = "Daily";
+        public static string prescriptionponumber = "1234";
+        public static string patient = "(Epinejafb) Juheuj Paynej";
+        public static string service = "Adempas";
+        public static string referral = "Avireum Referral";
+        public static string contract = "Service Agreement 17900";
+        public static string Case = "CAS-01072-T3F4";
+        public static string productname = "1 LITRE YELLOW BIN  41602430";
+        public static string servicename = "Delivery Fee";
+        public static string quantity = "5";
+    }
+
+    //19348,19351,19416
+    public class TestData19348
+    {
+        //it requires validation from FINOPS
+        public static string Category = "Patient";
+        public static string manualworkordertype = "Invoice";
+        public static string payer = "WORCESTERSHIRE ACUTE HOSPITALS NHS TRUST";
+        public static string billingfrequency = "Daily";
+        public static string prescriptionponumber = "1234";
+        public static string patient = "Adrian Fox";
+        public static string service = "Aldurazyme";
+        public static string referral = "Avireum Referral";
+        public static string contract = "Non Patient Funded Service Agreeement";
+        public static string Case = "CAS-02055-Y9P8";
+        public static string productname = "1 LITRE YELLOW BIN  41602430";
+        public static string servicename = "Delivery Fee";
+        public static string quantity = "5";
+        public static string cancelreason = "DUI raised";
+    }
+    public class Conifgdata
+    {
+        public static string datePattern = "dd/MM/yyyy";
+        public static string TimePattern = "hh:mm";
+
+    }
 }
