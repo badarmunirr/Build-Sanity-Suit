@@ -11,25 +11,30 @@ namespace Build_Sanity_Suit
     [TestClass]
     public class B11_Create_Resource
     {
+        public static WebClient cli;
+
         //meed to update user everytime
         [TestMethod, TestCategory("BuildAutomation")]
-
         public void B11_CreateResourceToAccountTypeEmployee()
         {
-            WebDriverWait wait = new WebDriverWait(global.client.Browser.Driver, TimeSpan.FromSeconds(120000));
-            HelperFunction Lookupobj = new HelperFunction();
             LOGIN loginobj = new LOGIN();
-            loginobj.Login();
-            global.xrmApp.ThinkTime(4000);
-            global.xrmApp.Navigation.OpenArea("Settings");
-            global.xrmApp.ThinkTime(2000);
-            global.xrmApp.Navigation.OpenSubArea("Others", "Resources");
+            WebClient client = loginobj.Login();
+            cli = client;
+            XrmApp xrmApp = new XrmApp(client);
+            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+            HelperFunction Lookupobj = new HelperFunction();
+
+
+            xrmApp.ThinkTime(4000);
+            xrmApp.Navigation.OpenArea("Settings");
+            xrmApp.ThinkTime(2000);
+            xrmApp.Navigation.OpenSubArea("Others", "Resources");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-            global.xrmApp.CommandBar.ClickCommand("New");
+            xrmApp.CommandBar.ClickCommand("New");
 
-            global.xrmApp.Entity.SetValue(new OptionSet { Name = "resourcetype", Value = ResourceToPatData.resourcetype });
+            xrmApp.Entity.SetValue(new OptionSet { Name = "resourcetype", Value = ResourceToPatData.resourcetype });
 
-            global.xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_resourcesubtype", Value = ResourceToPatData.resourcesubtype });
+            xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_resourcesubtype", Value = ResourceToPatData.resourcesubtype });
 
             Lookupobj.Lookup("userid", ResourceToPatData.userid); //need to update this everytime
 
@@ -37,40 +42,40 @@ namespace Build_Sanity_Suit
 
             Lookupobj.Lookup("mzk_language", ResourceToPatData.language);
 
-            global.xrmApp.ThinkTime(1000);
-            global.xrmApp.Entity.SetValue("mzk_address1name", "Deployment ");
-            global.xrmApp.ThinkTime(1000);
-            global.xrmApp.Entity.SetValue("mzk_address1line1", "10 Bridge Close");
+            xrmApp.ThinkTime(1000);
+            xrmApp.Entity.SetValue("mzk_address1name", "Deployment ");
+            xrmApp.ThinkTime(1000);
+            xrmApp.Entity.SetValue("mzk_address1line1", "10 Bridge Close");
 
-            global.xrmApp.ThinkTime(1000);
-            global.xrmApp.Entity.SetValue("mzk_city1", "BRISTOL");
+            xrmApp.ThinkTime(1000);
+            xrmApp.Entity.SetValue("mzk_city1", "BRISTOL");
 
-            global.xrmApp.ThinkTime(1000);
-            global.xrmApp.Entity.SetValue("mzk_postalcode1", "BS14 0TS");
-            global.xrmApp.ThinkTime(1000);
-            global.xrmApp.Entity.SetValue("mzk_country1", "United Kingdom");
-            global.xrmApp.ThinkTime(1000);
-            global.xrmApp.Entity.SetValue("mzk_address1countrycodeiso", "GB");
-            global.xrmApp.ThinkTime(1000);
+            xrmApp.ThinkTime(1000);
+            xrmApp.Entity.SetValue("mzk_postalcode1", "BS14 0TS");
+            xrmApp.ThinkTime(1000);
+            xrmApp.Entity.SetValue("mzk_country1", "United Kingdom");
+            xrmApp.ThinkTime(1000);
+            xrmApp.Entity.SetValue("mzk_address1countrycodeiso", "GB");
+            xrmApp.ThinkTime(1000);
 
             //Default Delivery Address
-            global.xrmApp.Entity.SetValue("mzk_address2name", "Delivery ");
-            global.xrmApp.ThinkTime(1000);
-            global.xrmApp.Entity.SetValue("mzk_address2line1", "10 Bridge Close");
-            global.xrmApp.ThinkTime(1000);
+            xrmApp.Entity.SetValue("mzk_address2name", "Delivery ");
+            xrmApp.ThinkTime(1000);
+            xrmApp.Entity.SetValue("mzk_address2line1", "10 Bridge Close");
+            xrmApp.ThinkTime(1000);
 
-            global.xrmApp.Entity.SetValue("mzk_city2", "BRISTOL");
+            xrmApp.Entity.SetValue("mzk_city2", "BRISTOL");
 
-            global.xrmApp.Entity.SetValue("mzk_postalcode2", "BS14 0TS");
-            global.xrmApp.Entity.SetValue("mzk_country2", "United Kingdom");
-            global.xrmApp.Entity.SetValue("mzk_address2countrycodeiso", "GB");
+            xrmApp.Entity.SetValue("mzk_postalcode2", "BS14 0TS");
+            xrmApp.Entity.SetValue("mzk_country2", "United Kingdom");
+            xrmApp.Entity.SetValue("mzk_address2countrycodeiso", "GB");
 
-            global.xrmApp.Entity.Save();
-            global.xrmApp.ThinkTime(2000);
-            if (global.client.Browser.Driver.HasElement(By.XPath("//a[contains(@aria-label,'Convert into Contact')]")))
+            xrmApp.Entity.Save();
+            xrmApp.ThinkTime(2000);
+            if (client.Browser.Driver.HasElement(By.XPath("//a[contains(@aria-label,'Convert into Contact')]")))
             {
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//a[contains(@aria-label,'Convert into Contact')]")));
-                global.client.Browser.Driver.FindElement(By.XPath("//a[contains(@aria-label,'Convert into Contact')]")).Click();
+                client.Browser.Driver.FindElement(By.XPath("//a[contains(@aria-label,'Convert into Contact')]")).Click();
 
             }
             else
@@ -83,41 +88,38 @@ namespace Build_Sanity_Suit
             Random random = new Random();
             int randomnumber = random.Next(01111, 09999);
             string payrollnumber = "EMP_" + randomnumber.ToString();
-            global.xrmApp.Entity.SetValue("mzk_payrollnumberemployeeref", payrollnumber);
-            global.xrmApp.Entity.Save();
-            global.xrmApp.ThinkTime(5000);
-            //Field gender = global.xrmApp.Entity.GetField("mzk_gendervalue");
+            xrmApp.Entity.SetValue("mzk_payrollnumberemployeeref", payrollnumber);
+            xrmApp.Entity.Save();
+            xrmApp.ThinkTime(5000);
+            //Field gender =  xrmApp.Entity.GetField("mzk_gendervalue");
             //Assert.IsTrue(gender.IsRequired);
-            //global.xrmApp.ThinkTime(5000);
-            //Field language = global.xrmApp.Entity.GetField("mzk_language");
+            // xrmApp.ThinkTime(5000);
+            //Field language =  xrmApp.Entity.GetField("mzk_language");
             //Assert.IsTrue(language.IsRequired);
-            global.xrmApp.ThinkTime(5000);
-            global.xrmApp.Navigation.OpenArea("MazikCare Referral Management");
-            global.xrmApp.ThinkTime(5000);
-            global.xrmApp.Navigation.OpenSubArea("Customers", "Accounts");
+            xrmApp.ThinkTime(5000);
+            xrmApp.Navigation.OpenArea("MazikCare Referral Management");
+            xrmApp.ThinkTime(5000);
+            xrmApp.Navigation.OpenSubArea("Customers", "Accounts");
 
             string UserName = ResourceToPatData.userid;
             string UserNameTrim = UserName.Remove(9);
 
-            global.xrmApp.Grid.Search(UserNameTrim);
-            global.xrmApp.ThinkTime(5000);
-            global.xrmApp.Grid.OpenRecord(0);
+            xrmApp.Grid.Search(UserNameTrim);
+            xrmApp.ThinkTime(5000);
+            xrmApp.Grid.OpenRecord(0);
 
-            string accountnumber = global.xrmApp.Entity.GetValue("accountnumber");
+            string accountnumber = xrmApp.Entity.GetValue("accountnumber");
             Assert.IsTrue(accountnumber.StartsWith(payrollnumber));
 
 
 
-
-
-
-           
         }
+
+
         [TestCleanup]
-        public void teardown()
+        public void Teardown()
         {
-            //global.xrmApp.Navigation.SignOut();
-            ////global.client.Browser.Driver.Quit();
+            cli.Browser.Driver.Close();
         }
 
     }

@@ -10,25 +10,31 @@ namespace Build_Sanity_Suit
     [TestClass]
     public class B10_Create_WholesaleOrders
     {
-        [TestMethod, TestCategory("BuildAutomation")]
+        public static WebClient cli;
 
+
+        [TestMethod, TestCategory("BuildAutomation")]
         public void B10_CreateWholesaleOrder()
         {
-            WebDriverWait wait = new WebDriverWait(global.client.Browser.Driver, TimeSpan.FromSeconds(120000));
-            HelperFunction Lookupobj = new HelperFunction();
             LOGIN loginobj = new LOGIN();
-            loginobj.Login();
-            global.xrmApp.ThinkTime(4000);
-            global.xrmApp.Navigation.OpenSubArea("Referral", "Wholesale Orders");
+            WebClient client = loginobj.Login();
+            cli = client;
+            XrmApp xrmApp = new XrmApp(client);
+            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+            HelperFunction Lookupobj = new HelperFunction();
+
+
+             xrmApp.ThinkTime(4000);
+             xrmApp.Navigation.OpenSubArea("Referral", "Wholesale Orders");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-            global.xrmApp.CommandBar.ClickCommand("New");
-            //global.xrmApp.ThinkTime(2000);
-            //global.xrmApp.Entity.SelectForm("Wholesale Order");
-            //global.xrmApp.ThinkTime(1000);
-            if (global.client.Browser.Driver.HasElement(By.XPath("//button[contains(@data-id,'cancelButton')]")))
+             xrmApp.CommandBar.ClickCommand("New");
+            // xrmApp.ThinkTime(2000);
+            // xrmApp.Entity.SelectForm("Wholesale Order");
+            // xrmApp.ThinkTime(1000);
+            if ( client.Browser.Driver.HasElement(By.XPath("//button[contains(@data-id,'cancelButton')]")))
             {
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@data-id,'cancelButton')]")));
-                global.client.Browser.Driver.FindElement(By.XPath("//button[contains(@data-id,'cancelButton')]")).Click();
+                 client.Browser.Driver.FindElement(By.XPath("//button[contains(@data-id,'cancelButton')]")).Click();
             }
             else
             {
@@ -39,113 +45,112 @@ namespace Build_Sanity_Suit
     
             Lookupobj.Lookup("msdyn_workordertype", Wholesaleorderdata.wholesaleordertype);
 
-            //global.xrmApp.Entity.SetValue("mzk_prescriptionponumber", Wholesaleorderdata.prescriptionponumber);
-            ////global.xrmApp.ThinkTime(1000);
-            //global.xrmApp.Entity.SetValue("mzk_distributioncenter", "Khi");
-            //global.xrmApp.ThinkTime(1000);
-            //global.xrmApp.Entity.SetValue("mzk_region", "Khi");
+            // xrmApp.Entity.SetValue("mzk_prescriptionponumber", Wholesaleorderdata.prescriptionponumber);
+            //// xrmApp.ThinkTime(1000);
+            // xrmApp.Entity.SetValue("mzk_distributioncenter", "Khi");
+            // xrmApp.ThinkTime(1000);
+            // xrmApp.Entity.SetValue("mzk_region", "Khi");
 
-            //global.xrmApp.Entity.SetValue("mzk_district", Wholesaleorderdata.district);
+            // xrmApp.Entity.SetValue("mzk_district", Wholesaleorderdata.district);
 
-            //global.xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_emergencyorder", Value = false });
+            // xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_emergencyorder", Value = false });
             //Visit Date and Time Information
-            global.xrmApp.ThinkTime(3000);
+             xrmApp.ThinkTime(3000);
             //DateTime mzk_proposedvisitdatetime = DateTime.Today.AddDays(1).AddHours(12);
-            //global.xrmApp.Entity.SetValue("mzk_proposedvisitdatetime", mzk_proposedvisitdatetime, "dd/MM/yyyy", "hh:mm");
+            // xrmApp.Entity.SetValue("mzk_proposedvisitdatetime", mzk_proposedvisitdatetime, "dd/MM/yyyy", "hh:mm");
 
             //DateTime mzk_proposedvisitenddatetime = DateTime.Today.AddDays(1).AddHours(12);
-            //global.xrmApp.Entity.SetValue("mzk_proposedvisitenddatetime", mzk_proposedvisitenddatetime, "dd/MM/yyyy", "hh:mm");
+            // xrmApp.Entity.SetValue("mzk_proposedvisitenddatetime", mzk_proposedvisitenddatetime, "dd/MM/yyyy", "hh:mm");
             DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
-            global.xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, "dd/MM/yyyy", "hh:mm");
+             xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, "dd/MM/yyyy", "hh:mm");
 
             DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(3).AddHours(12);
-            global.xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, "dd/MM/yyyy", "hh:mm");
+             xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, "dd/MM/yyyy", "hh:mm");
             //Visit Reasons
-            //global.xrmApp.ThinkTime(1000);
+            // xrmApp.ThinkTime(1000);
             //Lookupobj.Lookup("mzk_emergencyreasons", "mzk_emergencyreasons");
-            //global.xrmApp.ThinkTime(1000);
+            // xrmApp.ThinkTime(1000);
             //Lookupobj.Lookup("mzk_failurevisitsubreason", "mzk_failurevisitsubreason");
-            //global.xrmApp.ThinkTime(1000);
+            // xrmApp.ThinkTime(1000);
             //Lookupobj.Lookup("mzk_outofslareason", "mzk_outofslareason");
             //Cancellation Information
-            //global.xrmApp.ThinkTime(1000);
+            // xrmApp.ThinkTime(1000);
             ////Lookupobj.Lookup("mzk_cancelreason", "mzk_cancelreason");
-            //global.xrmApp.ThinkTime(1000);
+            // xrmApp.ThinkTime(1000);
             //DateTime mzk_cancellationdatetime = DateTime.Today.AddDays(1).AddHours(10);
-            //global.xrmApp.Entity.SetValue("mzk_cancellationdatetime", mzk_cancellationdatetime);
-            //global.xrmApp.ThinkTime(1000);
+            // xrmApp.Entity.SetValue("mzk_cancellationdatetime", mzk_cancellationdatetime);
+            // xrmApp.ThinkTime(1000);
             //Lookupobj.Lookup("mzk_cancelledby", "Alex");
             //Delivery Information
 
             //Lookupobj.Lookup("mzk_contractdeliveryfrequency", Wholesaleorderdata.deliveryfrequency);
-            global.xrmApp.ThinkTime(5000);
+             xrmApp.ThinkTime(5000);
             Lookupobj.Lookup("mzk_deliverymethods", Wholesaleorderdata.deliverymethods);
          
             //Lookupobj.Lookup("mzk_deliveryroute", Wholesaleorderdata.deliveryroute);
-            //global.xrmApp.ThinkTime(1000);
-            //global.xrmApp.Entity.SetValue("mzk_drivername", Wholesaleorderdata.drivername);
-            //global.xrmApp.ThinkTime(1000);
-            //global.xrmApp.Entity.SetValue("mzk_vanid", Wholesaleorderdata.vanid);
-            //global.xrmApp.ThinkTime(1000);
-            //global.xrmApp.Entity.SetValue("mzk_visitnotes", Wholesaleorderdata.visitnotes);
-            //global.xrmApp.ThinkTime(1000);
-            //global.xrmApp.Entity.SetValue("mzk_drivercomments", Wholesaleorderdata.drivercomments);
-            //global.xrmApp.ThinkTime(1000);
-            global.xrmApp.Entity.Save();
+            // xrmApp.ThinkTime(1000);
+            // xrmApp.Entity.SetValue("mzk_drivername", Wholesaleorderdata.drivername);
+            // xrmApp.ThinkTime(1000);
+            // xrmApp.Entity.SetValue("mzk_vanid", Wholesaleorderdata.vanid);
+            // xrmApp.ThinkTime(1000);
+            // xrmApp.Entity.SetValue("mzk_visitnotes", Wholesaleorderdata.visitnotes);
+            // xrmApp.ThinkTime(1000);
+            // xrmApp.Entity.SetValue("mzk_drivercomments", Wholesaleorderdata.drivercomments);
+            // xrmApp.ThinkTime(1000);
+             xrmApp.Entity.Save();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-            global.xrmApp.ThinkTime(1000);
-            string mzk_visitstatus = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });//msdyn_servicerequest
+             xrmApp.ThinkTime(1000);
+            string mzk_visitstatus =  xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });//msdyn_servicerequest
             Assert.IsTrue(mzk_visitstatus.StartsWith("Draft"));
-            global.xrmApp.ThinkTime(2000);
-            string casenumber = global.client.Browser.Driver.FindElement(By.XPath("//div[contains(@data-id,'msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag')]")).Text;
+             xrmApp.ThinkTime(2000);
+            string casenumber =  client.Browser.Driver.FindElement(By.XPath("//div[contains(@data-id,'msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag')]")).Text;
             Assert.IsNotNull(casenumber);
-            string msdyn_postalcode = global.xrmApp.Entity.GetValue("msdyn_postalcode");
+            string msdyn_postalcode =  xrmApp.Entity.GetValue("msdyn_postalcode");
             Assert.IsNotNull(msdyn_postalcode);
             //Products And Services
-            global.xrmApp.ThinkTime(3000);
-            global.xrmApp.Entity.SelectTab("Products And Services");
-            global.xrmApp.ThinkTime(3000);
-            global.xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Work Order Product");
+             xrmApp.ThinkTime(3000);
+             xrmApp.Entity.SelectTab("Products And Services");
+             xrmApp.ThinkTime(3000);
+             xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Work Order Product");
    
             Lookupobj.LookupQuickCreate("msdyn_product", Wholesaleorderdata.productname);
-            //global.xrmApp.ThinkTime(2000);
+            // xrmApp.ThinkTime(2000);
             //Lookupobj.LookupQuickCreate("msdyn_unit", Wholesaleorderdata.unit);
-            //global.xrmApp.ThinkTime(1000);
-            global.xrmApp.QuickCreate.SetValue("msdyn_quantity", Wholesaleorderdata.qunantity);
-            global.xrmApp.QuickCreate.SetValue("msdyn_description", "description");
-            global.xrmApp.QuickCreate.SetValue("msdyn_internaldescription", "internaldescription");
-            global.xrmApp.QuickCreate.Save();
-            global.xrmApp.ThinkTime(2000);
-            global.xrmApp.CommandBar.ClickCommand("Propose Order");
-            global.xrmApp.ThinkTime(2000);
+            // xrmApp.ThinkTime(1000);
+             xrmApp.QuickCreate.SetValue("msdyn_quantity", Wholesaleorderdata.qunantity);
+             xrmApp.QuickCreate.SetValue("msdyn_description", "description");
+             xrmApp.QuickCreate.SetValue("msdyn_internaldescription", "internaldescription");
+             xrmApp.QuickCreate.Save();
+             xrmApp.ThinkTime(2000);
+             xrmApp.CommandBar.ClickCommand("Propose Order");
+             xrmApp.ThinkTime(2000);
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-            string mzk_visitstatus2 = global.xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
+            string mzk_visitstatus2 =  xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus2.StartsWith("Proposed"));
-            global.xrmApp.ThinkTime(1000);
-            global.xrmApp.CommandBar.ClickCommand("Save & Close");
+             xrmApp.ThinkTime(1000);
+             xrmApp.CommandBar.ClickCommand("Save & Close");
             //Service
-            //global.xrmApp.ThinkTime(5000);
-            //global.xrmApp.Entity.SubGrid.ClickCommand("workorderservicesgrid", "New Work Order Service");
-            //global.xrmApp.ThinkTime(3000);
+            // xrmApp.ThinkTime(5000);
+            // xrmApp.Entity.SubGrid.ClickCommand("workorderservicesgrid", "New Work Order Service");
+            // xrmApp.ThinkTime(3000);
             //Lookupobj.Lookup("msdyn_service", Wholesaleorderdata.servicename);
-            //global.xrmApp.ThinkTime(5000);
-            //global.xrmApp.CommandBar.ClickCommand("Save & Close");
-            //global.xrmApp.ThinkTime(5000);
-            //if (global.client.Browser.Driver.HasElement(By.CssSelector("button[data-id='ignore_save']")))
+            // xrmApp.ThinkTime(5000);
+            // xrmApp.CommandBar.ClickCommand("Save & Close");
+            // xrmApp.ThinkTime(5000);
+            //if ( client.Browser.Driver.HasElement(By.CssSelector("button[data-id='ignore_save']")))
             //{
-            //    global.client.Browser.Driver.FindElement(By.CssSelector("button[data-id='ignore_save']")).SendKeys(Keys.Enter);
+            //     client.Browser.Driver.FindElement(By.CssSelector("button[data-id='ignore_save']")).SendKeys(Keys.Enter);
             //}
             //else
             //{
             //    Console.WriteLine("Update Duplicate Record");
             //}
-            //global.xrmApp.ThinkTime(1000);
+            // xrmApp.ThinkTime(1000);
         }
         [TestCleanup]
         public void teardown()
         {
-            //global.xrmApp.Navigation.SignOut();
-            ////global.client.Browser.Driver.Quit();
+            cli.Browser.Driver.Close();
         }
 
     }
