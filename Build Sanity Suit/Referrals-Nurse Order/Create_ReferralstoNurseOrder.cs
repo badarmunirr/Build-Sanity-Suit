@@ -106,7 +106,7 @@ namespace Build_Sanity_Suit
             xrmApp.Grid.Search(casenumber);
             xrmApp.ThinkTime(5000);
             xrmApp.Grid.OpenRecord(0);
-            xrmApp.ThinkTime(5000);
+            xrmApp.ThinkTime(7000);
             xrmApp.Entity.SelectTab("Delivery and Nursing Visit");
             xrmApp.ThinkTime(5000);
             xrmApp.Entity.SubGrid.ClickCommand("DeliveryAndNursingVisitGrid", "Add New Work Order");

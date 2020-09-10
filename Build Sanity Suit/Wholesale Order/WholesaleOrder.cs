@@ -150,7 +150,7 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-            cli.Browser.Driver.Close();
+          //  cli.Browser.Driver.Close();
         }
 
     }

@@ -27,7 +27,7 @@ namespace Build_Sanity_Suit
 
             xrmApp.ThinkTime(4000);
             xrmApp.Navigation.OpenArea("Settings");
-            xrmApp.ThinkTime(2000);
+            xrmApp.ThinkTime(5000);
             xrmApp.Navigation.OpenSubArea("Others", "Resources");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             xrmApp.CommandBar.ClickCommand("New");
