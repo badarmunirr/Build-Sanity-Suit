@@ -88,6 +88,7 @@
     <Compile Include="Contract\SubContract\CreateSubContract.cs" />
     <Compile Include="Employee Order\Create_EmployeeOrder.cs" />
     <Compile Include="HealthCare Provider\Create_HealthCare.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="ManualInvoiceCredit\19273_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryOrganization.cs" />
     <Compile Include="ManualInvoiceCredit\19346_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedType=CreditCategoryOrganization.cs" />
     <Compile Include="ManualInvoiceCredit\19347_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedTypeCreditandCategoryPatient.cs" />
@@ -100,7 +101,6 @@
     <Compile Include="Resource\CreateResource.cs" />
     <Compile Include="TestData.cs" />
     <Compile Include="TestSetting.cs" />
-    <Compile Include="TestSuiteAzure.cs" />
     <Compile Include="Wholesale Order\WholesaleOrder.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Microsoft.Dynamics365.UIAutomation.Browser;
 using OpenQA.Selenium.Support.UI;
-
+using System.IO;
 
 namespace Build_Sanity_Suit
 {
@@ -149,11 +149,14 @@ namespace Build_Sanity_Suit
 
             catch(Exception ex)
             {
-
+                string Message = ex.Message.ToString() + "  " + "HealthCare PRovider"; 
+                Helper.LogRecord(Message);
             }
             
 
         }
+
+        
 
         [TestCleanup]
         public void Teardown()
