@@ -45,7 +45,7 @@ namespace Build_Sanity_Suit
 
             //Lookupobj.Lookup("mzk_service", TestData19348.service);
 
-            Lookupobj.Lookup("mzk_referral", TestData19348.referral);
+            Lookupobj.Lookup("mzk_referral", TestData19348.referral, xrmApp);
 
             // Lookupobj.Lookup("mzk_contract", TestData19348.contract);
 
@@ -64,7 +64,7 @@ namespace Build_Sanity_Suit
 
             xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Work Order Product");
 
-            Lookupobj.LookupQuickCreate("msdyn_product", TestData19348.productname);
+            Lookupobj.LookupQuickCreate("msdyn_product", TestData19348.productname, xrmApp);
 
             xrmApp.QuickCreate.SetValue("msdyn_quantity", TestData19348.quantity);
             xrmApp.ThinkTime(3000);

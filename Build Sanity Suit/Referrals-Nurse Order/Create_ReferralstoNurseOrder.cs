@@ -30,7 +30,7 @@ namespace Build_Sanity_Suit
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             xrmApp.CommandBar.ClickCommand("New");
 
-            Lookupobj.Lookup("parentcontactid", ReferraltoNurseOrderdata.PatientName);
+            Lookupobj.Lookup("parentcontactid", ReferraltoNurseOrderdata.PatientName, xrmApp);
 
             xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_patientconsent", Value = true });
 
@@ -44,7 +44,7 @@ namespace Build_Sanity_Suit
 
             xrmApp.Entity.SetValue("name", ReferraltoNurseOrderdata.ReferalName);
 
-            Lookupobj.Lookup("mzk_diagnosisgroup", ReferraltoNurseOrderdata.diagnosisgroup);
+            Lookupobj.Lookup("mzk_diagnosisgroup", ReferraltoNurseOrderdata.diagnosisgroup, xrmApp);
 
             xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_nursingstatus", Value = ReferraltoNurseOrderdata.nursingstatus });
             // xrmApp.ThinkTime(1000);
@@ -62,9 +62,9 @@ namespace Build_Sanity_Suit
                 Console.WriteLine("No Element found");
             }
             xrmApp.ThinkTime(5000);
-            Lookupobj.Lookup("pricelevelid", ReferraltoNurseOrderdata.PriceList);
+            Lookupobj.Lookup("pricelevelid", ReferraltoNurseOrderdata.PriceList, xrmApp);
 
-            Lookupobj.Lookup("mzk_contract", ReferraltoNurseOrderdata.ServiceAgreement);
+            Lookupobj.Lookup("mzk_contract", ReferraltoNurseOrderdata.ServiceAgreement, xrmApp);
 
             //Lookupobj.Lookup("mzk_masterpathway", ReferraltoNurseOrderdata.MasterPathway);
             //Referrer
@@ -126,7 +126,7 @@ namespace Build_Sanity_Suit
             string casenumber2 = client.Browser.Driver.FindElement(By.CssSelector("div[data-id='msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag_text']")).Text;
             Assert.IsTrue(casenumber2.StartsWith(casenumber));
             xrmApp.ThinkTime(3000);
-            Lookupobj.Lookup("msdyn_workordertype", ReferraltoNurseOrderdata.workordertype);
+            Lookupobj.Lookup("msdyn_workordertype", ReferraltoNurseOrderdata.workordertype, xrmApp);
             // xrmApp.ThinkTime(2000);
             //Lookupobj.Lookup("msdyn_serviceterritory", ReferraltodeliviryOrderdata.serviceterritory);
             // xrmApp.ThinkTime(2000);
@@ -156,7 +156,7 @@ namespace Build_Sanity_Suit
             xrmApp.ThinkTime(4000);
             xrmApp.Entity.SubGrid.ClickCommand("workorderservicesgrid", "New Work Order Service");
 
-            Lookupobj.LookupQuickCreate("msdyn_service", ReferraltoNurseOrderdata.servicename);
+            Lookupobj.LookupQuickCreate("msdyn_service", ReferraltoNurseOrderdata.servicename, xrmApp);
 
             //Lookupobj.LookupQuickCreate("msdyn_unit", Referraldata.unit);
 

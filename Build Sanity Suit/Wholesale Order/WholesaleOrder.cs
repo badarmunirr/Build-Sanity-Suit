@@ -41,9 +41,9 @@ namespace Build_Sanity_Suit
                 Console.WriteLine("Element not found");
             }
 
-            Lookupobj.Lookup("mzk_contract", Wholesaleorderdata.contractname);
+            Lookupobj.Lookup("mzk_contract", Wholesaleorderdata.contractname, xrmApp);
     
-            Lookupobj.Lookup("msdyn_workordertype", Wholesaleorderdata.wholesaleordertype);
+            Lookupobj.Lookup("msdyn_workordertype", Wholesaleorderdata.wholesaleordertype, xrmApp);
 
             // xrmApp.Entity.SetValue("mzk_prescriptionponumber", Wholesaleorderdata.prescriptionponumber);
             //// xrmApp.ThinkTime(1000);
@@ -85,7 +85,7 @@ namespace Build_Sanity_Suit
 
             //Lookupobj.Lookup("mzk_contractdeliveryfrequency", Wholesaleorderdata.deliveryfrequency);
              xrmApp.ThinkTime(5000);
-            Lookupobj.Lookup("mzk_deliverymethods", Wholesaleorderdata.deliverymethods);
+            Lookupobj.Lookup("mzk_deliverymethods", Wholesaleorderdata.deliverymethods, xrmApp);
          
             //Lookupobj.Lookup("mzk_deliveryroute", Wholesaleorderdata.deliveryroute);
             // xrmApp.ThinkTime(1000);
@@ -113,7 +113,7 @@ namespace Build_Sanity_Suit
              xrmApp.ThinkTime(3000);
              xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Work Order Product");
    
-            Lookupobj.LookupQuickCreate("msdyn_product", Wholesaleorderdata.productname);
+            Lookupobj.LookupQuickCreate("msdyn_product", Wholesaleorderdata.productname, xrmApp);
             // xrmApp.ThinkTime(2000);
             //Lookupobj.LookupQuickCreate("msdyn_unit", Wholesaleorderdata.unit);
             // xrmApp.ThinkTime(1000);
@@ -148,7 +148,7 @@ namespace Build_Sanity_Suit
             // xrmApp.ThinkTime(1000);
         }
         [TestCleanup]
-        public void teardown()
+        public void Teardown()
         {
             cli.Browser.Driver.Close();
         }

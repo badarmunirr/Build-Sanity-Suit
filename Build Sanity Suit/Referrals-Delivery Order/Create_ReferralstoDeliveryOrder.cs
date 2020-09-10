@@ -29,7 +29,7 @@ namespace Build_Sanity_Suit
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             xrmApp.CommandBar.ClickCommand("New");
 
-            Lookupobj.Lookup("parentcontactid", ReferraltodeliviryOrderdata.PatientName);
+            Lookupobj.Lookup("parentcontactid", ReferraltodeliviryOrderdata.PatientName, xrmApp);
 
             xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_patientconsent", Value = true });
 
@@ -43,9 +43,9 @@ namespace Build_Sanity_Suit
 
             xrmApp.Entity.SetValue("name", ReferraltodeliviryOrderdata.ReferalName);
 
-            Lookupobj.Lookup("mzk_contract", ReferraltodeliviryOrderdata.ServiceAgreement);
+            Lookupobj.Lookup("mzk_contract", ReferraltodeliviryOrderdata.ServiceAgreement, xrmApp);
 
-            Lookupobj.Lookup("mzk_diagnosisgroup", ReferraltodeliviryOrderdata.diagnosisgroup);
+            Lookupobj.Lookup("mzk_diagnosisgroup", ReferraltodeliviryOrderdata.diagnosisgroup, xrmApp);
 
             xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_nursingstatus", Value = ReferraltodeliviryOrderdata.nursingstatus });
 
@@ -64,7 +64,7 @@ namespace Build_Sanity_Suit
                 Console.WriteLine("No Element found");
             }
             xrmApp.ThinkTime(5000);
-            Lookupobj.Lookup("pricelevelid", ReferraltodeliviryOrderdata.PriceList);
+            Lookupobj.Lookup("pricelevelid", ReferraltodeliviryOrderdata.PriceList, xrmApp);
             // xrmApp.ThinkTime(2000);
             //Lookupobj.Lookup("mzk_masterpathway", ReferraltodeliviryOrderdata.MasterPathway);
             //Referrer
@@ -128,7 +128,7 @@ namespace Build_Sanity_Suit
             string casenumber2 = client.Browser.Driver.FindElement(By.CssSelector("div[data-id='msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag_text']")).Text;
             Assert.IsTrue(casenumber2.StartsWith(casenumber));
 
-            Lookupobj.Lookup("msdyn_workordertype", ReferraltodeliviryOrderdata.workordertype);
+            Lookupobj.Lookup("msdyn_workordertype", ReferraltodeliviryOrderdata.workordertype, xrmApp);
             //
             //Lookupobj.Lookup("msdyn_serviceterritory", ReferraltodeliviryOrderdata.serviceterritory);
             // xrmApp.ThinkTime(2000);
@@ -147,7 +147,7 @@ namespace Build_Sanity_Suit
             DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(3).AddHours(10);
             xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, "dd/MM/yyyy", "hh:mm");
             xrmApp.ThinkTime(5000);
-            Lookupobj.Lookup("mzk_deliverymethods", ReferraltodeliviryOrderdata.deliverymethods);
+            Lookupobj.Lookup("mzk_deliverymethods", ReferraltodeliviryOrderdata.deliverymethods, xrmApp);
 
             //Lookupobj.Lookup("mzk_deliveryroute", ReferraltodeliviryOrderdata.deliveryroute);
             // xrmApp.ThinkTime(2000);
@@ -167,7 +167,7 @@ namespace Build_Sanity_Suit
             xrmApp.ThinkTime(4000);
             xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Ancillary Item");
 
-            Lookupobj.LookupQuickCreate("msdyn_product", ReferraltodeliviryOrderdata.productname);
+            Lookupobj.LookupQuickCreate("msdyn_product", ReferraltodeliviryOrderdata.productname, xrmApp);
             // xrmApp.ThinkTime(2000);
             //Lookupobj.LookupQuickCreate("msdyn_unit", ReferraltodeliviryOrderdata.unit);
 

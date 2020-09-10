@@ -37,11 +37,11 @@ namespace Build_Sanity_Suit
                  xrmApp.Entity.SetHeaderValue(new OptionSet { Name = "mzk_contractstatus", Value = "Live" });
                  xrmApp.Entity.SetValue("mzk_name",SubContractData.SubContract);
                
-                Lookupobj.Lookup("mzk_payer", "1st Assist Group Limited");
-                Lookupobj.Lookup("mzk_mastercontractagreement", MasterContractData.contractName);
+                Lookupobj.Lookup("mzk_payer", "1st Assist Group Limited", xrmApp);
+                Lookupobj.Lookup("mzk_mastercontractagreement", MasterContractData.contractName, xrmApp);
                 // xrmApp.ThinkTime(500);
                 //Lookupobj.Lookup("mzk_service", "Ajovy");
-                Lookupobj.Lookup("mzk_contractsubtype", "MC - NHS Funded");
+                Lookupobj.Lookup("mzk_contractsubtype", "MC - NHS Funded", xrmApp);
                 // xrmApp.ThinkTime(500);
                 // xrmApp.Entity.SetValue("mzk_keycontractinformation", "mzk_keycontractinformation");
                 DateTime startdate = DateTime.Today.AddDays(1);
@@ -85,7 +85,7 @@ namespace Build_Sanity_Suit
                 // xrmApp.ThinkTime(1000);
                 // xrmApp.Entity.SetValue("mzk_productcountryoforiginmanufacturer", "mzk_productcountryoforiginmanufacturer");
                 // xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_dispensinglocationwarehouse", SubContractData.dispensinglocationwarehouse);
+                Lookupobj.Lookup("mzk_dispensinglocationwarehouse", SubContractData.dispensinglocationwarehouse, xrmApp);
                 // xrmApp.ThinkTime(1000);
                 // xrmApp.Entity.SetValue("mzk_productsupplyroute", "mzk_productsupplyroute");
                 // xrmApp.ThinkTime(1000);
@@ -109,7 +109,7 @@ namespace Build_Sanity_Suit
                 // xrmApp.ThinkTime(1000);
                 // xrmApp.Entity.SetValue("mzk_debtreviewprocess", "mzk_debtreviewprocess");
                 // xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_orderreleasetype", SubContractData.orderreleasetype);
+                Lookupobj.Lookup("mzk_orderreleasetype", SubContractData.orderreleasetype, xrmApp);
                 // xrmApp.ThinkTime(2000);
                 // xrmApp.Entity.SetValue("mzk_contractnoticeperioddays", "2");
                 // xrmApp.ThinkTime(2000);
@@ -130,9 +130,9 @@ namespace Build_Sanity_Suit
                  xrmApp.ThinkTime(1000);
                 // use this line to click on related grid
                  xrmApp.Entity.SubGrid.ClickCommand("ContractPriceList", "New Contract Price List");
-                Lookupobj.LookupQuickCreate("mzk_contractpricelist", MasterContractData.contractpricelist);
-                Lookupobj.LookupQuickCreate("mzk_reducedpricelist", MasterContractData.reducedpricelist);
-                Lookupobj.LookupQuickCreate("mzk_contractdiagnosisgroup", MasterContractData.contractdiagnosisgroup);
+                Lookupobj.LookupQuickCreate("mzk_contractpricelist", MasterContractData.contractpricelist, xrmApp);
+                Lookupobj.LookupQuickCreate("mzk_reducedpricelist", MasterContractData.reducedpricelist, xrmApp);
+                Lookupobj.LookupQuickCreate("mzk_contractdiagnosisgroup", MasterContractData.contractdiagnosisgroup, xrmApp);
                  xrmApp.ThinkTime(1000);
                  xrmApp.QuickCreate.Save();
                 /*     xrmApp.Entity.SelectTab("Contract Price Lists");
@@ -158,7 +158,7 @@ namespace Build_Sanity_Suit
                  xrmApp.ThinkTime(1000);
                 // use this line to click on related grid
                  xrmApp.Entity.SubGrid.ClickCommand("ContractDiagnosisGroup_new_Grid", "New Contract Diagnosis Group");
-                Lookupobj.LookupQuickCreate("mzk_operationaldiagnosisgroup", MasterContractData.operationaldiagnosisgroup);
+                Lookupobj.LookupQuickCreate("mzk_operationaldiagnosisgroup", MasterContractData.operationaldiagnosisgroup, xrmApp);
                  xrmApp.ThinkTime(1000);
                  xrmApp.QuickCreate.Save();
                 /*  xrmApp.Entity.SelectTab("Contract Diagnosis Group");

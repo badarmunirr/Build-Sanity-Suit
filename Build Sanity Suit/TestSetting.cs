@@ -29,15 +29,7 @@ namespace Build_Sanity_Suit
         public static string Sitemapsection = System.Configuration.ConfigurationManager.AppSettings["Sitemapsection"].ToString();
         public static string Sitemapsubsection = System.Configuration.ConfigurationManager.AppSettings["Sitemapsubsection"].ToString();
     }
-    public static class global
-    {
 
-        public static WebClient client = new Microsoft.Dynamics365.UIAutomation.Api.UCI.WebClient(TestSetting.options);
-        public static XrmApp xrmApp = new XrmApp(client);
-
-
-
-    }
 
     public class LOGIN
     {
@@ -147,17 +139,17 @@ namespace Build_Sanity_Suit
 
     public class HelperFunction
     {
-        public void Lookup(String LookupFieldName, String LookupFieldValue)
+        public void Lookup(String LookupFieldName, String LookupFieldValue,XrmApp xrmApp)
         {
             LookupItem LookupVeriable = new LookupItem { Name = LookupFieldName, Value = LookupFieldValue, Index = 0 };
-            //   xrmApp.Entity.SetValue(LookupVeriable);
+            xrmApp.Entity.SetValue(LookupVeriable);
 
         }
-        public void LookupQuickCreate(String LookupFieldName, String LookupFieldValue)
+        public void LookupQuickCreate(String LookupFieldName, String LookupFieldValue, XrmApp xrmApp)
         {
 
             LookupItem LookupQuickVeriable = new LookupItem { Name = LookupFieldName, Value = LookupFieldValue, Index = 0 };
-            //    xrmApp.QuickCreate.SetValue(LookupQuickVeriable);
+              xrmApp.QuickCreate.SetValue(LookupQuickVeriable);
 
         }
 

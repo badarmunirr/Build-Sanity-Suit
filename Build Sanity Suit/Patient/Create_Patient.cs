@@ -29,13 +29,13 @@ namespace Build_Sanity_Suit
             xrmApp.Navigation.OpenSubArea("Customers", "Patients");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             xrmApp.CommandBar.ClickCommand("New");
-            Lookupobj.Lookup("mzk_title", Patientdata.title);
+            Lookupobj.Lookup("mzk_title", Patientdata.title, xrmApp);
 
             xrmApp.Entity.SetValue("firstname", Patientdata.name);
 
             xrmApp.Entity.SetValue("lastname", Patientdata.lname);
 
-            Lookupobj.Lookup("mzk_gender", Patientdata.gender);
+            Lookupobj.Lookup("mzk_gender", Patientdata.gender, xrmApp);
 
             xrmApp.Entity.SetValue("mzk_preferredname", Patientdata.preferredname);// Optional
 
@@ -54,7 +54,7 @@ namespace Build_Sanity_Suit
             // xrmApp.ThinkTime(1000);
             //Lookupobj.Lookup("mzk_race", Patientdata.race);
 
-            Lookupobj.Lookup("mzk_patientlanguage", Patientdata.language);
+            Lookupobj.Lookup("mzk_patientlanguage", Patientdata.language, xrmApp);
             // xrmApp.ThinkTime(1000);
             //Lookupobj.Lookup("mzk_disability", Patientdata.disability);//optional
             // xrmApp.ThinkTime(1000);
@@ -104,7 +104,7 @@ namespace Build_Sanity_Suit
             xrmApp.Entity.SetValue("telephone2", Patientdata.telephone2);
             xrmApp.Entity.SetValue("telephone3", Patientdata.telephone3);
             xrmApp.Entity.SetValue("mobilephone", Patientdata.mobilephone);
-            xrmApp.Entity.SetValue("emailaddress1", "abc@mazik com");
+            xrmApp.Entity.SetValue("emailaddress1", "abc@mazikglobal.com");
             xrmApp.ThinkTime(2000);
             if (client.Browser.Driver.HasElement(By.XPath("//div[contains(@data-id,'address1_line1.fieldControl_container')]")))
             {

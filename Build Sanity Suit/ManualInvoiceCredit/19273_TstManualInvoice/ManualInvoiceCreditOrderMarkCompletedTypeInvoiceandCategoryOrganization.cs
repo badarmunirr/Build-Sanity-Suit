@@ -43,7 +43,7 @@ namespace Build_Sanity_Suit
 
             //Lookupobj.Lookup("msdyn_serviceaccount", TestData19273.account);
 
-            Lookupobj.Lookup("mzk_contract", TestData19273.contract);
+            Lookupobj.Lookup("mzk_contract", TestData19273.contract, xrmApp);
 
             //Lookupobj.Lookup("msdyn_servicerequest", TestData19273.Case);
 
@@ -55,7 +55,7 @@ namespace Build_Sanity_Suit
             xrmApp.ThinkTime(3000);
             xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Work Order Product");
             xrmApp.ThinkTime(3000);
-            Lookupobj.LookupQuickCreate("msdyn_product", TestData19273.product);
+            Lookupobj.LookupQuickCreate("msdyn_product", TestData19273.product, xrmApp);
             xrmApp.ThinkTime(3000);
             xrmApp.QuickCreate.SetValue("msdyn_quantity", TestData19273.quantity);
             xrmApp.ThinkTime(3000);

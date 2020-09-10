@@ -36,11 +36,11 @@ namespace Build_Sanity_Suit
 
             xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_resourcesubtype", Value = ResourceToPatData.resourcesubtype });
 
-            Lookupobj.Lookup("userid", ResourceToPatData.userid); //need to update this everytime
+            Lookupobj.Lookup("userid", ResourceToPatData.userid, xrmApp); //need to update this everytime
 
-            Lookupobj.Lookup("mzk_gendervalue", ResourceToPatData.gender);
+            Lookupobj.Lookup("mzk_gendervalue", ResourceToPatData.gender, xrmApp);
 
-            Lookupobj.Lookup("mzk_language", ResourceToPatData.language);
+            Lookupobj.Lookup("mzk_language", ResourceToPatData.language, xrmApp);
 
             xrmApp.ThinkTime(1000);
             xrmApp.Entity.SetValue("mzk_address1name", "Deployment ");

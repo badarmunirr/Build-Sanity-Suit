@@ -47,7 +47,7 @@ namespace Build_Sanity_Suit
             client.Browser.Driver.FindElement(By.XPath("//input[contains(@aria-label,'Credit Limit')]")).Click();
             xrmApp.ThinkTime(5000);
             client.Browser.Driver.FindElement(By.XPath("//input[contains(@aria-label,'Credit Limit')]")).SendKeys("5555");
-            Lookupobj.Lookup("mzk_paymentterms", Payerdata.paymentterms);
+            Lookupobj.Lookup("mzk_paymentterms", Payerdata.paymentterms, xrmApp);
             //Lookupobj.Lookup("mzk_patientlanguage", Payerdata.patientlanguage);
             DateTime mzk_dateoflastcreditcheck = DateTime.Today;
             xrmApp.Entity.SetValue("mzk_dateoflastcreditcheck", mzk_dateoflastcreditcheck, "dd/MM/yyyy");
