@@ -11,6 +11,7 @@ namespace Build_Sanity_Suit
     [TestClass]
     public class B13_ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryOrganization
     {
+        static string InvoiceNo;
         public static WebClient cli;
 
         [TestMethod, TestCategory("BuildAutomation")]
@@ -50,7 +51,7 @@ namespace Build_Sanity_Suit
             xrmApp.Entity.Save();
             var mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus.StartsWith("Proposed"));
-            xrmApp.ThinkTime(3000);
+            xrmApp.ThinkTime(5000);
             xrmApp.Entity.SelectTab("Products And Services");
             xrmApp.ThinkTime(3000);
             xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Work Order Product");
@@ -68,7 +69,7 @@ namespace Build_Sanity_Suit
             xrmApp.ThinkTime(2000);
 
 
-
+            InvoiceNo = xrmApp.Entity.GetValue("msdyn_name");
 
 
 
@@ -76,6 +77,8 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void teardown()
         {
+            string Message = "B13_ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryOrganization---";
+            Helper.LogRecord(Message + " Invoice No : " + InvoiceNo);
             cli.Browser.Driver.Close();
         }
     }

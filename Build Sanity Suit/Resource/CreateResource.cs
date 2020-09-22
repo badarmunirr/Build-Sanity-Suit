@@ -18,12 +18,13 @@ namespace Build_Sanity_Suit
         public void B11_CreateResourceToAccountTypeEmployee()
         {
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(usersetting.OperationalManager, usersetting.pwd);
+            WebClient client = loginobj.RoleBasedLogin(usersetting.Admin, usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
             HelperFunction Lookupobj = new HelperFunction();
-
+            string UserName = ResourceToPatData.userid;
+            string UserNameTrim = UserName.Remove(9);
 
             xrmApp.ThinkTime(4000);
 
@@ -95,13 +96,24 @@ namespace Build_Sanity_Suit
             // xrmApp.ThinkTime(5000);
             //Field language =  xrmApp.Entity.GetField("mzk_language");
             //Assert.IsTrue(language.IsRequired);
-            xrmApp.ThinkTime(5000);
+
+            xrmApp.Navigation.OpenSubArea("Others", "Bookable Resources");
+            xrmApp.ThinkTime(2000);
+            xrmApp.Grid.Search(UserNameTrim);
+            xrmApp.ThinkTime(2000);
+            xrmApp.Grid.HighLightRecord(0);
+            xrmApp.ThinkTime(2000);
+            xrmApp.CommandBar.ClickCommand("Assign");
+            xrmApp.ThinkTime(2000);
+            xrmApp.Dialogs.Assign(Dialogs.AssignTo.Team, "Hah");
+            xrmApp.ThinkTime(2000);
+
+
             xrmApp.Navigation.OpenArea("MazikCare Referral Management");
             xrmApp.ThinkTime(5000);
             xrmApp.Navigation.OpenSubArea("Customers", "Accounts");
 
-            string UserName = ResourceToPatData.userid;
-            string UserNameTrim = UserName.Remove(9);
+
 
             xrmApp.Grid.Search(UserNameTrim);
             xrmApp.ThinkTime(5000);
@@ -118,7 +130,10 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
+            string Message = "B11_Create_Resource---" ;
+            Helper.LogRecord(Message );
             cli.Browser.Driver.Close();
+
         }
 
     }

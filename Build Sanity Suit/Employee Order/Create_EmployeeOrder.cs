@@ -10,6 +10,7 @@ namespace Build_Sanity_Suit
     [TestClass]
     public class B12_Create_EmployeeOrder
     {
+        static string WorkOrderNum;
         public static WebClient cli;
 
         [TestMethod, TestCategory("BuildAutomation")]
@@ -49,10 +50,13 @@ namespace Build_Sanity_Suit
             xrmApp.Entity.Save();
 
             xrmApp.ThinkTime(3000);
+            WorkOrderNum = xrmApp.Entity.GetHeaderValue("msdyn_name");
+            xrmApp.ThinkTime(3000);
             //string mzk_visitstatus =  xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             //Assert.IsTrue(mzk_visitstatus.StartsWith("Draft"));
             string msdyn_postalcode = xrmApp.Entity.GetValue("msdyn_postalcode");
             Assert.IsNotNull(msdyn_postalcode);
+
             xrmApp.ThinkTime(5000);
             xrmApp.Entity.SelectTab("Products and Services");
             xrmApp.ThinkTime(4000);
@@ -78,6 +82,8 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
+            string Message = "B12_Create_EmployeeOrder---";
+            Helper.LogRecord(Message + " Employee Order No : " + WorkOrderNum);
             cli.Browser.Driver.Close();
         }
     }

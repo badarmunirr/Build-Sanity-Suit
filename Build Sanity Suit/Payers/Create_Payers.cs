@@ -10,6 +10,7 @@ namespace Build_Sanity_Suit
     [TestClass]
     public class A3_Create_Payers
     {
+        static string PayerNum;
         public static WebClient cli;
 
         [TestMethod, TestCategory("BuildAutomation")]
@@ -139,14 +140,18 @@ namespace Build_Sanity_Suit
 
             client.Browser.Driver.FindElement(By.CssSelector("*[aria-label='Validated: Yes']")).IsVisible();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+
+            PayerNum = xrmApp.Entity.GetHeaderValue("accountnumber");
             xrmApp.ThinkTime(2000);
-            xrmApp.CommandBar.ClickCommand("Save & Close");
+
 
         }
 
         [TestCleanup]
         public void Teardown()
         {
+            string Message = "A3_Create_Payers---";
+            Helper.LogRecord(Message + " Payer No : " + PayerNum );
             cli.Browser.Driver.Close();
         }
     }

@@ -14,6 +14,7 @@ namespace Build_Sanity_Suit
     {
         public static WebClient cli;
         static string casenumber;
+        static string RefNumber;
         [TestMethod, TestCategory("BuildAutomation")]
         public void A7A_CreateReferral()
         {
@@ -99,13 +100,16 @@ namespace Build_Sanity_Suit
             Assert.IsTrue(mzk_visitstatus2.StartsWith("Active"));
             string address1_postalcode = xrmApp.Entity.GetValue("address1_postalcode");
             Assert.IsNotNull(address1_postalcode);
-            string RefNumber = xrmApp.Entity.GetHeaderValue("mzk_requestnumber");
+            RefNumber = xrmApp.Entity.GetHeaderValue("mzk_requestnumber");
             xrmApp.ThinkTime(2000);
             xrmApp.Navigation.OpenSubArea("Referral", "Referrals");
-
+            xrmApp.ThinkTime(2000);
             xrmApp.Grid.Search(RefNumber);
+            xrmApp.ThinkTime(2000);
             xrmApp.Grid.HighLightRecord(0);
+            xrmApp.ThinkTime(2000);
             xrmApp.CommandBar.ClickCommand("Assign");
+            xrmApp.ThinkTime(2000);
             xrmApp.Dialogs.Assign(Dialogs.AssignTo.Team, "Hah");
         }
         [TestMethod, TestCategory("BuildAutomation")]
@@ -213,7 +217,9 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-           // cli.Browser.Driver.Close();
+            string Message = "A7_Create_ReferralstoDeliveryOrder---" ;
+            Helper.LogRecord(Message +  " Case No : " + casenumber + " Ref No : "+ RefNumber);
+            cli.Browser.Driver.Close();
         }
     }
 }
