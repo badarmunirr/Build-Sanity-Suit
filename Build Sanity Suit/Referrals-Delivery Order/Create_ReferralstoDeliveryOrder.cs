@@ -7,23 +7,22 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
+    //admin 
+    //operational Manager
     [TestClass]
     public class A7_Create_ReferralstoDeliveryOrder
     {
         public static WebClient cli;
-
+        static string casenumber;
         [TestMethod, TestCategory("BuildAutomation")]
-        public void A7_CreateReferral()
+        public void A7A_CreateReferral()
         {
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.Login();
+            WebClient client = loginobj.RoleBasedLogin(usersetting.Admin, usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
             HelperFunction Lookupobj = new HelperFunction();
-
-
-
             xrmApp.ThinkTime(4000);
             xrmApp.Navigation.OpenSubArea("Referral", "Referrals");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
@@ -94,16 +93,36 @@ namespace Build_Sanity_Suit
             // xrmApp.Entity.Save();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")));
             // when support for hidden field is added need to replace this line of code
-            string casenumber = client.Browser.Driver.FindElement(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")).Text;
+            casenumber = client.Browser.Driver.FindElement(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")).Text;
             xrmApp.ThinkTime(2000);
             string mzk_visitstatus2 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_status" });
             Assert.IsTrue(mzk_visitstatus2.StartsWith("Active"));
             string address1_postalcode = xrmApp.Entity.GetValue("address1_postalcode");
             Assert.IsNotNull(address1_postalcode);
+            string RefNumber = xrmApp.Entity.GetHeaderValue("mzk_requestnumber");
+            xrmApp.ThinkTime(2000);
+            xrmApp.Navigation.OpenSubArea("Referral", "Referrals");
+
+            xrmApp.Grid.Search(RefNumber);
+            xrmApp.Grid.HighLightRecord(0);
+            xrmApp.CommandBar.ClickCommand("Assign");
+            xrmApp.Dialogs.Assign(Dialogs.AssignTo.Team, "Hah");
+        }
+        [TestMethod, TestCategory("BuildAutomation")]
+        public void A7B_CreateDeliveryOrder()
+        {
+            LOGIN loginobj = new LOGIN();
+            WebClient client = loginobj.RoleBasedLogin(usersetting.OperationalManager, usersetting.pwd);
+            cli = client;
+            XrmApp xrmApp = new XrmApp(client);
+            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+            HelperFunction Lookupobj = new HelperFunction();
+
             xrmApp.ThinkTime(3000);
             xrmApp.Navigation.OpenSubArea("Referral", "Cases");
             xrmApp.ThinkTime(3000);
-            xrmApp.Grid.Search(casenumber);
+            string refcasenu = casenumber;
+            xrmApp.Grid.Search(refcasenu);
             xrmApp.ThinkTime(2000);
             xrmApp.Grid.OpenRecord(0);
             xrmApp.ThinkTime(5000);
@@ -189,11 +208,12 @@ namespace Build_Sanity_Suit
             //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             xrmApp.CommandBar.ClickCommand("Save & Close");
 
+
         }
         [TestCleanup]
         public void Teardown()
         {
-            cli.Browser.Driver.Close();
+           // cli.Browser.Driver.Close();
         }
     }
 }

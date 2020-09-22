@@ -18,7 +18,7 @@ namespace Build_Sanity_Suit
         public void B15_TstManualInvoice_19347_ManualInvoiceCreditOrderCompleteTypeCreditandCategoryPatient()
         {
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.Login();
+            WebClient client = loginobj.RoleBasedLogin(usersetting.BillingManager, usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
             HelperFunction Lookupobj = new HelperFunction();

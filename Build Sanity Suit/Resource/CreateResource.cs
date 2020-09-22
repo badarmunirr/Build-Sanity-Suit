@@ -18,7 +18,7 @@ namespace Build_Sanity_Suit
         public void B11_CreateResourceToAccountTypeEmployee()
         {
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.Login();
+            WebClient client = loginobj.RoleBasedLogin(usersetting.OperationalManager, usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
@@ -26,9 +26,8 @@ namespace Build_Sanity_Suit
 
 
             xrmApp.ThinkTime(4000);
-            xrmApp.Navigation.OpenArea("Settings");
-            xrmApp.ThinkTime(5000);
-            xrmApp.Navigation.OpenSubArea("Others", "Resources");
+
+            xrmApp.Navigation.OpenSubArea("Others", "Bookable Resources");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             xrmApp.CommandBar.ClickCommand("New");
 

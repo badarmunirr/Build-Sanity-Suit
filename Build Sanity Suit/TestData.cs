@@ -90,7 +90,7 @@ namespace Build_Sanity_Suit
         public static string diagnosisgroup = "Ankylosing Spondylitis";
         public static string nursingstatus = "Nursing completed";
         public static string PriceList = "PLMC000118";
-        public static string ServiceAgreement = "BMA Service Agreement";
+        public static string ServiceAgreement = "CON-SA-007037";
         //public static string MasterPathway = "General Master Pathway";
         public static string pmireferencenumber = "PMI _123";
         public static string billingreferencenumber = "BRN _123";
@@ -141,7 +141,7 @@ namespace Build_Sanity_Suit
         public static string diagnosisgroup = "Ankylosing Spondylitis";
         public static string nursingstatus = "Nursing completed";
         public static string PriceList = "PLMC000118";
-        public static string ServiceAgreement = "BMA Service Agreement";
+        public static string ServiceAgreement = "CON-SA-007037";
         //public static string MasterPathway = "General Master Pathway";
         public static string pmireferencenumber = "PMI _123";
         public static string billingreferencenumber = "BRN _123";
@@ -242,12 +242,12 @@ namespace Build_Sanity_Suit
         public static string payer = "1st Assist Group Limited";
 
         public static string provider = "1 Harley Street";
-        public static string mastercontractagreement = MasterContractData.contractName;
+        public static string mastercontractagreement = "CON_FMC_001";// MasterContractData.contractName;
 
-        public static string subcontract = SubContractData.SubContract;
-        public static string service = "Adempas";
+        public static string subcontract = "Sub Test Contract"; //SubContractData.SubContract;
+        public static string service = "Benepali";
 
-        public static string contractsubtype = "MC - NHS Funded";
+        public static string contractsubtype = "MC - Patient Funded";
 
 
         // Other Information

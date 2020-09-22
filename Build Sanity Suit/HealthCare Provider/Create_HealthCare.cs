@@ -19,7 +19,7 @@ namespace Build_Sanity_Suit
             try
             {
                 LOGIN loginobj = new LOGIN();
-                WebClient client = loginobj.Login();
+                WebClient client = loginobj.RoleBasedLogin(usersetting.OperationalManager, usersetting.pwd);
                 cli = client;
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
                 XrmApp xrmApp = new XrmApp(client);

@@ -17,7 +17,7 @@ namespace Build_Sanity_Suit
         public void B10_CreateWholesaleOrder()
         {
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.Login();
+            WebClient client = loginobj.RoleBasedLogin(usersetting.OperationalManager, usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
@@ -150,7 +150,7 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-          //  cli.Browser.Driver.Close();
+           cli.Browser.Driver.Close();
         }
 
     }
