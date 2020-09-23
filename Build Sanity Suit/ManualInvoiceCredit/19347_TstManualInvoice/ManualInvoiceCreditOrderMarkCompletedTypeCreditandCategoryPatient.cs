@@ -75,7 +75,7 @@ namespace Build_Sanity_Suit
             xrmApp.ThinkTime(2000);
             xrmApp.CommandBar.ClickCommand("Complete");
             xrmApp.ThinkTime(2000);
-            var mzk_visitstatus2 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
+            mzk_visitstatus2 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus2.StartsWith("Completed"));
             InvoiceNo = xrmApp.Entity.GetValue("msdyn_name");
 

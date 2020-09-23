@@ -42,27 +42,27 @@ namespace Build_Sanity_Suit
 
             Lookupobj.Lookup("mzk_language", ResourceToPatData.language, xrmApp);
 
-            xrmApp.ThinkTime(1000);
+
             xrmApp.Entity.SetValue("mzk_address1name", "Deployment ");
-            xrmApp.ThinkTime(1000);
+
             xrmApp.Entity.SetValue("mzk_address1line1", "10 Bridge Close");
 
-            xrmApp.ThinkTime(1000);
+
             xrmApp.Entity.SetValue("mzk_city1", "BRISTOL");
 
-            xrmApp.ThinkTime(1000);
+
             xrmApp.Entity.SetValue("mzk_postalcode1", "BS14 0TS");
-            xrmApp.ThinkTime(1000);
+
             xrmApp.Entity.SetValue("mzk_country1", "United Kingdom");
-            xrmApp.ThinkTime(1000);
+
             xrmApp.Entity.SetValue("mzk_address1countrycodeiso", "GB");
-            xrmApp.ThinkTime(1000);
+
 
             //Default Delivery Address
             xrmApp.Entity.SetValue("mzk_address2name", "Delivery ");
-            xrmApp.ThinkTime(1000);
+
             xrmApp.Entity.SetValue("mzk_address2line1", "10 Bridge Close");
-            xrmApp.ThinkTime(1000);
+
 
             xrmApp.Entity.SetValue("mzk_city2", "BRISTOL");
 
@@ -132,7 +132,7 @@ namespace Build_Sanity_Suit
         {
             string Message = "\r\nTest Case ID - B11_Create_Resource---";
             Helper.LogRecord(Message );
-            cli.Browser.Driver.Close();
+            //cli.Browser.Driver.Close();
 
         }
 

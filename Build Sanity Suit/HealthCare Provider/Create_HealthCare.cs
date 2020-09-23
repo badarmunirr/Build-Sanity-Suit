@@ -154,7 +154,7 @@ namespace Build_Sanity_Suit
         {
             string Message = "\r\nTest Case ID - A1_Create_HealthCare\r\n";
             Helper.LogRecord(Message + "HealthCare Provider Number : " + AccountNum);
-           // cli.Browser.Driver.Close();
+            cli.Browser.Driver.Close();
         }
     }
 

@@ -285,7 +285,7 @@ namespace Build_Sanity_Suit
 
         public static string resourcetype = "User";
         public static string resourcesubtype = "Nurse";
-        public static string userid = "testuser3-d365@hah.co.uk";
+        public static string userid = "testuser6-d365@hah.co.uk";
         public static string gender = "Male";
         public static string language = "en-GB";
         
