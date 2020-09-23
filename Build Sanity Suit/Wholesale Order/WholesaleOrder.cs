@@ -12,6 +12,7 @@ namespace Build_Sanity_Suit
     {
         public static WebClient cli;
         static string OrderNum;
+        static string mzk_visitstatus2;
 
         [TestMethod, TestCategory("BuildAutomation")]
         public void B10_CreateWholesaleOrder()
@@ -127,10 +128,10 @@ namespace Build_Sanity_Suit
             xrmApp.CommandBar.ClickCommand("Propose Order");
             xrmApp.ThinkTime(2000);
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-            string mzk_visitstatus2 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
+            mzk_visitstatus2 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus2.StartsWith("Proposed"));
             xrmApp.ThinkTime(1000);
-            xrmApp.CommandBar.ClickCommand("Save & Close");
+
             //Service
             // xrmApp.ThinkTime(5000);
             // xrmApp.Entity.SubGrid.ClickCommand("workorderservicesgrid", "New Work Order Service");
@@ -152,8 +153,9 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-            string Message = "B10_Create_WholesaleOrders---";
-            Helper.LogRecord(Message + " WholeSaleOrder No : " + OrderNum );
+            string Message = "Test Case ID - B10_Create_WholesaleOrders\r\n";
+            Helper.LogRecord(Message + "WholeSale Order Number - " + OrderNum + " \r\nWholeSale Order Status - " + mzk_visitstatus2);
+
             cli.Browser.Driver.Close();
 
         }

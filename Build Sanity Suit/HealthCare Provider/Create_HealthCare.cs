@@ -152,8 +152,8 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-            string Message = "A1_Create_HealthCare---";
-            Helper.LogRecord(Message + " HealthCare Provider No : " + AccountNum);
+            string Message = "Test Case ID - A1_Create_HealthCare\r\n";
+            Helper.LogRecord(Message + "\r\nHealthCare Provider Number : " + AccountNum);
            // cli.Browser.Driver.Close();
         }
     }

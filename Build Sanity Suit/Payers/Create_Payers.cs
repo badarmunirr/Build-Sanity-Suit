@@ -150,8 +150,8 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-            string Message = "A3_Create_Payers---";
-            Helper.LogRecord(Message + " Payer No : " + PayerNum );
+            string Message = "Test Case ID - A3_Create_Payers\r\n";
+            Helper.LogRecord(Message + "\r\nPayer No : " + PayerNum );
             cli.Browser.Driver.Close();
         }
     }

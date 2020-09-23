@@ -12,6 +12,7 @@ namespace Build_Sanity_Suit
     [TestClass]
     public class B15_ManualInvoiceCreditOrderMarkCompletedTypeCreditandCategoryPatient
     {
+        static string mzk_visitstatus2;
         static string InvoiceNo;
         public static WebClient cli;
 
@@ -82,10 +83,10 @@ namespace Build_Sanity_Suit
 
         }
         [TestCleanup]
-        public void teardown()
+        public void Teardown()
         {
-            string Message = "B15_ManualInvoiceCreditOrderMarkCompletedTypeCreditandCategoryPatient---";
-            Helper.LogRecord(Message + " Invoice No : " + InvoiceNo);
+            string Message = "Test Case ID - B15_ManualInvoiceCreditOrderMarkCompletedTypeCreditandCategoryPatient\r\n";
+            Helper.LogRecord(Message + "Invoice No : " + InvoiceNo + "\r\nStatus : " + mzk_visitstatus2);
             cli.Browser.Driver.Close();
         }
     }

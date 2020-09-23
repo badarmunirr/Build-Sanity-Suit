@@ -15,6 +15,9 @@ namespace Build_Sanity_Suit
         public static WebClient cli;
         static string casenumber;
         static string RefNumber;
+        static string mzk_visitstatus3;
+        static string WorkOrderNo;
+
         [TestMethod, TestCategory("BuildAutomation")]
         public void A7A_CreateReferral()
         {
@@ -207,18 +210,18 @@ namespace Build_Sanity_Suit
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));
             xrmApp.CommandBar.ClickCommand("Propose Order");
             xrmApp.ThinkTime(2000);
-            string mzk_visitstatus3 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
+            mzk_visitstatus3 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus3.StartsWith("Proposed"));
             //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-            xrmApp.CommandBar.ClickCommand("Save & Close");
 
+            WorkOrderNo = xrmApp.Entity.GetValue("msdyn_name");
 
         }
         [TestCleanup]
         public void Teardown()
         {
-            string Message = "A7_Create_ReferralstoDeliveryOrder---" ;
-            Helper.LogRecord(Message +  " Case No : " + casenumber + " Ref No : "+ RefNumber);
+            string Message = "Test Case ID - A7_Create_ReferralstoDeliveryOrder\r\n";
+            Helper.LogRecord(Message + "Referral Number : " + RefNumber + "\r\nCase Number : " + casenumber + "\r\nWork Order Number : " + WorkOrderNo + "\r\nWork Order Status : " + mzk_visitstatus3);
             cli.Browser.Driver.Close();
         }
     }

@@ -116,7 +116,6 @@
     <Compile Include="Referrals-Delivery Order\Create_ReferralstoDeliveryOrder.cs" />
     <Compile Include="Referrals-Nurse Order\Create_ReferralstoNurseOrder.cs" />
     <Compile Include="Resource\CreateResource.cs" />
-    <Compile Include="Role_Based\RoleBasedTest.cs" />
     <Compile Include="TestData.cs" />
     <Compile Include="TestSetting.cs" />
     <Compile Include="Wholesale Order\WholesaleOrder.cs" />

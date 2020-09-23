@@ -12,6 +12,7 @@ namespace Build_Sanity_Suit
     public class B13_ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryOrganization
     {
         static string InvoiceNo;
+        static string mzk_visitstatus2;
         public static WebClient cli;
 
         [TestMethod, TestCategory("BuildAutomation")]
@@ -64,10 +65,9 @@ namespace Build_Sanity_Suit
             xrmApp.ThinkTime(2000);
             xrmApp.CommandBar.ClickCommand("Complete");
             xrmApp.ThinkTime(2000);
-            var mzk_visitstatus2 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
+            mzk_visitstatus2 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus2.StartsWith("Completed"));
             xrmApp.ThinkTime(2000);
-
 
             InvoiceNo = xrmApp.Entity.GetValue("msdyn_name");
 
@@ -75,10 +75,10 @@ namespace Build_Sanity_Suit
 
         }
         [TestCleanup]
-        public void teardown()
+        public void Teardown()
         {
-            string Message = "B13_ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryOrganization---";
-            Helper.LogRecord(Message + " Invoice No : " + InvoiceNo);
+            string Message = "Test Case ID - B13_ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryOrganization\r\n";
+            Helper.LogRecord(Message + "Invoice Number - " + InvoiceNo + "\r\nInvoice Status : " + mzk_visitstatus2);
             cli.Browser.Driver.Close();
         }
     }
