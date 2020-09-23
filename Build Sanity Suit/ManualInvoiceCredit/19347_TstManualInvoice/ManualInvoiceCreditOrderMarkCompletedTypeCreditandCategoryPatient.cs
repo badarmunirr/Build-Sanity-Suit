@@ -85,7 +85,7 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-            string Message = "Test Case ID - B15_ManualInvoiceCreditOrderMarkCompletedTypeCreditandCategoryPatient\r\n";
+            string Message = "\r\nTest Case ID - B15_ManualInvoiceCreditOrderMarkCompletedTypeCreditandCategoryPatient\r\n";
             Helper.LogRecord(Message + "Invoice No : " + InvoiceNo + "\r\nStatus : " + mzk_visitstatus2);
             cli.Browser.Driver.Close();
         }

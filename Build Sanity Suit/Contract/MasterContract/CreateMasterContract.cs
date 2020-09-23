@@ -17,7 +17,7 @@ namespace Build_Sanity_Suit
         public void A4_CreateMaster()
         {
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.Login();
+            WebClient client = loginobj.RoleBasedLogin(usersetting.Admin ,usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
@@ -424,6 +424,8 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
+            string Message = "\r\nTest Case ID - A4_CreateMasterContract\r\n";
+            Helper.LogRecord(Message + "Contract Number : " );
             cli.Browser.Driver.Close();
         }
     }

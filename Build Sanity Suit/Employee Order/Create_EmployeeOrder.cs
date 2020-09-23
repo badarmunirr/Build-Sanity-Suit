@@ -79,8 +79,8 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-            string Message = "Test Case ID - B12_Create_EmployeeOrder\r\n";
-            Helper.LogRecord(Message + "\r\nEmployee Order Number : " + WorkOrderNum);
+            string Message = "\r\nTest Case ID - B12_Create_EmployeeOrder\r\n";
+            Helper.LogRecord(Message + "Employee Order Number : " + WorkOrderNum);
             cli.Browser.Driver.Close();
         }
     }

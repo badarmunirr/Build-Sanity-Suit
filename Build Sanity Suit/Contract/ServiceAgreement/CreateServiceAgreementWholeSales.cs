@@ -14,7 +14,7 @@ namespace Build_Sanity_Suit
         public void A9_CreateWholesaleService()
         {
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.Login();
+            WebClient client = loginobj.RoleBasedLogin(usersetting.Admin, usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
@@ -425,6 +425,8 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
+            string Message = "\r\nTest Case ID - A9_CreateServiceAgreementWholeSales\r\n";
+            Helper.LogRecord(Message + "Contract Number : ");
             cli.Browser.Driver.Close();
         }
     }

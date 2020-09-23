@@ -153,7 +153,7 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-            string Message = "Test Case ID - B10_Create_WholesaleOrders\r\n";
+            string Message = "\r\nTest Case ID - B10_Create_WholesaleOrders\r\n";
             Helper.LogRecord(Message + "WholeSale Order Number - " + OrderNum + " \r\nWholeSale Order Status - " + mzk_visitstatus2);
 
             cli.Browser.Driver.Close();

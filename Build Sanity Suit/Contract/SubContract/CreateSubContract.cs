@@ -15,7 +15,7 @@ namespace Build_Sanity_Suit
         {
 
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.Login();
+            WebClient client = loginobj.RoleBasedLogin(usersetting.Admin, usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
@@ -23,20 +23,20 @@ namespace Build_Sanity_Suit
 
 
             xrmApp.ThinkTime(4000);
-             xrmApp.Navigation.OpenSubArea("Referral", "Contract Management");
-             xrmApp.ThinkTime(2000);
-             xrmApp.CommandBar.ClickCommand("New");
-             xrmApp.ThinkTime(2000);
+            xrmApp.Navigation.OpenSubArea("Referral", "Contract Management");
+            xrmApp.ThinkTime(2000);
+            xrmApp.CommandBar.ClickCommand("New");
+            xrmApp.ThinkTime(2000);
 
             var GeneralCreate = new Action(() =>
             {
-                 xrmApp.Entity.SelectTab("General");
-                 xrmApp.ThinkTime(5000);
-                 xrmApp.Entity.SetHeaderValue(new OptionSet { Name = "mzk_contracttypevalue", Value = "Sub-Contract" });
-                 xrmApp.ThinkTime(1000);
-                 xrmApp.Entity.SetHeaderValue(new OptionSet { Name = "mzk_contractstatus", Value = "Live" });
-                 xrmApp.Entity.SetValue("mzk_name",SubContractData.SubContract);
-               
+                xrmApp.Entity.SelectTab("General");
+                xrmApp.ThinkTime(5000);
+                xrmApp.Entity.SetHeaderValue(new OptionSet { Name = "mzk_contracttypevalue", Value = "Sub-Contract" });
+                xrmApp.ThinkTime(1000);
+                xrmApp.Entity.SetHeaderValue(new OptionSet { Name = "mzk_contractstatus", Value = "Live" });
+                xrmApp.Entity.SetValue("mzk_name", SubContractData.SubContract);
+
                 Lookupobj.Lookup("mzk_payer", "1st Assist Group Limited", xrmApp);
                 Lookupobj.Lookup("mzk_mastercontractagreement", MasterContractData.contractName, xrmApp);
                 // xrmApp.ThinkTime(500);
@@ -45,31 +45,31 @@ namespace Build_Sanity_Suit
                 // xrmApp.ThinkTime(500);
                 // xrmApp.Entity.SetValue("mzk_keycontractinformation", "mzk_keycontractinformation");
                 DateTime startdate = DateTime.Today.AddDays(1);
-                 xrmApp.Entity.SetValue("mzk_startdate", startdate, "dd/MM/yyyy");
+                xrmApp.Entity.SetValue("mzk_startdate", startdate, "dd/MM/yyyy");
                 DateTime enddate = startdate.AddDays(2);
-                 xrmApp.Entity.SetValue("mzk_enddate", enddate, "dd/MM/yyyy");
+                xrmApp.Entity.SetValue("mzk_enddate", enddate, "dd/MM/yyyy");
                 DateTime issuedate = DateTime.Today.AddDays(1);
-                 xrmApp.Entity.SetValue("mzk_issuedate", issuedate, "dd/MM/yyyy");
+                xrmApp.Entity.SetValue("mzk_issuedate", issuedate, "dd/MM/yyyy");
                 DateTime reviewdate = DateTime.Today.AddDays(1);
                 // xrmApp.Entity.SetValue("mzk_reviewdate", reviewdate);
                 // xrmApp.ThinkTime(500);
-                 xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_inherit", Value = "Yes" });
+                xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_inherit", Value = "Yes" });
                 // xrmApp.ThinkTime(500);
                 // xrmApp.Entity.SetValue("mzk_description", "mzk_description");
                 // xrmApp.ThinkTime(500);
                 // xrmApp.Entity.SetValue("mzk_contractspecialinstructions", "mzk_contractspecialinstructions");
                 // xrmApp.ThinkTime(500);
                 // xrmApp.Entity.SetValue("mzk_frameworkreference", "mzk_frameworkreference");
-                 xrmApp.Entity.Save();
-                 xrmApp.ThinkTime(1000);
-                 xrmApp.Dialogs.ConfirmationDialog(true);
+                xrmApp.Entity.Save();
+                xrmApp.ThinkTime(1000);
+                xrmApp.Dialogs.ConfirmationDialog(true);
             });
 
             // Other Information
             var OtherInformation = new Action(() =>
             {
-                 xrmApp.ThinkTime(2000);
-                 xrmApp.Entity.SelectTab("Other Information");
+                xrmApp.ThinkTime(2000);
+                xrmApp.Entity.SelectTab("Other Information");
                 // xrmApp.ThinkTime(1000);
                 // xrmApp.Entity.SetValue("mzk_serviceoverview", "mzk_serviceoverview");
                 // xrmApp.ThinkTime(1000);
@@ -120,21 +120,21 @@ namespace Build_Sanity_Suit
                 // xrmApp.Entity.SetValue("mzk_contractbreakpointsfeereviews", "mzk_contractbreakpointsfeereviews");
                 // xrmApp.ThinkTime(2000);
                 // xrmApp.Entity.SetValue("mzk_servicecreditdetails", "mzk_servicecreditdetails");
-                 xrmApp.Entity.Save();
+                xrmApp.Entity.Save();
             });
 
             // Contract Price List
             var ContractPriceListCreate = new Action(() =>
             {
-                 xrmApp.Entity.SelectTab("Contract Price Lists");
-                 xrmApp.ThinkTime(1000);
+                xrmApp.Entity.SelectTab("Contract Price Lists");
+                xrmApp.ThinkTime(1000);
                 // use this line to click on related grid
-                 xrmApp.Entity.SubGrid.ClickCommand("ContractPriceList", "New Contract Price List");
+                xrmApp.Entity.SubGrid.ClickCommand("ContractPriceList", "New Contract Price List");
                 Lookupobj.LookupQuickCreate("mzk_contractpricelist", MasterContractData.contractpricelist, xrmApp);
                 Lookupobj.LookupQuickCreate("mzk_reducedpricelist", MasterContractData.reducedpricelist, xrmApp);
                 Lookupobj.LookupQuickCreate("mzk_contractdiagnosisgroup", MasterContractData.contractdiagnosisgroup, xrmApp);
-                 xrmApp.ThinkTime(1000);
-                 xrmApp.QuickCreate.Save();
+                xrmApp.ThinkTime(1000);
+                xrmApp.QuickCreate.Save();
                 /*     xrmApp.Entity.SelectTab("Contract Price Lists");
                      xrmApp.ThinkTime(1000);
                     // use this line to click on related grid
@@ -154,13 +154,13 @@ namespace Build_Sanity_Suit
             // Contract Diagnosis Group
             var ContractDignosisCreate = new Action(() =>
             {
-                 xrmApp.Entity.SelectTab("Contract Diagnosis Group");
-                 xrmApp.ThinkTime(1000);
+                xrmApp.Entity.SelectTab("Contract Diagnosis Group");
+                xrmApp.ThinkTime(1000);
                 // use this line to click on related grid
-                 xrmApp.Entity.SubGrid.ClickCommand("ContractDiagnosisGroup_new_Grid", "New Contract Diagnosis Group");
+                xrmApp.Entity.SubGrid.ClickCommand("ContractDiagnosisGroup_new_Grid", "New Contract Diagnosis Group");
                 Lookupobj.LookupQuickCreate("mzk_operationaldiagnosisgroup", MasterContractData.operationaldiagnosisgroup, xrmApp);
-                 xrmApp.ThinkTime(1000);
-                 xrmApp.QuickCreate.Save();
+                xrmApp.ThinkTime(1000);
+                xrmApp.QuickCreate.Save();
                 /*  xrmApp.Entity.SelectTab("Contract Diagnosis Group");
                   xrmApp.ThinkTime(1000);
                  use this line to click on related grid
@@ -450,8 +450,8 @@ namespace Build_Sanity_Suit
             //MasterPathwaysCreate();
             //ContractProductServicesCreate();
             //ContractSLA();
-           
-          
+
+
             //ChildContractCreate();
             ////InvoiceDeliveryCreate();
 
@@ -459,6 +459,8 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
+            string Message = "\r\nTest Case ID - A5_CreateSubContract\r\n";
+            Helper.LogRecord(Message + "Contract Number : ");
             cli.Browser.Driver.Close();
         }
     }
