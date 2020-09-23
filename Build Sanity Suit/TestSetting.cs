@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.Dynamics365.UIAutomation.Api.UCI;
 using Microsoft.Dynamics365.UIAutomation.Browser;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
@@ -43,7 +42,7 @@ namespace Build_Sanity_Suit
     public class LOGIN
     {
 
-        // [TestMethod, TestCategory("BuildAutomation")]
+
 
         public WebClient Login()
         {

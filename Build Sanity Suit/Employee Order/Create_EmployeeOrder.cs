@@ -44,12 +44,9 @@ namespace Build_Sanity_Suit
             xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, "dd/MM/yyyy", "hh:mm");
 
             Lookupobj.Lookup("mzk_deliverymethods", EmployeeOrder.deliverymethods, xrmApp);
-
-
-            xrmApp.ThinkTime(3000);
+            xrmApp.ThinkTime(5000);
             xrmApp.Entity.Save();
-
-            xrmApp.ThinkTime(3000);
+            xrmApp.ThinkTime(5000);
             WorkOrderNum = xrmApp.Entity.GetHeaderValue("msdyn_name");
             xrmApp.ThinkTime(3000);
             //string mzk_visitstatus =  xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
