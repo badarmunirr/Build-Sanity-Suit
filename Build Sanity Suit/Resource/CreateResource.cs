@@ -132,7 +132,7 @@ namespace Build_Sanity_Suit
         {
             string Message = "\r\nTest Case ID - B11_Create_Resource---";
             Helper.LogRecord(Message );
-            //cli.Browser.Driver.Close();
+            cli.Browser.Driver.Close();
 
         }
 
