@@ -13,6 +13,7 @@ namespace Build_Sanity_Suit
     {
         static string AccountNum;
         public static WebClient cli;
+        ReadData readData = Helper.ReadDataFromJSONFile();
 
         [TestMethod, TestCategory("BuildAutomation")]
         public void A1_CreateProvider()
@@ -31,40 +32,19 @@ namespace Build_Sanity_Suit
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             xrmApp.CommandBar.ClickCommand("New");
             xrmApp.ThinkTime(5000);
+            xrmApp.ThinkTime(2000);
             if (client.Browser.Driver.HasElement(By.XPath("//div[contains(@data-id,'address1_line1.fieldControl_container')]")))
             {
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@data-id,'address1_line1.fieldControl_container')]")));
-                xrmApp.ThinkTime(5000);
                 client.Browser.Driver.FindElement(By.XPath("//div[contains(@data-id,'address1_line1.fieldControl_container')]")).Click();
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@class,'data8-pa-countryselector data8-pa-visible')]")));
                 client.Browser.Driver.FindElement(By.XPath("//div[contains(@class,'data8-pa-countryselector data8-pa-visible')]")).Click();
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[contains(@data-countrycode,'GB')]")));
                 client.Browser.Driver.FindElement(By.XPath("//*[contains(@data-countrycode,'GB')]")).Click();
 
-                xrmApp.Entity.SetValue("address1_name", Healthcareproviderdata.address1name);
+                xrmApp.Entity.SetValue("address1_name", readData.HealthCareProviderData.address1_name);
 
-                xrmApp.Entity.SetValue("address1_line1", Healthcareproviderdata.fulladdress);
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")));
-                client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
-            }
-            else
-            {
-                Console.WriteLine("No Element found");
-            }
-            xrmApp.ThinkTime(5000);
-            if (client.Browser.Driver.HasElement(By.XPath("//div[contains(@data-id,'address2_line1.fieldControl_container')]")))
-            {
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@data-id,'address2_line1.fieldControl_container')]")));
-                xrmApp.ThinkTime(5000);
-                client.Browser.Driver.FindElement(By.XPath("//div[contains(@data-id,'address2_line1.fieldControl_container')]")).Click();
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@class,'data8-pa-countryselector data8-pa-visible')]")));
-                client.Browser.Driver.FindElement(By.XPath("//div[contains(@class,'data8-pa-countryselector data8-pa-visible')]")).Click();
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")));
-                client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")).Click();
-
-                xrmApp.Entity.SetValue("address2_name", Healthcareproviderdata.address2name);
-
-                xrmApp.Entity.SetValue("address2_line1", Healthcareproviderdata.fulladdress);
+                xrmApp.Entity.SetValue("address1_line1", readData.HealthCareProviderData.address1_line1);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")));
                 client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
             }
@@ -73,32 +53,52 @@ namespace Build_Sanity_Suit
                 Console.WriteLine("No Element found");
             }
             xrmApp.ThinkTime(2000);
-            xrmApp.Entity.SetValue("name", Healthcareproviderdata.name);
+            if (client.Browser.Driver.HasElement(By.XPath("//div[contains(@data-id,'address2_line1.fieldControl_container')]")))
+            {
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@data-id,'address2_line1.fieldControl_container')]")));
+                client.Browser.Driver.FindElement(By.XPath("//div[contains(@data-id,'address2_line1.fieldControl_container')]")).Click();
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@class,'data8-pa-countryselector data8-pa-visible')]")));
+                client.Browser.Driver.FindElement(By.XPath("//div[contains(@class,'data8-pa-countryselector data8-pa-visible')]")).Click();
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")));
+                client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")).Click();
+
+                xrmApp.Entity.SetValue("address2_name", readData.HealthCareProviderData.address2_name);
+
+                xrmApp.Entity.SetValue("address2_line1", readData.HealthCareProviderData.address2_line1);
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")));
+                client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
+            }
+            else
+            {
+                Console.WriteLine("No Element found");
+            }
+
+            xrmApp.Entity.SetValue("name", readData.HealthCareProviderData.name);
 
             // xrmApp.Entity.SetValue("accountnumber", Healthcareproviderdata.accountnumber);
 
-            xrmApp.Entity.SetValue("telephone1", Healthcareproviderdata.telephone1);
+            xrmApp.Entity.SetValue("telephone1", readData.HealthCareProviderData.telephone1);
 
-            xrmApp.Entity.SetValue("fax", Healthcareproviderdata.fax);
+            xrmApp.Entity.SetValue("fax", readData.HealthCareProviderData.fax);
 
-            xrmApp.Entity.SetValue("emailaddress1", Healthcareproviderdata.email);
+            xrmApp.Entity.SetValue("emailaddress1", readData.HealthCareProviderData.emailaddress1);
 
             //Lookupobj.Lookup("mzk_payer", Healthcareproviderdata.payer);
 
-            xrmApp.Entity.SetValue("mzk_taxidnumber", Healthcareproviderdata.taxid);//optional
+            xrmApp.Entity.SetValue("mzk_taxidnumber", readData.HealthCareProviderData.mzk_taxidnumber);//optional
 
-            Lookupobj.Lookup("mzk_category", Healthcareproviderdata.category, xrmApp);
+            Lookupobj.Lookup("mzk_category", readData.HealthCareProviderData.mzk_category, xrmApp);
 
-            xrmApp.Entity.SetValue("mzk_hospitalid", Healthcareproviderdata.hospitalid);
+            xrmApp.Entity.SetValue("mzk_hospitalid", readData.HealthCareProviderData.mzk_hospitalid);
 
-            Lookupobj.Lookup("mzk_paymentterms", Healthcareproviderdata.paymentterms, xrmApp);
+            Lookupobj.Lookup("mzk_paymentterms", readData.HealthCareProviderData.mzk_paymentterms, xrmApp);
 
-            Lookupobj.Lookup("mzk_patientlanguage", Healthcareproviderdata.patientlanguage, xrmApp);
+            Lookupobj.Lookup("mzk_patientlanguage", readData.HealthCareProviderData.mzk_patientlanguage, xrmApp);
 
             DateTime mzk_dateoflastregulatorycheck = DateTime.Today;
             xrmApp.Entity.SetValue("mzk_dateoflastregulatorycheck", mzk_dateoflastregulatorycheck, "dd/MM/yyyy");
             // Address
-           
+
             // xrmApp.ThinkTime(5000);
 
             //Lookupobj.Lookup("primarycontactid", Healthcareproviderdata.primarycontactid);
@@ -128,10 +128,9 @@ namespace Build_Sanity_Suit
             xrmApp.ThinkTime(1000);
             string mzk_address2countrycodeiso = xrmApp.Entity.GetValue("mzk_address2countrycodeiso");
             Assert.IsTrue(mzk_address2countrycodeiso.StartsWith("GB"));
-            AccountNum = xrmApp.Entity.GetHeaderValue("accountnumber");
-
             //Field address1_line1 =  xrmApp.Entity.GetField("address1_line1");
             //Assert.IsTrue(address1_line1.IsRequired);
+
             //Field address2_line1 =  xrmApp.Entity.GetField("address2_line1");
             //Assert.IsTrue(address2_line1.IsRequired);
             // xrmApp.ThinkTime(1000);
@@ -147,13 +146,15 @@ namespace Build_Sanity_Suit
             // xrmApp.ThinkTime(1000);
             // xrmApp.Entity.SetValue("mzk_department", Healthcareproviderdata.telephone1);
 
+
+            AccountNum = xrmApp.Entity.GetHeaderValue("accountnumber");
         }
 
         [TestCleanup]
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - A1_Create_HealthCare\r\n";
-            Helper.LogRecord(Message + "HealthCare Provider Number : " + AccountNum);
+            LogHelper.LogRecord(Message + "HealthCare Provider Number : " + AccountNum);
             cli.Browser.Driver.Close();
         }
     }

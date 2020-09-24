@@ -11,8 +11,9 @@ namespace Build_Sanity_Suit
     public class B12_Create_EmployeeOrder
     {
         static string WorkOrderNum;
+        static string mzk_visitstatus3;
         public static WebClient cli;
-
+        ReadData readData = Helper.ReadDataFromJSONFile();
         [TestMethod, TestCategory("BuildAutomation")]
         public void B12_CreateResourceToAccountToEmployeeOrder()
         {
@@ -35,7 +36,7 @@ namespace Build_Sanity_Suit
             xrmApp.CommandBar.ClickCommand("New");
 
 
-            Lookupobj.Lookup("msdyn_workordertype", EmployeeOrder.workordertype, xrmApp);
+            Lookupobj.Lookup("msdyn_workordertype", readData.EmployeeOrderData.msdyn_workordertype, xrmApp);
 
             DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
             xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, "dd/MM/yyyy", "hh:mm");
@@ -43,27 +44,27 @@ namespace Build_Sanity_Suit
             DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(3).AddHours(10);
             xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, "dd/MM/yyyy", "hh:mm");
 
-            Lookupobj.Lookup("mzk_deliverymethods", EmployeeOrder.deliverymethods, xrmApp);
-            xrmApp.ThinkTime(5000);
+            Lookupobj.Lookup("mzk_deliverymethods", readData.EmployeeOrderData.mzk_deliverymethods, xrmApp);
+
+
+            xrmApp.ThinkTime(3000);
             xrmApp.Entity.Save();
-            xrmApp.ThinkTime(5000);
-            WorkOrderNum = xrmApp.Entity.GetHeaderValue("msdyn_name");
+
             xrmApp.ThinkTime(3000);
             //string mzk_visitstatus =  xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             //Assert.IsTrue(mzk_visitstatus.StartsWith("Draft"));
             string msdyn_postalcode = xrmApp.Entity.GetValue("msdyn_postalcode");
             Assert.IsNotNull(msdyn_postalcode);
-
             xrmApp.ThinkTime(5000);
             xrmApp.Entity.SelectTab("Products and Services");
             xrmApp.ThinkTime(4000);
             xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Work Order Product");
 
-            Lookupobj.LookupQuickCreate("msdyn_product", EmployeeOrder.productname, xrmApp);
+            Lookupobj.LookupQuickCreate("msdyn_product", readData.EmployeeOrderData.msdyn_product, xrmApp);
             // xrmApp.ThinkTime(2000);
             //Lookupobj.LookupQuickCreate("msdyn_unit", EmployeeOrder.unit);
 
-            xrmApp.QuickCreate.SetValue("msdyn_quantity", EmployeeOrder.qunantity);
+            xrmApp.QuickCreate.SetValue("msdyn_quantity", readData.EmployeeOrderData.msdyn_quantity);
             xrmApp.ThinkTime(2000);
             xrmApp.QuickCreate.Save();
 
@@ -71,16 +72,16 @@ namespace Build_Sanity_Suit
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));
             xrmApp.CommandBar.ClickCommand("Propose Order");
             xrmApp.ThinkTime(2000);
-            string mzk_visitstatus3 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
+            mzk_visitstatus3 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus3.StartsWith("Proposed"));
 
-
+            WorkOrderNum = xrmApp.Entity.GetHeaderValue("msdyn_name");
         }
         [TestCleanup]
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - B12_Create_EmployeeOrder\r\n";
-            Helper.LogRecord(Message + "Employee Order Number : " + WorkOrderNum);
+            LogHelper.LogRecord(Message + "Employee Order Number : " + WorkOrderNum +"\r\nWork Order Status : "+ mzk_visitstatus3);
             cli.Browser.Driver.Close();
         }
     }

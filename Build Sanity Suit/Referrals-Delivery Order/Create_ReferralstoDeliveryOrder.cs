@@ -21,7 +21,7 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("BuildAutomation")]
         public void A7_CreateReferral()
         {
-
+            ReadData readData = Helper.ReadDataFromJSONFile();
             var CreateReferral = new Action(() =>
             {
                 LOGIN loginobj = new LOGIN();
@@ -35,25 +35,25 @@ namespace Build_Sanity_Suit
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
                 xrmApp.CommandBar.ClickCommand("New");
 
-                Lookupobj.Lookup("parentcontactid", ReferraltodeliviryOrderdata.PatientName, xrmApp);
+                Lookupobj.Lookup("parentcontactid", readData.ReferraltodeliviryOrderData.parentcontactid, xrmApp);
 
                 xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_patientconsent", Value = true });
 
-                xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_patientswitchstatus", Value = ReferraltodeliviryOrderdata.patientswitchstatus });
+                xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_patientswitchstatus", Value = readData.ReferraltodeliviryOrderData.mzk_patientswitchstatus });
 
-                xrmApp.Entity.SetValue("mzk_anonymousreference", ReferraltodeliviryOrderdata.anonymousreference);
+                xrmApp.Entity.SetValue("mzk_anonymousreference", readData.ReferraltodeliviryOrderData.mzk_anonymousreference);
 
-                xrmApp.Entity.SetValue("mzk_hospitalreferencenumber", ReferraltodeliviryOrderdata.hospitalreferencenumber);
+                xrmApp.Entity.SetValue("mzk_hospitalreferencenumber", readData.ReferraltodeliviryOrderData.mzk_hospitalreferencenumber);
                 xrmApp.ThinkTime(1000);
                 xrmApp.Entity.SelectTab("General");
 
-                xrmApp.Entity.SetValue("name", ReferraltodeliviryOrderdata.ReferalName);
+                xrmApp.Entity.SetValue("name", readData.ReferraltodeliviryOrderData.name);
 
-                Lookupobj.Lookup("mzk_contract", ReferraltodeliviryOrderdata.ServiceAgreement, xrmApp);
+                Lookupobj.Lookup("mzk_contract", readData.ReferraltodeliviryOrderData.mzk_contract, xrmApp);
 
-                Lookupobj.Lookup("mzk_diagnosisgroup", ReferraltodeliviryOrderdata.diagnosisgroup, xrmApp);
+                Lookupobj.Lookup("mzk_diagnosisgroup", readData.ReferraltodeliviryOrderData.mzk_diagnosisgroup, xrmApp);
 
-                xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_nursingstatus", Value = ReferraltodeliviryOrderdata.nursingstatus });
+                xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_nursingstatus", Value = readData.ReferraltodeliviryOrderData.mzk_nursingstatus });
 
                 //Lookupobj.Lookup("mzk_contractdeliverymethod", "aHUS");
 
@@ -70,20 +70,20 @@ namespace Build_Sanity_Suit
                     Console.WriteLine("No Element found");
                 }
                 xrmApp.ThinkTime(5000);
-                Lookupobj.Lookup("pricelevelid", ReferraltodeliviryOrderdata.PriceList, xrmApp);
+                Lookupobj.Lookup("pricelevelid", readData.ReferraltodeliviryOrderData.pricelevelid, xrmApp);
                 // xrmApp.ThinkTime(2000);
                 //Lookupobj.Lookup("mzk_masterpathway", ReferraltodeliviryOrderdata.MasterPathway);
                 //Referrer
                 // xrmApp.ThinkTime(1000);
                 //Lookupobj.Lookup("mzk_referringprescriber", ReferraltoNurseOrderdata.refferingprescriber);
 
-                xrmApp.Entity.SetValue("mzk_pmireferencenumber", ReferraltodeliviryOrderdata.pmireferencenumber);
+                xrmApp.Entity.SetValue("mzk_pmireferencenumber", readData.ReferraltodeliviryOrderData.mzk_pmireferencenumber);
 
-                xrmApp.Entity.SetValue("mzk_billingreferencenumber", ReferraltodeliviryOrderdata.billingreferencenumber);
+                xrmApp.Entity.SetValue("mzk_billingreferencenumber", readData.ReferraltodeliviryOrderData.mzk_billingreferencenumber);
 
-                xrmApp.Entity.SetValue("mzk_pmipolicynumber", ReferraltodeliviryOrderdata.pmipolicynumber);
+                xrmApp.Entity.SetValue("mzk_pmipolicynumber", readData.ReferraltodeliviryOrderData.mzk_pmipolicynumber);
 
-                xrmApp.Entity.SetValue("mzk_legacyreferralnumber", ReferraltodeliviryOrderdata.legacyreferralnumber);
+                xrmApp.Entity.SetValue("mzk_legacyreferralnumber", readData.ReferraltodeliviryOrderData.mzk_legacyreferralnumber);
                 xrmApp.ThinkTime(1000);
                 xrmApp.Entity.Save();
                 // xrmApp.ThinkTime(3000);
@@ -106,6 +106,7 @@ namespace Build_Sanity_Suit
                 Assert.IsTrue(mzk_visitstatus2.StartsWith("Active"));
                 string address1_postalcode = xrmApp.Entity.GetValue("address1_postalcode");
                 Assert.IsNotNull(address1_postalcode);
+                xrmApp.ThinkTime(3000);
                 RefNumber = xrmApp.Entity.GetHeaderValue("mzk_requestnumber");
                 xrmApp.ThinkTime(2000);
                 xrmApp.Navigation.OpenSubArea("Referral", "Referrals");
@@ -161,7 +162,7 @@ namespace Build_Sanity_Suit
                 string casenumber2 = client.Browser.Driver.FindElement(By.CssSelector("div[data-id='msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag_text']")).Text;
                 Assert.IsTrue(casenumber2.StartsWith(casenumber));
 
-                Lookupobj.Lookup("msdyn_workordertype", ReferraltodeliviryOrderdata.workordertype, xrmApp);
+                Lookupobj.Lookup("msdyn_workordertype", readData.ReferraltodeliviryOrderData.msdyn_workordertype, xrmApp);
                 //
                 //Lookupobj.Lookup("msdyn_serviceterritory", ReferraltodeliviryOrderdata.serviceterritory);
                 // xrmApp.ThinkTime(2000);
@@ -180,7 +181,7 @@ namespace Build_Sanity_Suit
                 DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(3).AddHours(10);
                 xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, "dd/MM/yyyy", "hh:mm");
                 xrmApp.ThinkTime(5000);
-                Lookupobj.Lookup("mzk_deliverymethods", ReferraltodeliviryOrderdata.deliverymethods, xrmApp);
+                Lookupobj.Lookup("mzk_deliverymethods", readData.ReferraltodeliviryOrderData.mzk_deliverymethods, xrmApp);
 
                 //Lookupobj.Lookup("mzk_deliveryroute", ReferraltodeliviryOrderdata.deliveryroute);
                 // xrmApp.ThinkTime(2000);
@@ -200,11 +201,11 @@ namespace Build_Sanity_Suit
                 xrmApp.ThinkTime(4000);
                 xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Ancillary Item");
 
-                Lookupobj.LookupQuickCreate("msdyn_product", ReferraltodeliviryOrderdata.productname, xrmApp);
+                Lookupobj.LookupQuickCreate("msdyn_product", readData.ReferraltodeliviryOrderData.msdyn_product, xrmApp);
                 // xrmApp.ThinkTime(2000);
                 //Lookupobj.LookupQuickCreate("msdyn_unit", ReferraltodeliviryOrderdata.unit);
 
-                xrmApp.QuickCreate.SetValue("msdyn_quantity", ReferraltodeliviryOrderdata.qunantity);
+                xrmApp.QuickCreate.SetValue("msdyn_quantity", readData.ReferraltodeliviryOrderData.msdyn_quantity);
                 xrmApp.ThinkTime(2000);
                 xrmApp.QuickCreate.Save();
                 ////Service
@@ -220,8 +221,8 @@ namespace Build_Sanity_Suit
                 mzk_visitstatus3 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
                 Assert.IsTrue(mzk_visitstatus3.StartsWith("Proposed"));
                 //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-
                 WorkOrderNo = xrmApp.Entity.GetValue("msdyn_name");
+
             });
             CreateReferral();
             CreateDeliveryOrder();
@@ -233,7 +234,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - A7_Create_ReferralstoDeliveryOrder\r\n";
-            Helper.LogRecord(Message + "Referral Number : " + RefNumber + "\r\nCase Number : " + casenumber + "\r\nWork Order Number : " + WorkOrderNo + "\r\nWork Order Status : " + mzk_visitstatus3);
+            LogHelper.LogRecord(Message + "Referral Number : " + RefNumber + "\r\nCase Number : " + casenumber + "\r\nWork Order Number : " + WorkOrderNo + "\r\nWork Order Status : " + mzk_visitstatus3);
             cli.Browser.Driver.Close();
         }
     }

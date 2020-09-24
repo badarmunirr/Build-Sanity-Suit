@@ -17,58 +17,57 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("BuildAutomation")]
         public void B11_CreateResourceToAccountTypeEmployee()
         {
+            ReadData readData = Helper.ReadDataFromJSONFile();
             LOGIN loginobj = new LOGIN();
             WebClient client = loginobj.RoleBasedLogin(usersetting.Admin, usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
             HelperFunction Lookupobj = new HelperFunction();
-            string UserName = ResourceToPatData.userid;
+
+
+            string UserName = readData.ResourceData.userid;
             string UserNameTrim = UserName.Remove(9);
-
             xrmApp.ThinkTime(4000);
-
             xrmApp.Navigation.OpenSubArea("Others", "Bookable Resources");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-            xrmApp.CommandBar.ClickCommand("New");
+            xrmApp.Entity.SetValue(new OptionSet { Name = "resourcetype", Value = readData.ResourceData.resourcetype });
 
-            xrmApp.Entity.SetValue(new OptionSet { Name = "resourcetype", Value = ResourceToPatData.resourcetype });
+            xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_resourcesubtype", Value = readData.ResourceData.mzk_resourcesubtype });
 
-            xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_resourcesubtype", Value = ResourceToPatData.resourcesubtype });
+            Lookupobj.Lookup("userid", readData.ResourceData.userid, xrmApp); //need to update this everytime
 
-            Lookupobj.Lookup("userid", ResourceToPatData.userid, xrmApp); //need to update this everytime
+            Lookupobj.Lookup("mzk_gendervalue", readData.ResourceData.mzk_gendervalue, xrmApp);
 
-            Lookupobj.Lookup("mzk_gendervalue", ResourceToPatData.gender, xrmApp);
+            //    Lookupobj.Lookup("mzk_language", ResourceToPatData.language, xrmApp);
 
-            Lookupobj.Lookup("mzk_language", ResourceToPatData.language, xrmApp);
+            xrmApp.ThinkTime(1000);
+            xrmApp.Entity.SetValue("mzk_address1name", readData.ResourceData.mzk_address1name);
+            xrmApp.ThinkTime(1000);
+            xrmApp.Entity.SetValue("mzk_address1line1", readData.ResourceData.mzk_address1line1);
 
+            xrmApp.ThinkTime(1000);
+            xrmApp.Entity.SetValue("mzk_city1", readData.ResourceData.mzk_city1);
 
-            xrmApp.Entity.SetValue("mzk_address1name", "Deployment ");
-
-            xrmApp.Entity.SetValue("mzk_address1line1", "10 Bridge Close");
-
-
-            xrmApp.Entity.SetValue("mzk_city1", "BRISTOL");
-
-
-            xrmApp.Entity.SetValue("mzk_postalcode1", "BS14 0TS");
-
-            xrmApp.Entity.SetValue("mzk_country1", "United Kingdom");
-
-            xrmApp.Entity.SetValue("mzk_address1countrycodeiso", "GB");
-
+            xrmApp.ThinkTime(1000);
+            xrmApp.Entity.SetValue("mzk_postalcode1", readData.ResourceData.mzk_postalcode1);
+            xrmApp.ThinkTime(1000);
+            xrmApp.Entity.SetValue("mzk_country1", readData.ResourceData.mzk_country1);
+            xrmApp.ThinkTime(1000);
+            xrmApp.Entity.SetValue("mzk_address1countrycodeiso", readData.ResourceData.mzk_address1countrycodeiso);
+            xrmApp.ThinkTime(1000);
 
             //Default Delivery Address
-            xrmApp.Entity.SetValue("mzk_address2name", "Delivery ");
+            xrmApp.Entity.SetValue("mzk_address2name", readData.ResourceData.mzk_address2name);
+            xrmApp.ThinkTime(1000);
+            xrmApp.Entity.SetValue("mzk_address2line1", readData.ResourceData.mzk_address2line1);
+            xrmApp.ThinkTime(1000);
 
-            xrmApp.Entity.SetValue("mzk_address2line1", "10 Bridge Close");
+            xrmApp.Entity.SetValue("mzk_city2", readData.ResourceData.mzk_city2);
 
-
-            xrmApp.Entity.SetValue("mzk_city2", "BRISTOL");
-
-            xrmApp.Entity.SetValue("mzk_postalcode2", "BS14 0TS");
-            xrmApp.Entity.SetValue("mzk_country2", "United Kingdom");
-            xrmApp.Entity.SetValue("mzk_address2countrycodeiso", "GB");
+            xrmApp.Entity.SetValue("mzk_postalcode2", readData.ResourceData.mzk_postalcode2);
+            xrmApp.Entity.SetValue("mzk_country2", readData.ResourceData.mzk_country2);
+            xrmApp.Entity.SetValue("mzk_address2countrycodeiso", readData.ResourceData.mzk_address2countrycodeiso);
 
             xrmApp.Entity.Save();
             xrmApp.ThinkTime(2000);
@@ -96,6 +95,7 @@ namespace Build_Sanity_Suit
             // xrmApp.ThinkTime(5000);
             //Field language =  xrmApp.Entity.GetField("mzk_language");
             //Assert.IsTrue(language.IsRequired);
+
 
             xrmApp.Navigation.OpenSubArea("Others", "Bookable Resources");
             xrmApp.ThinkTime(2000);
@@ -131,7 +131,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - B11_Create_Resource---";
-            Helper.LogRecord(Message );
+            LogHelper.LogRecord(Message);
             cli.Browser.Driver.Close();
 
         }

@@ -460,7 +460,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - A5_CreateSubContract\r\n";
-            Helper.LogRecord(Message + "Contract Number : ");
+            LogHelper.LogRecord(Message + "Contract Number : ");
             cli.Browser.Driver.Close();
         }
     }

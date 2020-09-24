@@ -74,8 +74,27 @@
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Reflection, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.4.3.0\lib\net462\System.Reflection.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reflection.TypeExtensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.TypeExtensions.4.3.0\lib\net462\System.Reflection.TypeExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Primitives, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Serialization.Primitives.4.3.0\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.XmlDocument, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.XmlDocument.4.3.0\lib\net46\System.Xml.XmlDocument.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WebDriver, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Selenium.WebDriver.3.141.0\lib\net45\WebDriver.dll</HintPath>
     </Reference>
@@ -104,23 +123,38 @@
     <Compile Include="Contract\ServiceAgreement\CreateServiceAgreementWholeSales.cs" />
     <Compile Include="Contract\SubContract\CreateSubContract.cs" />
     <Compile Include="Employee Order\Create_EmployeeOrder.cs" />
+    <Compile Include="Employee Order\EmployeeOrderData.cs" />
     <Compile Include="HealthCare Provider\Create_HealthCare.cs" />
+    <Compile Include="HealthCare Provider\HealthCareProviderData.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="LogHelper.cs" />
     <Compile Include="ManualInvoiceCredit\19273_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryOrganization.cs" />
+    <Compile Include="ManualInvoiceCredit\19273_TstManualInvoice\TstManualInvoice_19273Data.cs" />
     <Compile Include="ManualInvoiceCredit\19346_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedType=CreditCategoryOrganization.cs" />
+    <Compile Include="ManualInvoiceCredit\19346_TstManualInvoice\TstManualInvoice_19346Data.cs" />
     <Compile Include="ManualInvoiceCredit\19347_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedTypeCreditandCategoryPatient.cs" />
+    <Compile Include="ManualInvoiceCredit\19347_TstManualInvoice\TstManualInvoice_19347Data.cs" />
     <Compile Include="ManualInvoiceCredit\19348_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryPatient.cs" />
+    <Compile Include="ManualInvoiceCredit\19348_TstManualInvoice\TstManualInvoice_19348Data.cs" />
     <Compile Include="Patient\Create_Patient.cs" />
+    <Compile Include="Patient\PatientData.cs" />
     <Compile Include="Payers\Create_Payers.cs" />
+    <Compile Include="Payers\PayerData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadData.cs" />
     <Compile Include="Referrals-Delivery Order\Create_ReferralstoDeliveryOrder.cs" />
+    <Compile Include="Referrals-Delivery Order\ReferralstoDeliveryOrderData.cs" />
     <Compile Include="Referrals-Nurse Order\Create_ReferralstoNurseOrder.cs" />
+    <Compile Include="Referrals-Nurse Order\ReferralstoNurseOrderData.cs" />
     <Compile Include="Resource\CreateResource.cs" />
+    <Compile Include="Resource\ResourceData.cs" />
     <Compile Include="TestData.cs" />
     <Compile Include="TestSetting.cs" />
     <Compile Include="Wholesale Order\WholesaleOrder.cs" />
+    <Compile Include="Wholesale Order\WholesaleOrderData.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AllData.json" />
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>

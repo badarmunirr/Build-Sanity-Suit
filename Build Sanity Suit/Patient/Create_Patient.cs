@@ -24,21 +24,20 @@ namespace Build_Sanity_Suit
             XrmApp xrmApp = new XrmApp(client);
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
             HelperFunction Lookupobj = new HelperFunction();
+            ReadData readData = Helper.ReadDataFromJSONFile();
 
-
-            xrmApp.ThinkTime(4000);
             xrmApp.Navigation.OpenSubArea("Customers", "Patients");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             xrmApp.CommandBar.ClickCommand("New");
-            Lookupobj.Lookup("mzk_title", Patientdata.title, xrmApp);
+            Lookupobj.Lookup("mzk_title", readData.PatientData.mzk_title, xrmApp);
 
-            xrmApp.Entity.SetValue("firstname", Patientdata.name);
+            xrmApp.Entity.SetValue("firstname", readData.PatientData.firstname);
 
-            xrmApp.Entity.SetValue("lastname", Patientdata.lname);
+            xrmApp.Entity.SetValue("lastname", readData.PatientData.lastname);
 
-            Lookupobj.Lookup("mzk_gender", Patientdata.gender, xrmApp);
+            Lookupobj.Lookup("mzk_gender", readData.PatientData.mzk_gender, xrmApp);
 
-            xrmApp.Entity.SetValue("mzk_preferredname", Patientdata.preferredname);// Optional
+            xrmApp.Entity.SetValue("mzk_preferredname", readData.PatientData.mzk_preferredname);// Optional
 
             DateTime birthday = new DateTime(1995, 3, 1);
 
@@ -46,7 +45,7 @@ namespace Build_Sanity_Suit
 
             //  xrmApp.Entity.SetValue("mzk_mothersidentifier", Patientdata.motherifentification);//optional
 
-            xrmApp.Entity.SetValue(new OptionSet { Name = "familystatuscode", Value = Patientdata.familystatuscode });
+            xrmApp.Entity.SetValue(new OptionSet { Name = "familystatuscode", Value = readData.PatientData.familystatuscode });
             //optional
             // xrmApp.ThinkTime(1000);
             //Lookupobj.Lookup("mzk_nationality", Patientdata.nationality);
@@ -55,7 +54,7 @@ namespace Build_Sanity_Suit
             // xrmApp.ThinkTime(1000);
             //Lookupobj.Lookup("mzk_race", Patientdata.race);
 
-            Lookupobj.Lookup("mzk_patientlanguage", Patientdata.language, xrmApp);
+            Lookupobj.Lookup("mzk_patientlanguage", readData.PatientData.mzk_patientlanguage, xrmApp);
             // xrmApp.ThinkTime(1000);
             //Lookupobj.Lookup("mzk_disability", Patientdata.disability);//optional
             // xrmApp.ThinkTime(1000);
@@ -63,9 +62,9 @@ namespace Build_Sanity_Suit
 
             // xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_vippatient", Value = true });//optional
 
-            xrmApp.Entity.SetValue("mzk_patientinstructions", Patientdata.patientinstruction);//optional
+            xrmApp.Entity.SetValue("mzk_patientinstructions", readData.PatientData.mzk_patientinstructions);//optional
 
-            xrmApp.Entity.SetValue("mzk_medicalhistory", Patientdata.medicalhistroy);
+            xrmApp.Entity.SetValue("mzk_medicalhistory", readData.PatientData.mzk_medicalhistory);
             //optional
             // xrmApp.ThinkTime(1000);
             //Lookupobj.Lookup("mzk_selffundingaccount", "Payer");
@@ -101,11 +100,11 @@ namespace Build_Sanity_Suit
             DateTime mzk_otheridentificationexpirationdate = DateTime.Today.AddDays(10);
             xrmApp.Entity.SetValue("mzk_otheridentificationexpirationdate", mzk_otheridentificationexpirationdate, "dd/MM/yyyy");
             //CONTACT DETAILS
-            xrmApp.Entity.SetValue("telephone1", Patientdata.telephone1);
-            xrmApp.Entity.SetValue("telephone2", Patientdata.telephone2);
-            xrmApp.Entity.SetValue("telephone3", Patientdata.telephone3);
-            xrmApp.Entity.SetValue("mobilephone", Patientdata.mobilephone);
-            xrmApp.Entity.SetValue("emailaddress1", "abc@mazikglobal.com");
+            xrmApp.Entity.SetValue("telephone1", readData.PatientData.telephone1);
+            xrmApp.Entity.SetValue("telephone2", readData.PatientData.telephone2);
+            xrmApp.Entity.SetValue("telephone3", readData.PatientData.telephone3);
+            xrmApp.Entity.SetValue("mobilephone", readData.PatientData.mobilephone);
+            xrmApp.Entity.SetValue("emailaddress1", readData.PatientData.emailaddress1);
             xrmApp.ThinkTime(2000);
             if (client.Browser.Driver.HasElement(By.XPath("//div[contains(@data-id,'address1_line1.fieldControl_container')]")))
             {
@@ -116,9 +115,9 @@ namespace Build_Sanity_Suit
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[contains(@data-countrycode,'GB')]")));
                 client.Browser.Driver.FindElement(By.XPath("//*[contains(@data-countrycode,'GB')]")).Click();
 
-                xrmApp.Entity.SetValue("address1_name", Patientdata.address1name);
+                xrmApp.Entity.SetValue("address1_name", readData.PatientData.address1_name);
 
-                xrmApp.Entity.SetValue("address1_line1", Patientdata.fulladdress);
+                xrmApp.Entity.SetValue("address1_line1", readData.PatientData.address3_line1);
 
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")));
                 client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
@@ -138,9 +137,9 @@ namespace Build_Sanity_Suit
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")));
                 client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")).Click();
 
-                xrmApp.Entity.SetValue("address2_name", Patientdata.address2name);
+                xrmApp.Entity.SetValue("address2_name", readData.PatientData.address2_name);
 
-                xrmApp.Entity.SetValue("address2_line1", Patientdata.fulladdress);
+                xrmApp.Entity.SetValue("address2_line1", readData.PatientData.address3_line1);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")));
                 client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
             }
@@ -159,9 +158,9 @@ namespace Build_Sanity_Suit
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")));
                 client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-countrylist data8-pa-visible']//span[contains(text(),'United Kingdom')]")).Click();
 
-                xrmApp.Entity.SetValue("address3_name", Patientdata.address3name);
+                xrmApp.Entity.SetValue("address3_name", readData.PatientData.address3_name);
 
-                xrmApp.Entity.SetValue("address3_line1", Patientdata.fulladdress);
+                xrmApp.Entity.SetValue("address3_line1", readData.PatientData.address3_line1);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")));
                 client.Browser.Driver.FindElement(By.XPath("//div[@class='data8-pa-autocomplete data8-pa-visible']//div[@class='data8-pa-autocompleteitem']")).Click();
             }
@@ -264,7 +263,7 @@ namespace Build_Sanity_Suit
     public void Teardown()
     {
         string Message = "\r\nTest Case ID - A2_Create_Patient\r\n";
-        Helper.LogRecord(Message + "Patient Number : " + PatientNum);
+        LogHelper.LogRecord(Message + "Patient Number : " + PatientNum);
         cli.Browser.Driver.Close();
 
     }
