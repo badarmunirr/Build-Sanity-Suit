@@ -131,7 +131,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - B11_Create_Resource---";
-            LogHelper.LogRecord(Message);
+            Helper.LogRecord(Message);
             cli.Browser.Driver.Close();
 
         }

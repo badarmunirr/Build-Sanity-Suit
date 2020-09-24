@@ -84,7 +84,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - B14_ManualInvoiceCreditOrderMarkCompletedTypeCreditCategoryOrganization\r\n";
-            LogHelper.LogRecord(Message + "Invoice Number : " + InvoiceNo + "\r\nInvoice Status : " + mzk_visitstatus2);
+            Helper.LogRecord(Message + "Invoice Number : " + InvoiceNo + "\r\nInvoice Status : " + mzk_visitstatus2);
             cli.Browser.Driver.Close();
         }
     }

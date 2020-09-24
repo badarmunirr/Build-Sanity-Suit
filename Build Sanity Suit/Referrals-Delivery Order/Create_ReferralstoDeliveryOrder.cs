@@ -234,7 +234,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - A7_Create_ReferralstoDeliveryOrder\r\n";
-            LogHelper.LogRecord(Message + "Referral Number : " + RefNumber + "\r\nCase Number : " + casenumber + "\r\nWork Order Number : " + WorkOrderNo + "\r\nWork Order Status : " + mzk_visitstatus3);
+            Helper.LogRecord(Message + "Referral Number : " + RefNumber + "\r\nCase Number : " + casenumber + "\r\nWork Order Number : " + WorkOrderNo + "\r\nWork Order Status : " + mzk_visitstatus3);
             cli.Browser.Driver.Close();
         }
     }

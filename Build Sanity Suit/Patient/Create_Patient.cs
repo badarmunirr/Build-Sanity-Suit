@@ -263,7 +263,7 @@ namespace Build_Sanity_Suit
     public void Teardown()
     {
         string Message = "\r\nTest Case ID - A2_Create_Patient\r\n";
-        LogHelper.LogRecord(Message + "Patient Number : " + PatientNum);
+        Helper.LogRecord(Message + "Patient Number : " + PatientNum);
         cli.Browser.Driver.Close();
 
     }

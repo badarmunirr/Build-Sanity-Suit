@@ -40,5 +40,17 @@ namespace Build_Sanity_Suit
                 return jsonData;
             }
         }
+
+        static string logFile = System.IO.Directory.GetCurrentDirectory() + @"\\Logger_" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + ".txt";
+        public static void LogRecord(string Message)
+        {
+
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(logFile, true))
+            {
+                file.WriteLine(Message);
+            }
+            //string LoggerPath = System.IO.Directory.GetCurrentDirectory() + "\\Logger.txt";
+            //File.WriteAllText(LoggerPath, Message);
+        }
     }
 }

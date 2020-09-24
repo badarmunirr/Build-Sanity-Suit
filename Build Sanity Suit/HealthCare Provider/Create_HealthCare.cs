@@ -111,7 +111,7 @@ namespace Build_Sanity_Suit
             // xrmApp.Entity.SetValue(new BooleanItem { Name = "donotphone", Value = false });
             // xrmApp.Entity.SetValue(new BooleanItem { Name = "donotfax", Value = false });
             // xrmApp.Entity.SetValue(new BooleanItem { Name = "donotpostalmail", Value = false });
-            // xrmApp.ThinkTime(1000);
+            xrmApp.ThinkTime(1000);
             xrmApp.Entity.Save();
             xrmApp.ThinkTime(2000);
             if (client.Browser.Driver.HasElement(By.CssSelector("button[data-id='ignore_save']")))
@@ -154,7 +154,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - A1_Create_HealthCare\r\n";
-            LogHelper.LogRecord(Message + "HealthCare Provider Number : " + AccountNum);
+            Helper.LogRecord(Message + "HealthCare Provider Number : " + AccountNum);
             cli.Browser.Driver.Close();
         }
     }

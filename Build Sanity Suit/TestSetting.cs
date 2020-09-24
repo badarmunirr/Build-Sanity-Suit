@@ -15,7 +15,7 @@ namespace Build_Sanity_Suit
             BrowserType = BrowserType.Chrome,
             PrivateMode = true,
             FireEvents = false,
-            Headless = false,
+            Headless = true,
             UserAgent = false,
 
         };

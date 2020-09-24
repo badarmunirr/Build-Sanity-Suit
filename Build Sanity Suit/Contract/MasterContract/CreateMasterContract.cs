@@ -425,7 +425,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - A4_CreateMasterContract\r\n";
-            LogHelper.LogRecord(Message + "Contract Number : " );
+            Helper.LogRecord(Message + "Contract Number : " );
             cli.Browser.Driver.Close();
         }
     }

@@ -151,7 +151,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - A3_Create_Payers\r\n";
-            LogHelper.LogRecord(Message + "Payer No : " + PayerNum );
+            Helper.LogRecord(Message + "Payer No : " + PayerNum );
             cli.Browser.Driver.Close();
         }
     }

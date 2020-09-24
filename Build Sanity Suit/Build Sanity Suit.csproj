@@ -127,7 +127,6 @@
     <Compile Include="HealthCare Provider\Create_HealthCare.cs" />
     <Compile Include="HealthCare Provider\HealthCareProviderData.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="LogHelper.cs" />
     <Compile Include="ManualInvoiceCredit\19273_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryOrganization.cs" />
     <Compile Include="ManualInvoiceCredit\19273_TstManualInvoice\TstManualInvoice_19273Data.cs" />
     <Compile Include="ManualInvoiceCredit\19346_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedType=CreditCategoryOrganization.cs" />

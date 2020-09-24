@@ -50,7 +50,7 @@ namespace Build_Sanity_Suit
                 xrmApp.Entity.SetValue("mzk_enddate", enddate, "dd/MM/yyyy");
                 DateTime issuedate = DateTime.Today.AddDays(1);
                 xrmApp.Entity.SetValue("mzk_issuedate", issuedate, "dd/MM/yyyy");
-                DateTime reviewdate = DateTime.Today.AddDays(1);
+               // DateTime reviewdate = DateTime.Today.AddDays(1);
                 // xrmApp.Entity.SetValue("mzk_reviewdate", reviewdate);
                 // xrmApp.ThinkTime(500);
                 xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_inherit", Value = "Yes" });
@@ -460,7 +460,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - A5_CreateSubContract\r\n";
-            LogHelper.LogRecord(Message + "Contract Number : ");
+            Helper.LogRecord(Message + "Contract Number : ");
             cli.Browser.Driver.Close();
         }
     }
