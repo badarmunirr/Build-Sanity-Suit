@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Dynamics365.UIAutomation.Api.UCI;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,8 +23,6 @@ namespace Build_Sanity_Suit
                 ReadData readData = new ReadData();
                 readData = (ReadData)ObjectDeserializer(readData, json);
                 //This is how you read data: readData.accountData.address1_line1
-
-
 
                 return readData;
             }
@@ -52,5 +51,7 @@ namespace Build_Sanity_Suit
             //string LoggerPath = System.IO.Directory.GetCurrentDirectory() + "\\Logger.txt";
             //File.WriteAllText(LoggerPath, Message);
         }
+
+
     }
 }

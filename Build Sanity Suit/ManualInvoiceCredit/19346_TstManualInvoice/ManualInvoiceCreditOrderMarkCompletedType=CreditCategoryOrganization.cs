@@ -16,7 +16,7 @@ namespace Build_Sanity_Suit
         static string mzk_visitstatus2;
         static string InvoiceNo;
         public static WebClient cli;
-
+        CreateMethod Create = new CreateMethod();
         [TestMethod, TestCategory("BuildAutomation")]
         public void B14_TstManualInvoice_19346_Manualinvoicecreditorderstatusiscompleted()
         {
@@ -25,49 +25,8 @@ namespace Build_Sanity_Suit
             WebClient client = loginobj.RoleBasedLogin(usersetting.BillingManager, usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
-            HelperFunction Lookupobj = new HelperFunction();
-
-            xrmApp.ThinkTime(4000);
-            xrmApp.Navigation.OpenSubArea("Referral", "Manual Invoice/Credit");
-            xrmApp.ThinkTime(5000);
-            xrmApp.CommandBar.ClickCommand("New");
-            xrmApp.ThinkTime(5000);
-            xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_category", Value = readData.TstManualInvoice_19346Data.mzk_category });
-            xrmApp.ThinkTime(5000);
-            xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_manualordertype", Value = readData.TstManualInvoice_19346Data.mzk_manualordertype });
-            xrmApp.ThinkTime(5000);
-            //Lookupobj.Lookup("mzk_payer", TestData23633.payer);
-            xrmApp.ThinkTime(5000);
-            xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_manualbillingfrequency", Value = readData.TstManualInvoice_19346Data.mzk_manualbillingfrequency });
-            xrmApp.ThinkTime(5000);
-            xrmApp.Entity.SetValue("mzk_prescriptionponumber", readData.TstManualInvoice_19346Data.mzk_prescriptionponumber);
-
-            DateTime mzk_actualvisitstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
-            xrmApp.Entity.SetValue("mzk_actualvisitstartdatetime", mzk_actualvisitstartdatetime, Conifgdata.datePattern, Conifgdata.TimePattern);
-
-            // Lookupobj.Lookup("msdyn_serviceaccount", TestData19346.account);
-
-            Lookupobj.Lookup("mzk_contract", readData.TstManualInvoice_19346Data.mzk_contract, xrmApp);
-
-            //Lookupobj.Lookup("msdyn_servicerequest", TestData19346.Case);
-
-            xrmApp.Entity.Save();
-            var mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
-            Assert.IsTrue(mzk_visitstatus.StartsWith("Proposed"));
-            xrmApp.ThinkTime(3000);
-            xrmApp.Entity.SelectTab("Products And Services");
-
-
-
-
-            xrmApp.ThinkTime(3000);
-            xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Work Order Product");
-
-            Lookupobj.LookupQuickCreate("msdyn_product", readData.TstManualInvoice_19346Data.msdyn_product, xrmApp);
-
-            xrmApp.QuickCreate.SetValue("msdyn_quantity", readData.TstManualInvoice_19346Data.msdyn_quantity);
-
-            xrmApp.QuickCreate.Save();
+  
+            Create.ManualInvoice(xrmApp, client, "Credit", "Orgnization");
             xrmApp.ThinkTime(2000);
 
             xrmApp.CommandBar.ClickCommand("Complete");
