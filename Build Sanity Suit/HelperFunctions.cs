@@ -14,10 +14,16 @@ namespace Build_Sanity_Suit
         //Initilizations
         HelperFunction Lookupobj = new HelperFunction();
         ReadData readData = Helper.ReadDataFromJSONFile();
+        public class Configdata
+        {
+            public static string datePattern = "dd/MM/yyyy";
+            public static string TimePattern = "HH:mm";
+        }
 
 
-        //Helper Classes
-        public void Address(XrmApp xrmApp, WebClient client)
+
+            //Helper Classes
+            public void Address(XrmApp xrmApp, WebClient client)
         {
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
             if (client.Browser.Driver.HasElement(By.XPath("//div[contains(@data-id,'address1_line1.fieldControl_container')]")))
@@ -202,10 +208,10 @@ namespace Build_Sanity_Suit
             // xrmApp.Entity.SetValue("mzk_proposedvisitenddatetime", mzk_proposedvisitenddatetime, "dd/MM/yyyy", "hh:mm");
             //code change suggested by faiza
             DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
-            xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, "dd/MM/yyyy", "hh:mm");
+            xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime,Configdata.datePattern, Configdata.TimePattern);
 
             DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(3).AddHours(10);
-            xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, "dd/MM/yyyy", "hh:mm");
+            xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, Configdata.datePattern, Configdata.TimePattern);
             xrmApp.ThinkTime(5000);
             Lookupobj.Lookup("mzk_deliverymethods", readData.ReferraltodeliviryOrderData.mzk_deliverymethods, xrmApp);
 
@@ -287,10 +293,10 @@ namespace Build_Sanity_Suit
             // xrmApp.Entity.SetValue("mzk_proposedvisitenddatetime", mzk_proposedvisitenddatetime, "dd/MM/yyyy", "hh:mm");
             xrmApp.ThinkTime(2000);
             DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
-            xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, "dd/MM/yyyy", "hh:mm");
+            xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, Configdata.datePattern, Configdata.TimePattern);
             xrmApp.ThinkTime(2000);
             DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(3).AddHours(10);
-            xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, "dd/MM/yyyy", "hh:mm");
+            xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, Configdata.datePattern, Configdata.TimePattern);
             xrmApp.ThinkTime(3000);
             xrmApp.Entity.Save();
             xrmApp.ThinkTime(3000);
@@ -352,10 +358,10 @@ namespace Build_Sanity_Suit
             //DateTime mzk_proposedvisitenddatetime = DateTime.Today.AddDays(1).AddHours(12);
             // xrmApp.Entity.SetValue("mzk_proposedvisitenddatetime", mzk_proposedvisitenddatetime, "dd/MM/yyyy", "hh:mm");
             DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
-            xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, "dd/MM/yyyy", "hh:mm");
+            xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, Configdata.datePattern, Configdata.TimePattern);
 
             DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(3).AddHours(12);
-            xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, "dd/MM/yyyy", "hh:mm");
+            xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, Configdata.datePattern, Configdata.TimePattern);
             //Visit Reasons
             // xrmApp.ThinkTime(1000);
             //Lookupobj.Lookup("mzk_emergencyreasons", "mzk_emergencyreasons");
@@ -560,9 +566,9 @@ namespace Build_Sanity_Suit
             Lookupobj.Lookup("mzk_paymentterms", readData.PayerData.mzk_paymentterms, xrmApp);
             //Lookupobj.Lookup("mzk_patientlanguage", Payerdata.patientlanguage);
             DateTime mzk_dateoflastcreditcheck = DateTime.Today;
-            xrmApp.Entity.SetValue("mzk_dateoflastcreditcheck", mzk_dateoflastcreditcheck, "dd/MM/yyyy");
+            xrmApp.Entity.SetValue("mzk_dateoflastcreditcheck", mzk_dateoflastcreditcheck, Configdata.datePattern);
             DateTime mzk_dateoflastfinancialregistrationdocuments = DateTime.Today;
-            xrmApp.Entity.SetValue("mzk_dateoflastfinancialregistrationdocuments", mzk_dateoflastfinancialregistrationdocuments, "dd/MM/yyyy");
+            xrmApp.Entity.SetValue("mzk_dateoflastfinancialregistrationdocuments", mzk_dateoflastfinancialregistrationdocuments, Configdata.datePattern);
             // Address
             xrmApp.ThinkTime(2000);
 
@@ -631,7 +637,7 @@ namespace Build_Sanity_Suit
 
             DateTime birthday = new DateTime(1995, 3, 1);
 
-            xrmApp.Entity.SetValue("birthdate", birthday, "dd/MM/yyyy");
+            xrmApp.Entity.SetValue("birthdate", birthday, Configdata.datePattern);
 
             //  xrmApp.Entity.SetValue("mzk_mothersidentifier", Patientdata.motherifentification);//optional
 
@@ -675,20 +681,20 @@ namespace Build_Sanity_Suit
 
             DateTime mzk_primaryidentificationexpirationdate = DateTime.Today.AddDays(1);
 
-            xrmApp.Entity.SetValue("mzk_primaryidentificationexpirationdate", mzk_primaryidentificationexpirationdate, "dd/MM/yyyy");
+            xrmApp.Entity.SetValue("mzk_primaryidentificationexpirationdate", mzk_primaryidentificationexpirationdate, Configdata.datePattern);
             ;
             xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_secondaryidentificationtype", Value = "Passport" });
 
             xrmApp.Entity.SetValue("mzk_secondaryidentificationnumber", "0123456");
             DateTime mzk_secondaryidentificationexpirationdate = DateTime.Today.AddDays(10);
 
-            xrmApp.Entity.SetValue("mzk_secondaryidentificationexpirationdate", mzk_secondaryidentificationexpirationdate, "dd/MM/yyyy");
+            xrmApp.Entity.SetValue("mzk_secondaryidentificationexpirationdate", mzk_secondaryidentificationexpirationdate, Configdata.datePattern);
 
             xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_otheridentificationtype", Value = "Other" });
 
             xrmApp.Entity.SetValue("mzk_otheridentificationnumber", "012345");
             DateTime mzk_otheridentificationexpirationdate = DateTime.Today.AddDays(10);
-            xrmApp.Entity.SetValue("mzk_otheridentificationexpirationdate", mzk_otheridentificationexpirationdate, "dd/MM/yyyy");
+            xrmApp.Entity.SetValue("mzk_otheridentificationexpirationdate", mzk_otheridentificationexpirationdate, Configdata.datePattern);
             //CONTACT DETAILS
             xrmApp.Entity.SetValue("telephone1", readData.PatientData.telephone1);
             xrmApp.Entity.SetValue("telephone2", readData.PatientData.telephone2);
@@ -908,7 +914,7 @@ namespace Build_Sanity_Suit
             Lookupobj.Lookup("mzk_patientlanguage", readData.HealthCareProviderData.mzk_patientlanguage, xrmApp);
 
             DateTime mzk_dateoflastregulatorycheck = DateTime.Today;
-            xrmApp.Entity.SetValue("mzk_dateoflastregulatorycheck", mzk_dateoflastregulatorycheck, "dd/MM/yyyy");
+            xrmApp.Entity.SetValue("mzk_dateoflastregulatorycheck", mzk_dateoflastregulatorycheck, Configdata.datePattern);
             // Address
 
             // xrmApp.ThinkTime(5000);
@@ -976,10 +982,10 @@ namespace Build_Sanity_Suit
             Lookupobj.Lookup("msdyn_workordertype", readData.EmployeeOrderData.msdyn_workordertype, xrmApp);
 
             DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
-            xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, "dd/MM/yyyy", "hh:mm");
+            xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, Configdata.datePattern,Configdata.TimePattern);
 
             DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(3).AddHours(10);
-            xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, "dd/MM/yyyy", "hh:mm");
+            xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, Configdata.datePattern, Configdata.TimePattern);
 
             Lookupobj.Lookup("mzk_deliverymethods", readData.EmployeeOrderData.mzk_deliverymethods, xrmApp);
 
