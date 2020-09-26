@@ -17,7 +17,7 @@ namespace Build_Sanity_Suit
         public class Configdata
         {
             public static string datePattern = "dd/MM/yyyy";
-            public static string TimePattern = "HH:mm";
+            public static string TimePattern = "hh:mm";
         }
 
 

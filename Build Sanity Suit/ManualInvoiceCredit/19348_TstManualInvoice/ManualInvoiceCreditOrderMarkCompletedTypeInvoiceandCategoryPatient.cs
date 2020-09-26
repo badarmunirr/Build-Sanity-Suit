@@ -26,7 +26,7 @@ namespace Build_Sanity_Suit
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
  
-            Create.ManualInvoice(xrmApp, client, "Invoice", "Patient");
+            Create.ManualInvoice(xrmApp, client, "Patient", "Invoice");
 
 
             xrmApp.ThinkTime(2000);

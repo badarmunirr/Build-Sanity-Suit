@@ -25,7 +25,7 @@ namespace Build_Sanity_Suit
             WebClient client = loginobj.RoleBasedLogin(usersetting.BillingManager, usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
-            Create.ManualInvoice(xrmApp,client,"Invoice","Orgnization");
+            Create.ManualInvoice(xrmApp,client, "Orgnization", "Invoice");
 
 
             xrmApp.ThinkTime(2000);
