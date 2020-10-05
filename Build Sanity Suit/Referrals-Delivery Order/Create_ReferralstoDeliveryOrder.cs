@@ -31,6 +31,8 @@ namespace Build_Sanity_Suit
                 cli = client;
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+
+
                 Create.Referral(xrmApp,client);
 
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")));
@@ -66,6 +68,9 @@ namespace Build_Sanity_Suit
                 cli = client;
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+
+            for (int i = 0; i <= 35; i++)
+            {
                 Create.DeliveryOrder(xrmApp, client, casenumber);
 
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));
@@ -77,12 +82,17 @@ namespace Build_Sanity_Suit
                 //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
 
                 WorkOrderNo = xrmApp.Entity.GetValue("msdyn_name");
+                xrmApp.ThinkTime(2000);
+                xrmApp.CommandBar.ClickCommand("Save & Close");
+                xrmApp.ThinkTime(2000);
+                xrmApp.Navigation.OpenSubArea("Referral", "Cases");
+                }
 
             });
            // CreateReferral();
-            for (int i = 0; i <= 35; i++) {
+            
                 CreateDeliveryOrder();
-            }
+          
         }
 
         
