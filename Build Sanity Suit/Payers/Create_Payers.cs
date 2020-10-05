@@ -7,7 +7,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
-    [TestClass]
+   // [TestClass]
     public class A3_Create_Payers
     {
         static string PayerNum;

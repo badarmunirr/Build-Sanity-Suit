@@ -10,7 +10,7 @@ namespace Build_Sanity_Suit
     //admin 
     //operational Manager
 
-    [TestClass]
+   // [TestClass]
     public class A8_Create_ReferralstoNurseOrder
     {
         static string casenumber;

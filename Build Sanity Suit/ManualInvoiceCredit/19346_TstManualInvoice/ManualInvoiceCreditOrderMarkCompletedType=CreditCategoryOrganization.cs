@@ -9,7 +9,7 @@ namespace Build_Sanity_Suit
 
     //TestCase ID : 19346
 
-    [TestClass]
+   // [TestClass]
     public class B14_ManualInvoiceCreditOrderMarkCompletedTypeCreditCategoryOrganization
     {
         ReadData readData = Helper.ReadDataFromJSONFile();

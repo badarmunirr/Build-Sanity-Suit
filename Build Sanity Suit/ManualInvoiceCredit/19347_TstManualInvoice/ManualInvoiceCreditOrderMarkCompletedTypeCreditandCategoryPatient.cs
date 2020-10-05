@@ -9,7 +9,7 @@ namespace Build_Sanity_Suit
 
     //TestCase ID : 19347
     //it requires validation from FINOPS
-    [TestClass]
+   // [TestClass]
     public class B15_ManualInvoiceCreditOrderMarkCompletedTypeCreditandCategoryPatient
     {
         CreateMethod Create = new CreateMethod();

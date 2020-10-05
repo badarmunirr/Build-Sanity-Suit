@@ -17,7 +17,7 @@ namespace Build_Sanity_Suit
         public void A4_CreateMaster()
         {
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(usersetting.Admin ,usersetting.pwd);
+            WebClient client = loginobj.RoleBasedLogin(usersetting.contractManager ,usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));

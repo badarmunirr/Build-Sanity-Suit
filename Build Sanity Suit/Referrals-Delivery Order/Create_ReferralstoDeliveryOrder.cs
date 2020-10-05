@@ -13,9 +13,9 @@ namespace Build_Sanity_Suit
     public class A7_Create_ReferralstoDeliveryOrder
     {
         CreateMethod Create = new CreateMethod();
-        HelperFunction Lookupobj = new HelperFunction();
+
         public static WebClient cli;
-        static string casenumber;
+        static string casenumber = "CAS-210875-P6H7";
         static string RefNumber;
         static string mzk_visitstatus3;
         static string WorkOrderNo;
@@ -79,8 +79,10 @@ namespace Build_Sanity_Suit
                 WorkOrderNo = xrmApp.Entity.GetValue("msdyn_name");
 
             });
-            CreateReferral();
-            CreateDeliveryOrder();
+           // CreateReferral();
+            for (int i = 0; i <= 35; i++) {
+                CreateDeliveryOrder();
+            }
         }
 
         
@@ -90,7 +92,7 @@ namespace Build_Sanity_Suit
         {
             string Message = "\r\nTest Case ID - A7_Create_ReferralstoDeliveryOrder\r\n";
             Helper.LogRecord(Message + "Referral Number : " + RefNumber + "\r\nCase Number : " + casenumber + "\r\nWork Order Number : " + WorkOrderNo + "\r\nWork Order Status : " + mzk_visitstatus3);
-            cli.Browser.Driver.Close();
+            //cli.Browser.Driver.Close();
         }
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Build_Sanity_Suit
 {
-    [TestClass]
+   // [TestClass]
     public class B11_Create_Resource
     {
         public static WebClient cli;

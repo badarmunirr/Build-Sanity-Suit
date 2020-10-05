@@ -8,7 +8,7 @@ namespace Build_Sanity_Suit
 
     //TestCase ID : 19273
 
-    [TestClass]
+    //[TestClass]
     public class B13_ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryOrganization
     {
 
@@ -20,7 +20,7 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("BuildAutomation")]
         public void B13_TstManualInvoice_19273_Manualinvoicestatusiscompletedinvorg()
         {
-            ReadData readData = Helper.ReadDataFromJSONFile();
+ 
             LOGIN loginobj = new LOGIN();
             WebClient client = loginobj.RoleBasedLogin(usersetting.BillingManager, usersetting.pwd);
             cli = client;

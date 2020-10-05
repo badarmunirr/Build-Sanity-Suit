@@ -9,7 +9,7 @@ namespace Build_Sanity_Suit
 
     //TestCase ID : 19348
     //it requires validation from FINOPS
-    [TestClass]
+   // [TestClass]
     public class B16_ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryPatient
     {
         ReadData readData = Helper.ReadDataFromJSONFile();

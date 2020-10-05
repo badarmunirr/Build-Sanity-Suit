@@ -7,11 +7,10 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
-    [TestClass]
+   // [TestClass]
     public class B10_Create_WholesaleOrders
     {
-        HelperFunction Lookupobj = new HelperFunction();
-        CreateMethod Create = new CreateMethod();
+        readonly CreateMethod Create = new CreateMethod();
         public static WebClient cli;
         static string OrderNum;
         static string mzk_visitstatus2;

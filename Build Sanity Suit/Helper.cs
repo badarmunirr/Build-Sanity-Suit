@@ -17,8 +17,6 @@ namespace Build_Sanity_Suit
             using (StreamReader r = new StreamReader("..\\..\\AllData.json"))
             {
 
-
-
                 string json = r.ReadToEnd();
                 ReadData readData = new ReadData();
                 readData = (ReadData)ObjectDeserializer(readData, json);

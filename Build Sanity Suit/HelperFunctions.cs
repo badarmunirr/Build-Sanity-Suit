@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Microsoft.Dynamics365.UIAutomation.Browser;
 using OpenQA.Selenium.Support.UI;
+using System.IO;
 
 namespace Build_Sanity_Suit
 {
@@ -13,17 +14,18 @@ namespace Build_Sanity_Suit
     {
         //Initilizations
         HelperFunction Lookupobj = new HelperFunction();
+        static readonly string textFile = System.IO.Directory.GetCurrentDirectory() + @"\\Referral.txt";
         ReadData readData = Helper.ReadDataFromJSONFile();
         public class Configdata
         {
             public static string datePattern = "dd/MM/yyyy";
-            public static string TimePattern = "hh:mm";
+            public static string TimePattern = "HH:mm";
         }
 
 
-
-            //Helper Classes
-            public void Address(XrmApp xrmApp, WebClient client)
+        // reported to GIYHIUBN for support
+        //Helper Classes
+        public void Address(XrmApp xrmApp, WebClient client)
         {
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
             if (client.Browser.Driver.HasElement(By.XPath("//div[contains(@data-id,'address1_line1.fieldControl_container')]")))
@@ -92,75 +94,103 @@ namespace Build_Sanity_Suit
         }
         public void Referral(XrmApp xrmApp, WebClient client)
         {
+
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
             xrmApp.ThinkTime(4000);
-            xrmApp.Navigation.OpenSubArea("Referral", "Referrals");
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-            xrmApp.CommandBar.ClickCommand("New");
 
-            Lookupobj.Lookup("parentcontactid", readData.ReferraltodeliviryOrderData.parentcontactid, xrmApp);
 
-            xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_patientconsent", Value = true });
+            //if (File.Exists(textFile))
+            //{
+            //    string RefNumberfile = File.ReadAllText(textFile);
+            //    Console.WriteLine(RefNumberfile);
+            //    xrmApp.Navigation.OpenSubArea("Referral", "Referrals");
+            //    xrmApp.Grid.Search(RefNumberfile);
+            //    xrmApp.Grid.OpenRecord(0);
+            //    xrmApp.Entity.SelectTab("General");
 
-            xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_patientswitchstatus", Value = readData.ReferraltodeliviryOrderData.mzk_patientswitchstatus });
 
-            xrmApp.Entity.SetValue("mzk_anonymousreference", readData.ReferraltodeliviryOrderData.mzk_anonymousreference);
+            //}
+            //else
+            //{
+                xrmApp.Navigation.OpenSubArea("Referral", "Referrals");
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+                xrmApp.CommandBar.ClickCommand("New");
 
-            xrmApp.Entity.SetValue("mzk_hospitalreferencenumber", readData.ReferraltodeliviryOrderData.mzk_hospitalreferencenumber);
-            xrmApp.ThinkTime(1000);
-            xrmApp.Entity.SelectTab("General");
+                Lookupobj.Lookup("parentcontactid", readData.ReferraltodeliviryOrderData.parentcontactid, xrmApp);
 
-            xrmApp.Entity.SetValue("name", readData.ReferraltodeliviryOrderData.name);
+                xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_patientconsent", Value = true });
 
-            Lookupobj.Lookup("mzk_contract", readData.ReferraltodeliviryOrderData.mzk_contract, xrmApp);
+                xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_patientswitchstatus", Value = readData.ReferraltodeliviryOrderData.mzk_patientswitchstatus });
 
-            Lookupobj.Lookup("mzk_diagnosisgroup", readData.ReferraltodeliviryOrderData.mzk_diagnosisgroup, xrmApp);
+                xrmApp.Entity.SetValue("mzk_anonymousreference", readData.ReferraltodeliviryOrderData.mzk_anonymousreference);
 
-            xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_nursingstatus", Value = readData.ReferraltodeliviryOrderData.mzk_nursingstatus });
+                xrmApp.Entity.SetValue("mzk_hospitalreferencenumber", readData.ReferraltodeliviryOrderData.mzk_hospitalreferencenumber);
+                xrmApp.ThinkTime(1000);
+                xrmApp.Entity.SelectTab("General");
 
-            //Lookupobj.Lookup("mzk_contractdeliverymethod", "aHUS");
+                xrmApp.Entity.SetValue("name", readData.ReferraltodeliviryOrderData.name);
 
-            // xrmApp.Entity.SetValue("description", "description");
+                Lookupobj.Lookup("mzk_contract", readData.ReferraltodeliviryOrderData.mzk_contract, xrmApp);
 
-            if (client.Browser.Driver.HasElement(By.XPath("//a[contains(@aria-label,'Reduced Price Patient')]")))
-            {
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//a[contains(@aria-label,'Reduced Price Patient')]")));
-                client.Browser.Driver.FindElement(By.XPath("//a[contains(@aria-label,'Reduced Price Patient')]")).Click();
+                Lookupobj.Lookup("mzk_diagnosisgroup", readData.ReferraltodeliviryOrderData.mzk_diagnosisgroup, xrmApp);
 
-            }
-            else
-            {
-                Console.WriteLine("No Element found");
-            }
-            xrmApp.ThinkTime(5000);
-            Lookupobj.Lookup("pricelevelid", readData.ReferraltodeliviryOrderData.pricelevelid, xrmApp);
-            // xrmApp.ThinkTime(2000);
-            //Lookupobj.Lookup("mzk_masterpathway", ReferraltodeliviryOrderdata.MasterPathway);
-            //Referrer
-            // xrmApp.ThinkTime(1000);
-            //Lookupobj.Lookup("mzk_referringprescriber", ReferraltoNurseOrderdata.refferingprescriber);
+                xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_nursingstatus", Value = readData.ReferraltodeliviryOrderData.mzk_nursingstatus });
 
-            xrmApp.Entity.SetValue("mzk_pmireferencenumber", readData.ReferraltodeliviryOrderData.mzk_pmireferencenumber);
+                //Lookupobj.Lookup("mzk_contractdeliverymethod", "aHUS");
 
-            xrmApp.Entity.SetValue("mzk_billingreferencenumber", readData.ReferraltodeliviryOrderData.mzk_billingreferencenumber);
+                // xrmApp.Entity.SetValue("description", "description");
 
-            xrmApp.Entity.SetValue("mzk_pmipolicynumber", readData.ReferraltodeliviryOrderData.mzk_pmipolicynumber);
+                if (client.Browser.Driver.HasElement(By.XPath("//a[contains(@aria-label,'Reduced Price Patient')]")))
+                {
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//a[contains(@aria-label,'Reduced Price Patient')]")));
+                    client.Browser.Driver.FindElement(By.XPath("//a[contains(@aria-label,'Reduced Price Patient')]")).Click();
 
-            xrmApp.Entity.SetValue("mzk_legacyreferralnumber", readData.ReferraltodeliviryOrderData.mzk_legacyreferralnumber);
-            xrmApp.ThinkTime(1000);
-            xrmApp.Entity.Save();
-            // xrmApp.ThinkTime(3000);
-            // xrmApp.BusinessProcessFlow.SelectStage("Receive");
-            // xrmApp.BusinessProcessFlow.NextStage("Receive");
-            // xrmApp.BusinessProcessFlow.SelectStage("Confirm");
-            // xrmApp.ThinkTime(3000);
-            //// in place of finsih button 
-            ////when support for finish button in uci is added need to replace this line of code
-            // client.Browser.Driver.FindElement(By.XPath("//button[contains(@data-id,'finishButtonContainer')]")).Click(true);
-            // xrmApp.ThinkTime(3000);
-            // xrmApp.BusinessProcessFlow.Close("Confirm");
-            // xrmApp.ThinkTime(3000);
-            // xrmApp.Entity.Save();
+                }
+                else
+                {
+                    Console.WriteLine("No Element found");
+                }
+                xrmApp.ThinkTime(5000);
+                Lookupobj.Lookup("pricelevelid", readData.ReferraltodeliviryOrderData.pricelevelid, xrmApp);
+                // xrmApp.ThinkTime(2000);
+                //Lookupobj.Lookup("mzk_masterpathway", ReferraltodeliviryOrderdata.MasterPathway);
+                //Referrer
+                // xrmApp.ThinkTime(1000);
+                //Lookupobj.Lookup("mzk_referringprescriber", ReferraltoNurseOrderdata.refferingprescriber);
+
+                xrmApp.Entity.SetValue("mzk_pmireferencenumber", readData.ReferraltodeliviryOrderData.mzk_pmireferencenumber);
+
+                xrmApp.Entity.SetValue("mzk_billingreferencenumber", readData.ReferraltodeliviryOrderData.mzk_billingreferencenumber);
+
+                xrmApp.Entity.SetValue("mzk_pmipolicynumber", readData.ReferraltodeliviryOrderData.mzk_pmipolicynumber);
+
+                xrmApp.Entity.SetValue("mzk_legacyreferralnumber", readData.ReferraltodeliviryOrderData.mzk_legacyreferralnumber);
+                xrmApp.ThinkTime(1000);
+
+                xrmApp.Entity.Save();
+                xrmApp.ThinkTime(1000);
+                // xrmApp.ThinkTime(3000);
+                // xrmApp.BusinessProcessFlow.SelectStage("Receive");
+                // xrmApp.BusinessProcessFlow.NextStage("Receive");
+                // xrmApp.BusinessProcessFlow.SelectStage("Confirm");
+                // xrmApp.ThinkTime(3000);
+                //// in place of finsih button 
+                ////when support for finish button in uci is added need to replace this line of code
+                // client.Browser.Driver.FindElement(By.XPath("//button[contains(@data-id,'finishButtonContainer')]")).Click(true);
+                // xrmApp.ThinkTime(3000);
+                // xrmApp.BusinessProcessFlow.Close("Confirm");
+                // xrmApp.ThinkTime(3000);
+                // xrmApp.Entity.Save();
+                string RefNumber = xrmApp.Entity.GetHeaderValue("mzk_requestnumber");
+                string logFile = System.IO.Directory.GetCurrentDirectory() + @"\\Referral.txt";
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(logFile, true))
+                {
+                    file.WriteLine(RefNumber);
+                }
+
+
+
+           // }
         }
         public void DeliveryOrder(XrmApp xrmApp, WebClient client, string casenumber)
         {
@@ -170,7 +200,7 @@ namespace Build_Sanity_Suit
             xrmApp.ThinkTime(3000);
             string refcasenu = casenumber;
             xrmApp.Grid.Search(refcasenu);
-            xrmApp.ThinkTime(2000);
+            xrmApp.ThinkTime(5000);
             xrmApp.Grid.OpenRecord(0);
             xrmApp.ThinkTime(5000);
             xrmApp.Entity.SelectTab("Delivery and Nursing Visit");
@@ -208,7 +238,7 @@ namespace Build_Sanity_Suit
             // xrmApp.Entity.SetValue("mzk_proposedvisitenddatetime", mzk_proposedvisitenddatetime, "dd/MM/yyyy", "hh:mm");
             //code change suggested by faiza
             DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
-            xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime,Configdata.datePattern, Configdata.TimePattern);
+            xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, Configdata.datePattern, Configdata.TimePattern);
 
             DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(3).AddHours(10);
             xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, Configdata.datePattern, Configdata.TimePattern);
@@ -252,7 +282,7 @@ namespace Build_Sanity_Suit
         }
         public void NurseOrder(XrmApp xrmApp, WebClient client, string casenumber)
         {
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+
 
             xrmApp.Navigation.OpenSubArea("Referral", "Cases");
             xrmApp.ThinkTime(2000);
@@ -336,7 +366,6 @@ namespace Build_Sanity_Suit
             //{
             //    Console.WriteLine("Element not found");
             //}
-
             Lookupobj.Lookup("mzk_contract", readData.WholesaleOrderData.mzk_contract, xrmApp);
 
             Lookupobj.Lookup("msdyn_workordertype", readData.WholesaleOrderData.msdyn_workordertype, xrmApp);
@@ -360,7 +389,7 @@ namespace Build_Sanity_Suit
             DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
             xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, Configdata.datePattern, Configdata.TimePattern);
 
-            DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(3).AddHours(12);
+            DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(2).AddHours(12);
             xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, Configdata.datePattern, Configdata.TimePattern);
             //Visit Reasons
             // xrmApp.ThinkTime(1000);
@@ -539,6 +568,7 @@ namespace Build_Sanity_Suit
         }
         public void Payer(XrmApp xrmApp, WebClient client)
         {
+
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
             xrmApp.ThinkTime(4000);
             xrmApp.Navigation.OpenSubArea("Customers", "Payers");
@@ -820,8 +850,7 @@ namespace Build_Sanity_Suit
                 //Lookupobj.Lookup("msdyn_servicerequest", TestData19273.Case);
 
                 xrmApp.Entity.Save();
-                var mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
-                Assert.IsTrue(mzk_visitstatus.StartsWith("Proposed"));
+
                 xrmApp.ThinkTime(3000);
                 xrmApp.Entity.SelectTab("Products And Services");
                 xrmApp.ThinkTime(3000);
@@ -832,17 +861,20 @@ namespace Build_Sanity_Suit
                 xrmApp.QuickCreate.SetValue("msdyn_quantity", readData.TstManualInvoice_19273Data.msdyn_quantity);
                 xrmApp.ThinkTime(3000);
                 xrmApp.QuickCreate.Save();
+                var mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
+                Assert.IsTrue(mzk_visitstatus.StartsWith("Proposed"));
+                xrmApp.ThinkTime(2000);
             }
-            if (Type == "Invoice" && Category == "Patient" || Type == "Credit" && Category == "Organization")
+            if (Type == "Invoice" && Category == "Patient" || Type == "Credit" && Category == "Patient")
             {
                 xrmApp.ThinkTime(4000);
                 xrmApp.Navigation.OpenSubArea("Referral", "Manual Invoice/Credit");
                 xrmApp.ThinkTime(5000);
                 xrmApp.CommandBar.ClickCommand("New");
                 xrmApp.ThinkTime(5000);
-                xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_category", Value = readData.TstManualInvoice_19347Data.mzk_category });
+                xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_category", Value = Category });
                 xrmApp.ThinkTime(5000);
-                xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_manualordertype", Value = readData.TstManualInvoice_19347Data.mzk_manualordertype });
+                xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_manualordertype", Value = Type });
                 xrmApp.ThinkTime(5000);
                 //Lookupobj.Lookup("mzk_payer", TestData19347.payer);
                 xrmApp.ThinkTime(5000);
@@ -865,8 +897,7 @@ namespace Build_Sanity_Suit
 
                 xrmApp.Entity.Save();
 
-                var mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
-                Assert.IsTrue(mzk_visitstatus.StartsWith("Proposed"));
+
                 xrmApp.ThinkTime(3000);
                 xrmApp.Entity.SelectTab("Products And Services");
                 xrmApp.ThinkTime(2000);
@@ -877,10 +908,14 @@ namespace Build_Sanity_Suit
                 xrmApp.QuickCreate.SetValue("msdyn_quantity", readData.TstManualInvoice_19347Data.msdyn_quantity);
                 xrmApp.ThinkTime(3000);
                 xrmApp.QuickCreate.Save();
+
+                var mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
+                Assert.IsTrue(mzk_visitstatus.StartsWith("Proposed"));
+                xrmApp.ThinkTime(2000);
             }
 
         }
-        public void Provider(XrmApp xrmApp ,WebClient client)
+        public void Provider(XrmApp xrmApp, WebClient client)
         {
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
             xrmApp.ThinkTime(4000);
@@ -965,7 +1000,7 @@ namespace Build_Sanity_Suit
             // xrmApp.Entity.SetValue("mzk_department", Healthcareproviderdata.telephone1);
 
         }
-        public void EmployeeOrder(XrmApp xrmApp ,WebClient client)
+        public void EmployeeOrder(XrmApp xrmApp, WebClient client)
         {
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
             xrmApp.ThinkTime(4000);
@@ -982,7 +1017,7 @@ namespace Build_Sanity_Suit
             Lookupobj.Lookup("msdyn_workordertype", readData.EmployeeOrderData.msdyn_workordertype, xrmApp);
 
             DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
-            xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, Configdata.datePattern,Configdata.TimePattern);
+            xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, Configdata.datePattern, Configdata.TimePattern);
 
             DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(3).AddHours(10);
             xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, Configdata.datePattern, Configdata.TimePattern);
