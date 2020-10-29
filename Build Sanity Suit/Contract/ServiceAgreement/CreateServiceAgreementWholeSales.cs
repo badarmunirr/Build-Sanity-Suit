@@ -14,10 +14,10 @@ namespace Build_Sanity_Suit
         public void A9_CreateWholesaleService()
         {
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(usersetting.Admin, usersetting.pwd);
+            WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+
             HelperFunction Lookupobj = new HelperFunction();
 
             xrmApp.ThinkTime(4000);
@@ -35,17 +35,17 @@ namespace Build_Sanity_Suit
                  xrmApp.ThinkTime(5000);
                  xrmApp.Entity.SetValue("mzk_name", ServiceAgreementWholeSaleData.name);
                  xrmApp.ThinkTime(500);
-                Lookupobj.Lookup("mzk_payer", ServiceAgreementWholeSaleData.payer, xrmApp);
+                Lookupobj.Lookup("mzk_payer", ServiceAgreementWholeSaleData.payer, xrmApp, client);
                  xrmApp.ThinkTime(500);
-                Lookupobj.Lookup("mzk_provider", ServiceAgreementWholeSaleData.provider, xrmApp);
+                Lookupobj.Lookup("mzk_provider", ServiceAgreementWholeSaleData.provider, xrmApp, client);
                  xrmApp.ThinkTime(500);
-                Lookupobj.Lookup("mzk_mastercontractagreement", ServiceAgreementWholeSaleData.mastercontractagreement, xrmApp);
+                Lookupobj.Lookup("mzk_mastercontractagreement", ServiceAgreementWholeSaleData.mastercontractagreement, xrmApp, client);
                  xrmApp.ThinkTime(500);
-                Lookupobj.Lookup("mzk_subcontract", ServiceAgreementWholeSaleData.subcontract, xrmApp);
+                Lookupobj.Lookup("mzk_subcontract", ServiceAgreementWholeSaleData.subcontract, xrmApp, client);
                  xrmApp.ThinkTime(500);
-                Lookupobj.Lookup("mzk_service", ServiceAgreementWholeSaleData.service, xrmApp);
+                Lookupobj.Lookup("mzk_service", ServiceAgreementWholeSaleData.service, xrmApp, client);
                  xrmApp.ThinkTime(500);
-                Lookupobj.Lookup("mzk_contractsubtype", ServiceAgreementWholeSaleData.contractsubtype, xrmApp);
+                Lookupobj.Lookup("mzk_contractsubtype", ServiceAgreementWholeSaleData.contractsubtype, xrmApp, client);
                 // xrmApp.ThinkTime(2000);
                 // xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_pediatric", Value = "No" });
                 // xrmApp.ThinkTime(2000);
@@ -100,7 +100,7 @@ namespace Build_Sanity_Suit
                 // xrmApp.Entity.SetValue("mzk_stockterms", "mzk_stockterms");
                 // xrmApp.Entity.SetValue("mzk_productcountryoforiginmanufacturer", "mzk_productcountryoforiginmanufacturer");
                  xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_dispensinglocationwarehouse", ServiceAgreementWholeSaleData.dispensinglocationwarehouse, xrmApp);
+                Lookupobj.Lookup("mzk_dispensinglocationwarehouse", ServiceAgreementWholeSaleData.dispensinglocationwarehouse, xrmApp, client);
                 // xrmApp.Entity.SetValue("mzk_productsupplyroute", "mzk_productsupplyroute");
                 // xrmApp.Entity.SetValue("mzk_logisticstermssummary", "mzk_logisticstermssummary");
                 // xrmApp.Entity.SetValue("mzk_compoundingstorageneeds", "mzk_compoundingstorageneeds");
@@ -113,7 +113,7 @@ namespace Build_Sanity_Suit
                 // xrmApp.Entity.SetValue("mzk_changeofcontrol", "mzk_changeofcontrol");
                 // xrmApp.Entity.SetValue("mzk_debtreviewprocess", "mzk_debtreviewprocess");
                  xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_orderreleasetype",ServiceAgreementWholeSaleData.orderreleasetype, xrmApp);
+                Lookupobj.Lookup("mzk_orderreleasetype",ServiceAgreementWholeSaleData.orderreleasetype, xrmApp, client);
                 // xrmApp.ThinkTime(2000);
                 // xrmApp.Entity.SetValue("mzk_contractnoticeperioddays", "2");
                 // xrmApp.ThinkTime(2000);

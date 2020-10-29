@@ -8,7 +8,7 @@ namespace Build_Sanity_Suit
 
     //TestCase ID : 19273
 
-    //[TestClass]
+    [TestClass]
     public class B13_ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryOrganization
     {
 
@@ -22,7 +22,7 @@ namespace Build_Sanity_Suit
         {
  
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(usersetting.BillingManager, usersetting.pwd);
+            WebClient client = loginobj.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
             Create.ManualInvoice(xrmApp,client, "Organization", "Invoice");

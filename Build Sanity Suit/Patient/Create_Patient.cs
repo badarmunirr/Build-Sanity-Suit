@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Build_Sanity_Suit
 {
 
-    //[TestClass]
+    [TestClass]
     public class A2_Create_Patient
     {
         static string PatientNum;
@@ -19,7 +19,7 @@ namespace Build_Sanity_Suit
         {
 
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(usersetting.Admin, usersetting.pwd);
+            WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
             Create.Patient(xrmApp,client);

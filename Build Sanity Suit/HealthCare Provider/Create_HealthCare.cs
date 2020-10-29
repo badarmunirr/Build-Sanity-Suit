@@ -1,14 +1,10 @@
 ﻿using System;
 using Microsoft.Dynamics365.UIAutomation.Api.UCI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
-using Microsoft.Dynamics365.UIAutomation.Browser;
-using OpenQA.Selenium.Support.UI;
-using System.IO;
 
 namespace Build_Sanity_Suit
 {
-   // [TestClass]
+     [TestClass]
     public class A1_Create_HealthCare
     {
         static string AccountNum;
@@ -21,7 +17,7 @@ namespace Build_Sanity_Suit
         {
 
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(usersetting.OperationalManager, usersetting.pwd);
+            WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
             cli = client;
 
             XrmApp xrmApp = new XrmApp(client);

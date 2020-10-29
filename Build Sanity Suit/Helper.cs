@@ -38,7 +38,7 @@ namespace Build_Sanity_Suit
             }
         }
 
-        static string logFile = System.IO.Directory.GetCurrentDirectory() + @"\\Logger_" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + ".txt";
+        static readonly string logFile = System.IO.Directory.GetCurrentDirectory() + @"\\Logger_" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + ".txt";
         public static void LogRecord(string Message)
         {
 

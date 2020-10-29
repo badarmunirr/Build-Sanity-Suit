@@ -1,13 +1,11 @@
-﻿using System;
+﻿
 using Microsoft.Dynamics365.UIAutomation.Api.UCI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
-using Microsoft.Dynamics365.UIAutomation.Browser;
-using OpenQA.Selenium.Support.UI;
+
 
 namespace Build_Sanity_Suit
 {
-   // [TestClass]
+    [TestClass]
     public class A3_Create_Payers
     {
         static string PayerNum;
@@ -18,7 +16,7 @@ namespace Build_Sanity_Suit
         public void A3_CreatePayer()
         {
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(usersetting.OperationalManager, usersetting.pwd);
+            WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
 

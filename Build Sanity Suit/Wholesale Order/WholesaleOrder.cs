@@ -7,7 +7,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
-   // [TestClass]
+    [TestClass]
     public class B10_Create_WholesaleOrders
     {
         readonly CreateMethod Create = new CreateMethod();
@@ -19,7 +19,7 @@ namespace Build_Sanity_Suit
         public void B10_CreateWholesaleOrder()
         {
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(usersetting.OperationalManager, usersetting.pwd);
+            WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));

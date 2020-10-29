@@ -15,10 +15,10 @@ namespace Build_Sanity_Suit
         {
 
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(usersetting.Admin, usersetting.pwd);
+            WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+
             HelperFunction Lookupobj = new HelperFunction();
 
 
@@ -37,11 +37,11 @@ namespace Build_Sanity_Suit
                 xrmApp.Entity.SetHeaderValue(new OptionSet { Name = "mzk_contractstatus", Value = "Live" });
                 xrmApp.Entity.SetValue("mzk_name", SubContractData.SubContract);
 
-                Lookupobj.Lookup("mzk_payer", "1st Assist Group Limited", xrmApp);
-                Lookupobj.Lookup("mzk_mastercontractagreement", MasterContractData.contractName, xrmApp);
+                Lookupobj.Lookup("mzk_payer", "1st Assist Group Limited", xrmApp, client);
+                Lookupobj.Lookup("mzk_mastercontractagreement", MasterContractData.contractName, xrmApp, client);
                 // xrmApp.ThinkTime(500);
                 //Lookupobj.Lookup("mzk_service", "Ajovy");
-                Lookupobj.Lookup("mzk_contractsubtype", "MC - NHS Funded", xrmApp);
+                Lookupobj.Lookup("mzk_contractsubtype", "MC - NHS Funded", xrmApp, client);
                 // xrmApp.ThinkTime(500);
                 // xrmApp.Entity.SetValue("mzk_keycontractinformation", "mzk_keycontractinformation");
                 DateTime startdate = DateTime.Today.AddDays(1);
@@ -85,7 +85,7 @@ namespace Build_Sanity_Suit
                 // xrmApp.ThinkTime(1000);
                 // xrmApp.Entity.SetValue("mzk_productcountryoforiginmanufacturer", "mzk_productcountryoforiginmanufacturer");
                 // xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_dispensinglocationwarehouse", SubContractData.dispensinglocationwarehouse, xrmApp);
+                Lookupobj.Lookup("mzk_dispensinglocationwarehouse", SubContractData.dispensinglocationwarehouse, xrmApp, client);
                 // xrmApp.ThinkTime(1000);
                 // xrmApp.Entity.SetValue("mzk_productsupplyroute", "mzk_productsupplyroute");
                 // xrmApp.ThinkTime(1000);
@@ -109,7 +109,7 @@ namespace Build_Sanity_Suit
                 // xrmApp.ThinkTime(1000);
                 // xrmApp.Entity.SetValue("mzk_debtreviewprocess", "mzk_debtreviewprocess");
                 // xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_orderreleasetype", SubContractData.orderreleasetype, xrmApp);
+                Lookupobj.Lookup("mzk_orderreleasetype", SubContractData.orderreleasetype, xrmApp, client);
                 // xrmApp.ThinkTime(2000);
                 // xrmApp.Entity.SetValue("mzk_contractnoticeperioddays", "2");
                 // xrmApp.ThinkTime(2000);

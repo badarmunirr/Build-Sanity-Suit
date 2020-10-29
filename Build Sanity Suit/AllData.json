@@ -265,6 +265,8 @@
     "preOperationId": "98c4d8be-95e3-ea11-a813-0022481a79ad",
     "msdyn_workorderPreOperation": "92058ca3-95e3-ea11-a813-000d3a86dabf"
   },
+
+  // Web Automation data
   "PatientData": {
     "Noofrecords": 1,
     "mzk_title": "MR",
@@ -347,7 +349,6 @@
     "mzk_nursingstatus": "Nursing completed",
     "pricelevelid": "PLMC000118",
     "mzk_contract": "BMA Service Agreement",
-
     "mzk_pmireferencenumber": "PMI _123",
     "mzk_billingreferencenumber": "BRN _123",
     "mzk_pmipolicynumber": "PPN _1234",

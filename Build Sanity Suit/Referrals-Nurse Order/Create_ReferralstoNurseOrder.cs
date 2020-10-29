@@ -10,10 +10,10 @@ namespace Build_Sanity_Suit
     //admin 
     //operational Manager
 
-    [TestClass]
+   [TestClass]
     public class A8_Create_ReferralstoNurseOrder
     {
-        static string casenumber = "CAS-210875-P6H7";
+        static string casenumber;
         static string RefNumber;
         static string mzk_visitstatus3;
         static string WorkOrderNo;
@@ -29,7 +29,7 @@ namespace Build_Sanity_Suit
             var CreateReferral = new Action(() =>
             {
                 LOGIN loginobj = new LOGIN();
-                WebClient client = loginobj.RoleBasedLogin(usersetting.Admin, usersetting.pwd);
+                WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
                 cli = client;
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
@@ -60,55 +60,27 @@ namespace Build_Sanity_Suit
                 cli.Browser.Driver.Quit();
 
             });
-            var CreateDeliveryOrder = new Action(() =>
+
+            var CreateNurseOrder = new Action(() =>
             {
                 LOGIN loginobj = new LOGIN();
-                WebClient client = loginobj.RoleBasedLogin(usersetting.OperationalManager, usersetting.pwd);
+                WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
                 cli = client;
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+                Create.NurseOrder(xrmApp, client, casenumber);
 
-                for (int i = 0; i <= 35; i++)
-                {
-                    Create.DeliveryOrder(xrmApp, client, casenumber);
-
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));
-
-                    xrmApp.CommandBar.ClickCommand("Propose Order");
-                    xrmApp.ThinkTime(2000);
-                    mzk_visitstatus3 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
-                    Assert.IsTrue(mzk_visitstatus3.StartsWith("Proposed"));
-                    //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-
-                    WorkOrderNo = xrmApp.Entity.GetValue("msdyn_name");
-                    xrmApp.ThinkTime(2000);
-                    xrmApp.CommandBar.ClickCommand("Save & Close");
-                    xrmApp.ThinkTime(2000);
-                    xrmApp.Navigation.OpenSubArea("Referral", "Cases");
-                }
-
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Complete')]")));
+                xrmApp.CommandBar.ClickCommand("Complete");
+                xrmApp.ThinkTime(2000);
+                mzk_visitstatus3 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
+                Assert.IsTrue(mzk_visitstatus3.StartsWith("Completed"));
+                //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+                WorkOrderNo = xrmApp.Entity.GetValue("msdyn_name");
             });
-            CreateDeliveryOrder();
-            //var CreateNurseOrder = new Action(() =>
-            //{
-            //    LOGIN loginobj = new LOGIN();
-            //    WebClient client = loginobj.RoleBasedLogin(usersetting.OperationalManager, usersetting.pwd);
-            //    cli = client;
-            //    XrmApp xrmApp = new XrmApp(client);
-            //    WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
-            //    Create.NurseOrder(xrmApp, client, casenumber);
 
-            //    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Complete')]")));
-            //    xrmApp.CommandBar.ClickCommand("Complete");
-            //    xrmApp.ThinkTime(2000);
-            //    mzk_visitstatus3 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
-            //    Assert.IsTrue(mzk_visitstatus3.StartsWith("Completed"));
-            //    //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-            //    WorkOrderNo = xrmApp.Entity.GetValue("msdyn_name");
-            //});
-
-            //  CreateReferral();
-            //CreateNurseOrder();
+            CreateReferral();
+            CreateNurseOrder();
         }
         
         [TestCleanup]

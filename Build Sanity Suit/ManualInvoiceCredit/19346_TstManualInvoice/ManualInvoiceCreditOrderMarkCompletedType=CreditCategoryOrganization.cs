@@ -9,7 +9,7 @@ namespace Build_Sanity_Suit
 
     //TestCase ID : 19346
 
-   // [TestClass]
+    [TestClass]
     public class B14_ManualInvoiceCreditOrderMarkCompletedTypeCreditCategoryOrganization
     {
         ReadData readData = Helper.ReadDataFromJSONFile();
@@ -22,7 +22,7 @@ namespace Build_Sanity_Suit
         {
 
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(usersetting.BillingManager, usersetting.pwd);
+            WebClient client = loginobj.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
   

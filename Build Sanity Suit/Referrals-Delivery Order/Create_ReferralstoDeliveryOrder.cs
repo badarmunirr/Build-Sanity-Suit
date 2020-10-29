@@ -15,7 +15,7 @@ namespace Build_Sanity_Suit
         CreateMethod Create = new CreateMethod();
 
         public static WebClient cli;
-        static string casenumber = "CAS-210875-P6H7";
+        static string casenumber;
         static string RefNumber;
         static string mzk_visitstatus3;
         static string WorkOrderNo;
@@ -27,13 +27,13 @@ namespace Build_Sanity_Suit
             var CreateReferral = new Action(() =>
             {
                 LOGIN loginobj = new LOGIN();
-                WebClient client = loginobj.RoleBasedLogin(usersetting.Admin, usersetting.pwd);
+                WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
                 cli = client;
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
 
 
-                Create.Referral(xrmApp,client);
+                Create.Referral(xrmApp, client);
 
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")));
                 // when support for hidden field is added need to replace this line of code
@@ -64,13 +64,12 @@ namespace Build_Sanity_Suit
             var CreateDeliveryOrder = new Action(() =>
             {
                 LOGIN loginobj = new LOGIN();
-                WebClient client = loginobj.RoleBasedLogin(usersetting.OperationalManager, usersetting.pwd);
+                WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
                 cli = client;
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
 
-            for (int i = 0; i <= 35; i++)
-            {
+
                 Create.DeliveryOrder(xrmApp, client, casenumber);
 
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));
@@ -83,19 +82,17 @@ namespace Build_Sanity_Suit
 
                 WorkOrderNo = xrmApp.Entity.GetValue("msdyn_name");
                 xrmApp.ThinkTime(2000);
-                xrmApp.CommandBar.ClickCommand("Save & Close");
-                xrmApp.ThinkTime(2000);
-                xrmApp.Navigation.OpenSubArea("Referral", "Cases");
-                }
+
+
 
             });
-           // CreateReferral();
-            
-                CreateDeliveryOrder();
-          
+            CreateReferral();
+
+            CreateDeliveryOrder();
+
         }
 
-        
+
 
         [TestCleanup]
         public void Teardown()

@@ -17,10 +17,10 @@ namespace Build_Sanity_Suit
         {
 
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(usersetting.Admin, usersetting.pwd);
+            WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+           
             HelperFunction Lookupobj = new HelperFunction();
 
 
@@ -39,17 +39,17 @@ namespace Build_Sanity_Suit
                 xrmApp.ThinkTime(5000);
                 xrmApp.Entity.SetValue("mzk_name", ServiceAgreementData.name);
                 xrmApp.ThinkTime(500);
-                Lookupobj.Lookup("mzk_payer", ServiceAgreementData.payer, xrmApp);
+                Lookupobj.Lookup("mzk_payer", ServiceAgreementData.payer, xrmApp, client);
                 xrmApp.ThinkTime(500);
-                Lookupobj.Lookup("mzk_provider", ServiceAgreementData.provider, xrmApp);
+                Lookupobj.Lookup("mzk_provider", ServiceAgreementData.provider, xrmApp, client);
                 xrmApp.ThinkTime(500);
-                Lookupobj.Lookup("mzk_mastercontractagreement", ServiceAgreementData.mastercontractagreement, xrmApp);
+                Lookupobj.Lookup("mzk_mastercontractagreement", ServiceAgreementData.mastercontractagreement, xrmApp, client);
                 xrmApp.ThinkTime(500);
-                Lookupobj.Lookup("mzk_subcontract", ServiceAgreementData.subcontract, xrmApp);
+                Lookupobj.Lookup("mzk_subcontract", ServiceAgreementData.subcontract, xrmApp, client);
                 xrmApp.ThinkTime(500);
-                Lookupobj.Lookup("mzk_service", ServiceAgreementData.service, xrmApp);
+                Lookupobj.Lookup("mzk_service", ServiceAgreementData.service, xrmApp, client);
                 xrmApp.ThinkTime(500);
-                Lookupobj.Lookup("mzk_contractsubtype", ServiceAgreementData.contractsubtype, xrmApp);
+                Lookupobj.Lookup("mzk_contractsubtype", ServiceAgreementData.contractsubtype, xrmApp, client);
                 // xrmApp.ThinkTime(2000);
                 // xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_pediatric", Value = "No" });
                 // xrmApp.ThinkTime(2000);
@@ -104,7 +104,7 @@ namespace Build_Sanity_Suit
                 // xrmApp.Entity.SetValue("mzk_stockterms", "mzk_stockterms");
                 // xrmApp.Entity.SetValue("mzk_productcountryoforiginmanufacturer", "mzk_productcountryoforiginmanufacturer");
                 xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_dispensinglocationwarehouse", ServiceAgreementData.dispensinglocationwarehouse, xrmApp);
+                Lookupobj.Lookup("mzk_dispensinglocationwarehouse", ServiceAgreementData.dispensinglocationwarehouse, xrmApp, client);
                 // xrmApp.Entity.SetValue("mzk_productsupplyroute", "mzk_productsupplyroute");
                 // xrmApp.Entity.SetValue("mzk_logisticstermssummary", "mzk_logisticstermssummary");
                 // xrmApp.Entity.SetValue("mzk_compoundingstorageneeds", "mzk_compoundingstorageneeds");
@@ -117,7 +117,7 @@ namespace Build_Sanity_Suit
                 // xrmApp.Entity.SetValue("mzk_changeofcontrol", "mzk_changeofcontrol");
                 // xrmApp.Entity.SetValue("mzk_debtreviewprocess", "mzk_debtreviewprocess");
                 xrmApp.ThinkTime(1000);
-                Lookupobj.Lookup("mzk_orderreleasetype", ServiceAgreementData.orderreleasetype, xrmApp);
+                Lookupobj.Lookup("mzk_orderreleasetype", ServiceAgreementData.orderreleasetype, xrmApp, client);
                 // xrmApp.ThinkTime(2000);
                 // xrmApp.Entity.SetValue("mzk_contractnoticeperioddays", "2");
                 // xrmApp.ThinkTime(2000);

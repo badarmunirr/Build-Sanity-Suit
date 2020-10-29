@@ -2,6 +2,7 @@
 using Microsoft.Dynamics365.UIAutomation.Api.UCI;
 using Microsoft.Dynamics365.UIAutomation.Browser;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
@@ -21,7 +22,7 @@ namespace Build_Sanity_Suit
         };
 
     }
-    public static class usersetting
+    public static class Usersetting
     {
         public static string Admin = System.Configuration.ConfigurationManager.AppSettings["Admin"].ToString();
         public static string OperationalManager = System.Configuration.ConfigurationManager.AppSettings["OperationalManager"].ToString();
@@ -36,6 +37,7 @@ namespace Build_Sanity_Suit
         public static string url = System.Configuration.ConfigurationManager.AppSettings["CRMUrl"].ToString();
         public static string pwd = System.Configuration.ConfigurationManager.AppSettings["CRMPassword"].ToString();
         public static string AppName = System.Configuration.ConfigurationManager.AppSettings["AppName"].ToString();
+        public static string AppName2 = System.Configuration.ConfigurationManager.AppSettings["AppName3"].ToString();
     }
 
 
@@ -150,7 +152,7 @@ namespace Build_Sanity_Suit
             WebClient client = new Microsoft.Dynamics365.UIAutomation.Api.UCI.WebClient(TestSetting.options);
             XrmApp xrmApp = new XrmApp(client);
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
-            client.Browser.Driver.Navigate().GoToUrl(usersetting.url);
+            client.Browser.Driver.Navigate().GoToUrl(Usersetting.url);
             xrmApp.ThinkTime(5000);
             if (client.Browser.Driver.HasElement(By.Id("i0116")))
             {
@@ -192,15 +194,17 @@ namespace Build_Sanity_Suit
                 }
                 xrmApp.ThinkTime(5000);
                 string url = client.Browser.Driver.Url;
-                if (url == usersetting.url + "main.aspx?forceUCI=1&pagetype=apps")
+                if (url == Usersetting.url + "main.aspx?forceUCI=1&pagetype=apps")
                 {
-                    client.Browser.Driver.Navigate().GoToUrl(usersetting.url + "main.aspx?forceUCI=1&pagetype=apps");
+                    client.Browser.Driver.Navigate().GoToUrl(Usersetting.url + "main.aspx?forceUCI=1&pagetype=apps");
                     xrmApp.ThinkTime(10000);
-                    xrmApp.Navigation.OpenApp(usersetting.AppName);
+                   // xrmApp.Navigation.OpenApp(Usersetting.AppName);
+
+                    xrmApp.Navigation.OpenApp(Usersetting.AppName);
                 }
                 else
                 {
-                    client.Browser.Driver.Navigate().GoToUrl(usersetting.url);
+                    client.Browser.Driver.Navigate().GoToUrl(Usersetting.url);
                     xrmApp.ThinkTime(10000);
                 }
 
@@ -213,8 +217,27 @@ namespace Build_Sanity_Suit
 
     public class HelperFunction
     {
-        public void Lookup(String LookupFieldName, String LookupFieldValue, XrmApp xrmApp)
+        public void Lookup(String LookupFieldName, String LookupFieldValue, XrmApp xrmApp,WebClient client)
         {
+
+            //xrmApp.ThinkTime(5000);
+            //client.Browser.Driver.FindElement(By.XPath("//input[contains(@data-id,'"+LookupFieldName+".fieldControl')]")).Click();
+            //xrmApp.ThinkTime(5000);
+            //client.Browser.Driver.FindElement(By.XPath("//input[contains(@data-id,'"+LookupFieldName+".fieldControl')]")).SendKeys(LookupFieldValue);
+            //xrmApp.ThinkTime(5000);
+            //client.Browser.Driver.FindElement(By.XPath("//button[contains(@data-id,'" + LookupFieldName + ".fieldControl-LookupResultsDropdown_" + LookupFieldName + "_search')]")).Click();
+            //xrmApp.ThinkTime(5000);
+
+            //IWebElement element = client.Browser.Driver.FindElement(By.XPath("//*[contains(@data-id,'" + LookupFieldName + ".fieldControl-LookupResultsDropdown_" + LookupFieldName + "_resultsContainer')]"));
+            //Actions action = new Actions(client.Browser.Driver);
+            //xrmApp.ThinkTime(5000);
+            //action.DragAndDropToOffset(element,0,-250);
+            //xrmApp.ThinkTime(5000);
+            //action.Click(element);
+            //client.Browser.Driver.FindElement(By.XPath("//*[contains(@data-id,'" + LookupFieldName + ".fieldControl-LookupResultsDropdown_" + LookupFieldName + "_resultsContainer')]")).Click();
+
+
+
             LookupItem LookupVeriable = new LookupItem { Name = LookupFieldName, Value = LookupFieldValue, Index = 0 };
             xrmApp.Entity.SetValue(LookupVeriable);
 

@@ -7,20 +7,20 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
-    //[TestClass]
+    [TestClass]
     public class B12_Create_EmployeeOrder
     {
         static string WorkOrderNum;
         static string mzk_visitstatus3;
         public static WebClient cli;
-        CreateMethod Create = new CreateMethod();
+        readonly CreateMethod Create = new CreateMethod();
 
         [TestMethod, TestCategory("BuildAutomation")]
         public void B12_CreateResourceToAccountToEmployeeOrder()
         {
             LOGIN loginobj = new LOGIN();
             //operational manager
-            WebClient client = loginobj.RoleBasedLogin(usersetting.Admin, usersetting.pwd);
+            WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
             cli = client;
             XrmApp xrmApp = new XrmApp(client);
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
