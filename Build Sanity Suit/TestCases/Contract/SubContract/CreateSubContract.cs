@@ -8,15 +8,13 @@ namespace Build_Sanity_Suit
     //[TestClass]
     public class A5_CreateSubContract
     {
-        public static WebClient cli;
-
         [TestMethod]
         public void A5_CreateSub()
         {
 
             LOGIN loginobj = new LOGIN();
             WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
-            cli = client;
+            Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
 
             xrmApp.ThinkTime(4000);
@@ -458,7 +456,7 @@ namespace Build_Sanity_Suit
         {
             string Message = "\r\nTest Case ID - A5_CreateSubContract\r\n";
             Helper.LogRecord(Message + "Contract Number : ");
-            cli.Browser.Driver.Close();
+            Variables.cli.Browser.Driver.Close();
         }
     }
 }

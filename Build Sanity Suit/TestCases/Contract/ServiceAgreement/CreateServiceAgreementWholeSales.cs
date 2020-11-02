@@ -8,14 +8,14 @@ namespace Build_Sanity_Suit
     //[TestClass]
     public class A9_CreateServiceAgreementWholeSales
     {
-        public static WebClient cli;
+
 
         [TestMethod]
         public void A9_CreateWholesaleService()
         {
             LOGIN loginobj = new LOGIN();
             WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
-            cli = client;
+            Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
             xrmApp.ThinkTime(4000);
              xrmApp.Navigation.OpenSubArea("Referral", "Contract Management");
@@ -424,7 +424,7 @@ namespace Build_Sanity_Suit
         {
             string Message = "\r\nTest Case ID - A9_CreateServiceAgreementWholeSales\r\n";
             Helper.LogRecord(Message + "Contract Number : ");
-            cli.Browser.Driver.Close();
+            Variables.cli.Browser.Driver.Close();
         }
     }
 }

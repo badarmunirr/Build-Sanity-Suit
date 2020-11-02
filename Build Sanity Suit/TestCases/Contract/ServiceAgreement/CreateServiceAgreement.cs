@@ -10,7 +10,6 @@ namespace Build_Sanity_Suit
     // [TestClass]
     public class A6_CreateServiceAgreement
     {
-        public static WebClient cli;
 
         [TestMethod]
         public void A6_CreateService()
@@ -18,7 +17,7 @@ namespace Build_Sanity_Suit
 
             LOGIN loginobj = new LOGIN();
             WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
-            cli = client;
+            Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
 
             xrmApp.ThinkTime(4000);
@@ -387,7 +386,7 @@ namespace Build_Sanity_Suit
         {
             string Message = "\r\nTest Case ID - A6_CreateServiceAgreement\r\n";
             Helper.LogRecord(Message + "Contract Number : ");
-            cli.Browser.Driver.Close();
+            Variables.cli.Browser.Driver.Close();
         }
     }
 }

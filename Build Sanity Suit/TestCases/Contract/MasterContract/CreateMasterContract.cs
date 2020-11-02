@@ -11,14 +11,14 @@ namespace Build_Sanity_Suit
     //[TestClass]
     public class A4_CreateMasterContract
     {
-        public static WebClient cli;
+
 
         [TestMethod]
         public void A4_CreateMaster()
         {
             LOGIN loginobj = new LOGIN();
             WebClient client = loginobj.RoleBasedLogin(Usersetting.contractManager ,Usersetting.pwd);
-            cli = client;
+            Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
  
@@ -426,7 +426,7 @@ namespace Build_Sanity_Suit
         {
             string Message = "\r\nTest Case ID - A4_CreateMasterContract\r\n";
             Helper.LogRecord(Message + "Contract Number : " );
-            cli.Browser.Driver.Close();
+            Variables.cli.Browser.Driver.Close();
         }
     }
 }
