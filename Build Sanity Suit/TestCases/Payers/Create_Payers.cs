@@ -13,13 +13,16 @@ namespace Build_Sanity_Suit
 
         public void A3_CreatePayer()
         {
-            LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
+            WebClient client = DriverInitiazation.ClientndXrmAppInitialization();
             Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
 
+            LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.OperationalManager, Usersetting.pwd);
+            
             CreateMethod.Payer(xrmApp,client);
+
             Variables.PayerNum = xrmApp.Entity.GetHeaderValue("accountnumber");
+            
             xrmApp.ThinkTime(2000);
 
 

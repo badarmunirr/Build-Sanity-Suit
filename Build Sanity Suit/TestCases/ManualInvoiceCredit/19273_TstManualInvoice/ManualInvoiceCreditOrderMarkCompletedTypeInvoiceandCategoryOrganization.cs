@@ -13,11 +13,11 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("BuildAutomation")]
         public void B13_TstManualInvoice_19273_Manualinvoicestatusiscompletedinvorg()
         {
- 
-            LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
+            WebClient client = DriverInitiazation.ClientndXrmAppInitialization();
             Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
+
+            LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.BillingManager, Usersetting.pwd);
 
             CreateMethod.ManualInvoice(xrmApp,client, "Organization", "Invoice");
 

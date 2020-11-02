@@ -15,10 +15,13 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("BuildAutomation")]
         public void B10_CreateWholesaleOrder()
         {
-            LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
+            WebClient client = DriverInitiazation.ClientndXrmAppInitialization();
             Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
+
+            LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.OperationalManager, Usersetting.pwd);
+
+            
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
 
             CreateMethod.WholesaleOrder(xrmApp, client);

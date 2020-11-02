@@ -16,11 +16,12 @@ namespace Build_Sanity_Suit
         [TestMethod]
         public void A4_CreateMaster()
         {
-            LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(Usersetting.contractManager ,Usersetting.pwd);
+            WebClient client = DriverInitiazation.ClientndXrmAppInitialization();
             Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+            LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.contractManager, Usersetting.pwd);
+
+           WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
  
 
             xrmApp.ThinkTime(4000);

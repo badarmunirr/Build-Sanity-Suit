@@ -11,11 +11,13 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("BuildAutomation")]
         public void A1_CreateProvider()
         {
-            LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
+
+            WebClient client = DriverInitiazation.ClientndXrmAppInitialization();
             Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
 
+            LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.OperationalManager, Usersetting.pwd);
+           
             CreateMethod.Provider(xrmApp, client);
             Variables.AccountNum = xrmApp.Entity.GetHeaderValue("accountnumber");
         }

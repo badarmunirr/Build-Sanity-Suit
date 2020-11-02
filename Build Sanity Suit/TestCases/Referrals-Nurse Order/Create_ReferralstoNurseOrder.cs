@@ -23,11 +23,13 @@ namespace Build_Sanity_Suit
 
             var CreateReferral = new Action(() =>
             {
-                LOGIN loginobj = new LOGIN();
-                WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
+                WebClient client = DriverInitiazation.ClientndXrmAppInitialization();
                 Variables.cli = client;
                 XrmApp xrmApp = new XrmApp(client);
-                WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+
+                LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.Admin, Usersetting.pwd);
+
+                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
 
                 CreateMethod.Referral(xrmApp, client);
 
@@ -58,11 +60,13 @@ namespace Build_Sanity_Suit
 
             var CreateNurseOrder = new Action(() =>
             {
-                LOGIN loginobj = new LOGIN();
-                WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
+                WebClient client = DriverInitiazation.ClientndXrmAppInitialization();
                 Variables.cli = client;
                 XrmApp xrmApp = new XrmApp(client);
-                WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+
+                LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.OperationalManager, Usersetting.pwd);
+
+               WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
                 CreateMethod.NurseOrder(xrmApp, client, Variables.casenumber);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Complete')]")));
                 xrmApp.CommandBar.ClickCommand("Complete");
