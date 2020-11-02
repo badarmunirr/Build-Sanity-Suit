@@ -9,17 +9,14 @@ namespace Build_Sanity_Suit
     [TestClass]
     public class B11_Create_Resource
     {
-        public static WebClient cli;
-        //CreateMethod Create = new CreateMethod();
-        //meed to update user everytime
+
         [TestMethod, TestCategory("BuildAutomation")]
         public void B11_CreateResourceToAccountTypeEmployee()
         {
 
             LOGIN loginobj = new LOGIN();
-
             WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
-            cli = client;
+            Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
 
             CreateMethod.Resource(xrmApp,client);
@@ -31,7 +28,7 @@ namespace Build_Sanity_Suit
         {
             string Message = "\r\nTest Case ID - B11_Create_Resource---";
             Helper.LogRecord(Message);
-            cli.Browser.Driver.Close();
+            Variables.cli.Browser.Driver.Close();
 
         }
 

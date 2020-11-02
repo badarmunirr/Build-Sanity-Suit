@@ -13,11 +13,6 @@ namespace Build_Sanity_Suit
    [TestClass]
     public class A8_Create_ReferralstoNurseOrder
     {
-        static string casenumber;
-        static string RefNumber;
-        static string mzk_visitstatus3;
-        static string WorkOrderNo;
-        public static WebClient cli;
 
         [TestMethod, TestCategory("BuildAutomation")]
         public void A8_CreateReferralNurse()
@@ -30,7 +25,7 @@ namespace Build_Sanity_Suit
             {
                 LOGIN loginobj = new LOGIN();
                 WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
-                cli = client;
+                Variables.cli = client;
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
 
@@ -38,18 +33,18 @@ namespace Build_Sanity_Suit
 
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")));
                 // when support for hidden field is added need to replace this line of code
-                casenumber = client.Browser.Driver.FindElement(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")).Text;
+                Variables.casenumber = client.Browser.Driver.FindElement(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")).Text;
                 xrmApp.ThinkTime(2000);
                 string mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_status" });
                 Assert.IsTrue(mzk_visitstatus.StartsWith("Active"));
                 string address1_postalcode = xrmApp.Entity.GetValue("address1_postalcode");
                 Assert.IsNotNull(address1_postalcode);
                 xrmApp.ThinkTime(3000);
-                RefNumber = xrmApp.Entity.GetHeaderValue("mzk_requestnumber");
+                Variables.RefNumber = xrmApp.Entity.GetHeaderValue("mzk_requestnumber");
                 xrmApp.ThinkTime(2000);
                 xrmApp.Navigation.OpenSubArea("Referral", "Referrals");
                 xrmApp.ThinkTime(2000);
-                xrmApp.Grid.Search(RefNumber);
+                xrmApp.Grid.Search(Variables.RefNumber);
                 xrmApp.ThinkTime(2000);
                 xrmApp.Grid.HighLightRecord(0);
                 xrmApp.ThinkTime(2000);
@@ -57,7 +52,7 @@ namespace Build_Sanity_Suit
                 xrmApp.ThinkTime(2000);
                 xrmApp.Dialogs.Assign(Dialogs.AssignTo.Team, "Hah");
                 xrmApp.ThinkTime(2000);
-                cli.Browser.Driver.Quit();
+                Variables.cli.Browser.Driver.Quit();
 
             });
 
@@ -65,17 +60,17 @@ namespace Build_Sanity_Suit
             {
                 LOGIN loginobj = new LOGIN();
                 WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
-                cli = client;
+                Variables.cli = client;
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
-                CreateMethod.NurseOrder(xrmApp, client, casenumber);
+                CreateMethod.NurseOrder(xrmApp, client, Variables.casenumber);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Complete')]")));
                 xrmApp.CommandBar.ClickCommand("Complete");
                 xrmApp.ThinkTime(2000);
-                mzk_visitstatus3 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
-                Assert.IsTrue(mzk_visitstatus3.StartsWith("Completed"));
+                Variables.mzk_visitstatus3 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
+                Assert.IsTrue(Variables.mzk_visitstatus3.StartsWith("Completed"));
                 //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-                WorkOrderNo = xrmApp.Entity.GetValue("msdyn_name");
+                Variables.WorkOrderNo = xrmApp.Entity.GetValue("msdyn_name");
             });
 
             CreateReferral();
@@ -86,8 +81,8 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - A8_Create_ReferralstoNurseOrder\r\n";
-            Helper.LogRecord(Message + "Referral Number : " + RefNumber + "\r\nCase Number : " + casenumber + "\r\nWork Order Number : " + WorkOrderNo + "\r\nWork Order Status : " + mzk_visitstatus3);
-            cli.Browser.Driver.Close();
+            Helper.LogRecord(Message + "Referral Number : " + Variables.RefNumber + "\r\nCase Number : " + Variables.casenumber + "\r\nWork Order Number : " + Variables.WorkOrderNo + "\r\nWork Order Status : " + Variables.mzk_visitstatus3);
+            Variables.cli.Browser.Driver.Close();
         }
     }
 

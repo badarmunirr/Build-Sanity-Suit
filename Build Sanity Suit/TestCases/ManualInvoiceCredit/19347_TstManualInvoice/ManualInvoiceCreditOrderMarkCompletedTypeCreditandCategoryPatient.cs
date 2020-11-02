@@ -12,26 +12,21 @@ namespace Build_Sanity_Suit
    [TestClass]
     public class B15_ManualInvoiceCreditOrderMarkCompletedTypeCreditandCategoryPatient
     {
-        //CreateMethod Create = new CreateMethod();
-
-        static string mzk_visitstatus2;
-        static string InvoiceNo;
-        public static WebClient cli;
 
         [TestMethod, TestCategory("BuildAutomation")]
         public void B15_TstManualInvoice_19347_ManualInvoiceCreditOrderCompleteTypeCreditandCategoryPatient()
         {
             LOGIN loginobj = new LOGIN();
             WebClient client = loginobj.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
-            cli = client;
+            Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
             CreateMethod.ManualInvoice(xrmApp, client, "Patient", "Credit");
             xrmApp.ThinkTime(2000);
             xrmApp.CommandBar.ClickCommand("Complete");
             xrmApp.ThinkTime(2000);
-            mzk_visitstatus2 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
-            Assert.IsTrue(mzk_visitstatus2.StartsWith("Completed"));
-            InvoiceNo = xrmApp.Entity.GetValue("msdyn_name");
+            Variables.mzk_visitstatus2 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
+            Assert.IsTrue(Variables.mzk_visitstatus2.StartsWith("Completed"));
+            Variables.InvoiceNo = xrmApp.Entity.GetValue("msdyn_name");
 
 
 
@@ -40,8 +35,8 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - B15_ManualInvoiceCreditOrderMarkCompletedTypeCreditandCategoryPatient\r\n";
-            Helper.LogRecord(Message + "Invoice No : " + InvoiceNo + "\r\nStatus : " + mzk_visitstatus2);
-            cli.Browser.Driver.Close();
+            Helper.LogRecord(Message + "Invoice No : " + Variables.InvoiceNo + "\r\nStatus : " + Variables.mzk_visitstatus2);
+            Variables.cli.Browser.Driver.Close();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Build_Sanity_Suit
 
         public static ReadData  ReadDataFromJSONFile()
         {
-            using (StreamReader r = new StreamReader("..\\..\\AllData.json"))
+            using (StreamReader r = new StreamReader("..\\..\\DataFiles\\AllData.json"))
             {
 
                 string json = r.ReadToEnd();

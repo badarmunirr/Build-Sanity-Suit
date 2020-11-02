@@ -6,16 +6,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Build_Sanity_Suit
 {
 
-    //TestCase ID : 19273
-
     [TestClass]
     public class B13_ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryOrganization
     {
-
-        static string InvoiceNo;
-        static string mzk_visitstatus2;
-        public static WebClient cli;
-        //CreateMethod Create = new CreateMethod();
 
         [TestMethod, TestCategory("BuildAutomation")]
         public void B13_TstManualInvoice_19273_Manualinvoicestatusiscompletedinvorg()
@@ -23,19 +16,19 @@ namespace Build_Sanity_Suit
  
             LOGIN loginobj = new LOGIN();
             WebClient client = loginobj.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
-            cli = client;
+            Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
-            CreateMethod.ManualInvoice(xrmApp,client, "Organization", "Invoice");
 
+            CreateMethod.ManualInvoice(xrmApp,client, "Organization", "Invoice");
 
             xrmApp.ThinkTime(2000);
             xrmApp.CommandBar.ClickCommand("Complete");
             xrmApp.ThinkTime(2000);
-            mzk_visitstatus2 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
-            Assert.IsTrue(mzk_visitstatus2.StartsWith("Completed"));
+            Variables.mzk_visitstatus2 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
+            Assert.IsTrue(Variables.mzk_visitstatus2.StartsWith("Completed"));
             xrmApp.ThinkTime(2000);
 
-            InvoiceNo = xrmApp.Entity.GetValue("msdyn_name");
+            Variables.InvoiceNo = xrmApp.Entity.GetValue("msdyn_name");
 
 
 
@@ -44,8 +37,8 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - B13_ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryOrganization\r\n";
-            Helper.LogRecord(Message + "Invoice Number - " + InvoiceNo + "\r\nInvoice Status : " + mzk_visitstatus2);
-            cli.Browser.Driver.Close();
+            Helper.LogRecord(Message + "Invoice Number - " + Variables.InvoiceNo + "\r\nInvoice Status : " + Variables.mzk_visitstatus2);
+            Variables.cli.Browser.Driver.Close();
         }
     }
 }

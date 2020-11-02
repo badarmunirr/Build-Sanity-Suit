@@ -12,28 +12,24 @@ namespace Build_Sanity_Suit
     [TestClass]
     public class B14_ManualInvoiceCreditOrderMarkCompletedTypeCreditCategoryOrganization
     {
-        //ReadData readData = Helper.ReadDataFromJSONFile();
-        static string mzk_visitstatus2;
-        static string InvoiceNo;
-        public static WebClient cli;
-        //CreateMethod Create = new CreateMethod();
+
         [TestMethod, TestCategory("BuildAutomation")]
         public void B14_TstManualInvoice_19346_Manualinvoicecreditorderstatusiscompleted()
         {
 
             LOGIN loginobj = new LOGIN();
             WebClient client = loginobj.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
-            cli = client;
+            Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
   
             CreateMethod.ManualInvoice(xrmApp, client, "Organization", "Credit");
             xrmApp.ThinkTime(2000);
             xrmApp.CommandBar.ClickCommand("Complete");
             xrmApp.ThinkTime(2000);
-            mzk_visitstatus2 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
-            Assert.IsTrue(mzk_visitstatus2.StartsWith("Completed"));
+            Variables.mzk_visitstatus2 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
+            Assert.IsTrue(Variables.mzk_visitstatus2.StartsWith("Completed"));
 
-            InvoiceNo = xrmApp.Entity.GetValue("msdyn_name");
+            Variables.InvoiceNo = xrmApp.Entity.GetValue("msdyn_name");
 
 
 
@@ -42,8 +38,8 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - B14_ManualInvoiceCreditOrderMarkCompletedTypeCreditCategoryOrganization\r\n";
-            Helper.LogRecord(Message + "Invoice Number : " + InvoiceNo + "\r\nInvoice Status : " + mzk_visitstatus2);
-            cli.Browser.Driver.Close();
+            Helper.LogRecord(Message + "Invoice Number : " + Variables.InvoiceNo + "\r\nInvoice Status : " + Variables.mzk_visitstatus2);
+            Variables.cli.Browser.Driver.Close();
         }
     }
 }

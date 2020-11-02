@@ -1026,10 +1026,18 @@ namespace Build_Sanity_Suit
     }
     public static class Variables
     {
+        public static WebClient cli;
         public static string WorkOrderNum;
         public static string mzk_visitstatus3;
-        public static WebClient cli;
-
+        public static string PayerNum;
+        public static string PatientNum;
+        public static string AccountNum;
+        public static string casenumber;
+        public static string RefNumber;
+        public static string WorkOrderNo;
+        public static string OrderNum;
+        public static string mzk_visitstatus2;
+        public static string InvoiceNo;
 
     }
 }
