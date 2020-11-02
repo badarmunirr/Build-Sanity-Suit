@@ -22,7 +22,7 @@ namespace Build_Sanity_Suit
 
             
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
-            CreateMethod.EmployeeOrder(xrmApp,client);
+            HelperFunctions.EmployeeOrder(xrmApp,client);
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));
             xrmApp.CommandBar.ClickCommand("Propose Order");
             xrmApp.ThinkTime(2000);
@@ -34,7 +34,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - B12_Create_EmployeeOrder\r\n";
-            Helper.LogRecord(Message + "Employee Order Number : " + Variables.WorkOrderNum + "\r\nWork Order Status : "+ Variables.mzk_visitstatus3);
+            HelperFunctions.LogRecord(Message + "Employee Order Number : " + Variables.WorkOrderNum + "\r\nWork Order Status : "+ Variables.mzk_visitstatus3);
             Variables.cli.Browser.Driver.Close();
         }
     }

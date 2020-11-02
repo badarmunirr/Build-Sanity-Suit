@@ -24,7 +24,7 @@ namespace Build_Sanity_Suit
             
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
 
-            CreateMethod.WholesaleOrder(xrmApp, client);
+            HelperFunctions.WholesaleOrder(xrmApp, client);
 
             xrmApp.ThinkTime(2000);
             xrmApp.CommandBar.ClickCommand("Propose Order");
@@ -41,7 +41,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - B10_Create_WholesaleOrders\r\n";
-            Helper.LogRecord(Message + "WholeSale Order Number - " + Variables.OrderNum + " \r\nWholeSale Order Status - " + Variables.mzk_visitstatus2);
+            HelperFunctions.LogRecord(Message + "WholeSale Order Number - " + Variables.OrderNum + " \r\nWholeSale Order Status - " + Variables.mzk_visitstatus2);
 
             Variables.cli.Browser.Driver.Close();
 

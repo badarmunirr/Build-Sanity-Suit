@@ -18,9 +18,6 @@ namespace Build_Sanity_Suit
         public void A8_CreateReferralNurse()
         {
 
-            ReadData readData = Helper.ReadDataFromJSONFile();
-            //CreateMethod Create = new CreateMethod();
-
             var CreateReferral = new Action(() =>
             {
                 WebClient client = DriverInitiazation.ClientndXrmAppInitialization();
@@ -31,7 +28,7 @@ namespace Build_Sanity_Suit
 
                  WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
 
-                CreateMethod.Referral(xrmApp, client);
+                HelperFunctions.Referral(xrmApp, client);
 
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")));
                 // when support for hidden field is added need to replace this line of code
@@ -67,7 +64,7 @@ namespace Build_Sanity_Suit
                 LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.OperationalManager, Usersetting.pwd);
 
                WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
-                CreateMethod.NurseOrder(xrmApp, client, Variables.casenumber);
+                HelperFunctions.NurseOrder(xrmApp, client, Variables.casenumber);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Complete')]")));
                 xrmApp.CommandBar.ClickCommand("Complete");
                 xrmApp.ThinkTime(2000);
@@ -85,7 +82,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - A8_Create_ReferralstoNurseOrder\r\n";
-            Helper.LogRecord(Message + "Referral Number : " + Variables.RefNumber + "\r\nCase Number : " + Variables.casenumber + "\r\nWork Order Number : " + Variables.WorkOrderNo + "\r\nWork Order Status : " + Variables.mzk_visitstatus3);
+            HelperFunctions.LogRecord(Message + "Referral Number : " + Variables.RefNumber + "\r\nCase Number : " + Variables.casenumber + "\r\nWork Order Number : " + Variables.WorkOrderNo + "\r\nWork Order Status : " + Variables.mzk_visitstatus3);
             Variables.cli.Browser.Driver.Close();
         }
     }

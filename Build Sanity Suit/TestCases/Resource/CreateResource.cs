@@ -19,7 +19,7 @@ namespace Build_Sanity_Suit
             
             LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.Admin, Usersetting.pwd);
 
-            CreateMethod.Resource(xrmApp,client);
+            HelperFunctions.Resource(xrmApp,client);
 
         }
 
@@ -27,7 +27,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - B11_Create_Resource---";
-            Helper.LogRecord(Message);
+            HelperFunctions.LogRecord(Message);
             Variables.cli.Browser.Driver.Close();
 
         }

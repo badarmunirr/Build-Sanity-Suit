@@ -19,7 +19,7 @@ namespace Build_Sanity_Suit
             LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.Admin, Usersetting.pwd);
 
 
-            CreateMethod.Patient(xrmApp, client);
+            HelperFunctions.Patient(xrmApp, client);
             Variables.PatientNum = xrmApp.Entity.GetValue("mzk_patientmrn");
 
 
@@ -28,7 +28,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - A2_Create_Patient\r\n";
-            Helper.LogRecord(Message + "Patient Number : " + Variables.PatientNum);
+            HelperFunctions.LogRecord(Message + "Patient Number : " + Variables.PatientNum);
             Variables.cli.Browser.Driver.Close();
         }
     }

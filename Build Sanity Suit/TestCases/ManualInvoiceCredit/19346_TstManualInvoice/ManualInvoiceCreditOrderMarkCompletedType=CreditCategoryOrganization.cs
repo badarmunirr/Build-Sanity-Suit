@@ -25,7 +25,7 @@ namespace Build_Sanity_Suit
 
            
   
-            CreateMethod.ManualInvoice(xrmApp, client, "Organization", "Credit");
+            HelperFunctions.ManualInvoice(xrmApp, client, "Organization", "Credit");
             xrmApp.ThinkTime(2000);
             xrmApp.CommandBar.ClickCommand("Complete");
             xrmApp.ThinkTime(2000);
@@ -41,7 +41,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - B14_ManualInvoiceCreditOrderMarkCompletedTypeCreditCategoryOrganization\r\n";
-            Helper.LogRecord(Message + "Invoice Number : " + Variables.InvoiceNo + "\r\nInvoice Status : " + Variables.mzk_visitstatus2);
+            HelperFunctions.LogRecord(Message + "Invoice Number : " + Variables.InvoiceNo + "\r\nInvoice Status : " + Variables.mzk_visitstatus2);
             Variables.cli.Browser.Driver.Close();
         }
     }
