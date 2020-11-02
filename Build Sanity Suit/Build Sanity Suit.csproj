@@ -118,45 +118,45 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contract\MasterContract\CreateMasterContract.cs" />
-    <Compile Include="Contract\ServiceAgreement\CreateServiceAgreement.cs" />
-    <Compile Include="Contract\ServiceAgreement\CreateServiceAgreementWholeSales.cs" />
-    <Compile Include="Contract\SubContract\CreateSubContract.cs" />
-    <Compile Include="Employee Order\Create_EmployeeOrder.cs" />
-    <Compile Include="Employee Order\EmployeeOrderData.cs" />
-    <Compile Include="HealthCare Provider\Create_HealthCare.cs" />
-    <Compile Include="HealthCare Provider\HealthCareProviderData.cs" />
-    <Compile Include="Helper.cs" />
-    <Compile Include="HelperFunctions.cs" />
-    <Compile Include="ManualInvoiceCredit\19273_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryOrganization.cs" />
-    <Compile Include="ManualInvoiceCredit\19273_TstManualInvoice\TstManualInvoice_19273Data.cs" />
-    <Compile Include="ManualInvoiceCredit\19346_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedType=CreditCategoryOrganization.cs" />
-    <Compile Include="ManualInvoiceCredit\19346_TstManualInvoice\TstManualInvoice_19346Data.cs" />
-    <Compile Include="ManualInvoiceCredit\19347_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedTypeCreditandCategoryPatient.cs" />
-    <Compile Include="ManualInvoiceCredit\19347_TstManualInvoice\TstManualInvoice_19347Data.cs" />
-    <Compile Include="ManualInvoiceCredit\19348_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryPatient.cs" />
-    <Compile Include="ManualInvoiceCredit\19348_TstManualInvoice\TstManualInvoice_19348Data.cs" />
-    <Compile Include="Patient\Create_Patient.cs" />
-    <Compile Include="Patient\PatientData.cs" />
-    <Compile Include="Payers\Create_Payers.cs" />
-    <Compile Include="Payers\PayerData.cs" />
+    <Compile Include="TestCases\Contract\MasterContract\CreateMasterContract.cs" />
+    <Compile Include="TestCases\Contract\ServiceAgreement\CreateServiceAgreement.cs" />
+    <Compile Include="TestCases\Contract\ServiceAgreement\CreateServiceAgreementWholeSales.cs" />
+    <Compile Include="TestCases\Contract\SubContract\CreateSubContract.cs" />
+    <Compile Include="TestCases\Employee Order\Create_EmployeeOrder.cs" />
+    <Compile Include="TestCases\Employee Order\EmployeeOrderData.cs" />
+    <Compile Include="TestCases\HealthCare Provider\Create_HealthCare.cs" />
+    <Compile Include="TestCases\HealthCare Provider\HealthCareProviderData.cs" />
+    <Compile Include="HelperMethods\Helper.cs" />
+    <Compile Include="HelperMethods\HelperFunctions.cs" />
+    <Compile Include="TestCases\ManualInvoiceCredit\19273_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryOrganization.cs" />
+    <Compile Include="TestCases\ManualInvoiceCredit\19273_TstManualInvoice\TstManualInvoice_19273Data.cs" />
+    <Compile Include="TestCases\ManualInvoiceCredit\19346_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedType=CreditCategoryOrganization.cs" />
+    <Compile Include="TestCases\ManualInvoiceCredit\19346_TstManualInvoice\TstManualInvoice_19346Data.cs" />
+    <Compile Include="TestCases\ManualInvoiceCredit\19347_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedTypeCreditandCategoryPatient.cs" />
+    <Compile Include="TestCases\ManualInvoiceCredit\19347_TstManualInvoice\TstManualInvoice_19347Data.cs" />
+    <Compile Include="TestCases\ManualInvoiceCredit\19348_TstManualInvoice\ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryPatient.cs" />
+    <Compile Include="TestCases\ManualInvoiceCredit\19348_TstManualInvoice\TstManualInvoice_19348Data.cs" />
+    <Compile Include="TestCases\Patient\Create_Patient.cs" />
+    <Compile Include="TestCases\Patient\PatientData.cs" />
+    <Compile Include="TestCases\Payers\Create_Payers.cs" />
+    <Compile Include="TestCases\Payers\PayerData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReadData.cs" />
-    <Compile Include="Referrals-Delivery Order\Create_ReferralstoDeliveryOrder.cs" />
-    <Compile Include="Referrals-Delivery Order\ReferralstoDeliveryOrderData.cs" />
-    <Compile Include="Referrals-Nurse Order\Create_ReferralstoNurseOrder.cs" />
-    <Compile Include="Referrals-Nurse Order\ReferralstoNurseOrderData.cs" />
-    <Compile Include="Resource\CreateResource.cs" />
-    <Compile Include="Resource\ResourceData.cs" />
-    <Compile Include="TestData.cs" />
-    <Compile Include="TestSetting.cs" />
-    <Compile Include="Wholesale Order\WholesaleOrder.cs" />
-    <Compile Include="Wholesale Order\WholesaleOrderData.cs" />
+    <Compile Include="DataFiles\ReadData.cs" />
+    <Compile Include="TestCases\Referrals-Delivery Order\Create_ReferralstoDeliveryOrder.cs" />
+    <Compile Include="TestCases\Referrals-Delivery Order\ReferralstoDeliveryOrderData.cs" />
+    <Compile Include="TestCases\Referrals-Nurse Order\Create_ReferralstoNurseOrder.cs" />
+    <Compile Include="TestCases\Referrals-Nurse Order\ReferralstoNurseOrderData.cs" />
+    <Compile Include="TestCases\Resource\CreateResource.cs" />
+    <Compile Include="TestCases\Resource\ResourceData.cs" />
+    <Compile Include="DataFiles\TestData.cs" />
+    <Compile Include="HelperMethods\TestSetting.cs" />
+    <Compile Include="TestCases\Wholesale Order\WholesaleOrder.cs" />
+    <Compile Include="TestCases\Wholesale Order\WholesaleOrderData.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AllData.json" />
-    <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="DataFiles\AllData.json" />
+    <None Include="ConfigurationFiles\app.config" />
+    <None Include="ConfigurationFiles\packages.config" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
