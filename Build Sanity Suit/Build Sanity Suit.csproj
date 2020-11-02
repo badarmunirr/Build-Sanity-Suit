@@ -149,7 +149,7 @@
     <Compile Include="TestCases\Resource\CreateResource.cs" />
     <Compile Include="TestCases\Resource\ResourceData.cs" />
     <Compile Include="DataFiles\TestData.cs" />
-    <Compile Include="HelperMethods\TestSetting.cs" />
+    <Compile Include="ConfigurationFiles\TestSetting.cs" />
     <Compile Include="TestCases\Wholesale Order\WholesaleOrder.cs" />
     <Compile Include="TestCases\Wholesale Order\WholesaleOrderData.cs" />
   </ItemGroup>

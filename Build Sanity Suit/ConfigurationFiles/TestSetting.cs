@@ -28,8 +28,6 @@ namespace Build_Sanity_Suit
         public static string OperationalManager = System.Configuration.ConfigurationManager.AppSettings["OperationalManager"].ToString();
         public static string BillingManager = System.Configuration.ConfigurationManager.AppSettings["BillingManager"].ToString();
         public static string contractManager = System.Configuration.ConfigurationManager.AppSettings["contractManager"].ToString();
-
-
         //public static string Scheduler = System.Configuration.ConfigurationManager.AppSettings["Scheduler"].ToString();
         //public static string IncidentViewer = System.Configuration.ConfigurationManager.AppSettings["IncidentViewer"].ToString();
         //public static string PriceController = System.Configuration.ConfigurationManager.AppSettings["PriceController"].ToString();

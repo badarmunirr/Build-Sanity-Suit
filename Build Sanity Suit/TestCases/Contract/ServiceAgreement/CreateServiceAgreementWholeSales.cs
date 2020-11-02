@@ -32,17 +32,17 @@ namespace Build_Sanity_Suit
                  xrmApp.ThinkTime(5000);
                  xrmApp.Entity.SetValue("mzk_name", ServiceAgreementWholeSaleData.name);
                  xrmApp.ThinkTime(500);
-                HelperFunction.Lookup("mzk_payer", ServiceAgreementWholeSaleData.payer, xrmApp, client);
+                CreateMethod.Lookup("mzk_payer", ServiceAgreementWholeSaleData.payer, xrmApp, client);
                  xrmApp.ThinkTime(500);
-                HelperFunction.Lookup("mzk_provider", ServiceAgreementWholeSaleData.provider, xrmApp, client);
+                CreateMethod.Lookup("mzk_provider", ServiceAgreementWholeSaleData.provider, xrmApp, client);
                  xrmApp.ThinkTime(500);
-                HelperFunction.Lookup("mzk_mastercontractagreement", ServiceAgreementWholeSaleData.mastercontractagreement, xrmApp, client);
+                CreateMethod.Lookup("mzk_mastercontractagreement", ServiceAgreementWholeSaleData.mastercontractagreement, xrmApp, client);
                  xrmApp.ThinkTime(500);
-                HelperFunction.Lookup("mzk_subcontract", ServiceAgreementWholeSaleData.subcontract, xrmApp, client);
+                CreateMethod.Lookup("mzk_subcontract", ServiceAgreementWholeSaleData.subcontract, xrmApp, client);
                  xrmApp.ThinkTime(500);
-                HelperFunction.Lookup("mzk_service", ServiceAgreementWholeSaleData.service, xrmApp, client);
+                CreateMethod.Lookup("mzk_service", ServiceAgreementWholeSaleData.service, xrmApp, client);
                  xrmApp.ThinkTime(500);
-                HelperFunction.Lookup("mzk_contractsubtype", ServiceAgreementWholeSaleData.contractsubtype, xrmApp, client);
+                CreateMethod.Lookup("mzk_contractsubtype", ServiceAgreementWholeSaleData.contractsubtype, xrmApp, client);
                 // xrmApp.ThinkTime(2000);
                 // xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_pediatric", Value = "No" });
                 // xrmApp.ThinkTime(2000);
@@ -97,7 +97,7 @@ namespace Build_Sanity_Suit
                 // xrmApp.Entity.SetValue("mzk_stockterms", "mzk_stockterms");
                 // xrmApp.Entity.SetValue("mzk_productcountryoforiginmanufacturer", "mzk_productcountryoforiginmanufacturer");
                  xrmApp.ThinkTime(1000);
-                HelperFunction.Lookup("mzk_dispensinglocationwarehouse", ServiceAgreementWholeSaleData.dispensinglocationwarehouse, xrmApp, client);
+                CreateMethod.Lookup("mzk_dispensinglocationwarehouse", ServiceAgreementWholeSaleData.dispensinglocationwarehouse, xrmApp, client);
                 // xrmApp.Entity.SetValue("mzk_productsupplyroute", "mzk_productsupplyroute");
                 // xrmApp.Entity.SetValue("mzk_logisticstermssummary", "mzk_logisticstermssummary");
                 // xrmApp.Entity.SetValue("mzk_compoundingstorageneeds", "mzk_compoundingstorageneeds");
@@ -110,7 +110,7 @@ namespace Build_Sanity_Suit
                 // xrmApp.Entity.SetValue("mzk_changeofcontrol", "mzk_changeofcontrol");
                 // xrmApp.Entity.SetValue("mzk_debtreviewprocess", "mzk_debtreviewprocess");
                  xrmApp.ThinkTime(1000);
-                HelperFunction.Lookup("mzk_orderreleasetype",ServiceAgreementWholeSaleData.orderreleasetype, xrmApp, client);
+                CreateMethod.Lookup("mzk_orderreleasetype",ServiceAgreementWholeSaleData.orderreleasetype, xrmApp, client);
                 // xrmApp.ThinkTime(2000);
                 // xrmApp.Entity.SetValue("mzk_contractnoticeperioddays", "2");
                 // xrmApp.ThinkTime(2000);
@@ -299,9 +299,9 @@ namespace Build_Sanity_Suit
                  xrmApp.ThinkTime(1000);
                 // use this line to click on related grid
                  xrmApp.Entity.SubGrid.ClickCommand("ContractPriceList", "New Contract Price List");
-                HelperFunction.LookupQuickCreate("mzk_contractpricelist", MasterContractData.contractpricelist, xrmApp);
-                HelperFunction.LookupQuickCreate("mzk_reducedpricelist", MasterContractData.reducedpricelist, xrmApp);
-                HelperFunction.LookupQuickCreate("mzk_contractdiagnosisgroup", MasterContractData.contractdiagnosisgroup, xrmApp);
+                CreateMethod.LookupQuickCreate("mzk_contractpricelist", MasterContractData.contractpricelist, xrmApp);
+                CreateMethod.LookupQuickCreate("mzk_reducedpricelist", MasterContractData.reducedpricelist, xrmApp);
+                CreateMethod.LookupQuickCreate("mzk_contractdiagnosisgroup", MasterContractData.contractdiagnosisgroup, xrmApp);
                  xrmApp.ThinkTime(1000);
                  xrmApp.QuickCreate.Save();
 
@@ -329,7 +329,7 @@ namespace Build_Sanity_Suit
                  xrmApp.ThinkTime(1000);
                 // use this line to click on related grid
                  xrmApp.Entity.SubGrid.ClickCommand("ContractDiagnosisGroup_new_Grid", "New Contract Diagnosis Group");
-                HelperFunction.LookupQuickCreate("mzk_operationaldiagnosisgroup", MasterContractData.operationaldiagnosisgroup, xrmApp);
+                CreateMethod.LookupQuickCreate("mzk_operationaldiagnosisgroup", MasterContractData.operationaldiagnosisgroup, xrmApp);
                  xrmApp.ThinkTime(1000);
                  xrmApp.QuickCreate.Save();
                 /*   xrmApp.Entity.SelectTab("Contract Diagnosis Group");
