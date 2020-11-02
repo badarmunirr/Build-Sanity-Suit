@@ -15,7 +15,7 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("BuildAutomation")]
         public void B16_TstManualInvoice_19348_ManualInvoiceCreditOrderCompleteTypeInvoiceandCategoryPatient()
         {
-            //CreateMethod Create = new CreateMethod();
+
             LOGIN loginobj = new LOGIN();
             WebClient client = loginobj.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
             Variables.cli = client;

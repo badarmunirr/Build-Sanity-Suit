@@ -2,14 +2,13 @@
 using Microsoft.Dynamics365.UIAutomation.Api.UCI;
 using Microsoft.Dynamics365.UIAutomation.Browser;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
+
 using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
     class TestSetting
     {
-
 
         public static BrowserOptions options = new BrowserOptions
         {

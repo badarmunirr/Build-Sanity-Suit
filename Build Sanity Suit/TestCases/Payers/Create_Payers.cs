@@ -18,12 +18,11 @@ namespace Build_Sanity_Suit
             Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
 
-            CreateMethod.Payer(xrmApp,client);
+            CreateMethod.Payer(xrmApp, client);
             Variables.PayerNum = xrmApp.Entity.GetHeaderValue("accountnumber");
             xrmApp.ThinkTime(2000);
-
-
         }
+
 
         [TestCleanup]
         public void Teardown()
