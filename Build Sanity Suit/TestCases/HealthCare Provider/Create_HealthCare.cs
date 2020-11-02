@@ -17,8 +17,8 @@ namespace Build_Sanity_Suit
             XrmApp xrmApp = new XrmApp(client);
 
             LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.OperationalManager, Usersetting.pwd);
-
-            HelperFunctions.Provider(xrmApp, client);
+           
+            CreateMethod.Provider(xrmApp, client);
             Variables.AccountNum = xrmApp.Entity.GetHeaderValue("accountnumber");
         }
 
@@ -26,7 +26,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - A1_Create_HealthCare\r\n";
-            HelperFunctions.LogRecord(Message + "HealthCare Provider Number : " + Variables.AccountNum);
+            Helper.LogRecord(Message + "HealthCare Provider Number : " + Variables.AccountNum);
             Variables.cli.Browser.Driver.Close();
         }
     }

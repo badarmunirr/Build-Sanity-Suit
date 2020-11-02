@@ -6,53 +6,22 @@ using Microsoft.Dynamics365.UIAutomation.Browser;
 using OpenQA.Selenium.Support.UI;
 
 
-using System.IO;
-
-using System.Runtime.Serialization.Json;
-using System.Text;
-
-
-
 namespace Build_Sanity_Suit
 {
 
-    public static class HelperFunctions
+    public static class CreateMethod
     {
-        static ReadData readData = ReadDataFromJSONFile();
+        //Initilizations
+        //static HelperFunction Lookupobj = new HelperFunction();
+        // static readonly string textFile = System.IO.Directory.GetCurrentDirectory() + @"\\Referral.txt";
+        static ReadData readData = Helper.ReadDataFromJSONFile();
 
-        public static ReadData ReadDataFromJSONFile()
+        public class Configdata
         {
-            using (StreamReader r = new StreamReader("..\\..\\DataFiles\\AllData.json"))
-            {
-
-                string json = r.ReadToEnd();
-                ReadData readData = new ReadData();
-                readData = (ReadData)ObjectDeserializer(readData, json);
-                //This is how you read data: readData.accountData.address1_line1
-                return readData;
-            }
-        }
-        public static object ObjectDeserializer(object jsonData, string jsonDatatoString)
-        {
-            using (var dms = new MemoryStream(Encoding.Unicode.GetBytes(jsonDatatoString)))
-            {
-                DataContractJsonSerializer deserializer = new DataContractJsonSerializer(jsonData.GetType());
-                jsonData = deserializer.ReadObject(dms);
-                return jsonData;
-            }
+            public static string datePattern = "dd/MM/yyyy";
+            public static string TimePattern = "HH:mm";
         }
 
-        static readonly string logFile = System.IO.Directory.GetCurrentDirectory() + @"\\Logger_" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + ".txt";
-        public static void LogRecord(string Message)
-        {
-
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(logFile, true))
-            {
-                file.WriteLine(Message);
-            }
-            //string LoggerPath = System.IO.Directory.GetCurrentDirectory() + "\\Logger.txt";
-            //File.WriteAllText(LoggerPath, Message);
-        }
         public static void Address(XrmApp xrmApp, WebClient client)
         {
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));

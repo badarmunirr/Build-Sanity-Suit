@@ -23,7 +23,7 @@ namespace Build_Sanity_Suit
             LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.BillingManager, Usersetting.pwd);
 
             
-            HelperFunctions.ManualInvoice(xrmApp, client, "Patient", "Invoice");
+            CreateMethod.ManualInvoice(xrmApp, client, "Patient", "Invoice");
 
             xrmApp.ThinkTime(2000);
             xrmApp.CommandBar.ClickCommand("Complete");
@@ -40,7 +40,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - B16_ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryPatient\r\n";
-            HelperFunctions.LogRecord(Message + "Invoice Number : " + Variables.InvoiceNo + "\r\nInvoice Status : " + Variables.mzk_visitstatus2);
+            Helper.LogRecord(Message + "Invoice Number : " + Variables.InvoiceNo + "\r\nInvoice Status : " + Variables.mzk_visitstatus2);
             Variables.cli.Browser.Driver.Close();
         }
     }

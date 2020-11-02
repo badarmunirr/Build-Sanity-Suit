@@ -19,7 +19,7 @@ namespace Build_Sanity_Suit
 
             LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.OperationalManager, Usersetting.pwd);
             
-            HelperFunctions.Payer(xrmApp,client);
+            CreateMethod.Payer(xrmApp,client);
 
             Variables.PayerNum = xrmApp.Entity.GetHeaderValue("accountnumber");
             
@@ -32,7 +32,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             string Message = "\r\nTest Case ID - A3_Create_Payers\r\n";
-            HelperFunctions.LogRecord(Message + "Payer No : " + Variables.PayerNum);
+            Helper.LogRecord(Message + "Payer No : " + Variables.PayerNum);
             Variables.cli.Browser.Driver.Close();
         }
     }
