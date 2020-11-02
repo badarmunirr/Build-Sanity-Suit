@@ -12,12 +12,10 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("BuildAutomation")]
         public void A2_CreatePatient()
         {
-            WebClient client = DriverInitiazation.ClientndXrmAppInitialization();
+            LOGIN loginobj = new LOGIN();
+            WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
             Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
-
-            LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.Admin, Usersetting.pwd);
-
 
             CreateMethod.Patient(xrmApp, client);
             Variables.PatientNum = xrmApp.Entity.GetValue("mzk_patientmrn");

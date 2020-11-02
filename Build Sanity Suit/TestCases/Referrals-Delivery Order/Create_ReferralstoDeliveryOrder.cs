@@ -19,13 +19,10 @@ namespace Build_Sanity_Suit
             ReadData readData = Helper.ReadDataFromJSONFile();
             var CreateReferral = new Action(() =>
             {
-                WebClient client = DriverInitiazation.ClientndXrmAppInitialization();
+                LOGIN loginobj = new LOGIN();
+                WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
                 Variables.cli = client;
                 XrmApp xrmApp = new XrmApp(client);
-
-                LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.Admin, Usersetting.pwd);
-
-
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
                 
                 CreateMethod.Referral(xrmApp, client);
@@ -56,13 +53,10 @@ namespace Build_Sanity_Suit
 
             var CreateDeliveryOrder = new Action(() =>
             {
-                WebClient client = DriverInitiazation.ClientndXrmAppInitialization();
+                LOGIN loginobj = new LOGIN();
+                WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
                 Variables.cli = client;
                 XrmApp xrmApp = new XrmApp(client);
-
-                LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.OperationalManager, Usersetting.pwd);
-
-                
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
 
                 CreateMethod.DeliveryOrder(xrmApp, client, Variables.casenumber);

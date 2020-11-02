@@ -12,13 +12,11 @@ namespace Build_Sanity_Suit
         public void A5_CreateSub()
         {
 
-            WebClient client = DriverInitiazation.ClientndXrmAppInitialization();
+            LOGIN loginobj = new LOGIN();
+            WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
             Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
 
-            LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.Admin, Usersetting.pwd);
-
-           
             xrmApp.ThinkTime(4000);
             xrmApp.Navigation.OpenSubArea("Referral", "Contract Management");
             xrmApp.ThinkTime(2000);

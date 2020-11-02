@@ -13,11 +13,11 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("BuildAutomation")]
         public void B11_CreateResourceToAccountTypeEmployee()
         {
-            WebClient client = DriverInitiazation.ClientndXrmAppInitialization();
+
+            LOGIN loginobj = new LOGIN();
+            WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
             Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
-            
-            LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.Admin, Usersetting.pwd);
 
             CreateMethod.Resource(xrmApp,client);
 

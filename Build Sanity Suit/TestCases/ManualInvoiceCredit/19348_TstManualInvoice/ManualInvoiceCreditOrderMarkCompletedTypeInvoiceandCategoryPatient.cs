@@ -15,14 +15,12 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("BuildAutomation")]
         public void B16_TstManualInvoice_19348_ManualInvoiceCreditOrderCompleteTypeInvoiceandCategoryPatient()
         {
-
-            WebClient client = DriverInitiazation.ClientndXrmAppInitialization();
+            //CreateMethod Create = new CreateMethod();
+            LOGIN loginobj = new LOGIN();
+            WebClient client = loginobj.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
             Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
-
-            LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.BillingManager, Usersetting.pwd);
-
-            
+ 
             CreateMethod.ManualInvoice(xrmApp, client, "Patient", "Invoice");
 
             xrmApp.ThinkTime(2000);

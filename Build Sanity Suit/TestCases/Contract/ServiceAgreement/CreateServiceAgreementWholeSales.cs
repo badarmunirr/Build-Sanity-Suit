@@ -13,14 +13,11 @@ namespace Build_Sanity_Suit
         [TestMethod]
         public void A9_CreateWholesaleService()
         {
-
-            WebClient client = DriverInitiazation.ClientndXrmAppInitialization();
+            LOGIN loginobj = new LOGIN();
+            WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
             Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
-
-            LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.Admin, Usersetting.pwd);
-
-             xrmApp.ThinkTime(4000);
+            xrmApp.ThinkTime(4000);
              xrmApp.Navigation.OpenSubArea("Referral", "Contract Management");
              xrmApp.ThinkTime(2000);
              xrmApp.CommandBar.ClickCommand("New");

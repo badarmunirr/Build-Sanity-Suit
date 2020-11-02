@@ -14,13 +14,12 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("BuildAutomation")]
         public void B12_CreateResourceToAccountToEmployeeOrder()
         {
+            LOGIN loginobj = new LOGIN();
+            //operational manager
+            WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
 
-            WebClient client = DriverInitiazation.ClientndXrmAppInitialization();
             Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
-            LOGIN.RoleBasedLogin(xrmApp, client, Usersetting.Admin, Usersetting.pwd);
-
-            
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
             CreateMethod.EmployeeOrder(xrmApp,client);
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));
