@@ -8,7 +8,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
-    
+
     public static class CreateMethod
     {
         //Initilizations
@@ -22,9 +22,6 @@ namespace Build_Sanity_Suit
             public static string TimePattern = "HH:mm";
         }
 
-
-        // reported to GIYHIUBN for support
-        //Helper Classes
         public static void Address(XrmApp xrmApp, WebClient client)
         {
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
@@ -101,7 +98,7 @@ namespace Build_Sanity_Suit
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             xrmApp.CommandBar.ClickCommand("New");
 
-            HelperFunction.Lookup("parentcontactid", readData.ReferraltodeliviryOrderData.parentcontactid, xrmApp, client);
+            Lookup("parentcontactid", readData.ReferraltodeliviryOrderData.parentcontactid, xrmApp, client);
 
             xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_patientconsent", Value = true });
 
@@ -115,9 +112,9 @@ namespace Build_Sanity_Suit
 
             xrmApp.Entity.SetValue("name", readData.ReferraltodeliviryOrderData.name);
 
-            HelperFunction.Lookup("mzk_contract", readData.ReferraltodeliviryOrderData.mzk_contract, xrmApp, client);
+            Lookup("mzk_contract", readData.ReferraltodeliviryOrderData.mzk_contract, xrmApp, client);
 
-            HelperFunction.Lookup("mzk_diagnosisgroup", readData.ReferraltodeliviryOrderData.mzk_diagnosisgroup, xrmApp, client);
+            Lookup("mzk_diagnosisgroup", readData.ReferraltodeliviryOrderData.mzk_diagnosisgroup, xrmApp, client);
 
             xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_nursingstatus", Value = readData.ReferraltodeliviryOrderData.mzk_nursingstatus });
 
@@ -136,7 +133,7 @@ namespace Build_Sanity_Suit
                 Console.WriteLine("No Element found");
             }
 
-            HelperFunction.Lookup("pricelevelid", readData.ReferraltodeliviryOrderData.pricelevelid, xrmApp, client);
+            Lookup("pricelevelid", readData.ReferraltodeliviryOrderData.pricelevelid, xrmApp, client);
             // xrmApp.ThinkTime(2000);
             //Lookupobj.Lookup("mzk_masterpathway", ReferraltodeliviryOrderdata.MasterPathway);
             //Referrer
@@ -208,7 +205,7 @@ namespace Build_Sanity_Suit
             string casenumber2 = client.Browser.Driver.FindElement(By.CssSelector("div[data-id='msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag_text']")).Text;
             Assert.IsTrue(casenumber2.StartsWith(casenumber));
 
-            HelperFunction.Lookup("msdyn_workordertype", readData.ReferraltodeliviryOrderData.msdyn_workordertype, xrmApp, client);
+            Lookup("msdyn_workordertype", readData.ReferraltodeliviryOrderData.msdyn_workordertype, xrmApp, client);
             //
             //Lookupobj.Lookup("msdyn_serviceterritory", ReferraltodeliviryOrderdata.serviceterritory);
             // xrmApp.ThinkTime(2000);
@@ -227,7 +224,7 @@ namespace Build_Sanity_Suit
             DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(3).AddHours(10);
             xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, Configdata.datePattern, Configdata.TimePattern);
             xrmApp.ThinkTime(5000);
-            HelperFunction.Lookup("mzk_deliverymethods", readData.ReferraltodeliviryOrderData.mzk_deliverymethods, xrmApp, client);
+             Lookup("mzk_deliverymethods", readData.ReferraltodeliviryOrderData.mzk_deliverymethods, xrmApp, client);
 
             //Lookupobj.Lookup("mzk_deliveryroute", ReferraltodeliviryOrderdata.deliveryroute);
             // xrmApp.ThinkTime(2000);
@@ -247,7 +244,7 @@ namespace Build_Sanity_Suit
             xrmApp.ThinkTime(4000);
             xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Ancillary Item");
 
-            HelperFunction.LookupQuickCreate("msdyn_product", readData.ReferraltodeliviryOrderData.msdyn_product, xrmApp);
+             LookupQuickCreate("msdyn_product", readData.ReferraltodeliviryOrderData.msdyn_product, xrmApp);
             // xrmApp.ThinkTime(2000);
             //Lookupobj.LookupQuickCreate("msdyn_unit", ReferraltodeliviryOrderdata.unit);
 
@@ -293,7 +290,7 @@ namespace Build_Sanity_Suit
             string casenumber2 = client.Browser.Driver.FindElement(By.CssSelector("div[data-id='msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag_text']")).Text;
             Assert.IsTrue(casenumber2.StartsWith(casenumber));
             xrmApp.ThinkTime(3000);
-            HelperFunction.Lookup("msdyn_workordertype", readData.ReferralstoNurseOrderData.msdyn_workordertype, xrmApp, client);
+             Lookup("msdyn_workordertype", readData.ReferralstoNurseOrderData.msdyn_workordertype, xrmApp, client);
             // xrmApp.ThinkTime(2000);
             //Lookupobj.Lookup("msdyn_serviceterritory", ReferraltodeliviryOrderdata.serviceterritory);
             // xrmApp.ThinkTime(2000);
@@ -323,7 +320,7 @@ namespace Build_Sanity_Suit
             xrmApp.ThinkTime(4000);
             xrmApp.Entity.SubGrid.ClickCommand("workorderservicesgrid", "New Work Order Service");
 
-            HelperFunction.LookupQuickCreate("msdyn_service", readData.ReferralstoNurseOrderData.msdyn_service, xrmApp);
+             LookupQuickCreate("msdyn_service", readData.ReferralstoNurseOrderData.msdyn_service, xrmApp);
 
             //Lookupobj.LookupQuickCreate("msdyn_unit", Referraldata.unit);
 
@@ -350,9 +347,9 @@ namespace Build_Sanity_Suit
             //{
             //    Console.WriteLine("Element not found");
             //}
-            HelperFunction.Lookup("mzk_contract", readData.WholesaleOrderData.mzk_contract, xrmApp, client);
+             Lookup("mzk_contract", readData.WholesaleOrderData.mzk_contract, xrmApp, client);
 
-            HelperFunction.Lookup("msdyn_workordertype", readData.WholesaleOrderData.msdyn_workordertype, xrmApp, client);
+             Lookup("msdyn_workordertype", readData.WholesaleOrderData.msdyn_workordertype, xrmApp, client);
 
             // xrmApp.Entity.SetValue("mzk_prescriptionponumber", Wholesaleorderdata.prescriptionponumber);
             //// xrmApp.ThinkTime(1000);
@@ -394,7 +391,7 @@ namespace Build_Sanity_Suit
 
             //Lookupobj.Lookup("mzk_contractdeliveryfrequency", Wholesaleorderdata.deliveryfrequency);
             xrmApp.ThinkTime(500);
-            HelperFunction.Lookup("mzk_deliverymethods", readData.WholesaleOrderData.mzk_deliverymethods, xrmApp, client);
+             Lookup("mzk_deliverymethods", readData.WholesaleOrderData.mzk_deliverymethods, xrmApp, client);
 
             //Lookupobj.Lookup("mzk_deliveryroute", Wholesaleorderdata.deliveryroute);
             // xrmApp.ThinkTime(1000);
@@ -423,7 +420,7 @@ namespace Build_Sanity_Suit
             xrmApp.ThinkTime(3000);
             xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Work Order Product");
 
-            HelperFunction.LookupQuickCreate("msdyn_product", readData.WholesaleOrderData.msdyn_product, xrmApp);
+             LookupQuickCreate("msdyn_product", readData.WholesaleOrderData.msdyn_product, xrmApp);
             // xrmApp.ThinkTime(2000);
             //Lookupobj.LookupQuickCreate("msdyn_unit", Wholesaleorderdata.unit);
             // xrmApp.ThinkTime(1000);
@@ -463,9 +460,9 @@ namespace Build_Sanity_Suit
 
             xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_resourcesubtype", Value = readData.ResourceData.mzk_resourcesubtype });
 
-            HelperFunction.Lookup("userid", readData.ResourceData.userid, xrmApp, client); //need to update this everytime
+             Lookup("userid", readData.ResourceData.userid, xrmApp, client); //need to update this everytime
 
-            HelperFunction.Lookup("mzk_gendervalue", readData.ResourceData.mzk_gendervalue, xrmApp, client);
+             Lookup("mzk_gendervalue", readData.ResourceData.mzk_gendervalue, xrmApp, client);
 
             //    Lookupobj.Lookup("mzk_language", ResourceToPatData.language, xrmApp);
 
@@ -568,7 +565,7 @@ namespace Build_Sanity_Suit
             client.Browser.Driver.FindElement(By.XPath("//input[contains(@aria-label,'Credit Limit')]")).SendKeys("5555");
 
 
-            HelperFunction.Lookup("mzk_paymentterms", readData.PayerData.mzk_paymentterms, xrmApp, client);
+             Lookup("mzk_paymentterms", readData.PayerData.mzk_paymentterms, xrmApp, client);
             //Lookupobj.Lookup("mzk_patientlanguage", Payerdata.patientlanguage);
             DateTime mzk_dateoflastcreditcheck = DateTime.Today;
             xrmApp.Entity.SetValue("mzk_dateoflastcreditcheck", mzk_dateoflastcreditcheck, Configdata.datePattern);
@@ -628,13 +625,13 @@ namespace Build_Sanity_Suit
             xrmApp.Navigation.OpenSubArea("Customers", "Patients");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             xrmApp.CommandBar.ClickCommand("New");
-            HelperFunction.Lookup("mzk_title", readData.PatientData.mzk_title, xrmApp, client);
+             Lookup("mzk_title", readData.PatientData.mzk_title, xrmApp, client);
 
             xrmApp.Entity.SetValue("firstname", readData.PatientData.firstname);
 
             xrmApp.Entity.SetValue("lastname", readData.PatientData.lastname);
 
-            HelperFunction.Lookup("mzk_gender", readData.PatientData.mzk_gender, xrmApp, client);
+             Lookup("mzk_gender", readData.PatientData.mzk_gender, xrmApp, client);
 
             xrmApp.Entity.SetValue("mzk_preferredname", readData.PatientData.mzk_preferredname);// Optional
 
@@ -653,7 +650,7 @@ namespace Build_Sanity_Suit
             // xrmApp.ThinkTime(1000);
             //Lookupobj.Lookup("mzk_race", Patientdata.race);
 
-            HelperFunction.Lookup("mzk_patientlanguage", readData.PatientData.mzk_patientlanguage, xrmApp, client);
+             Lookup("mzk_patientlanguage", readData.PatientData.mzk_patientlanguage, xrmApp, client);
             // xrmApp.ThinkTime(1000);
             //Lookupobj.Lookup("mzk_disability", Patientdata.disability);//optional
             // xrmApp.ThinkTime(1000);
@@ -818,7 +815,7 @@ namespace Build_Sanity_Suit
 
                 //Lookupobj.Lookup("msdyn_serviceaccount", TestData19273.account);
 
-                HelperFunction.Lookup("mzk_contract", readData.TstManualInvoice_19273Data.mzk_contract, xrmApp, client);
+                 Lookup("mzk_contract", readData.TstManualInvoice_19273Data.mzk_contract, xrmApp, client);
 
                 //Lookupobj.Lookup("msdyn_servicerequest", TestData19273.Case);
 
@@ -829,7 +826,7 @@ namespace Build_Sanity_Suit
                 xrmApp.ThinkTime(500);
                 xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Work Order Product");
                 xrmApp.ThinkTime(500);
-                HelperFunction.LookupQuickCreate("msdyn_product", readData.TstManualInvoice_19273Data.msdyn_product, xrmApp);
+                 LookupQuickCreate("msdyn_product", readData.TstManualInvoice_19273Data.msdyn_product, xrmApp);
                 xrmApp.ThinkTime(500);
                 xrmApp.QuickCreate.SetValue("msdyn_quantity", readData.TstManualInvoice_19273Data.msdyn_quantity);
                 xrmApp.ThinkTime(500);
@@ -862,7 +859,7 @@ namespace Build_Sanity_Suit
 
                 //Lookupobj.Lookup("mzk_service", TestData19347.service);
 
-                HelperFunction.Lookup("mzk_referral", readData.TstManualInvoice_19347Data.mzk_referral, xrmApp, client);
+                 Lookup("mzk_referral", readData.TstManualInvoice_19347Data.mzk_referral, xrmApp, client);
 
                 // Lookupobj.Lookup("mzk_contract", TestData19347.contract);
 
@@ -876,7 +873,7 @@ namespace Build_Sanity_Suit
                 xrmApp.ThinkTime(2000);
                 xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Work Order Product");
 
-                HelperFunction.LookupQuickCreate("msdyn_product", readData.TstManualInvoice_19347Data.msdyn_product, xrmApp);
+                 LookupQuickCreate("msdyn_product", readData.TstManualInvoice_19347Data.msdyn_product, xrmApp);
 
                 xrmApp.QuickCreate.SetValue("msdyn_quantity", readData.TstManualInvoice_19347Data.msdyn_quantity);
                 xrmApp.ThinkTime(500);
@@ -913,13 +910,13 @@ namespace Build_Sanity_Suit
 
             xrmApp.Entity.SetValue("mzk_taxidnumber", readData.HealthCareProviderData.mzk_taxidnumber);//optional
 
-            HelperFunction.Lookup("mzk_category", readData.HealthCareProviderData.mzk_category, xrmApp, client);
+             Lookup("mzk_category", readData.HealthCareProviderData.mzk_category, xrmApp, client);
 
             xrmApp.Entity.SetValue("mzk_hospitalid", readData.HealthCareProviderData.mzk_hospitalid);
 
-            HelperFunction.Lookup("mzk_paymentterms", readData.HealthCareProviderData.mzk_paymentterms, xrmApp, client);
+             Lookup("mzk_paymentterms", readData.HealthCareProviderData.mzk_paymentterms, xrmApp, client);
 
-            HelperFunction.Lookup("mzk_patientlanguage", readData.HealthCareProviderData.mzk_patientlanguage, xrmApp, client);
+             Lookup("mzk_patientlanguage", readData.HealthCareProviderData.mzk_patientlanguage, xrmApp, client);
 
             DateTime mzk_dateoflastregulatorycheck = DateTime.Today;
             xrmApp.Entity.SetValue("mzk_dateoflastregulatorycheck", mzk_dateoflastregulatorycheck, Configdata.datePattern);
@@ -987,7 +984,7 @@ namespace Build_Sanity_Suit
             xrmApp.CommandBar.ClickCommand("New");
 
 
-            HelperFunction.Lookup("msdyn_workordertype", readData.EmployeeOrderData.msdyn_workordertype, xrmApp, client);
+            Lookup("msdyn_workordertype", readData.EmployeeOrderData.msdyn_workordertype, xrmApp, client);
 
             DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
             xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, Configdata.datePattern, Configdata.TimePattern);
@@ -995,7 +992,7 @@ namespace Build_Sanity_Suit
             DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(3).AddHours(10);
             xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, Configdata.datePattern, Configdata.TimePattern);
 
-            HelperFunction.Lookup("mzk_deliverymethods", readData.EmployeeOrderData.mzk_deliverymethods, xrmApp, client);
+            Lookup("mzk_deliverymethods", readData.EmployeeOrderData.mzk_deliverymethods, xrmApp, client);
 
 
             xrmApp.ThinkTime(500);
@@ -1011,7 +1008,7 @@ namespace Build_Sanity_Suit
             xrmApp.ThinkTime(4000);
             xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Work Order Product");
 
-            HelperFunction.LookupQuickCreate("msdyn_product", readData.EmployeeOrderData.msdyn_product, xrmApp);
+             LookupQuickCreate("msdyn_product", readData.EmployeeOrderData.msdyn_product, xrmApp);
             // xrmApp.ThinkTime(2000);
             //Lookupobj.LookupQuickCreate("msdyn_unit", EmployeeOrder.unit);
 
@@ -1021,9 +1018,28 @@ namespace Build_Sanity_Suit
 
         }
 
+        public static void Lookup(String LookupFieldName, String LookupFieldValue, XrmApp xrmApp, WebClient client)
+        {
+            LookupItem LookupVeriable = new LookupItem { Name = LookupFieldName, Value = LookupFieldValue, Index = 0 };
+            xrmApp.Entity.SetValue(LookupVeriable);
 
-        
+        }
+        public static void LookupQuickCreate(String LookupFieldName, String LookupFieldValue, XrmApp xrmApp)
+        {
+
+            LookupItem LookupQuickVeriable = new LookupItem { Name = LookupFieldName, Value = LookupFieldValue, Index = 0 };
+            xrmApp.QuickCreate.SetValue(LookupQuickVeriable);
+
+        }
+
     }
+
+
+
+
+
+
+
     public static class Variables
     {
         public static WebClient cli;
@@ -1038,7 +1054,7 @@ namespace Build_Sanity_Suit
         public static string OrderNum;
         public static string mzk_visitstatus2;
         public static string InvoiceNo;
-
     }
-}
 
+
+}

@@ -10,6 +10,7 @@ namespace Build_Sanity_Suit
     {
 
         [TestMethod, TestCategory("BuildAutomation")]
+
         public void A3_CreatePayer()
         {
             LOGIN loginobj = new LOGIN();

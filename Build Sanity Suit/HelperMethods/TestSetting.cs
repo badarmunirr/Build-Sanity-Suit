@@ -215,23 +215,7 @@ namespace Build_Sanity_Suit
         }
     }
 
-    public static class HelperFunction
-    {
-        public  static void Lookup(String LookupFieldName, String LookupFieldValue, XrmApp xrmApp,WebClient client)
-        {
-            LookupItem LookupVeriable = new LookupItem { Name = LookupFieldName, Value = LookupFieldValue, Index = 0 };
-            xrmApp.Entity.SetValue(LookupVeriable);
 
-        }
-        public static void LookupQuickCreate(String LookupFieldName, String LookupFieldValue, XrmApp xrmApp)
-        {
-
-            LookupItem LookupQuickVeriable = new LookupItem { Name = LookupFieldName, Value = LookupFieldValue, Index = 0 };
-            xrmApp.QuickCreate.SetValue(LookupQuickVeriable);
-
-        }
-
-    }
 
 }
 
