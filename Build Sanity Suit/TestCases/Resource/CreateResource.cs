@@ -11,7 +11,7 @@ namespace Build_Sanity_Suit
     {
 
         [TestMethod, TestCategory("BuildAutomation")]
-        public void B11_CreateResourceToAccountTypeEmployee()
+        public void B11_CreateResourcetoAccountTypeEmployee()
         {
 
             LOGIN loginobj = new LOGIN();

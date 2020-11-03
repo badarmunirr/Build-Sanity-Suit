@@ -14,7 +14,7 @@ namespace Build_Sanity_Suit
 
 
         [TestMethod, TestCategory("BuildAutomation")]
-        public void A7_CreateReferral()
+        public void A7_CreateReferraltoDelivery()
         {
             ReadData readData = Helper.ReadDataFromJSONFile();
             var CreateReferral = new Action(() =>

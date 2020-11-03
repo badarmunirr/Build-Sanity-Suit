@@ -15,7 +15,7 @@ namespace Build_Sanity_Suit
     {
 
         [TestMethod, TestCategory("BuildAutomation")]
-        public void A8_CreateReferralNurse()
+        public void A8_CreateReferraltoNurse()
         {
 
             ReadData readData = Helper.ReadDataFromJSONFile();

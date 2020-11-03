@@ -18,8 +18,8 @@ namespace Build_Sanity_Suit
             Headless = false,
             UserAgent = true,
             DisableGpu = true,
-            DisableExtensions= true,
-            DisableSettingsWindow =true
+            DisableExtensions = true,
+            DisableSettingsWindow = true
         };
 
     }
@@ -42,9 +42,6 @@ namespace Build_Sanity_Suit
 
     public class LOGIN
     {
-
-
-
         //public WebClient Login()
         //{
 
@@ -147,11 +144,6 @@ namespace Build_Sanity_Suit
 
         public WebClient RoleBasedLogin(string user, string pwd)
         {
-            var imageSetting = new Dictionary<string, object> { { "images", 2 } };
-            var content = new Dictionary<string, object> { { "profile.default_content_settings", imageSetting } };
-            var prefs = new Dictionary<string, object> { { "prefs", content } };
-
-
             WebClient client = new Microsoft.Dynamics365.UIAutomation.Api.UCI.WebClient(TestSetting.options);
             XrmApp xrmApp = new XrmApp(client);
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));

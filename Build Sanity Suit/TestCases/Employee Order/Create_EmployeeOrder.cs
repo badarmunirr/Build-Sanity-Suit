@@ -13,7 +13,7 @@ namespace Build_Sanity_Suit
     {
 
         [TestMethod, TestCategory("BuildAutomation")]
-        public void B12_CreateResourceToAccountToEmployeeOrder()
+        public void B12_CreateResourcetoAccountToEmployeeOrder()
         {
             LOGIN loginobj = new LOGIN();
             //operational manager
