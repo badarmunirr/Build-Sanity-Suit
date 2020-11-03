@@ -1,23 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Dynamics365.UIAutomation.Api.UCI;
 using Microsoft.Dynamics365.UIAutomation.Browser;
 using OpenQA.Selenium;
-
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
     class TestSetting
     {
-
         public static BrowserOptions options = new BrowserOptions
         {
             BrowserType = BrowserType.Chrome,
             PrivateMode = true,
             FireEvents = false,
             Headless = false,
-            UserAgent = false,
-
+            UserAgent = true,
+            DisableGpu = true,
+            DisableExtensions= true,
+            DisableSettingsWindow =true
         };
 
     }
@@ -145,27 +147,26 @@ namespace Build_Sanity_Suit
 
         public WebClient RoleBasedLogin(string user, string pwd)
         {
+            var imageSetting = new Dictionary<string, object> { { "images", 2 } };
+            var content = new Dictionary<string, object> { { "profile.default_content_settings", imageSetting } };
+            var prefs = new Dictionary<string, object> { { "prefs", content } };
+
 
             WebClient client = new Microsoft.Dynamics365.UIAutomation.Api.UCI.WebClient(TestSetting.options);
             XrmApp xrmApp = new XrmApp(client);
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
             client.Browser.Driver.Navigate().GoToUrl(Usersetting.url);
-            xrmApp.ThinkTime(5000);
+            client.Browser.Driver.WaitUntilVisible(By.Id("i0116"));
             if (client.Browser.Driver.HasElement(By.Id("i0116")))
             {
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("i0116")));
-                client.Browser.Driver.FindElement(By.Id("i0116")).SendKeys(user);
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("i0116"))).SendKeys(user);
                 client.Browser.Driver.FindElement(By.Id("i0116")).SendKeys(Keys.Enter);
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("passwordInput")));
-                client.Browser.Driver.FindElement(By.Id("passwordInput")).SendKeys(pwd);
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("submitButton")));
-                client.Browser.Driver.FindElement(By.Id("submitButton")).Click();
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("idSIButton9")));
-                client.Browser.Driver.FindElement(By.Id("idSIButton9")).SendKeys(Keys.Enter);
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("passwordInput"))).SendKeys(pwd);
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("submitButton"))).Click();
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("idSIButton9"))).SendKeys(Keys.Enter);
                 if (client.Browser.Driver.HasElement(By.Id("idSubmit_ProofUp_Redirect")))
                 {
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("idSubmit_ProofUp_Redirect")));
-                    client.Browser.Driver.FindElement(By.Id("idSubmit_ProofUp_Redirect")).SendKeys(Keys.Enter);
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("idSubmit_ProofUp_Redirect"))).SendKeys(Keys.Enter);
                 }
                 else
                 {
@@ -173,8 +174,8 @@ namespace Build_Sanity_Suit
                 }
                 if (client.Browser.Driver.HasElement(By.PartialLinkText("Skip setup")))
                 {
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.PartialLinkText("Skip setup")));
-                    client.Browser.Driver.FindElement(By.PartialLinkText("Skip setup")).Click();
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.PartialLinkText("Skip setup"))).Click();
+
                 }
                 else
                 {
@@ -182,27 +183,23 @@ namespace Build_Sanity_Suit
                 }
                 if (client.Browser.Driver.HasElement(By.Id("idSIButton9")))
                 {
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("idSIButton9")));
-                    client.Browser.Driver.FindElement(By.Id("idSIButton9")).SendKeys(Keys.Enter);
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("idSIButton9"))).SendKeys(Keys.Enter);
                 }
                 else
                 {
                     Console.WriteLine("No 'Stay Signed In' Dialog appeared");
                 }
-                xrmApp.ThinkTime(5000);
                 string url = client.Browser.Driver.Url;
                 if (url == Usersetting.url + "main.aspx?forceUCI=1&pagetype=apps")
                 {
                     client.Browser.Driver.Navigate().GoToUrl(Usersetting.url + "main.aspx?forceUCI=1&pagetype=apps");
-                    xrmApp.ThinkTime(10000);
-                   // xrmApp.Navigation.OpenApp(Usersetting.AppName);
-
+                    client.Browser.Driver.WaitForPageToLoad();
                     xrmApp.Navigation.OpenApp(Usersetting.AppName);
                 }
                 else
                 {
                     client.Browser.Driver.Navigate().GoToUrl(Usersetting.url);
-                    xrmApp.ThinkTime(10000);
+                    client.Browser.Driver.WaitForPageToLoad();
                 }
 
             }

@@ -17,10 +17,9 @@ namespace Build_Sanity_Suit
             WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
             Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
-
             CreateMethod.Payer(xrmApp, client);
             Variables.PayerNum = xrmApp.Entity.GetHeaderValue("accountnumber");
-            xrmApp.ThinkTime(2000);
+
         }
 
 

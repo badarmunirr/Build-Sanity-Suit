@@ -7,7 +7,6 @@ namespace Build_Sanity_Suit
      [TestClass]
     public class A1_Create_HealthCare
     {
-
         [TestMethod, TestCategory("BuildAutomation")]
         public void A1_CreateProvider()
         {
@@ -15,7 +14,6 @@ namespace Build_Sanity_Suit
             WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
             Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
-
             CreateMethod.Provider(xrmApp, client);
             Variables.AccountNum = xrmApp.Entity.GetHeaderValue("accountnumber");
         }
