@@ -551,7 +551,8 @@ namespace Build_Sanity_Suit
             // xrmApp.Entity.SetValue("creditlimit", "555");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[contains(@aria-label,'Credit Limit')]")));
             client.Browser.Driver.WaitUntilClickable(By.XPath("//input[contains(@aria-label,'Credit Limit')]")).Click();
-            client.Browser.Driver.WaitUntilClickable(By.XPath("//input[contains(@aria-label,'Credit Limit')]")).SendKeys("5555");
+            client.Browser.Driver.FindElement(By.XPath("//input[contains(@aria-label,'Credit Limit')]")).SendKeys("5555");
+            
             Lookup("mzk_paymentterms", readData.PayerData.mzk_paymentterms, xrmApp, client);
             //Lookupobj.Lookup("mzk_patientlanguage", Payerdata.patientlanguage);
             DateTime mzk_dateoflastcreditcheck = DateTime.Today;
