@@ -16,7 +16,7 @@ namespace Build_Sanity_Suit
         {
  
             WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
-            //Variables.cli = client;
+            Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
 
             CreateMethod.Payer(xrmApp, client);
