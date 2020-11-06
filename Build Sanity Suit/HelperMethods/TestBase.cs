@@ -18,8 +18,8 @@ namespace Build_Sanity_Suit
     public class TestBase
     {
         public static LOGIN loginobj = new LOGIN();
-        public static ExtentReports extent = null;
-        public ExtentTest test = null;
+        public  static ExtentReports extent = null;
+        public  ExtentTest test = null;
 
 
         public readonly string ReportFile = System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Second.ToString() + "Report.html";
@@ -31,9 +31,10 @@ namespace Build_Sanity_Suit
         [TestInitialize]
         public void Initialize()
         {
-            extent = new ExtentReports();
+     
             if (extent == null)
             {
+                extent = new ExtentReports();
                 extent.AddSystemInfo("Browser", Enum.GetName(typeof(BrowserType), BrowserType.Chrome));
 
                 extent.AddSystemInfo("D365 CE Instance",
@@ -70,7 +71,7 @@ namespace Build_Sanity_Suit
 
             string Message = "\r\n" + TestContext.FullyQualifiedTestClassName + "\r\n" + TestContext.TestName + "\r\n" + TestContext.CurrentTestOutcome + "\r\n" + value + "\r\n";
             Helper.LogRecord(Message);
-            Variables.cli.Browser.Driver.Close();
+
 
         }
 
@@ -135,7 +136,7 @@ namespace Build_Sanity_Suit
             }
         }
 
-        static readonly string logFile = System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Second.ToString() + ".txt";
+        static readonly string logFile = System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString()  + ".txt";
         public static void LogRecord(string Message)
         {
 

@@ -9,14 +9,14 @@ namespace Build_Sanity_Suit
     [TestClass]
     public class B13_ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryOrganization:TestBase
     {
-
+        public static WebClient cli;
         [TestMethod, TestCategory("Sanity")]
         public void B13_TstManualInvoice_19273_Manualinvoicestatusiscompletedinvorg()
         {
  
             LOGIN loginobj = new LOGIN();
             WebClient client = loginobj.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
-            Variables.cli = client;
+            cli = client;
             XrmApp xrmApp = new XrmApp(client);
             CreateMethod.ManualInvoice(xrmApp,client, "Organization", "Invoice");
             xrmApp.ThinkTime(2000);
@@ -33,7 +33,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             Cleanup("Manual Order No:" + Variables.InvoiceNo + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus2);
-            Variables.cli.Browser.Driver.Close();
+         cli.Browser.Driver.Close();
         }
     }
 }

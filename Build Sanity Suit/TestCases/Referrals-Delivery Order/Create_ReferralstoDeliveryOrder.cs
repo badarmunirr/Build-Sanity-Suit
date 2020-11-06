@@ -10,6 +10,7 @@ namespace Build_Sanity_Suit
     [TestClass]
     public class A7_Create_ReferralstoDeliveryOrder:TestBase
     {
+        public static WebClient cli;
         [TestMethod, TestCategory("Sanity")]
         public void A7_CreateReferraltoDelivery()
         {
@@ -18,7 +19,7 @@ namespace Build_Sanity_Suit
             {
                 LOGIN loginobj = new LOGIN();
                 WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
-                Variables.cli = client;
+                cli = client;
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
                 
@@ -52,7 +53,7 @@ namespace Build_Sanity_Suit
             {
                 LOGIN loginobj = new LOGIN();
                 WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
-                Variables.cli = client;
+                cli = client;
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
 
@@ -80,7 +81,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             Cleanup("Ref No:"+Variables.RefNumber+ "\r\nCaseNumber:" + Variables.casenumber+ "\r\nWorkOrder No:" + Variables.WorkOrderNo + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus3);
-            Variables.cli.Browser.Driver.Close();
+            cli.Browser.Driver.Close();
         }
 
 
