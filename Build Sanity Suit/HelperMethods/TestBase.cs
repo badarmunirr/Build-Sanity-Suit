@@ -20,8 +20,6 @@ namespace Build_Sanity_Suit
         public static LOGIN loginobj = new LOGIN();
         public static ExtentReports extent = null;
         public ExtentTest test = null;
-
-
         public readonly string ReportFile = System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Second.ToString() + "Report.html";
         public TestContext TestContext { get; set; }
 

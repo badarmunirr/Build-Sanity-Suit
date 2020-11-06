@@ -38,7 +38,7 @@ namespace Build_Sanity_Suit
     }
 
 
-    public class LOGIN
+    public class LOGIN:TestBase
     {
         //public WebClient Login()
         //{
@@ -155,6 +155,7 @@ namespace Build_Sanity_Suit
             client.Browser.Driver.WaitUntilVisible(uid);
             if (client.Browser.Driver.HasElement(uid))
             {
+        
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(uid)).SendKeys(user);
                 client.Browser.Driver.FindElement(uid).SendKeys(Keys.Enter);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(pwdinput)).SendKeys(pwd);
