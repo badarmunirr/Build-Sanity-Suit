@@ -16,7 +16,7 @@ namespace Build_Sanity_Suit
             WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
             Variables.cli = client;
 
-            AddScreenShot(client, "Navigate To Patient");
+            //AddScreenShot(client, "Navigate To Patient");
             //XrmApp xrmApp = new XrmApp(client);
             //CreateMethod.Patient(xrmApp, client);
             //AddScreenShot(client, "Create Patient");
@@ -27,7 +27,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             Cleanup("Patient Number:" + Variables.PatientNum + "\r\n");
-            Variables.cli.Browser.Driver.Close();
+      
         }
     }
 }

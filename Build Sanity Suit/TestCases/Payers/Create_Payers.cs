@@ -1,8 +1,7 @@
-﻿using AventStack.ExtentReports;
-using AventStack.ExtentReports.Reporter;
+﻿
 using Microsoft.Dynamics365.UIAutomation.Api.UCI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+
 
 namespace Build_Sanity_Suit
 {
@@ -16,7 +15,7 @@ namespace Build_Sanity_Suit
 
             WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
             Variables.cli = client;
-            AddScreenShot(client, "Navigate To Payer");
+            //AddScreenShot(client, "Navigate To Payer");
             //XrmApp xrmApp = new XrmApp(client);
             //CreateMethod.Payer(xrmApp, client);
             //AddScreenShot(client, "Create Payer");
@@ -28,7 +27,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             Cleanup("Payer Number:" + Variables.PayerNum + "\r\n");
-            Variables.cli.Browser.Driver.Close();
+
 
         }
 

@@ -18,6 +18,8 @@ namespace Build_Sanity_Suit
             Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
             CreateMethod.ManualInvoice(xrmApp, client, "Patient", "Invoice");
+
+
             xrmApp.ThinkTime(2000);
             xrmApp.CommandBar.ClickCommand("Complete");
             xrmApp.ThinkTime(2000);
