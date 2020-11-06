@@ -26,6 +26,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             Cleanup("Bookable Resource");
+            Variables.cli.Browser.Driver.Close();
         }
     }
 }

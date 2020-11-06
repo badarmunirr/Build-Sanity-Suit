@@ -24,6 +24,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             Cleanup("HealthCare Number:" + Variables.AccountNum + "\r\n");
+            Variables.cli.Browser.Driver.Close();
         }
     }
 

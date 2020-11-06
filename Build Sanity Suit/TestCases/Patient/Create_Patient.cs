@@ -14,18 +14,18 @@ namespace Build_Sanity_Suit
         {
 
             WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
-            Variables.cli = client;
-            XrmApp xrmApp = new XrmApp(client);
+            //Variables.cli = client;
+            //XrmApp xrmApp = new XrmApp(client);
 
-            CreateMethod.Patient(xrmApp, client);
-            Variables.PatientNum = xrmApp.Entity.GetValue("mzk_patientmrn");
+            //CreateMethod.Patient(xrmApp, client);
+            //Variables.PatientNum = xrmApp.Entity.GetValue("mzk_patientmrn");
 
         }
         [TestCleanup]
         public void Teardown()
         {
             Cleanup("Patient Number:" + Variables.PatientNum + "\r\n");
-
+            Variables.cli.Browser.Driver.Close();
         }
     }
 }

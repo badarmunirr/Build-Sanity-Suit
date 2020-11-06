@@ -68,7 +68,7 @@ namespace Build_Sanity_Suit
 
             string Message = "\r\n" + TestContext.FullyQualifiedTestClassName + "\r\n" + TestContext.TestName + "\r\n" + TestContext.CurrentTestOutcome + "\r\n" + value + "\r\n";
             Helper.LogRecord(Message);
-            Variables.cli.Browser.Driver.Close();
+
 
         }
 

@@ -35,6 +35,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             Cleanup("Employee Order No:" + Variables.WorkOrderNum + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus3);
+            Variables.cli.Browser.Driver.Close();
         }
     }
 }
