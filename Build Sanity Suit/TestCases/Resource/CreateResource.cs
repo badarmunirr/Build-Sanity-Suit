@@ -1,5 +1,4 @@
-﻿
-using Microsoft.Dynamics365.UIAutomation.Api.UCI;
+﻿using Microsoft.Dynamics365.UIAutomation.Api.UCI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
@@ -7,10 +6,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Build_Sanity_Suit
 {
     [TestClass]
-    public class B11_Create_Resource
+    public class B11_Create_Resource:TestBase
     {
 
-        [TestMethod, TestCategory("BuildAutomation")]
+        [TestMethod, TestCategory("Sanity")]
         public void B11_CreateResourcetoAccountTypeEmployee()
         {
 
@@ -26,12 +25,8 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-            string Message = "\r\nTest Case ID - B11_Create_Resource---";
-            Helper.LogRecord(Message);
-            Variables.cli.Browser.Driver.Close();
-
+            Cleanup("Bookable Resource");
         }
-
     }
 }
 

@@ -11,10 +11,10 @@ namespace Build_Sanity_Suit
     //operational Manager
 
    [TestClass]
-    public class A8_Create_ReferralstoNurseOrder
+    public class A8_Create_ReferralstoNurseOrder:TestBase
     {
 
-        [TestMethod, TestCategory("BuildAutomation")]
+        [TestMethod, TestCategory("Sanity")]
         public void A8_CreateReferraltoNurse()
         {
 
@@ -76,14 +76,12 @@ namespace Build_Sanity_Suit
             CreateReferral();
             CreateNurseOrder();
         }
-        
         [TestCleanup]
         public void Teardown()
         {
-            string Message = "\r\nTest Case ID - A8_Create_ReferralstoNurseOrder\r\n";
-            Helper.LogRecord(Message + "Referral Number : " + Variables.RefNumber + "\r\nCase Number : " + Variables.casenumber + "\r\nWork Order Number : " + Variables.WorkOrderNo + "\r\nWork Order Status : " + Variables.mzk_visitstatus3);
-            Variables.cli.Browser.Driver.Close();
+            Cleanup("Ref No:" + Variables.RefNumber + "\r\nCaseNumber:" + Variables.casenumber + "\r\nWorkOrder No:" + Variables.WorkOrderNo + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus3);
         }
+
     }
 
 }

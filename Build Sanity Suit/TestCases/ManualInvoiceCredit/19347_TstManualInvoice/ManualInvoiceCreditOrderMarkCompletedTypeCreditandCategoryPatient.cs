@@ -1,19 +1,15 @@
-﻿using System;
-using Microsoft.Dynamics365.UIAutomation.Api.UCI;
+﻿using Microsoft.Dynamics365.UIAutomation.Api.UCI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
 
 namespace Build_Sanity_Suit
 {
-
-    //TestCase ID : 19347
-    //it requires validation from FINOPS
    [TestClass]
-    public class B15_ManualInvoiceCreditOrderMarkCompletedTypeCreditandCategoryPatient
+    public class B15_ManualInvoiceCreditOrderMarkCompletedTypeCreditandCategoryPatient:TestBase
     {
 
-        [TestMethod, TestCategory("BuildAutomation")]
+        [TestMethod, TestCategory("Sanity")]
         public void B15_TstManualInvoice_19347_ManualInvoiceCreditOrderCompleteTypeCreditandCategoryPatient()
         {
             LOGIN loginobj = new LOGIN();
@@ -34,9 +30,7 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-            string Message = "\r\nTest Case ID - B15_ManualInvoiceCreditOrderMarkCompletedTypeCreditandCategoryPatient\r\n";
-            Helper.LogRecord(Message + "Invoice No : " + Variables.InvoiceNo + "\r\nStatus : " + Variables.mzk_visitstatus2);
-            Variables.cli.Browser.Driver.Close();
+            Cleanup("Manual Order No:" + Variables.InvoiceNo + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus2);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using Microsoft.Dynamics365.UIAutomation.Api.UCI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -7,10 +7,10 @@ namespace Build_Sanity_Suit
 {
 
     [TestClass]
-    public class B13_ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryOrganization
+    public class B13_ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryOrganization:TestBase
     {
 
-        [TestMethod, TestCategory("BuildAutomation")]
+        [TestMethod, TestCategory("Sanity")]
         public void B13_TstManualInvoice_19273_Manualinvoicestatusiscompletedinvorg()
         {
  
@@ -18,9 +18,7 @@ namespace Build_Sanity_Suit
             WebClient client = loginobj.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
             Variables.cli = client;
             XrmApp xrmApp = new XrmApp(client);
-
             CreateMethod.ManualInvoice(xrmApp,client, "Organization", "Invoice");
-
             xrmApp.ThinkTime(2000);
             xrmApp.CommandBar.ClickCommand("Complete");
             xrmApp.ThinkTime(2000);
@@ -30,15 +28,11 @@ namespace Build_Sanity_Suit
 
             Variables.InvoiceNo = xrmApp.Entity.GetValue("msdyn_name");
 
-
-
         }
         [TestCleanup]
         public void Teardown()
         {
-            string Message = "\r\nTest Case ID - B13_ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryOrganization\r\n";
-            Helper.LogRecord(Message + "Invoice Number - " + Variables.InvoiceNo + "\r\nInvoice Status : " + Variables.mzk_visitstatus2);
-            Variables.cli.Browser.Driver.Close();
+            Cleanup("Manual Order No:" + Variables.InvoiceNo + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus2);
         }
     }
 }

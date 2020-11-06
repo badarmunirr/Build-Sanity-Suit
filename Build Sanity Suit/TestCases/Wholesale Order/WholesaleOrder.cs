@@ -2,17 +2,15 @@
 using Microsoft.Dynamics365.UIAutomation.Api.UCI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using Microsoft.Dynamics365.UIAutomation.Browser;
 using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
     [TestClass]
-    public class B10_Create_WholesaleOrders
+    public class B10_Create_WholesaleOrders:TestBase
     {
 
-
-        [TestMethod, TestCategory("BuildAutomation")]
+        [TestMethod, TestCategory("Sanity")]
         public void B10_CreateWholesaleOrder()
         {
             LOGIN loginobj = new LOGIN();
@@ -37,13 +35,8 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-            string Message = "\r\nTest Case ID - B10_Create_WholesaleOrders\r\n";
-            Helper.LogRecord(Message + "WholeSale Order Number - " + Variables.OrderNum + " \r\nWholeSale Order Status - " + Variables.mzk_visitstatus2);
-
-            Variables.cli.Browser.Driver.Close();
-
+            Cleanup("Wholsale No:" + Variables.OrderNum + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus2);
         }
-
     }
 }
 

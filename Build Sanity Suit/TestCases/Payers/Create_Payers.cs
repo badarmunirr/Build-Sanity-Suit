@@ -1,38 +1,36 @@
-﻿
+﻿using AventStack.ExtentReports;
+using AventStack.ExtentReports.Reporter;
 using Microsoft.Dynamics365.UIAutomation.Api.UCI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using System;
 
 namespace Build_Sanity_Suit
 {
     [TestClass]
-    public class A3_Create_Payers
+    public class A3_Create_Payers :TestBase
     {
-        readonly LOGIN loginobj = new LOGIN();
-        public TestContext TestContext { get; set; }
-        [TestMethod, TestCategory("BuildAutomation")]
 
+        [TestMethod, TestCategory("Sanity")]
         public void A3_CreatePayer()
         {
- 
+
             WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
             Variables.cli = client;
-            XrmApp xrmApp = new XrmApp(client);
-
-            CreateMethod.Payer(xrmApp, client);
-
-            Variables.PayerNum = xrmApp.Entity.GetHeaderValue("accountnumber");
+            AddScreenShot(client, "Navigate To Payer");
+            //XrmApp xrmApp = new XrmApp(client);
+            //CreateMethod.Payer(xrmApp, client);
+            //AddScreenShot(client, "Create Payer");
+            //Variables.PayerNum = xrmApp.Entity.GetHeaderValue("accountnumber");
+            //AddScreenShot(client, "Get Payer Number");
 
         }
-
-
         [TestCleanup]
         public void Teardown()
         {
-            string Message = "\r\n" + TestContext.FullyQualifiedTestClassName + "\r\n" + TestContext.TestName + "\r\n" + TestContext.CurrentTestOutcome + "\r\n" + Variables.PayerNum + "\r\n ";
-            Helper.LogRecord(Message + "Payer No : " + Variables.PayerNum);
-          Variables.cli.Browser.Driver.Close();
+            Cleanup("Payer Number:" + Variables.PayerNum + "\r\n");
         }
+
+
     }
 }
 

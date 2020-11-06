@@ -2,18 +2,15 @@
 using Microsoft.Dynamics365.UIAutomation.Api.UCI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using Microsoft.Dynamics365.UIAutomation.Browser;
 using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
 
     [TestClass]
-    public class A7_Create_ReferralstoDeliveryOrder
+    public class A7_Create_ReferralstoDeliveryOrder:TestBase
     {
-
-
-        [TestMethod, TestCategory("BuildAutomation")]
+        [TestMethod, TestCategory("Sanity")]
         public void A7_CreateReferraltoDelivery()
         {
             ReadData readData = Helper.ReadDataFromJSONFile();
@@ -79,15 +76,13 @@ namespace Build_Sanity_Suit
 
         }
 
-
-
         [TestCleanup]
         public void Teardown()
         {
-            string Message = "\r\nTest Case ID - A7_Create_ReferralstoDeliveryOrder\r\n";
-            Helper.LogRecord(Message + "Referral Number : " + Variables.RefNumber + "\r\nCase Number : " + Variables.casenumber + "\r\nWork Order Number : " + Variables.WorkOrderNo + "\r\nWork Order Status : " + Variables.mzk_visitstatus3);
-            Variables.cli.Browser.Driver.Close();
+            Cleanup("Ref No:"+Variables.RefNumber+ "\r\nCaseNumber:" + Variables.casenumber+ "\r\nWorkOrder No:" + Variables.WorkOrderNo + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus3);
         }
+
+
     }
 }
 
