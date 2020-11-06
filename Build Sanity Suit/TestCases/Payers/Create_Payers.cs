@@ -29,6 +29,7 @@ namespace Build_Sanity_Suit
         {
             Cleanup("Payer Number:" + Variables.PayerNum + "\r\n");
             Variables.cli.Browser.Driver.Close();
+
         }
 
 

@@ -23,10 +23,7 @@ namespace Build_Sanity_Suit
 
 
         public readonly string ReportFile = System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Second.ToString() + "Report.html";
-
         public TestContext TestContext { get; set; }
-
-
 
         [TestInitialize]
         public void Initialize()
@@ -34,14 +31,13 @@ namespace Build_Sanity_Suit
             if (extent == null)
             {
                 extent = new ExtentReports();
+                extent.AddSystemInfo("Browser", Enum.GetName(typeof(BrowserType), BrowserType.Chrome));
+                extent.AddSystemInfo("D365 CE Instance",
+                    System.Configuration.ConfigurationManager.AppSettings["CRMUrl"]);
+                extent.AddSystemInfo("Result File",
+                    System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\");
+          
             }
-
-            extent.AddSystemInfo("Browser", Enum.GetName(typeof(BrowserType), BrowserType.Chrome));
-
-            extent.AddSystemInfo("D365 CE Instance",
-                System.Configuration.ConfigurationManager.AppSettings["CRMUrl"]);
-            extent.AddSystemInfo("Result File",
-    System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\");
             var htmlReporter = new ExtentHtmlReporter(ReportFile);
             htmlReporter.Config.Theme = Theme.Dark;
             extent.AttachReporter(htmlReporter);
@@ -54,18 +50,19 @@ namespace Build_Sanity_Suit
             if (TestContext.CurrentTestOutcome.ToString() == "Passed")
             {
 
-                test.Log(Status.Info, "Test Ended");
+                //test.Log(Status.Info, "Test Ended");
+                AddScreenShot(Variables.cli, "Test Ended");
                 test.Log(Status.Pass, "Test Passed");
 
             }
             else if (TestContext.CurrentTestOutcome.ToString() == "Failed")
             {
 
-                test.Log(Status.Info, "Test Ended");
+                //test.Log(Status.Info, "Test Ended");
+                AddScreenShot(Variables.cli, "Test Ended");
                 test.Log(Status.Fail, "Test Failed");
             }
             extent.Flush();
-
             string Message = "\r\n" + TestContext.FullyQualifiedTestClassName + "\r\n" + TestContext.TestName + "\r\n" + TestContext.CurrentTestOutcome + "\r\n" + value + "\r\n";
             Helper.LogRecord(Message);
 

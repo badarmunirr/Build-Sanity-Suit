@@ -18,7 +18,6 @@ namespace Build_Sanity_Suit
             Headless = false,
             UserAgent = false,
             DisableGpu = true
-
         };
 
     }
@@ -31,14 +30,10 @@ namespace Build_Sanity_Suit
         //public static string Scheduler = System.Configuration.ConfigurationManager.AppSettings["Scheduler"].ToString();
         //public static string IncidentViewer = System.Configuration.ConfigurationManager.AppSettings["IncidentViewer"].ToString();
         //public static string PriceController = System.Configuration.ConfigurationManager.AppSettings["PriceController"].ToString();
-
         public static string url = System.Configuration.ConfigurationManager.AppSettings["CRMUrl"].ToString();
         public static string pwd = System.Configuration.ConfigurationManager.AppSettings["CRMPassword"].ToString();
         public static string AppName = System.Configuration.ConfigurationManager.AppSettings["AppName"].ToString();
         public static string AppName2 = System.Configuration.ConfigurationManager.AppSettings["AppName3"].ToString();
-
-        //Locaters
-
 
     }
 
@@ -47,7 +42,6 @@ namespace Build_Sanity_Suit
     {
         //public WebClient Login()
         //{
-
         //    WebClient client = new Microsoft.Dynamics365.UIAutomation.Api.UCI.WebClient(TestSetting.options);
         //    XrmApp xrmApp = new XrmApp(client);
         //    WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
@@ -95,7 +89,6 @@ namespace Build_Sanity_Suit
         //        xrmApp.ThinkTime(10000);
 
         //        xrmApp.Navigation.OpenApp(usersetting.AppName);
-
         //    }
         //    return client;
         //    //if ( client.Browser.Driver.HasElement(By.Id("i0116")))
@@ -142,7 +135,6 @@ namespace Build_Sanity_Suit
         //    //    Console.WriteLine("Element is visible");
         //    //}
         //    // client.Browser.Driver.Close();
-
         //}
 
         public WebClient RoleBasedLogin(string user, string pwd)
