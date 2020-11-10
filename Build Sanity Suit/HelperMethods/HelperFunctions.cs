@@ -234,9 +234,6 @@ namespace Build_Sanity_Suit
             Assert.IsNotNull(msdyn_postalcode);
             client.Browser.Driver.WaitForPageToLoad();
 
-
-
-
             xrmApp.Entity.SelectTab("Products And Services");
             client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Ancillary Item");
@@ -250,28 +247,26 @@ namespace Build_Sanity_Suit
             xrmApp.QuickCreate.Save();
 
 
-
-
             client.Browser.Driver.WaitForPageToLoad();
 
-            string[] products = { "PRO-004930", "PRO-004916", "PRO-004543", "PRO-004186" , "PRO-003964", "PRO-002469", "PRO-002531" , "PRO-002214" };
+            //string[] products = { "PRO-004930", "PRO-004916", "PRO-004543", "PRO-004186" , "PRO-003964", "PRO-002469", "PRO-002531" , "PRO-002214" };
 
-            foreach (string product in products)
-            {
+            //foreach (string product in products)
+            //{
 
-                xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Medication");
+            //    xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Medication");
 
-                xrmApp.QuickCreate.SetValue(new BooleanItem { Name = "mzk_showprimaryproducts", Value = false });
+            //    xrmApp.QuickCreate.SetValue(new BooleanItem { Name = "mzk_showprimaryproducts", Value = false });
 
 
-                LookupQuickCreate("msdyn_product", product, xrmApp);
-                // xrmApp.ThinkTime(2000);
-                //Lookupobj.LookupQuickCreate("msdyn_unit", ReferraltodeliviryOrderdata.unit);
+            //    LookupQuickCreate("msdyn_product", product, xrmApp);
+            //    // xrmApp.ThinkTime(2000);
+            //    //Lookupobj.LookupQuickCreate("msdyn_unit", ReferraltodeliviryOrderdata.unit);
 
-                xrmApp.QuickCreate.SetValue("msdyn_quantity", readData.ReferraltodeliviryOrderData.msdyn_quantity);
+            //    xrmApp.QuickCreate.SetValue("msdyn_quantity", readData.ReferraltodeliviryOrderData.msdyn_quantity);
 
-                xrmApp.QuickCreate.Save();
-            }
+            //    xrmApp.QuickCreate.Save();
+            //}
 
             ////Service
             // xrmApp.ThinkTime(5000);
