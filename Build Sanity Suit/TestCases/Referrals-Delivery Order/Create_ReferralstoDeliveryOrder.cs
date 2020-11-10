@@ -57,7 +57,7 @@ namespace Build_Sanity_Suit
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
 
-                CreateMethod.DeliveryOrder(xrmApp, client, "CAS-229726-P9T0");
+                CreateMethod.DeliveryOrder(xrmApp, client, Variables.casenumber);
 
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));
 
