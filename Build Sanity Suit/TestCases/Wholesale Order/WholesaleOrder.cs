@@ -6,7 +6,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
-    [TestClass]
+    //[TestClass]
     public class B10_Create_WholesaleOrders:TestBase
     {
         public static WebClient cli;

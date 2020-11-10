@@ -7,7 +7,7 @@ namespace Build_Sanity_Suit
 {
 
 
-    [TestClass]
+   // [TestClass]
     public class B14_ManualInvoiceCreditOrderMarkCompletedTypeCreditCategoryOrganization:TestBase
     {
         public static WebClient cli;

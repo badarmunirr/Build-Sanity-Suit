@@ -7,7 +7,7 @@ namespace Build_Sanity_Suit
 {
 
 
-    [TestClass]
+   // [TestClass]
     public class B16_ManualInvoiceCreditOrderMarkCompletedTypeInvoiceandCategoryPatient:TestBase
     {
         public static WebClient cli;

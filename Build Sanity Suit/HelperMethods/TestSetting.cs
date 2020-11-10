@@ -31,7 +31,9 @@ namespace Build_Sanity_Suit
         //public static string IncidentViewer = System.Configuration.ConfigurationManager.AppSettings["IncidentViewer"].ToString();
         //public static string PriceController = System.Configuration.ConfigurationManager.AppSettings["PriceController"].ToString();
         public static string url = System.Configuration.ConfigurationManager.AppSettings["CRMUrl"].ToString();
+        
         public static string pwd = System.Configuration.ConfigurationManager.AppSettings["CRMPassword"].ToString();
+        public static string AdminPassword = System.Configuration.ConfigurationManager.AppSettings["AdminPassword"].ToString();
         public static string AppName = System.Configuration.ConfigurationManager.AppSettings["AppName"].ToString();
         public static string AppName2 = System.Configuration.ConfigurationManager.AppSettings["AppName3"].ToString();
 

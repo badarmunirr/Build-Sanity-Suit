@@ -168,7 +168,10 @@ namespace Build_Sanity_Suit
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
 
             xrmApp.Navigation.OpenSubArea("Referral", "Cases");
+
             client.Browser.Driver.WaitForPageToLoad();
+
+
             string refcasenu = casenumber;
             xrmApp.Grid.Search(refcasenu);
             client.Browser.Driver.WaitForPageToLoad();
@@ -190,9 +193,9 @@ namespace Build_Sanity_Suit
             //    Console.WriteLine("No 'Stay Signed In' Dialog appeared");
             //}
             client.Browser.Driver.WaitForPageToLoad();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div[data-id='msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag_text']")));
-            string casenumber2 = client.Browser.Driver.FindElement(By.CssSelector("div[data-id='msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag_text']")).Text;
-            Assert.IsTrue(casenumber2.StartsWith(casenumber));
+            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div[data-id='msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag_text']")));
+            //string casenumber2 = client.Browser.Driver.FindElement(By.CssSelector("div[data-id='msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag_text']")).Text;
+            //Assert.IsTrue(casenumber2.StartsWith(casenumber));
 
             Lookup("msdyn_workordertype", readData.ReferraltodeliviryOrderData.msdyn_workordertype, xrmApp, client);
             //
@@ -207,10 +210,10 @@ namespace Build_Sanity_Suit
             //DateTime mzk_proposedvisitenddatetime = DateTime.Today.AddDays(1).AddHours(10);
             // xrmApp.Entity.SetValue("mzk_proposedvisitenddatetime", mzk_proposedvisitenddatetime, "dd/MM/yyyy", "hh:mm");
             //code change suggested by faiza
-            DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
+            DateTime mzk_scheduledstartdatetime = DateTime.Today.AddDays(4).AddHours(10);
             xrmApp.Entity.SetValue("mzk_scheduledstartdatetime", mzk_scheduledstartdatetime, Configdata.datePattern, Configdata.TimePattern);
 
-            DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(3).AddHours(10);
+            DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(5).AddHours(15);
             xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, Configdata.datePattern, Configdata.TimePattern);
 
             Lookup("mzk_deliverymethods", readData.ReferraltodeliviryOrderData.mzk_deliverymethods, xrmApp, client);
@@ -230,6 +233,10 @@ namespace Build_Sanity_Suit
             string msdyn_postalcode = xrmApp.Entity.GetValue("msdyn_postalcode");
             Assert.IsNotNull(msdyn_postalcode);
             client.Browser.Driver.WaitForPageToLoad();
+
+
+
+
             xrmApp.Entity.SelectTab("Products And Services");
             client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Ancillary Item");
@@ -241,7 +248,31 @@ namespace Build_Sanity_Suit
             xrmApp.QuickCreate.SetValue("msdyn_quantity", readData.ReferraltodeliviryOrderData.msdyn_quantity);
 
             xrmApp.QuickCreate.Save();
+
+
+
+
             client.Browser.Driver.WaitForPageToLoad();
+
+            string[] products = { "PRO-004930", "PRO-004916", "PRO-004543", "PRO-004186" , "PRO-003964", "PRO-002469", "PRO-002531" , "PRO-002214" };
+
+            foreach (string product in products)
+            {
+
+                xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Medication");
+
+                xrmApp.QuickCreate.SetValue(new BooleanItem { Name = "mzk_showprimaryproducts", Value = false });
+
+
+                LookupQuickCreate("msdyn_product", product, xrmApp);
+                // xrmApp.ThinkTime(2000);
+                //Lookupobj.LookupQuickCreate("msdyn_unit", ReferraltodeliviryOrderdata.unit);
+
+                xrmApp.QuickCreate.SetValue("msdyn_quantity", readData.ReferraltodeliviryOrderData.msdyn_quantity);
+
+                xrmApp.QuickCreate.Save();
+            }
+
             ////Service
             // xrmApp.ThinkTime(5000);
             // xrmApp.Entity.SubGrid.ClickCommand("workorderservicesgrid", "New Work Order Service");

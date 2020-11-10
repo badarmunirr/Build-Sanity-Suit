@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Build_Sanity_Suit
 {
-   [TestClass]
+   //[TestClass]
     public class B15_ManualInvoiceCreditOrderMarkCompletedTypeCreditandCategoryPatient:TestBase
     {
         public static WebClient cli;

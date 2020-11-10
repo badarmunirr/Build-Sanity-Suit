@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Build_Sanity_Suit
 {
 
-    [TestClass]
+   // [TestClass]
     public class A2_Create_Patient : TestBase
     {
         public static WebClient cli;
@@ -17,12 +17,12 @@ namespace Build_Sanity_Suit
             WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
             cli = client;
 
-            AddScreenShot(client, "Navigate To Patient");
-            XrmApp xrmApp = new XrmApp(client);
-            CreateMethod.Patient(xrmApp, client);
-            AddScreenShot(client, "Create Patient");
-            Variables.PatientNum = xrmApp.Entity.GetValue("mzk_patientmrn");
-            AddScreenShot(client, "Get Patient Number");
+            //AddScreenShot(client, "Navigate To Patient");
+            //XrmApp xrmApp = new XrmApp(client);
+            //CreateMethod.Patient(xrmApp, client);
+            //AddScreenShot(client, "Create Patient");
+            //Variables.PatientNum = xrmApp.Entity.GetValue("mzk_patientmrn");
+            //AddScreenShot(client, "Get Patient Number");
         }
         [TestCleanup]
         public void Teardown()
