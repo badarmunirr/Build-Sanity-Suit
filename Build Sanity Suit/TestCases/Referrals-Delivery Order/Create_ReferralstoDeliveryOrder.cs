@@ -58,7 +58,7 @@ namespace Build_Sanity_Suit
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
 
                 
-                for (int i = 0; i <= 35; i++)
+                for (int i = 0; i <= 2; i++)
                 {
                     CreateMethod.DeliveryOrder(xrmApp, client, "CAS-229726-P9T0");
 
@@ -128,7 +128,7 @@ namespace Build_Sanity_Suit
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
 
 
-                for (int i = 0; i <= 35; i++)
+                for (int i = 0; i <= 2; i++)
                 {
                     CreateMethod.DeliveryOrder(xrmApp, client, "CAS-229726-P9T0");
 
@@ -198,7 +198,7 @@ namespace Build_Sanity_Suit
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
 
 
-                for (int i = 0; i <= 35; i++)
+                for (int i = 0; i <= 2; i++)
                 {
                     CreateMethod.DeliveryOrder(xrmApp, client, "CAS-229726-P9T0");
 
@@ -268,7 +268,7 @@ namespace Build_Sanity_Suit
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
 
 
-                for (int i = 0; i <= 35; i++)
+                for (int i = 0; i <= 2; i++)
                 {
                     CreateMethod.DeliveryOrder(xrmApp, client, "CAS-229726-P9T0");
 
@@ -338,7 +338,7 @@ namespace Build_Sanity_Suit
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
 
 
-                for (int i = 0; i <= 35; i++)
+                for (int i = 0; i <= 2; i++)
                 {
                     CreateMethod.DeliveryOrder(xrmApp, client, "CAS-229726-P9T0");
 
