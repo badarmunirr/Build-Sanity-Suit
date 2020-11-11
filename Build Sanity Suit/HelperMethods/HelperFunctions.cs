@@ -759,7 +759,6 @@ namespace Build_Sanity_Suit
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Save & Close')]")));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
 
-
             string mzk_address1countrycodeiso = xrmApp.Entity.GetValue("mzk_address1countrycodeiso");
             Assert.IsTrue(mzk_address1countrycodeiso.StartsWith("GB"));
         
@@ -891,7 +890,7 @@ namespace Build_Sanity_Suit
                 xrmApp.QuickCreate.SetValue("msdyn_quantity", readData.TstManualInvoice_19347Data.msdyn_quantity);
     
                 xrmApp.QuickCreate.Save();
-                client.Browser.Driver.WaitForPageToLoad();
+                xrmApp.ThinkTime(2000);
                 var mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
                 Assert.IsTrue(mzk_visitstatus.StartsWith("Proposed"));
                 xrmApp.ThinkTime(2000);

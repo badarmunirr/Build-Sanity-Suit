@@ -18,7 +18,7 @@ namespace Build_Sanity_Suit
             var CreateReferral = new Action(() =>
             {
                 LOGIN loginobj = new LOGIN();
-                WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.AdminPassword);
+                WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
                 cli = client;
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
@@ -153,8 +153,8 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-            Cleanup("Ref No:" + Variables.RefNumber + "\r\nCaseNumber:" + Variables.casenumber + "\r\nWorkOrder No:" + Variables.WorkOrderNo + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus3);
-            // cli.Browser.Driver.Close();
+            Cleanup("Ref No:" + Variables.RefNumber + "\r\nCaseNumber:" + Variables.casenumber + "\r\nWorkOrder No:" + Variables.WorkOrderNo + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus3,cli);
+        
         }
 
 

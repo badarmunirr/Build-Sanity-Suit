@@ -18,8 +18,8 @@ namespace Build_Sanity_Suit
     public class TestBase
     {
         public static LOGIN loginobj = new LOGIN();
-        public  static ExtentReports extent = null;
-        public  ExtentTest test = null;
+        public static ExtentReports extent = null;
+        public ExtentTest test = null;
 
 
         public readonly string ReportFile = System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Second.ToString() + "Report.html";
@@ -31,7 +31,7 @@ namespace Build_Sanity_Suit
         [TestInitialize]
         public void Initialize()
         {
-     
+
             if (extent == null)
             {
                 extent = new ExtentReports();
@@ -41,10 +41,10 @@ namespace Build_Sanity_Suit
                     System.Configuration.ConfigurationManager.AppSettings["CRMUrl"]);
                 extent.AddSystemInfo("Result File",
                     System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\");
-               
+
             }
 
-           
+
             var htmlReporter = new ExtentHtmlReporter(ReportFile);
             htmlReporter.Config.Theme = Theme.Dark;
             extent.AttachReporter(htmlReporter);
@@ -52,18 +52,18 @@ namespace Build_Sanity_Suit
         }
 
 
-        public void Cleanup(string value)
+        public void Cleanup(string value, WebClient client)
         {
             if (TestContext.CurrentTestOutcome.ToString() == "Passed")
             {
 
                 test.Log(Status.Info, "Test Ended");
                 test.Log(Status.Pass, "Test Passed");
+                client.Browser.Driver.Close();
 
             }
             else if (TestContext.CurrentTestOutcome.ToString() == "Failed")
             {
-
                 test.Log(Status.Info, "Test Ended");
                 test.Log(Status.Fail, "Test Failed");
             }
@@ -137,7 +137,7 @@ namespace Build_Sanity_Suit
             }
         }
 
-        static readonly string logFile = System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString()  + ".txt";
+        static readonly string logFile = System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + ".txt";
         public static void LogRecord(string Message)
         {
 

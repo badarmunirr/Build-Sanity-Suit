@@ -6,6 +6,7 @@ namespace Build_Sanity_Suit
      [TestClass]
     public class A1_Create_HealthCare:TestBase
     {
+        public static WebClient cli;
         [TestMethod, TestCategory("Sanity")]
         public void A1_CreateProvider()
         {
@@ -23,8 +24,8 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-            Cleanup("HealthCare Number:" + Variables.AccountNum + "\r\n");
-            Variables.cli.Browser.Driver.Close();
+            Cleanup("HealthCare Number:" + Variables.AccountNum + "\r\n",cli);
+         
         }
     }
 
