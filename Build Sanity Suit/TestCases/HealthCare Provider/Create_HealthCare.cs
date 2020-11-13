@@ -6,18 +6,15 @@ namespace Build_Sanity_Suit
     [TestClass]
     public class A1_Create_HealthCare : TestBase
     {
-        public static WebClient cli;
+        public static WebClient client;
         [TestMethod, TestCategory("Sanity")]
         public void A1_CreateProvider()
         {
 
-            WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
-
-            Variables.cli = client;
+            client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
             XrmApp xrmApp = new XrmApp(client);
 
             CreateMethod.Provider(xrmApp, client);
-
             Variables.AccountNum = xrmApp.Entity.GetHeaderValue("accountnumber");
         }
 
@@ -25,7 +22,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             Cleanup("HealthCare Number:" + Variables.AccountNum + "\r\n");
-            cli.Browser.Driver.Close();
+            client.Browser.Driver.Close();
 
         }
     }

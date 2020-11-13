@@ -11,15 +11,14 @@ namespace Build_Sanity_Suit
     [TestClass]
     public class B12_Create_EmployeeOrder : TestBase
     {
-        public static WebClient cli;
+        public static WebClient client;
         [TestMethod, TestCategory("Sanity")]
         public void B12_CreateResourcetoAccountToEmployeeOrder()
         {
             LOGIN loginobj = new LOGIN();
             //operational manager
-            WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
+            client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
 
-            cli = client;
             XrmApp xrmApp = new XrmApp(client);
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
             CreateMethod.EmployeeOrder(xrmApp, client);
@@ -35,7 +34,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             Cleanup("Employee Order No:" + Variables.WorkOrderNum + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus3);
-            cli.Browser.Driver.Close();
+            client.Browser.Driver.Close();
         }
     }
 }

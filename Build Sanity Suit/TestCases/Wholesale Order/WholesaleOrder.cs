@@ -9,13 +9,13 @@ namespace Build_Sanity_Suit
     [TestClass]
     public class B10_Create_WholesaleOrders:TestBase
     {
-        public static WebClient cli;
+        public static WebClient client;
         [TestMethod, TestCategory("Sanity")]
         public void B10_CreateWholesaleOrder()
         {
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
-            cli = client;
+            client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
+           
             XrmApp xrmApp = new XrmApp(client);
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
 
@@ -36,7 +36,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             Cleanup("Wholsale No:" + Variables.OrderNum + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus2);
-            cli.Browser.Driver.Close();
+            client.Browser.Driver.Close();
         }
     }
 }

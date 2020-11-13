@@ -8,14 +8,14 @@ namespace Build_Sanity_Suit
     [TestClass]
     public class B11_Create_Resource:TestBase
     {
-        public static WebClient cli;
+        public static WebClient client;
         [TestMethod, TestCategory("Sanity")]
         public void B11_CreateResourcetoAccountTypeEmployee()
         {
 
             LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
-            cli = client;
+            client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
+
             XrmApp xrmApp = new XrmApp(client);
 
             CreateMethod.Resource(xrmApp,client);
@@ -26,7 +26,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             Cleanup("Bookable Resource");
-            cli.Browser.Driver.Close();
+            client.Browser.Driver.Close();
           
         }
     }

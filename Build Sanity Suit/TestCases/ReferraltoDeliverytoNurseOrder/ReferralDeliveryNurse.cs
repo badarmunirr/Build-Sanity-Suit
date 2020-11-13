@@ -8,18 +8,19 @@ using OpenQA.Selenium.Support.UI;
 namespace Build_Sanity_Suit
 {
     [TestClass]
-    public class ReferralDeliveryNurse:TestBase
+    public class ReferralDeliveryNurse : TestBase
     {
-        public static WebClient cli;
+        public WebClient client;
+        LOGIN lOGIN = new LOGIN();
+
         [TestMethod, TestCategory("Sanity")]
         [DoNotParallelize]
         public void A1_CreateReferral()
         {
             var CreateReferral = new Action(() =>
             {
-                LOGIN loginobj = new LOGIN();
-                WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
-                cli = client;
+
+                client = lOGIN.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
                 CreateMethod.Referral(xrmApp, client);
@@ -46,29 +47,26 @@ namespace Build_Sanity_Suit
                 xrmApp.ThinkTime(2000);
                 xrmApp.Dialogs.Assign(Dialogs.AssignTo.Team, "Hah");
                 xrmApp.ThinkTime(2000);
-   
+
 
             });
 
             CreateReferral();
         }
+
         [TestMethod, TestCategory("Sanity")]
         [DoNotParallelize]
         public void A2_CreateDeliveryOrder()
         {
             var CreateDeliveryOrder = new Action(() =>
             {
-                LOGIN loginobj = new LOGIN();
-                WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
-                cli = client;
+                client = lOGIN.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
-
                 string cases = Helper.ReadReferral();
                 Console.WriteLine(cases);
                 CreateMethod.DeliveryOrder(xrmApp, client, cases);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));
-
                 xrmApp.CommandBar.ClickCommand("Propose Order");
                 xrmApp.ThinkTime(2000);
                 Variables.mzk_visitstatus3 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
@@ -76,27 +74,23 @@ namespace Build_Sanity_Suit
                 //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
                 Variables.WorkOrderNo = xrmApp.Entity.GetValue("msdyn_name");
                 xrmApp.ThinkTime(2000);
-
-
-
             });
+
             CreateDeliveryOrder();
         }
+
         [TestMethod, TestCategory("Sanity")]
         [DoNotParallelize]
         public void A3_CreateNurseOrder()
         {
             var CreateNurseOrder = new Action(() =>
             {
-                LOGIN loginobj = new LOGIN();
-                WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
-                cli = client;
+
+                client = lOGIN.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
+
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
-
-
                 string cases = Helper.ReadReferral();
-
                 Console.WriteLine(cases);
                 CreateMethod.NurseOrder(xrmApp, client, cases);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Complete')]")));
@@ -118,7 +112,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             Cleanup("Ref No:" + Variables.RefNumber + "\r\nCaseNumber:" + Variables.casenumber + "\r\nWorkOrder No:" + Variables.WorkOrderNo + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus3);
-            cli.Browser.Driver.Close();
+            client.Browser.Driver.Close();
         }
     }
 }

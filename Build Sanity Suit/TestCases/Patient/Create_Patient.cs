@@ -8,15 +8,13 @@ namespace Build_Sanity_Suit
     [TestClass]
     public class A2_Create_Patient : TestBase
     {
-        public static WebClient cli;
+        public static WebClient client;
 
         [TestMethod, TestCategory("Sanity")]
         public void A2_CreatePatient()
         {
 
-            WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
-            cli = client;
-
+            client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
             //AddScreenShot(client, "Navigate To Patient");
             XrmApp xrmApp = new XrmApp(client);
             CreateMethod.Patient(xrmApp, client);
@@ -28,7 +26,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             Cleanup("Patient Number:" + Variables.PatientNum + "\r\n");
-            cli.Browser.Driver.Close();
+            client.Browser.Driver.Close();
         }
     }
 }

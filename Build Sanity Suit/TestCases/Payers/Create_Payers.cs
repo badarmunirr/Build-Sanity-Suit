@@ -5,17 +5,16 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Build_Sanity_Suit
 {
-  [TestClass]
-    public class A3_Create_Payers :TestBase
+    [TestClass]
+    public class A3_Create_Payers : TestBase
     {
-        public static WebClient cli;
+        public static WebClient client;
         [TestMethod, TestCategory("Sanity")]
         public void A3_CreatePayer()
         {
 
-            WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
+            client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
 
-            cli = client;
             //AddScreenShot(client, "Navigate To Payer");
             XrmApp xrmApp = new XrmApp(client);
             CreateMethod.Payer(xrmApp, client);
@@ -28,7 +27,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             Cleanup("Payer Number:" + Variables.PayerNum + "\r\n");
-            cli.Browser.Driver.Close();
+            client.Browser.Driver.Close();
         }
 
 
