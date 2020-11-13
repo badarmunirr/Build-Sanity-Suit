@@ -17,18 +17,18 @@ namespace Build_Sanity_Suit
             WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
             cli = client;
 
-            AddScreenShot(client, "Navigate To Patient");
+            //AddScreenShot(client, "Navigate To Patient");
             XrmApp xrmApp = new XrmApp(client);
             CreateMethod.Patient(xrmApp, client);
-            AddScreenShot(client, "Create Patient");
+            //AddScreenShot(client, "Create Patient");
             Variables.PatientNum = xrmApp.Entity.GetValue("mzk_patientmrn");
-            AddScreenShot(client, "Get Patient Number");
+            //AddScreenShot(client, "Get Patient Number");
         }
         [TestCleanup]
         public void Teardown()
         {
-            Cleanup("Patient Number:" + Variables.PatientNum + "\r\n",cli);
-     
+            Cleanup("Patient Number:" + Variables.PatientNum + "\r\n");
+            cli.Browser.Driver.Close();
         }
     }
 }

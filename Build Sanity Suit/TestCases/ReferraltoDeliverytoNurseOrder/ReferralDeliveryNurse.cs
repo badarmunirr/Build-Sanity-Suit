@@ -1,26 +1,20 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.Dynamics365.UIAutomation.Api.UCI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using Microsoft.Dynamics365.UIAutomation.Browser;
 using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
-    //admin 
-    //operational Manager
-
-   [TestClass]
-    public class A8_Create_ReferralstoNurseOrder:TestBase
+    [TestClass]
+    public class ReferralDeliveryNurse:TestBase
     {
         public static WebClient cli;
         [TestMethod, TestCategory("Sanity")]
-        public void A8_CreateReferraltoNurse()
+        [DoNotParallelize]
+        public void A1_CreateReferral()
         {
-
-            ReadData readData = Helper.ReadDataFromJSONFile();
-            //CreateMethod Create = new CreateMethod();
-
             var CreateReferral = new Action(() =>
             {
                 LOGIN loginobj = new LOGIN();
@@ -28,12 +22,12 @@ namespace Build_Sanity_Suit
                 cli = client;
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
-
                 CreateMethod.Referral(xrmApp, client);
-
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")));
                 // when support for hidden field is added need to replace this line of code
                 Variables.casenumber = client.Browser.Driver.FindElement(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")).Text;
+                //Helper.SaveReferral(Variables.casenumber);
+                Helper.SaveReferral(Variables.casenumber);
                 xrmApp.ThinkTime(2000);
                 string mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_status" });
                 Assert.IsTrue(mzk_visitstatus.StartsWith("Active"));
@@ -52,10 +46,46 @@ namespace Build_Sanity_Suit
                 xrmApp.ThinkTime(2000);
                 xrmApp.Dialogs.Assign(Dialogs.AssignTo.Team, "Hah");
                 xrmApp.ThinkTime(2000);
-                cli.Browser.Driver.Quit();
+   
 
             });
 
+            CreateReferral();
+        }
+        [TestMethod, TestCategory("Sanity")]
+        [DoNotParallelize]
+        public void A2_CreateDeliveryOrder()
+        {
+            var CreateDeliveryOrder = new Action(() =>
+            {
+                LOGIN loginobj = new LOGIN();
+                WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
+                cli = client;
+                XrmApp xrmApp = new XrmApp(client);
+                WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+
+                string cases = Helper.ReadReferral();
+                Console.WriteLine(cases);
+                CreateMethod.DeliveryOrder(xrmApp, client, cases);
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));
+
+                xrmApp.CommandBar.ClickCommand("Propose Order");
+                xrmApp.ThinkTime(2000);
+                Variables.mzk_visitstatus3 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
+                Assert.IsTrue(Variables.mzk_visitstatus3.StartsWith("Proposed"));
+                //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+                Variables.WorkOrderNo = xrmApp.Entity.GetValue("msdyn_name");
+                xrmApp.ThinkTime(2000);
+
+
+
+            });
+            CreateDeliveryOrder();
+        }
+        [TestMethod, TestCategory("Sanity")]
+        [DoNotParallelize]
+        public void A3_CreateNurseOrder()
+        {
             var CreateNurseOrder = new Action(() =>
             {
                 LOGIN loginobj = new LOGIN();
@@ -63,7 +93,12 @@ namespace Build_Sanity_Suit
                 cli = client;
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
-                CreateMethod.NurseOrder(xrmApp, client, Variables.casenumber);
+
+
+                string cases = Helper.ReadReferral();
+
+                Console.WriteLine(cases);
+                CreateMethod.NurseOrder(xrmApp, client, cases);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Complete')]")));
                 xrmApp.CommandBar.ClickCommand("Complete");
                 xrmApp.ThinkTime(2000);
@@ -72,20 +107,18 @@ namespace Build_Sanity_Suit
                 //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
                 Variables.WorkOrderNo = xrmApp.Entity.GetValue("msdyn_name");
             });
-
-            CreateReferral();
             CreateNurseOrder();
         }
+
+
+
+
+
         [TestCleanup]
         public void Teardown()
         {
-            Cleanup("Ref No:" + Variables.RefNumber + "\r\nCaseNumber:" + Variables.casenumber + "\r\nWorkOrder No:" + Variables.WorkOrderNo + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus3,cli);
-          
+            Cleanup("Ref No:" + Variables.RefNumber + "\r\nCaseNumber:" + Variables.casenumber + "\r\nWorkOrder No:" + Variables.WorkOrderNo + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus3);
+            cli.Browser.Driver.Close();
         }
-
     }
-
 }
-
-
-

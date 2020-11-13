@@ -14,20 +14,21 @@ namespace Build_Sanity_Suit
         {
 
             WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
+
             cli = client;
-            AddScreenShot(client, "Navigate To Payer");
+            //AddScreenShot(client, "Navigate To Payer");
             XrmApp xrmApp = new XrmApp(client);
             CreateMethod.Payer(xrmApp, client);
-            AddScreenShot(client, "Create Payer");
+            //AddScreenShot(client, "Create Payer");
             Variables.PayerNum = xrmApp.Entity.GetHeaderValue("accountnumber");
-            AddScreenShot(client, "Get Payer Number");
+            //AddScreenShot(client, "Get Payer Number");
 
         }
         [TestCleanup]
         public void Teardown()
         {
-            Cleanup("Payer Number:" + Variables.PayerNum + "\r\n",cli);
-
+            Cleanup("Payer Number:" + Variables.PayerNum + "\r\n");
+            cli.Browser.Driver.Close();
         }
 
 

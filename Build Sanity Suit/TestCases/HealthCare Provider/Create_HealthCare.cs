@@ -3,8 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Build_Sanity_Suit
 {
-     [TestClass]
-    public class A1_Create_HealthCare:TestBase
+    [TestClass]
+    public class A1_Create_HealthCare : TestBase
     {
         public static WebClient cli;
         [TestMethod, TestCategory("Sanity")]
@@ -24,8 +24,9 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-            Cleanup("HealthCare Number:" + Variables.AccountNum + "\r\n",cli);
-         
+            Cleanup("HealthCare Number:" + Variables.AccountNum + "\r\n");
+            cli.Browser.Driver.Close();
+
         }
     }
 

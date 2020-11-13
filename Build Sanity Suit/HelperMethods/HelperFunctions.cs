@@ -99,7 +99,7 @@ namespace Build_Sanity_Suit
             xrmApp.ThinkTime(1000);
             xrmApp.Entity.SelectTab("General");
 
-            xrmApp.Entity.SetValue("name", readData.ReferraltodeliviryOrderData.name);
+            //xrmApp.Entity.SetValue("name", readData.ReferraltodeliviryOrderData.name);
 
             Lookup("mzk_contract", readData.ReferraltodeliviryOrderData.mzk_contract, xrmApp, client);
 
@@ -110,7 +110,7 @@ namespace Build_Sanity_Suit
             //Lookupobj.Lookup("mzk_contractdeliverymethod", "aHUS");
 
             // xrmApp.Entity.SetValue("description", "description");
-            xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_selffundingpatient", Value = true });
+            xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_reducedpricepatient", Value = true });
 
             //if (client.Browser.Driver.HasElement(By.XPath("//a[contains(@aria-label,'Reduced Price Patient')]")))
             //{
@@ -473,6 +473,8 @@ namespace Build_Sanity_Suit
             xrmApp.ThinkTime(4000);
             xrmApp.Navigation.OpenSubArea("Others", "Bookable Resources");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            xrmApp.CommandBar.ClickCommand("New");
+
             xrmApp.Entity.SetValue(new OptionSet { Name = "resourcetype", Value = readData.ResourceData.resourcetype });
 
             xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_resourcesubtype", Value = readData.ResourceData.mzk_resourcesubtype });
@@ -558,27 +560,38 @@ namespace Build_Sanity_Suit
 
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
             client.Browser.Driver.WaitForPageToLoad();
+
+
             xrmApp.Navigation.OpenSubArea("Customers", "Payers");
+
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            
             xrmApp.CommandBar.ClickCommand("New");
 
             xrmApp.Entity.SetValue("name", readData.PayerData.name);
+
             xrmApp.Entity.SetValue("telephone1", readData.PayerData.telephone1);
+
             xrmApp.Entity.SetValue("emailaddress1", readData.PayerData.emailaddress1);
+
             // xrmApp.Entity.SetValue("mzk_aeemailaddress", Payerdata.email2);
             // xrmApp.ThinkTime(1000);
             // xrmApp.Entity.SetValue("mzk_pqcemailaddress", Payerdata.email3);
             // xrmApp.Entity.SetValue("mzk_pspid", Payerdata.pspid+i);
-            xrmApp.Entity.SetValue("mzk_vatnum", readData.PayerData.mzk_vatnum);//optional
+            xrmApp.Entity.SetValue("mzk_vatnum", readData.PayerData.mzk_vatnum);
+
             xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_accountcategory", Value = readData.PayerData.mzk_accountcategory });
+            
             xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_billingfrequency", Value = readData.PayerData.mzk_billingfrequency });
+            
             xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_showcreditlimit", Value = true });
             // unable to set value in credit limit field 
             // xrmApp.Entity.SetValue("creditlimit", "555");
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[contains(@aria-label,'Credit Limit')]")));
-            client.Browser.Driver.WaitUntilClickable(By.XPath("//input[contains(@aria-label,'Credit Limit')]")).Click();
+
+
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath("//input[contains(@aria-label,'Credit Limit')]"))).Click();
             client.Browser.Driver.FindElement(By.XPath("//input[contains(@aria-label,'Credit Limit')]")).SendKeys("5555");
-            
+
             Lookup("mzk_paymentterms", readData.PayerData.mzk_paymentterms, xrmApp, client);
             //Lookupobj.Lookup("mzk_patientlanguage", Payerdata.patientlanguage);
             DateTime mzk_dateoflastcreditcheck = DateTime.Today;
@@ -685,8 +698,9 @@ namespace Build_Sanity_Suit
             // xrmApp.ThinkTime(1000);
             // xrmApp.Entity.SetValue("mzk_legacyhahnumber", Patientdata.legacyhahnumber);
 
+            string[] identificationtype = { "National ID", "Passport", "Work Permit", "Driver's License Number", "Other", "National Health Care ID" };
 
-            xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_patientidentificationtype", Value = "National ID" });
+            xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_patientidentificationtype", Value = identificationtype[0] });
 
             Random random = new Random();
             int randomnumber = random.Next(0111111111, 0999999999);
@@ -696,14 +710,14 @@ namespace Build_Sanity_Suit
 
             xrmApp.Entity.SetValue("mzk_primaryidentificationexpirationdate", mzk_primaryidentificationexpirationdate, Configdata.datePattern);
             ;
-            xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_secondaryidentificationtype", Value = "Passport" });
+            xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_secondaryidentificationtype", Value = identificationtype[1] });
 
             xrmApp.Entity.SetValue("mzk_secondaryidentificationnumber", "0123456");
             DateTime mzk_secondaryidentificationexpirationdate = DateTime.Today.AddDays(10);
 
             xrmApp.Entity.SetValue("mzk_secondaryidentificationexpirationdate", mzk_secondaryidentificationexpirationdate, Configdata.datePattern);
 
-            xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_otheridentificationtype", Value = "Other" });
+            xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_otheridentificationtype", Value = identificationtype[4] });
 
             xrmApp.Entity.SetValue("mzk_otheridentificationnumber", "012345");
             DateTime mzk_otheridentificationexpirationdate = DateTime.Today.AddDays(10);
@@ -714,7 +728,7 @@ namespace Build_Sanity_Suit
             xrmApp.Entity.SetValue("telephone3", readData.PatientData.telephone3);
             xrmApp.Entity.SetValue("mobilephone", readData.PatientData.mobilephone);
             xrmApp.Entity.SetValue("emailaddress1", readData.PatientData.emailaddress1);
-  
+
             Address(xrmApp, client);
             //Contact Methods
 
@@ -744,8 +758,6 @@ namespace Build_Sanity_Suit
             // xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_schedulepreferencesaturday", Value = false });
             // xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_schedulepreferencesunday", Value = true });
 
-
-        
             xrmApp.Entity.Save();
             xrmApp.ThinkTime(2000);
             if (client.Browser.Driver.HasElement(By.CssSelector("button[data-id='ignore_save']")))
@@ -761,13 +773,12 @@ namespace Build_Sanity_Suit
 
             string mzk_address1countrycodeiso = xrmApp.Entity.GetValue("mzk_address1countrycodeiso");
             Assert.IsTrue(mzk_address1countrycodeiso.StartsWith("GB"));
-        
+
             string mzk_address2countrycodeiso = xrmApp.Entity.GetValue("mzk_address2countrycodeiso");
             Assert.IsTrue(mzk_address2countrycodeiso.StartsWith("GB"));
 
             string mzk_address3countrycodeiso = xrmApp.Entity.GetValue("mzk_address3countrycodeiso");
             Assert.IsTrue(mzk_address3countrycodeiso.StartsWith("GB"));
-            string[] identificationtype = { "National ID", "Passport", "Work Permit", "Driver's License Number", "Other", "National Health Care ID" };
             foreach (string idtype in identificationtype)
             {
                 xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_patientidentificationtype", Value = idtype });
@@ -806,17 +817,17 @@ namespace Build_Sanity_Suit
             if (Type == "Invoice" && Category == "Organization" || Type == "Credit" && Category == "Organization")
             {
 
-                client.Browser.Driver.WaitForPageToLoad();
+                xrmApp.ThinkTime(5000);
                 xrmApp.Navigation.OpenSubArea("Referral", "Manual Invoice/Credit");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.CommandBar.ClickCommand("New");
-                client.Browser.Driver.WaitForPageToLoad();
+
                 xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_category", Value = Category });
-           
+
                 xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_manualordertype", Value = Type });
-        
+
                 //Lookupobj.Lookup("mzk_payer", TestData19273.payer);
-      
+
                 xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_manualbillingfrequency", Value = readData.TstManualInvoice_19273Data.mzk_manualbillingfrequency });
 
                 xrmApp.Entity.SetValue("mzk_prescriptionponumber", readData.TstManualInvoice_19273Data.mzk_prescriptionponumber);
@@ -838,30 +849,30 @@ namespace Build_Sanity_Suit
                 xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Work Order Product");
 
                 LookupQuickCreate("msdyn_product", readData.TstManualInvoice_19273Data.msdyn_product, xrmApp);
-         
+
                 xrmApp.QuickCreate.SetValue("msdyn_quantity", readData.TstManualInvoice_19273Data.msdyn_quantity);
 
                 xrmApp.QuickCreate.Save();
                 client.Browser.Driver.WaitForPageToLoad();
                 var mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
                 Assert.IsTrue(mzk_visitstatus.StartsWith("Proposed"));
- 
+
             }
             if (Type == "Invoice" && Category == "Patient" || Type == "Credit" && Category == "Patient")
             {
-                client.Browser.Driver.WaitForPageToLoad();
+                xrmApp.ThinkTime(5000);
                 xrmApp.Navigation.OpenSubArea("Referral", "Manual Invoice/Credit");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.CommandBar.ClickCommand("New");
-             
+
                 xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_category", Value = Category });
-    
+
                 xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_manualordertype", Value = Type });
 
                 //Lookupobj.Lookup("mzk_payer", TestData19347.payer);
 
                 xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_manualbillingfrequency", Value = readData.TstManualInvoice_19347Data.mzk_manualbillingfrequency });
-      
+
                 xrmApp.Entity.SetValue("mzk_prescriptionponumber", readData.TstManualInvoice_19347Data.mzk_prescriptionponumber);
 
                 DateTime mzk_actualvisitstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
@@ -888,7 +899,7 @@ namespace Build_Sanity_Suit
                 LookupQuickCreate("msdyn_product", readData.TstManualInvoice_19347Data.msdyn_product, xrmApp);
 
                 xrmApp.QuickCreate.SetValue("msdyn_quantity", readData.TstManualInvoice_19347Data.msdyn_quantity);
-    
+
                 xrmApp.QuickCreate.Save();
                 xrmApp.ThinkTime(2000);
                 var mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
@@ -960,6 +971,7 @@ namespace Build_Sanity_Suit
             Assert.IsTrue(mzk_address1countrycodeiso.StartsWith("GB"));
             string mzk_address2countrycodeiso = xrmApp.Entity.GetValue("mzk_address2countrycodeiso");
             Assert.IsTrue(mzk_address2countrycodeiso.StartsWith("GB"));
+            client.Browser.Driver.WaitForPageToLoad();
             //Field address1_line1 =  xrmApp.Entity.GetField("address1_line1");
             //Assert.IsTrue(address1_line1.IsRequired);
 
@@ -1006,7 +1018,7 @@ namespace Build_Sanity_Suit
             Lookup("mzk_deliverymethods", readData.EmployeeOrderData.mzk_deliverymethods, xrmApp, client);
 
 
-         
+
             xrmApp.Entity.Save();
             client.Browser.Driver.WaitForPageToLoad();
             //string mzk_visitstatus =  xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
@@ -1055,6 +1067,8 @@ namespace Build_Sanity_Suit
         public static string casenumber;
         public static string RefNumber;
         public static string WorkOrderNo;
+        public static string DeliveryOrderNo;
+        public static string NurseOrderNo;
         public static string OrderNum;
         public static string mzk_visitstatus2;
         public static string InvoiceNo;

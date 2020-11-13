@@ -52,14 +52,14 @@ namespace Build_Sanity_Suit
         }
 
 
-        public void Cleanup(string value, WebClient client)
+        public void Cleanup(string value)
         {
             if (TestContext.CurrentTestOutcome.ToString() == "Passed")
             {
 
                 test.Log(Status.Info, "Test Ended");
                 test.Log(Status.Pass, "Test Passed");
-                client.Browser.Driver.Close();
+                //client.Browser.Driver.Close();
 
             }
             else if (TestContext.CurrentTestOutcome.ToString() == "Failed")
@@ -138,6 +138,8 @@ namespace Build_Sanity_Suit
         }
 
         static readonly string logFile = System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + ".txt";
+        static readonly string refile = System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\Ref" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + ".txt";
+
         public static void LogRecord(string Message)
         {
 
@@ -147,6 +149,42 @@ namespace Build_Sanity_Suit
             }
             //string LoggerPath = System.IO.Directory.GetCurrentDirectory() + "\\Logger.txt";
             //File.WriteAllText(LoggerPath, Message);
+        }
+
+        public static void CheckExistingFiles()
+        {
+            DirectoryInfo d = new DirectoryInfo(System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\");//Assuming Test is your Folder
+            FileInfo[] Files = d.GetFiles("*.txt"); //Getting Text files
+            string str = "";
+            foreach (FileInfo file in Files)
+            {
+                str = str + ", " + file.Name;
+
+                if (str != refile)
+                {
+                    file.Delete();
+                }
+            }
+
+        }
+
+        public static void SaveReferral(string Message)
+        {
+            CheckExistingFiles();
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(refile, true))
+            {
+                file.WriteLine(Message);
+            }
+            //string LoggerPath = System.IO.Directory.GetCurrentDirectory() + "\\Logger.txt";
+            //File.WriteAllText(LoggerPath, Message);
+        }
+        public static string ReadReferral()
+        {
+            string[] lines = File.ReadAllLines(refile);
+            string SolutionName = lines[0].Replace("SolutionName:-", "").Trim();
+            //Console.WriteLine(SolutionName);
+
+            return SolutionName;
         }
 
 
