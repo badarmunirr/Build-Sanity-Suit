@@ -615,7 +615,8 @@ namespace Build_Sanity_Suit
             xrmApp.ThinkTime(2000);
             if (client.Browser.Driver.HasElement(By.CssSelector("button[data-id='ignore_save']")))
             {
-                client.Browser.Driver.FindElement(By.CssSelector("button[data-id='ignore_save']")).SendKeys(Keys.Enter);
+                xrmApp.Dialogs.DuplicateDetection(true);
+          //client.Browser.Driver.FindElement(By.CssSelector("button[data-id='ignore_save']")).SendKeys(Keys.Enter);
             }
             else
             {
@@ -624,6 +625,7 @@ namespace Build_Sanity_Suit
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Vaildate Payer')]")));
             xrmApp.CommandBar.ClickCommand("Vaildate Payer");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("confirmButton")));
+      
             xrmApp.Dialogs.ConfirmationDialog(true);
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("confirmButton")));
             xrmApp.Dialogs.ConfirmationDialog(true);
@@ -641,7 +643,7 @@ namespace Build_Sanity_Suit
             //string accountnumber =  xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "accountnumber" });
             //Assert.IsFalse(accountnumber.StartsWith("---"));
 
-            client.Browser.Driver.WaitUntilClickable(By.CssSelector("*[aria-label='Validated: Yes']")).IsVisible();
+            client.Browser.Driver.WaitUntilVisible(By.CssSelector("*[aria-label='Validated: Yes']")).IsVisible();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
 
         }
