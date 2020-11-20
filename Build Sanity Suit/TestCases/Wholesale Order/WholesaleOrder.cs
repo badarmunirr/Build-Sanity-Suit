@@ -28,8 +28,9 @@ namespace Build_Sanity_Suit
             Variables.mzk_visitstatus2 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(Variables.mzk_visitstatus2.StartsWith("Proposed"));
             xrmApp.ThinkTime(1000);
-
             Variables.OrderNum = xrmApp.Entity.GetHeaderValue("msdyn_name");
+
+
         }
 
         [TestCleanup]

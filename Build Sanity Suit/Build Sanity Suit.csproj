@@ -481,6 +481,7 @@
     <Compile Include="HelperMethods\TestBase.cs" />
     <Compile Include="HelperMethods\TestSetting.cs" />
     <Compile Include="DataFiles\TestCasesDataFiles\ReferralstoDeliveryNurseOrderData.cs" />
+    <Compile Include="TestCases\LoginFinops.cs" />
     <Compile Include="TestCases\ReferraltoDeliverytoNurseOrder\ReferralDeliveryNurse.cs" />
     <Compile Include="TestCases\BulkClass.cs" />
     <Compile Include="TestCases\Contract\MasterContract\CreateMasterContract.cs" />

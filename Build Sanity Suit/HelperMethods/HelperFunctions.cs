@@ -1063,9 +1063,9 @@ namespace Build_Sanity_Suit
         public static WebClient cli;
         public static string WorkOrderNum;
         public static string mzk_visitstatus3;
-        public static string PayerNum;
-        public static string PatientNum;
-        public static string AccountNum;
+       
+
+
         public static string casenumber;
         public static string RefNumber;
         public static string WorkOrderNo;
