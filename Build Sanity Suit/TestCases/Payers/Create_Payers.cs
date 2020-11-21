@@ -14,7 +14,7 @@ namespace Build_Sanity_Suit
         public void A3_CreatePayer()
         {
 
-            client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
+            client = loginobj.RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
 
             //AddScreenShot(client, "Navigate To Payer");
             XrmApp xrmApp = new XrmApp(client);
@@ -22,13 +22,13 @@ namespace Build_Sanity_Suit
             //AddScreenShot(client, "Create Payer");
             PayerNum = xrmApp.Entity.GetHeaderValue("accountnumber");
             //AddScreenShot(client, "Get Payer Number");
-            LoginFinops.CheckFinopsAccounts(PayerNum);
+           // LoginFinops.CheckFinopsAccounts(PayerNum);
         }
         [TestCleanup]
         public void Teardown()
         {
             Cleanup("Payer Number:" + PayerNum + "\r\n");
-            //client.Browser.Driver.Close();
+            client.Browser.Driver.Close();
         }
 
 

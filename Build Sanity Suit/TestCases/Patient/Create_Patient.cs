@@ -16,12 +16,12 @@ namespace Build_Sanity_Suit
         {
 
             client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
-            //AddScreenShot(client, "Navigate To Patient");
+           //AddScreenShot(client, "Navigate To Patient");
             XrmApp xrmApp = new XrmApp(client);
             CreateMethod.Patient(xrmApp, client);
             //AddScreenShot(client, "Create Patient");
             PatientNum = xrmApp.Entity.GetValue("mzk_patientmrn");
-            //AddScreenShot(client, "Get Patient Number");
+           //AddScreenShot(client, "Get Patient Number");
             LoginFinops.CheckFinopsAccounts(PatientNum);
         }
         [TestCleanup]
