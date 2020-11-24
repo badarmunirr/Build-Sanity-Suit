@@ -901,7 +901,6 @@ namespace Build_Sanity_Suit
                 LookupQuickCreate("msdyn_product", readData.TstManualInvoice_19347Data.msdyn_product, xrmApp);
 
                 xrmApp.QuickCreate.SetValue("msdyn_quantity", readData.TstManualInvoice_19347Data.msdyn_quantity);
-
                 xrmApp.QuickCreate.Save();
                 xrmApp.ThinkTime(2000);
                 var mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });

@@ -17,7 +17,7 @@ namespace Build_Sanity_Suit
 
             CreateMethod.Provider(xrmApp, client);
             AccountNum = xrmApp.Entity.GetHeaderValue("accountnumber");
-            LoginFinops.CheckFinopsAccounts(AccountNum);
+           // LoginFinops.CheckFinopsAccounts(AccountNum);
         }
 
         [TestCleanup]

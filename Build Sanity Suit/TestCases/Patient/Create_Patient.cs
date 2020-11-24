@@ -22,7 +22,7 @@ namespace Build_Sanity_Suit
             //AddScreenShot(client, "Create Patient");
             PatientNum = xrmApp.Entity.GetValue("mzk_patientmrn");
            //AddScreenShot(client, "Get Patient Number");
-            LoginFinops.CheckFinopsAccounts(PatientNum);
+          //  LoginFinops.CheckFinopsAccounts(PatientNum);
         }
         [TestCleanup]
         public void Teardown()
