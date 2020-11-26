@@ -363,7 +363,7 @@
     "unit": "EA",
     "msdyn_quantity": "1",
     "legacyordernumber": "LON-110",
-    "contractdeliveryfrequency": "5 Days"
+    "contractdeliveryfrequency": "12 Days"
 
   },
   "ReferralstoNurseOrderData": {

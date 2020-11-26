@@ -203,7 +203,7 @@ namespace Build_Sanity_Suit
             // xrmApp.ThinkTime(2000);
             // xrmApp.Entity.SetValue("mzk_region", ReferraltodeliviryOrderdata.region);
             // xrmApp.Entity.SetValue("mzk_district", ReferraltodeliviryOrderdata.district);
-
+             xrmApp.Entity.SetValue("mzk_prescriptionponumber", Wholesaleorderdata.prescriptionponumber);
             //DateTime mzk_proposedvisitdatetime = DateTime.Today.AddDays(1).AddHours(10);
             // xrmApp.Entity.SetValue("mzk_proposedvisitdatetime", mzk_proposedvisitdatetime,"dd/MM/yyyy", "hh:mm");
 
@@ -221,8 +221,8 @@ namespace Build_Sanity_Suit
             //Lookupobj.Lookup("mzk_deliveryroute", ReferraltodeliviryOrderdata.deliveryroute);
             // xrmApp.ThinkTime(2000);
             // xrmApp.Entity.SetValue("mzk_legacyordernumber", ReferraltodeliviryOrderdata.legacyordernumber);
-            // xrmApp.ThinkTime(2000);
-            //Lookupobj.Lookup("mzk_contractdeliveryfrequency", ReferraltodeliviryOrderdata.contractdeliveryfrequency);
+            xrmApp.ThinkTime(2000);
+            Lookup("mzk_contractdeliveryfrequency", ReferraltodeliviryOrderdata.contractdeliveryfrequency, xrmApp, client);
 
             xrmApp.Entity.Save();
             client.Browser.Driver.WaitForPageToLoad();

@@ -108,13 +108,13 @@ namespace Build_Sanity_Suit
         //public static string servicename = "Clinical Call";
         //public static string casenumber = "CAS-197156-Q3Q5";
         public static string legacyordernumber = "LON-110";
-        public static string contractdeliveryfrequency = "5 Days";
+        public static string contractdeliveryfrequency = "12 Days";
     }
     public class Wholesaleorderdata
     {
         public static int noofwholesaleorder = 7;
         public static string wholesaleordertype = "Wholesale Delivery";
-        public static string prescriptionponumber = "PO-124";
+        public static string prescriptionponumber = "124";
         public static string district = "North";
         public static string contractname = "CON-SA-007011";
         public static string deliveryfrequency = "5 Days";
