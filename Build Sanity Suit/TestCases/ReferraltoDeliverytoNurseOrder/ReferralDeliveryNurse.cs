@@ -113,7 +113,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             Cleanup("Ref No:" + Variables.RefNumber + "\r\nCaseNumber:" + Variables.casenumber + "\r\nWorkOrder No:" + Variables.WorkOrderNo + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus3);
-            client.Browser.Driver.Close();
+            //client.Browser.Driver.Close();
         }
     }
 }

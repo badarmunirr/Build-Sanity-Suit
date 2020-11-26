@@ -222,7 +222,7 @@ namespace Build_Sanity_Suit
             // xrmApp.ThinkTime(2000);
             // xrmApp.Entity.SetValue("mzk_legacyordernumber", ReferraltodeliviryOrderdata.legacyordernumber);
             xrmApp.ThinkTime(2000);
-            Lookup("mzk_contractdeliveryfrequency", ReferraltodeliviryOrderdata.contractdeliveryfrequency, xrmApp, client);
+            Lookup("mzk_contractdeliveryfrequency", readData.ReferraltodeliviryOrderData.contractdeliveryfrequency, xrmApp, client);
 
             xrmApp.Entity.Save();
             client.Browser.Driver.WaitForPageToLoad();

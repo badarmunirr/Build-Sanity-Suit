@@ -508,6 +508,7 @@
     <Compile Include="DataFiles\TestCasesDataFiles\WholesaleOrderData.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DataFiles\gl4bdata.json" />
     <None Include="DataFiles\AllData.json" />
     <None Include="app.config" />
     <None Include="packages.config" />
