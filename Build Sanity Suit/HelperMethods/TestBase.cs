@@ -146,6 +146,7 @@ namespace Build_Sanity_Suit
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(logFile, true))
             {
                 file.WriteLine(Message);
+                file.Close();
             }
             //string LoggerPath = System.IO.Directory.GetCurrentDirectory() + "\\Logger.txt";
             //File.WriteAllText(LoggerPath, Message);

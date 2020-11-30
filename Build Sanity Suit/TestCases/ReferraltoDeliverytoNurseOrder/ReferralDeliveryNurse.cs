@@ -4,6 +4,7 @@ using Microsoft.Dynamics365.UIAutomation.Api.Pages;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using Microsoft.Dynamics365.UIAutomation.Browser;
 
 namespace Build_Sanity_Suit
 {
@@ -19,7 +20,6 @@ namespace Build_Sanity_Suit
         {
             var CreateReferral = new Action(() =>
             {
-
                 client = lOGIN.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
@@ -29,25 +29,23 @@ namespace Build_Sanity_Suit
                 Variables.casenumber = client.Browser.Driver.FindElement(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")).Text;
                 //Helper.SaveReferral(Variables.casenumber);
                 Helper.SaveReferral(Variables.casenumber);
-                xrmApp.ThinkTime(2000);
+                client.Browser.Driver.WaitForPageToLoad();
                 string mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_status" });
                 Assert.IsTrue(mzk_visitstatus.StartsWith("Active"));
                 string address1_postalcode = xrmApp.Entity.GetValue("address1_postalcode");
                 Assert.IsNotNull(address1_postalcode);
-                xrmApp.ThinkTime(3000);
+                client.Browser.Driver.WaitForPageToLoad();
                 Variables.RefNumber = xrmApp.Entity.GetHeaderValue("mzk_requestnumber");
-                xrmApp.ThinkTime(2000);
+                client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Navigation.OpenSubArea("Referral", "Referrals");
-                xrmApp.ThinkTime(2000);
+                client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Grid.Search(Variables.RefNumber);
-                xrmApp.ThinkTime(2000);
+                client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Grid.HighLightRecord(0);
-                xrmApp.ThinkTime(2000);
+                client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.CommandBar.ClickCommand("Assign");
-                xrmApp.ThinkTime(2000);
+                client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Dialogs.Assign(Dialogs.AssignTo.Team, "Hah");
-                xrmApp.ThinkTime(2000);
-
 
             });
 
@@ -64,7 +62,6 @@ namespace Build_Sanity_Suit
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
                 string cases = Helper.ReadReferral();
-                Console.WriteLine(cases);
                 CreateMethod.DeliveryOrder(xrmApp, client, cases);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));
                 xrmApp.CommandBar.ClickCommand("Propose Order");
@@ -73,8 +70,8 @@ namespace Build_Sanity_Suit
                 Assert.IsTrue(Variables.mzk_visitstatus3.StartsWith("Proposed"));
                 //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
                 Variables.WorkOrderNo = xrmApp.Entity.GetValue("msdyn_name");
-                xrmApp.ThinkTime(2000);
-          
+
+
             });
 
             CreateDeliveryOrder();
@@ -88,11 +85,9 @@ namespace Build_Sanity_Suit
             {
 
                 client = lOGIN.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
-
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
                 string cases = Helper.ReadReferral();
-                Console.WriteLine(cases);
                 CreateMethod.NurseOrder(xrmApp, client, cases);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Complete')]")));
                 xrmApp.CommandBar.ClickCommand("Complete");
@@ -113,7 +108,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             Cleanup("Ref No:" + Variables.RefNumber + "\r\nCaseNumber:" + Variables.casenumber + "\r\nWorkOrder No:" + Variables.WorkOrderNo + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus3);
-            //client.Browser.Driver.Close();
+            client.Browser.Driver.Close();
         }
     }
 }

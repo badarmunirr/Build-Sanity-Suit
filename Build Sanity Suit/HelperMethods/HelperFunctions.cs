@@ -96,7 +96,7 @@ namespace Build_Sanity_Suit
             xrmApp.Entity.SetValue("mzk_anonymousreference", readData.ReferraltodeliviryOrderData.mzk_anonymousreference);
 
             xrmApp.Entity.SetValue("mzk_hospitalreferencenumber", readData.ReferraltodeliviryOrderData.mzk_hospitalreferencenumber);
-            xrmApp.ThinkTime(1000);
+            client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Entity.SelectTab("General");
 
             //xrmApp.Entity.SetValue("name", readData.ReferraltodeliviryOrderData.name);
@@ -166,14 +166,10 @@ namespace Build_Sanity_Suit
         public static void DeliveryOrder(XrmApp xrmApp, WebClient client, string casenumber)
         {
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
-
             xrmApp.Navigation.OpenSubArea("Referral", "Cases");
 
             client.Browser.Driver.WaitForPageToLoad();
-
-
-            string refcasenu = casenumber;
-            xrmApp.Grid.Search(refcasenu);
+            xrmApp.Grid.Search(casenumber);
             client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Grid.OpenRecord(0);
             client.Browser.Driver.WaitForPageToLoad();
@@ -193,9 +189,8 @@ namespace Build_Sanity_Suit
             //    Console.WriteLine("No 'Stay Signed In' Dialog appeared");
             //}
             client.Browser.Driver.WaitForPageToLoad();
-            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div[data-id='msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag_text']")));
-            //string casenumber2 = client.Browser.Driver.FindElement(By.CssSelector("div[data-id='msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag_text']")).Text;
-            //Assert.IsTrue(casenumber2.StartsWith(casenumber));
+            string casenumber2 = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div[data-id='msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag_text']"))).Text;
+            Assert.IsTrue(casenumber2.StartsWith(casenumber));
 
             Lookup("msdyn_workordertype", readData.ReferraltodeliviryOrderData.msdyn_workordertype, xrmApp, client);
             //
@@ -221,7 +216,7 @@ namespace Build_Sanity_Suit
             //Lookupobj.Lookup("mzk_deliveryroute", ReferraltodeliviryOrderdata.deliveryroute);
             // xrmApp.ThinkTime(2000);
             // xrmApp.Entity.SetValue("mzk_legacyordernumber", ReferraltodeliviryOrderdata.legacyordernumber);
-            xrmApp.ThinkTime(2000);
+    
             Lookup("mzk_contractdeliveryfrequency", readData.ReferraltodeliviryOrderData.contractdeliveryfrequency, xrmApp, client);
 
             xrmApp.Entity.Save();
@@ -280,16 +275,15 @@ namespace Build_Sanity_Suit
         }
         public static void NurseOrder(XrmApp xrmApp, WebClient client, string casenumber)
         {
-
-
+            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             xrmApp.Navigation.OpenSubArea("Referral", "Cases");
-            xrmApp.ThinkTime(2000);
+            client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Grid.Search(casenumber);
-            xrmApp.ThinkTime(5000);
+            client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Grid.OpenRecord(0);
-            xrmApp.ThinkTime(5000);
+            client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Entity.SelectTab("Delivery and Nursing Visit");
-            xrmApp.ThinkTime(5000);
+            client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Entity.SubGrid.ClickCommand("DeliveryAndNursingVisitGrid", "Add New Work Order");
             // xrmApp.ThinkTime(2000);
             // xrmApp.Entity.SelectForm("Visit Detail");
@@ -303,10 +297,9 @@ namespace Build_Sanity_Suit
             //{
             //    Console.WriteLine("No 'Stay Signed In' Dialog appeared");
             //}
-            xrmApp.ThinkTime(3000);
-            string casenumber2 = client.Browser.Driver.FindElement(By.CssSelector("div[data-id='msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag_text']")).Text;
+
+            string casenumber2 = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div[data-id='msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag_text']"))).Text;
             Assert.IsTrue(casenumber2.StartsWith(casenumber));
-            xrmApp.ThinkTime(3000);
             Lookup("msdyn_workordertype", readData.ReferralstoNurseOrderData.msdyn_workordertype, xrmApp, client);
             // xrmApp.ThinkTime(2000);
             //Lookupobj.Lookup("msdyn_serviceterritory", ReferraltodeliviryOrderdata.serviceterritory);
@@ -325,16 +318,16 @@ namespace Build_Sanity_Suit
 
             DateTime mzk_scheduledenddatetime = DateTime.Today.AddDays(3).AddHours(10);
             xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, Configdata.datePattern, Configdata.TimePattern);
-            xrmApp.ThinkTime(500);
+
             xrmApp.Entity.Save();
-            xrmApp.ThinkTime(500);
+            client.Browser.Driver.WaitForPageToLoad();
             string mzk_visitstatus2 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus2.StartsWith("Proposed"));
             string msdyn_postalcode = xrmApp.Entity.GetValue("msdyn_postalcode");
             Assert.IsNotNull(msdyn_postalcode);
-            xrmApp.ThinkTime(4000);
+            client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Entity.SelectTab("Products And Services");
-            xrmApp.ThinkTime(4000);
+            client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Entity.SubGrid.ClickCommand("workorderservicesgrid", "New Work Order Service");
 
             LookupQuickCreate("msdyn_service", readData.ReferralstoNurseOrderData.msdyn_service, xrmApp);
@@ -342,13 +335,14 @@ namespace Build_Sanity_Suit
             //Lookupobj.LookupQuickCreate("msdyn_unit", Referraldata.unit);
 
             xrmApp.QuickCreate.SetValue("mzk_quantity", readData.ReferralstoNurseOrderData.mzk_quantity);
-            xrmApp.ThinkTime(500);
+
             xrmApp.QuickCreate.Save();
+            client.Browser.Driver.WaitForPageToLoad();
         }
         public static void WholesaleOrder(XrmApp xrmApp, WebClient client)
         {
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
-            xrmApp.ThinkTime(4000);
+            client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Navigation.OpenSubArea("Referral", "Wholesale Orders");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             xrmApp.CommandBar.ClickCommand("New");
@@ -378,7 +372,7 @@ namespace Build_Sanity_Suit
 
             // xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_emergencyorder", Value = false });
             //Visit Date and Time Information
-            xrmApp.ThinkTime(500);
+           
             //DateTime mzk_proposedvisitdatetime = DateTime.Today.AddDays(1).AddHours(12);
             // xrmApp.Entity.SetValue("mzk_proposedvisitdatetime", mzk_proposedvisitdatetime, "dd/MM/yyyy", "hh:mm");
 
@@ -407,7 +401,7 @@ namespace Build_Sanity_Suit
             //Delivery Information
 
             //Lookupobj.Lookup("mzk_contractdeliveryfrequency", Wholesaleorderdata.deliveryfrequency);
-            xrmApp.ThinkTime(500);
+    
             Lookup("mzk_deliverymethods", readData.WholesaleOrderData.mzk_deliverymethods, xrmApp, client);
 
             //Lookupobj.Lookup("mzk_deliveryroute", Wholesaleorderdata.deliveryroute);
@@ -422,19 +416,18 @@ namespace Build_Sanity_Suit
             // xrmApp.ThinkTime(1000);
             xrmApp.Entity.Save();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-            xrmApp.ThinkTime(1000);
+            client.Browser.Driver.WaitForPageToLoad();
             string mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });//msdyn_servicerequest
             Assert.IsTrue(mzk_visitstatus.StartsWith("Draft"));
-
-            xrmApp.ThinkTime(2000);
-            string casenumber = client.Browser.Driver.FindElement(By.XPath("//div[contains(@data-id,'msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag')]")).Text;
+            string casenumber = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@data-id,'msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag"))).Text;
             Assert.IsNotNull(casenumber);
+
             string msdyn_postalcode = xrmApp.Entity.GetValue("msdyn_postalcode");
             Assert.IsNotNull(msdyn_postalcode);
             //Products And Services
-            xrmApp.ThinkTime(3000);
+            client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Entity.SelectTab("Products And Services");
-            xrmApp.ThinkTime(3000);
+            client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Work Order Product");
 
             LookupQuickCreate("msdyn_product", readData.WholesaleOrderData.msdyn_product, xrmApp);
@@ -445,7 +438,7 @@ namespace Build_Sanity_Suit
             xrmApp.QuickCreate.SetValue("msdyn_description", readData.WholesaleOrderData.msdyn_description);
             xrmApp.QuickCreate.SetValue("msdyn_internaldescription", readData.WholesaleOrderData.msdyn_internaldescription);
             xrmApp.QuickCreate.Save();
-
+            client.Browser.Driver.WaitForPageToLoad();
             //Service
             // xrmApp.ThinkTime(5000);
             // xrmApp.Entity.SubGrid.ClickCommand("workorderservicesgrid", "New Work Order Service");
@@ -612,7 +605,7 @@ namespace Build_Sanity_Suit
             // xrmApp.Entity.SetValue(new BooleanItem { Name = "donotpostalmail", Value = false });
 
             xrmApp.Entity.Save();
-            xrmApp.ThinkTime(2000);
+            client.Browser.Driver.WaitForPageToLoad();
             if (client.Browser.Driver.HasElement(By.CssSelector("button[data-id='ignore_save']")))
             {
                 xrmApp.Dialogs.DuplicateDetection(true);
@@ -761,10 +754,10 @@ namespace Build_Sanity_Suit
             // xrmApp.Entity.SetValue(new BooleanItem { Name = "mzk_schedulepreferencesunday", Value = true });
 
             xrmApp.Entity.Save();
-            xrmApp.ThinkTime(2000);
+            client.Browser.Driver.WaitForPageToLoad();
             if (client.Browser.Driver.HasElement(By.CssSelector("button[data-id='ignore_save']")))
             {
-                client.Browser.Driver.FindElement(By.CssSelector("button[data-id='ignore_save']")).SendKeys(Keys.Enter);
+                xrmApp.Dialogs.DuplicateDetection(true);
             }
             else
             {
@@ -818,8 +811,7 @@ namespace Build_Sanity_Suit
         {
             if (Type == "Invoice" && Category == "Organization" || Type == "Credit" && Category == "Organization")
             {
-
-                xrmApp.ThinkTime(5000);
+                client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Navigation.OpenSubArea("Referral", "Manual Invoice/Credit");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.CommandBar.ClickCommand("New");
@@ -849,9 +841,10 @@ namespace Build_Sanity_Suit
                 client.Browser.Driver.WaitForPageToLoad();
 
                 xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Work Order Product");
-
+                client.Browser.Driver.WaitForPageToLoad();
                 LookupQuickCreate("msdyn_product", readData.TstManualInvoice_19273Data.msdyn_product, xrmApp);
 
+                
                 xrmApp.QuickCreate.SetValue("msdyn_quantity", readData.TstManualInvoice_19273Data.msdyn_quantity);
 
                 xrmApp.QuickCreate.Save();
@@ -862,7 +855,7 @@ namespace Build_Sanity_Suit
             }
             if (Type == "Invoice" && Category == "Patient" || Type == "Credit" && Category == "Patient")
             {
-                xrmApp.ThinkTime(5000);
+                client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Navigation.OpenSubArea("Referral", "Manual Invoice/Credit");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.CommandBar.ClickCommand("New");
@@ -902,10 +895,10 @@ namespace Build_Sanity_Suit
 
                 xrmApp.QuickCreate.SetValue("msdyn_quantity", readData.TstManualInvoice_19347Data.msdyn_quantity);
                 xrmApp.QuickCreate.Save();
-                xrmApp.ThinkTime(2000);
+                client.Browser.Driver.WaitForPageToLoad();
                 var mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
                 Assert.IsTrue(mzk_visitstatus.StartsWith("Proposed"));
-                xrmApp.ThinkTime(2000);
+        
             }
 
         }
@@ -958,10 +951,10 @@ namespace Build_Sanity_Suit
             // xrmApp.Entity.SetValue(new BooleanItem { Name = "donotfax", Value = false });
             // xrmApp.Entity.SetValue(new BooleanItem { Name = "donotpostalmail", Value = false });
             xrmApp.Entity.Save();
-            xrmApp.ThinkTime(2000);
+            client.Browser.Driver.WaitForPageToLoad();
             if (client.Browser.Driver.HasElement(By.CssSelector("button[data-id='ignore_save']")))
             {
-                client.Browser.Driver.FindElement(By.CssSelector("button[data-id='ignore_save']")).SendKeys(Keys.Enter);
+                xrmApp.Dialogs.DuplicateDetection(true);
             }
             else
             {
