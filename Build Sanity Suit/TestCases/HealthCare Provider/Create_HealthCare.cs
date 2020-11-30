@@ -16,14 +16,14 @@ namespace Build_Sanity_Suit
             XrmApp xrmApp = new XrmApp(client);
             CreateMethod.Provider(xrmApp, client);
             AccountNum = xrmApp.Entity.GetHeaderValue("accountnumber");
-            //LoginFinops.CheckFinopsAccounts(AccountNum);
+          //  LoginFinops.CheckFinopsAccounts(AccountNum);
         }
-
+       
         [TestCleanup]
         public void Teardown()
         {
-            //Cleanup("HealthCare Number:" + AccountNum + "\r\n");
-            //client.Browser.Driver.Close();
+            Cleanup("HealthCare Number:" + AccountNum + "\r\n");
+            client.Browser.Driver.Close();
 
         }
     }
