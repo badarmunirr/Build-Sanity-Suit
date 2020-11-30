@@ -76,23 +76,23 @@ namespace Build_Sanity_Suit
                 {
                     Console.WriteLine("No Such Element");
                 }
-                if (client.Browser.Driver.HasElement(skipsteup))
-                {
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(skipsteup)).Click();
+                //if (client.Browser.Driver.HasElement(skipsteup))
+                //{
+                //    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(skipsteup)).Click();
 
-                }
-                else
-                {
-                    Console.WriteLine("No Such Element");
-                }
-                if (client.Browser.Driver.HasElement(nextbutton))
-                {
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(nextbutton)).SendKeys(Keys.Enter);
-                }
-                else
-                {
-                    Console.WriteLine("No Such Element");
-                }
+                //}
+                //else
+                //{
+                //    Console.WriteLine("No Such Element");
+                //}
+                //if (client.Browser.Driver.HasElement(nextbutton))
+                //{
+                //    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(nextbutton)).SendKeys(Keys.Enter);
+                //}
+                //else
+                //{
+                //    Console.WriteLine("No Such Element");
+                //}
                 string url = client.Browser.Driver.Url;
                 if (url == Usersetting.url + "main.aspx?forceUCI=1&pagetype=apps")
                 {

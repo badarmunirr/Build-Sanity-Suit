@@ -14,7 +14,6 @@ namespace Build_Sanity_Suit
 
             client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
             XrmApp xrmApp = new XrmApp(client);
-
             CreateMethod.Provider(xrmApp, client);
             AccountNum = xrmApp.Entity.GetHeaderValue("accountnumber");
             //LoginFinops.CheckFinopsAccounts(AccountNum);
@@ -23,8 +22,8 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-            Cleanup("HealthCare Number:" + AccountNum + "\r\n");
-            client.Browser.Driver.Close();
+            //Cleanup("HealthCare Number:" + AccountNum + "\r\n");
+            //client.Browser.Driver.Close();
 
         }
     }
