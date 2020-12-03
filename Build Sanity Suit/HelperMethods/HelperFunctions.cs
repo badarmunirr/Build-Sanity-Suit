@@ -217,7 +217,7 @@ namespace Build_Sanity_Suit
             // xrmApp.ThinkTime(2000);
             // xrmApp.Entity.SetValue("mzk_legacyordernumber", ReferraltodeliviryOrderdata.legacyordernumber);
     
-            //Lookup("mzk_contractdeliveryfrequency", readData.ReferraltodeliviryOrderData.contractdeliveryfrequency, xrmApp, client);
+            Lookup("mzk_contractdeliveryfrequency", readData.ReferraltodeliviryOrderData.contractdeliveryfrequency, xrmApp, client);
 
             xrmApp.Entity.Save();
             client.Browser.Driver.WaitForPageToLoad();
@@ -419,8 +419,8 @@ namespace Build_Sanity_Suit
             client.Browser.Driver.WaitForPageToLoad();
             string mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });//msdyn_servicerequest
             Assert.IsTrue(mzk_visitstatus.StartsWith("Draft"));
-            string casenumber = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@data-id,'msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag"))).Text;
-            Assert.IsNotNull(casenumber);
+            //string casenumber = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@data-id,'msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag"))).Text;
+            //Assert.IsNotNull(casenumber);
 
             string msdyn_postalcode = xrmApp.Entity.GetValue("msdyn_postalcode");
             Assert.IsNotNull(msdyn_postalcode);
