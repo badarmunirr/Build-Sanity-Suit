@@ -12,7 +12,6 @@ namespace Build_Sanity_Suit
     public class ReferralDeliveryNurse : TestBase
     {
         public WebClient client;
-        LOGIN lOGIN = new LOGIN();
 
         [TestMethod, TestCategory("Sanity")]
         [DoNotParallelize]
@@ -20,7 +19,7 @@ namespace Build_Sanity_Suit
         {
             var CreateReferral = new Action(() =>
             {
-                client = lOGIN.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
+                client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
                 CreateMethod.Referral(xrmApp, client);
@@ -58,7 +57,7 @@ namespace Build_Sanity_Suit
         {
             var CreateDeliveryOrder = new Action(() =>
             {
-                client = lOGIN.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
+                client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
                 string cases = Helper.ReadReferral();
@@ -84,7 +83,7 @@ namespace Build_Sanity_Suit
             var CreateNurseOrder = new Action(() =>
             {
 
-                client = lOGIN.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
+                client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
                 XrmApp xrmApp = new XrmApp(client);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
                 string cases = Helper.ReadReferral();

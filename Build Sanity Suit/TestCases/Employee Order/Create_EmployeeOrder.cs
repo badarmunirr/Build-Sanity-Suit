@@ -15,8 +15,7 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("Sanity")]
         public void B12_CreateResourcetoAccountToEmployeeOrder()
         {
-            LOGIN loginobj = new LOGIN();
-            //operational manager
+     
             client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
 
             XrmApp xrmApp = new XrmApp(client);

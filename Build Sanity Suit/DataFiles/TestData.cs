@@ -242,9 +242,9 @@ namespace Build_Sanity_Suit
         public static string payer = "1st Assist Group Limited";
 
         public static string provider = "1 Harley Street";
-        public static string mastercontractagreement = "CON_FMC_001";// MasterContractData.contractName;
+        public static string mastercontractagreement = MasterContractData.contractName;// MasterContractData.contractName;
 
-        public static string subcontract = "Sub Test Contract"; //SubContractData.SubContract;
+        public static string subcontract = SubContractData.SubContract; //SubContractData.SubContract;
         public static string service = "Benepali";
 
         public static string contractsubtype = "MC - Patient Funded";

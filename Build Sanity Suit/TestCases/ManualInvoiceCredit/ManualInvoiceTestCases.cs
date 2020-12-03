@@ -16,7 +16,7 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("Sanity")]
         public void B13_TstManualInvoice_19273_Manualinvoicestatusiscompletedinvorg()
         {
-            client = lOGIN.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
+            client = loginobj.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
             XrmApp xrmApp = new XrmApp(client);
             CreateMethod.ManualInvoice(xrmApp,client, "Organization", "Invoice");
             client.Browser.Driver.WaitForPageToLoad();
@@ -30,7 +30,7 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("Sanity")]
         public void B14_TstManualInvoice_19346_Manualinvoicecreditorderstatusiscompleted()
         {
-            client = lOGIN.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
+            client = loginobj.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
             XrmApp xrmApp = new XrmApp(client);
             CreateMethod.ManualInvoice(xrmApp, client, "Organization", "Credit");
             client.Browser.Driver.WaitForPageToLoad();
@@ -46,7 +46,7 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("Sanity")]
         public void B15_TstManualInvoice_19347_ManualInvoiceCreditOrderCompleteTypeCreditandCategoryPatient()
         {
-             client = lOGIN.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
+            client = loginobj.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
             XrmApp xrmApp = new XrmApp(client);
             CreateMethod.ManualInvoice(xrmApp, client, "Patient", "Credit");
             client.Browser.Driver.WaitForPageToLoad();
@@ -62,7 +62,7 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("Sanity")]
         public void B16_TstManualInvoice_19348_ManualInvoiceCreditOrderCompleteTypeInvoiceandCategoryPatient()
         {
-            client = lOGIN.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
+            client = loginobj.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
             XrmApp xrmApp = new XrmApp(client);
             CreateMethod.ManualInvoice(xrmApp, client, "Patient", "Invoice");
             client.Browser.Driver.WaitForPageToLoad();

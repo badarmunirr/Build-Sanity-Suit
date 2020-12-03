@@ -13,7 +13,6 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("Sanity")]
         public void B10_CreateWholesaleOrder()
         {
-            LOGIN loginobj = new LOGIN();
             client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
            
             XrmApp xrmApp = new XrmApp(client);

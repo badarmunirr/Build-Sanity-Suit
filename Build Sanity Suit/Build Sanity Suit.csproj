@@ -478,6 +478,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HelperMethods\ContractHelper.cs" />
     <Compile Include="HelperMethods\TestBase.cs" />
     <Compile Include="HelperMethods\TestSetting.cs" />
     <Compile Include="DataFiles\TestCasesDataFiles\ReferralstoDeliveryNurseOrderData.cs" />
@@ -492,7 +493,7 @@
     <Compile Include="DataFiles\TestCasesDataFiles\EmployeeOrderData.cs" />
     <Compile Include="TestCases\HealthCare Provider\Create_HealthCare.cs" />
     <Compile Include="DataFiles\TestCasesDataFiles\HealthCareProviderData.cs" />
-    <Compile Include="HelperMethods\HelperFunctions.cs" />
+    <Compile Include="HelperMethods\CreateMethod.cs" />
     <Compile Include="TestCases\ManualInvoiceCredit\ManualInvoiceTestCases.cs" />
     <Compile Include="DataFiles\TestCasesDataFiles\TstManualInvoice_Data.cs" />
     <Compile Include="TestCases\Patient\Create_Patient.cs" />
