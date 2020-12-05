@@ -8,7 +8,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
-     [TestClass]
+     //[TestClass]
     public class A6_CreateServiceAgreement:TestBase
     {
         public static WebClient client;
