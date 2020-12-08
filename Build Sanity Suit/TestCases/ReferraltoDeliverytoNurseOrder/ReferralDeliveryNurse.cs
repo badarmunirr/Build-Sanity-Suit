@@ -8,7 +8,7 @@ using Microsoft.Dynamics365.UIAutomation.Browser;
 
 namespace Build_Sanity_Suit
 {
-    [TestClass]
+   // [TestClass]
     public class ReferralDeliveryNurse : TestBase
     {
         public WebClient client;

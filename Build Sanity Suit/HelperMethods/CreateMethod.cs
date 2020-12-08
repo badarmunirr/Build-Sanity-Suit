@@ -837,6 +837,8 @@ namespace Build_Sanity_Suit
 
                 xrmApp.Entity.Save();
                 client.Browser.Driver.WaitForPageToLoad();
+
+                client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Entity.SelectTab("Products And Services");
                 client.Browser.Driver.WaitForPageToLoad();
 
@@ -884,10 +886,13 @@ namespace Build_Sanity_Suit
                 //Lookupobj.Lookup("msdyn_servicerequest", TestData19347.Case);
 
                 xrmApp.Entity.Save();
-
+                client.Browser.Driver.WaitForPageToLoad();
 
                 client.Browser.Driver.WaitForPageToLoad();
+
+
                 xrmApp.Entity.SelectTab("Products And Services");
+
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Work Order Product");
                 client.Browser.Driver.WaitForPageToLoad();
