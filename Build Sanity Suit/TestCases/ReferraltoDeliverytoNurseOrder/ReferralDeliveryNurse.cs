@@ -8,13 +8,13 @@ using Microsoft.Dynamics365.UIAutomation.Browser;
 
 namespace Build_Sanity_Suit
 {
-   // [TestClass]
+   [TestClass]
     public class ReferralDeliveryNurse : TestBase
     {
         public WebClient client;
 
         [TestMethod, TestCategory("Sanity")]
-        [DoNotParallelize]
+       // [DoNotParallelize]
         public void A1_CreateReferral()
         {
             var CreateReferral = new Action(() =>
@@ -52,7 +52,7 @@ namespace Build_Sanity_Suit
         }
 
         [TestMethod, TestCategory("Sanity")]
-        [DoNotParallelize]
+        // [DoNotParallelize]
         public void A2_CreateDeliveryOrder()
         {
             var CreateDeliveryOrder = new Action(() =>
@@ -77,7 +77,7 @@ namespace Build_Sanity_Suit
         }
 
         [TestMethod, TestCategory("Sanity")]
-        [DoNotParallelize]
+        // [DoNotParallelize]
         public void A3_CreateNurseOrder()
         {
             var CreateNurseOrder = new Action(() =>
