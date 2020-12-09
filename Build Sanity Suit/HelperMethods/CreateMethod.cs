@@ -1027,13 +1027,13 @@ namespace Build_Sanity_Suit
             client.Browser.Driver.WaitForPageToLoad();
         }
 
-        public static void Lookup(String LookupFieldName, String LookupFieldValue, XrmApp xrmApp, WebClient client)
+        public static void Lookup(string LookupFieldName, string LookupFieldValue, XrmApp xrmApp, WebClient client)
         {
             LookupItem LookupVeriable = new LookupItem { Name = LookupFieldName, Value = LookupFieldValue, Index = 0 };
             xrmApp.Entity.SetValue(LookupVeriable);
 
         }
-        public static void LookupQuickCreate(String LookupFieldName, String LookupFieldValue, XrmApp xrmApp)
+        public static void LookupQuickCreate(string LookupFieldName, string LookupFieldValue, XrmApp xrmApp)
         {
 
             LookupItem LookupQuickVeriable = new LookupItem { Name = LookupFieldName, Value = LookupFieldValue, Index = 0 };
