@@ -18,7 +18,6 @@ namespace Build_Sanity_Suit
         {
             client = loginobj.RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
             XrmApp xrmApp = new XrmApp(client);
-
             ContractHelper.OtherInformation(xrmApp, client);
             ContractHelper.MasterGeneral(xrmApp, client);
             ContractHelper.ContractProductService(xrmApp, client);
@@ -27,6 +26,7 @@ namespace Build_Sanity_Suit
             ContractHelper.ContractPriceList(xrmApp, client);
 
         }
+
         [TestCleanup]
         public void Teardown()
         {

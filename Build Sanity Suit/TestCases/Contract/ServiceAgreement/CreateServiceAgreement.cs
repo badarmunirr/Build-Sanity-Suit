@@ -9,7 +9,7 @@ using OpenQA.Selenium.Support.UI;
 namespace Build_Sanity_Suit
 {
      //[TestClass]
-    public class A6_CreateServiceAgreement:TestBase
+    public class A6_CreateServiceAgreements:TestBase
     {
         public static WebClient client;
 
@@ -18,9 +18,19 @@ namespace Build_Sanity_Suit
         {
             client = loginobj.RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
             XrmApp xrmApp = new XrmApp(client);
-
             ContractHelper.OtherInformation(xrmApp, client);
             ContractHelper.ServiceGeneral(xrmApp, client);
+            ContractHelper.ContractDignosis(xrmApp, client);
+            ContractHelper.ContractPriceList(xrmApp, client);
+
+        }
+        [TestMethod]
+        public void A9_CreateWholesaleService()
+        {
+            client = loginobj.RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
+            XrmApp xrmApp = new XrmApp(client);
+            ContractHelper.OtherInformation(xrmApp, client);
+            ContractHelper.WholesaleServiceGeneral(xrmApp, client);
             ContractHelper.ContractDignosis(xrmApp, client);
             ContractHelper.ContractPriceList(xrmApp, client);
 

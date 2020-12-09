@@ -22,8 +22,8 @@ namespace Build_Sanity_Suit
             ContractHelper.ContractDignosis(xrmApp, client);
             ContractHelper.ContractPriceList(xrmApp, client);
 
-
         }
+
         [TestCleanup]
         public void Teardown()
         {

@@ -487,7 +487,6 @@
     <Compile Include="TestCases\BulkClass.cs" />
     <Compile Include="TestCases\Contract\MasterContract\CreateMasterContract.cs" />
     <Compile Include="TestCases\Contract\ServiceAgreement\CreateServiceAgreement.cs" />
-    <Compile Include="TestCases\Contract\ServiceAgreement\CreateServiceAgreementWholeSales.cs" />
     <Compile Include="TestCases\Contract\SubContract\CreateSubContract.cs" />
     <Compile Include="TestCases\Employee Order\Create_EmployeeOrder.cs" />
     <Compile Include="DataFiles\TestCasesDataFiles\EmployeeOrderData.cs" />
