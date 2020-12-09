@@ -25,7 +25,7 @@ namespace Build_Sanity_Suit
         public static void Address(XrmApp xrmApp, WebClient client)
         {
             client.Browser.Driver.WaitForPageToLoad();
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             if (client.Browser.Driver.HasElement(By.XPath("//div[contains(@data-id,'address1_line1.fieldControl_container')]")))
             {
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@data-id,'address1_line1.fieldControl_container')]"))).Click();
@@ -80,7 +80,7 @@ namespace Build_Sanity_Suit
         public static void Referral(XrmApp xrmApp, WebClient client)
         {
 
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
 
             xrmApp.Navigation.OpenSubArea("Referral", "Referrals");
             client.Browser.Driver.WaitForPageToLoad();
@@ -165,7 +165,7 @@ namespace Build_Sanity_Suit
 
         public static void DeliveryOrder(XrmApp xrmApp, WebClient client, string casenumber)
         {
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             xrmApp.Navigation.OpenSubArea("Referral", "Cases");
 
             client.Browser.Driver.WaitForPageToLoad();
@@ -341,10 +341,11 @@ namespace Build_Sanity_Suit
         }
         public static void WholesaleOrder(XrmApp xrmApp, WebClient client)
         {
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Navigation.OpenSubArea("Referral", "Wholesale Orders");
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            client.Browser.Driver.WaitForPageToLoad();
+            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             xrmApp.CommandBar.ClickCommand("New");
             // xrmApp.ThinkTime(2000);
             // xrmApp.Entity.SelectForm("Wholesale Order");
@@ -459,7 +460,7 @@ namespace Build_Sanity_Suit
         }
         public static void Resource(XrmApp xrmApp, WebClient client)
         {
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
 
             string UserName = readData.ResourceData.userid;
             string UserNameTrim = UserName.Remove(9);
@@ -551,14 +552,14 @@ namespace Build_Sanity_Suit
         public static void Payer(XrmApp xrmApp, WebClient client)
         {
 
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             client.Browser.Driver.WaitForPageToLoad();
 
 
             xrmApp.Navigation.OpenSubArea("Customers", "Payers");
+            client.Browser.Driver.WaitForPageToLoad();
+            // wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
 
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-            
             xrmApp.CommandBar.ClickCommand("New");
 
             xrmApp.Entity.SetValue("name", readData.PayerData.name);
@@ -615,19 +616,19 @@ namespace Build_Sanity_Suit
             {
                 Console.WriteLine("Update Duplicate Record");
             }
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Vaildate Payer')]")));
+            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Vaildate Payer')]")));
+            client.Browser.Driver.WaitForPageToLoad();
             xrmApp.CommandBar.ClickCommand("Vaildate Payer");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("confirmButton")));
       
             xrmApp.Dialogs.ConfirmationDialog(true);
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("confirmButton")));
             xrmApp.Dialogs.ConfirmationDialog(true);
-
-            string mzk_address1countrycodeiso = xrmApp.Entity.GetValue("mzk_address1countrycodeiso");
-            Assert.IsTrue(mzk_address1countrycodeiso.StartsWith("GB"));
-
-            string mzk_address2countrycodeiso = xrmApp.Entity.GetValue("mzk_address2countrycodeiso");
-            Assert.IsTrue(mzk_address2countrycodeiso.StartsWith("GB"));
+            Assert.IsTrue(xrmApp.Entity.GetValue("mzk_address1countrycodeiso").StartsWith("GB"));
+            Assert.IsTrue(xrmApp.Entity.GetValue("mzk_address2countrycodeiso").StartsWith("GB"));
+            client.Browser.Driver.WaitUntilVisible(By.CssSelector("*[aria-label='Validated: Yes']")).IsVisible();
+            client.Browser.Driver.WaitForPageToLoad();
+            // wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             //Field address1_line1 =  xrmApp.Entity.GetField("address1_line1");
             //Assert.IsTrue(address1_line1.IsRequired);
             //Field address2_line1 =  xrmApp.Entity.GetField("address2_line1");
@@ -635,14 +636,10 @@ namespace Build_Sanity_Suit
 
             //string accountnumber =  xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "accountnumber" });
             //Assert.IsFalse(accountnumber.StartsWith("---"));
-
-            client.Browser.Driver.WaitUntilVisible(By.CssSelector("*[aria-label='Validated: Yes']")).IsVisible();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-
         }
         public static void Patient(XrmApp xrmApp, WebClient client)
         {
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             xrmApp.Navigation.OpenSubArea("Customers", "Patients");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             xrmApp.CommandBar.ClickCommand("New");
@@ -765,15 +762,9 @@ namespace Build_Sanity_Suit
             }
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Save & Close')]")));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-
-            string mzk_address1countrycodeiso = xrmApp.Entity.GetValue("mzk_address1countrycodeiso");
-            Assert.IsTrue(mzk_address1countrycodeiso.StartsWith("GB"));
-
-            string mzk_address2countrycodeiso = xrmApp.Entity.GetValue("mzk_address2countrycodeiso");
-            Assert.IsTrue(mzk_address2countrycodeiso.StartsWith("GB"));
-
-            string mzk_address3countrycodeiso = xrmApp.Entity.GetValue("mzk_address3countrycodeiso");
-            Assert.IsTrue(mzk_address3countrycodeiso.StartsWith("GB"));
+            Assert.IsTrue(xrmApp.Entity.GetValue("mzk_address1countrycodeiso").StartsWith("GB"));
+            Assert.IsTrue(xrmApp.Entity.GetValue("mzk_address2countrycodeiso").StartsWith("GB"));
+            Assert.IsTrue(xrmApp.Entity.GetValue("mzk_address3countrycodeiso").StartsWith("GB"));
             foreach (string idtype in identificationtype)
             {
                 xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_patientidentificationtype", Value = idtype });
@@ -836,7 +827,6 @@ namespace Build_Sanity_Suit
                 //Lookupobj.Lookup("msdyn_servicerequest", TestData19273.Case);
 
                 xrmApp.Entity.Save();
-                client.Browser.Driver.WaitForPageToLoad();
 
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Entity.SelectTab("Products And Services");
@@ -886,7 +876,7 @@ namespace Build_Sanity_Suit
                 //Lookupobj.Lookup("msdyn_servicerequest", TestData19347.Case);
 
                 xrmApp.Entity.Save();
-                client.Browser.Driver.WaitForPageToLoad();
+    
 
                 client.Browser.Driver.WaitForPageToLoad();
 
@@ -910,11 +900,11 @@ namespace Build_Sanity_Suit
         public static void Provider(XrmApp xrmApp, WebClient client)
         {
 
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+           // WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Navigation.OpenSubArea("Customers", "Healthcare Providers");
-
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            client.Browser.Driver.WaitForPageToLoad();
+            // wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             xrmApp.CommandBar.ClickCommand("New");
             Address(xrmApp, client);
             xrmApp.Entity.SetValue("name", readData.HealthCareProviderData.name);
@@ -965,11 +955,10 @@ namespace Build_Sanity_Suit
             {
                 Console.WriteLine("Update Duplicate Record");
             }
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-            string mzk_address1countrycodeiso = xrmApp.Entity.GetValue("mzk_address1countrycodeiso");
-            Assert.IsTrue(mzk_address1countrycodeiso.StartsWith("GB"));
-            string mzk_address2countrycodeiso = xrmApp.Entity.GetValue("mzk_address2countrycodeiso");
-            Assert.IsTrue(mzk_address2countrycodeiso.StartsWith("GB"));
+            client.Browser.Driver.WaitForPageToLoad();
+            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            Assert.IsTrue(xrmApp.Entity.GetValue("mzk_address1countrycodeiso").StartsWith("GB"));
+            Assert.IsTrue(xrmApp.Entity.GetValue("mzk_address2countrycodeiso").StartsWith("GB"));
             client.Browser.Driver.WaitForPageToLoad();
             //Field address1_line1 =  xrmApp.Entity.GetField("address1_line1");
             //Assert.IsTrue(address1_line1.IsRequired);
@@ -994,7 +983,7 @@ namespace Build_Sanity_Suit
         {
 
 
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             client.Browser.Driver.WaitForPageToLoad();
 
             xrmApp.Navigation.OpenSubArea("Order Management", "Work Orders");
