@@ -11,7 +11,6 @@ namespace Build_Sanity_Suit
     public class ManualInvoiceTestCases:TestBase
     {
         public  WebClient client;
-        LOGIN lOGIN = new LOGIN();
 
         [TestMethod, TestCategory("Sanity")]
         public void B13_TstManualInvoice_19273_Manualinvoicestatusiscompletedinvorg()

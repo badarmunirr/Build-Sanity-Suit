@@ -14,7 +14,7 @@ namespace Build_Sanity_Suit
         public WebClient client;
 
         [TestMethod, TestCategory("Sanity")]
-       // [DoNotParallelize]
+        [DoNotParallelize]
         public void A1_CreateReferral()
         {
             var CreateReferral = new Action(() =>
@@ -26,7 +26,6 @@ namespace Build_Sanity_Suit
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")));
                 // when support for hidden field is added need to replace this line of code
                 Variables.casenumber = client.Browser.Driver.FindElement(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")).Text;
-                //Helper.SaveReferral(Variables.casenumber);
                 Helper.SaveReferral(Variables.casenumber);
                 client.Browser.Driver.WaitForPageToLoad();
                 string mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_status" });
@@ -52,7 +51,7 @@ namespace Build_Sanity_Suit
         }
 
         [TestMethod, TestCategory("Sanity")]
-        // [DoNotParallelize]
+        [DoNotParallelize]
         public void A2_CreateDeliveryOrder()
         {
             var CreateDeliveryOrder = new Action(() =>
@@ -64,7 +63,7 @@ namespace Build_Sanity_Suit
                 CreateMethod.DeliveryOrder(xrmApp, client, cases);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));
                 xrmApp.CommandBar.ClickCommand("Propose Order");
-                xrmApp.ThinkTime(2000);
+                client.Browser.Driver.WaitForPageToLoad();
                 Variables.mzk_visitstatus3 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
                 Assert.IsTrue(Variables.mzk_visitstatus3.StartsWith("Proposed"));
                 //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
@@ -77,7 +76,7 @@ namespace Build_Sanity_Suit
         }
 
         [TestMethod, TestCategory("Sanity")]
-        // [DoNotParallelize]
+        [DoNotParallelize]
         public void A3_CreateNurseOrder()
         {
             var CreateNurseOrder = new Action(() =>
@@ -90,7 +89,7 @@ namespace Build_Sanity_Suit
                 CreateMethod.NurseOrder(xrmApp, client, cases);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Complete')]")));
                 xrmApp.CommandBar.ClickCommand("Complete");
-                xrmApp.ThinkTime(2000);
+                client.Browser.Driver.WaitForPageToLoad();
                 Variables.mzk_visitstatus3 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
                 Assert.IsTrue(Variables.mzk_visitstatus3.StartsWith("Completed"));
                 //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));

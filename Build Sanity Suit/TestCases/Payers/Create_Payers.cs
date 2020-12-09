@@ -23,6 +23,7 @@ namespace Build_Sanity_Suit
             PayerNum = xrmApp.Entity.GetHeaderValue("accountnumber");
             //AddScreenShot(client, "Get Payer Number");
            // LoginFinops.CheckFinopsAccounts(PayerNum);
+
         }
         [TestCleanup]
         public void Teardown()
