@@ -415,11 +415,12 @@ namespace Build_Sanity_Suit
             // xrmApp.ThinkTime(1000);
             // xrmApp.Entity.SetValue("mzk_drivercomments", Wholesaleorderdata.drivercomments);
             // xrmApp.ThinkTime(1000);
+            string mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });//msdyn_servicerequest
+            Assert.IsTrue(mzk_visitstatus.StartsWith("Draft"));
             xrmApp.Entity.Save();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             client.Browser.Driver.WaitForPageToLoad();
-            string mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });//msdyn_servicerequest
-            Assert.IsTrue(mzk_visitstatus.StartsWith("Draft"));
+
             //string casenumber = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@data-id,'msdyn_servicerequest.fieldControl-LookupResultsDropdown_msdyn_servicerequest_selected_tag"))).Text;
             //Assert.IsNotNull(casenumber);
 
