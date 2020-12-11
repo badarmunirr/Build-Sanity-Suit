@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Build_Sanity_Suit
 {
-    [TestClass]
+   // [TestClass]
     public class A3_Create_Payers : TestBase
     {
         public string PayerNum;
@@ -15,14 +15,18 @@ namespace Build_Sanity_Suit
         {
 
             client = loginobj.RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
-
-            //AddScreenShot(client, "Navigate To Payer");
             XrmApp xrmApp = new XrmApp(client);
             CreateMethod.Payer(xrmApp, client);
-            //AddScreenShot(client, "Create Payer");
             PayerNum = xrmApp.Entity.GetHeaderValue("accountnumber");
+
+
+
+
+
+            //AddScreenShot(client, "Navigate To Payer");
+            //AddScreenShot(client, "Create Payer");
             //AddScreenShot(client, "Get Payer Number");
-           // LoginFinops.CheckFinopsAccounts(PayerNum);
+            // LoginFinops.CheckFinopsAccounts(PayerNum);
 
         }
         [TestCleanup]

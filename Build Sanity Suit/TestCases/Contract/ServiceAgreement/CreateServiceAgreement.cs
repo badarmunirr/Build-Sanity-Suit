@@ -6,13 +6,13 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
-     //[TestClass]
-    public class A6_CreateServiceAgreements:TestBase
+   //  [TestClass]
+    public class A4_CreateServiceAgreements:TestBase
     {
         public static WebClient client;
 
         [TestMethod]
-        public void A6_CreateService()
+        public void A4_CreateService()
         {
             client = loginobj.RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
             XrmApp xrmApp = new XrmApp(client);
@@ -23,7 +23,7 @@ namespace Build_Sanity_Suit
 
         }
         [TestMethod]
-        public void A9_CreateWholesaleService()
+        public void A5_CreateWholesaleService()
         {
             client = loginobj.RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
             XrmApp xrmApp = new XrmApp(client);

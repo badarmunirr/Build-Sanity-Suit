@@ -553,13 +553,10 @@ namespace Build_Sanity_Suit
         {
 
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
-            client.Browser.Driver.WaitForPageToLoad();
-
-
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='Payers']")));
             xrmApp.Navigation.OpenSubArea("Customers", "Payers");
-            client.Browser.Driver.WaitForPageToLoad();
-            // wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
-
+            //client.Browser.Driver.WaitForPageToLoad();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='New']")));
             xrmApp.CommandBar.ClickCommand("New");
 
             xrmApp.Entity.SetValue("name", readData.PayerData.name);
@@ -616,8 +613,8 @@ namespace Build_Sanity_Suit
             {
                 Console.WriteLine("Update Duplicate Record");
             }
-            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Vaildate Payer')]")));
-            client.Browser.Driver.WaitForPageToLoad();
+           wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Vaildate Payer')]")));
+            //client.Browser.Driver.WaitForPageToLoad();
             xrmApp.CommandBar.ClickCommand("Vaildate Payer");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("confirmButton")));
       
@@ -627,8 +624,8 @@ namespace Build_Sanity_Suit
             Assert.IsTrue(xrmApp.Entity.GetValue("mzk_address1countrycodeiso").StartsWith("GB"));
             Assert.IsTrue(xrmApp.Entity.GetValue("mzk_address2countrycodeiso").StartsWith("GB"));
             client.Browser.Driver.WaitUntilVisible(By.CssSelector("*[aria-label='Validated: Yes']")).IsVisible();
-            client.Browser.Driver.WaitForPageToLoad();
-            // wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+           // wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='New']")));
+
             //Field address1_line1 =  xrmApp.Entity.GetField("address1_line1");
             //Assert.IsTrue(address1_line1.IsRequired);
             //Field address2_line1 =  xrmApp.Entity.GetField("address2_line1");
@@ -900,11 +897,12 @@ namespace Build_Sanity_Suit
         public static void Provider(XrmApp xrmApp, WebClient client)
         {
 
-           // WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
-            client.Browser.Driver.WaitForPageToLoad();
+           WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='Healthcare Providers']")));
+
             xrmApp.Navigation.OpenSubArea("Customers", "Healthcare Providers");
-            client.Browser.Driver.WaitForPageToLoad();
-            // wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+           // client.Browser.Driver.WaitForPageToLoad();
+             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             xrmApp.CommandBar.ClickCommand("New");
             Address(xrmApp, client);
             xrmApp.Entity.SetValue("name", readData.HealthCareProviderData.name);

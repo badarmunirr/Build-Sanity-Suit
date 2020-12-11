@@ -320,7 +320,7 @@
   },
   "PayerData": {
     "Noofrecords": 1,
-    "name": "Payer Orgnization",
+    "name": "Payer Organization",
     "accountnumber": "12345",
     "telephone1": "123",
     "emailaddress1": "abc@mazikglobal.com",

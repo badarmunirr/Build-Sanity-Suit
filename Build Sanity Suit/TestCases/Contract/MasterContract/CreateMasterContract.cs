@@ -8,13 +8,13 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
-   // [TestClass]
-    public class A4_CreateMasterContract: TestBase
+    //[TestClass]
+    public class A6_CreateMasterContract: TestBase
     {
         public static WebClient client;
 
         [TestMethod]
-        public void A4_CreateMaster()
+        public void A6_CreateMaster()
         {
             client = loginobj.RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
             XrmApp xrmApp = new XrmApp(client);
