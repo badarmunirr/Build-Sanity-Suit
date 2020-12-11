@@ -553,7 +553,7 @@ namespace Build_Sanity_Suit
         {
 
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='Payers']")));
+            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='Payers']")));
             xrmApp.Navigation.OpenSubArea("Customers", "Payers");
             //client.Browser.Driver.WaitForPageToLoad();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='New']")));
@@ -898,7 +898,7 @@ namespace Build_Sanity_Suit
         {
 
            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='Healthcare Providers']")));
+            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='Healthcare Providers']")));
 
             xrmApp.Navigation.OpenSubArea("Customers", "Healthcare Providers");
            // client.Browser.Driver.WaitForPageToLoad();

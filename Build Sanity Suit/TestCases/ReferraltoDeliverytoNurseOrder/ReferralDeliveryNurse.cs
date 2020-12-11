@@ -40,7 +40,7 @@ namespace Build_Sanity_Suit
                 xrmApp.Grid.Search(Variables.RefNumber);
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Grid.HighLightRecord(0);
-                xrmApp.ThinkTime(30000);
+                client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.CommandBar.ClickCommand("Assign");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Dialogs.Assign(Dialogs.AssignTo.Team, "Hah");
