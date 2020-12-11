@@ -8,10 +8,10 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
-   // [TestClass]
+    [TestClass]
     public class B12_Create_EmployeeOrder : TestBase
     {
-        public static WebClient client;
+        public  WebClient client;
         [TestMethod, TestCategory("Sanity")]
         public void B12_CreateResourcetoAccountToEmployeeOrder()
         {

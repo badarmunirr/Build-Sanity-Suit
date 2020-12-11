@@ -7,10 +7,10 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
-  //  [TestClass]
+   [TestClass]
     public class B10_Create_WholesaleOrders:TestBase
     {
-        public static WebClient client;
+        public  WebClient client;
         [TestMethod, TestCategory("Sanity")]
         public void B10_CreateWholesaleOrder()
         {
