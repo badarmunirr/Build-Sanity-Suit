@@ -17,7 +17,8 @@ namespace Build_Sanity_Suit
             FireEvents = false,
             Headless = false,
             UserAgent = false,
-            DisableGpu = true
+            DisableGpu = true,
+            RemoteHubServer = new Uri("http:localhost:4444/wd/hub"),
         };
 
     }
