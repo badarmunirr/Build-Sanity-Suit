@@ -9,7 +9,7 @@ namespace Build_Sanity_Suit
     public class A2_Create_Patient : TestBase
     {
         public string PatientNum;
-        public static WebClient client;
+        public  WebClient client;
 
         [TestMethod, TestCategory("Sanity")]
         public void A2_CreatePatient()
