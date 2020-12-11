@@ -40,6 +40,7 @@ namespace Build_Sanity_Suit
         {
             Cleanup("Patient Number:" + PatientNum + "\r\n");
             client.Browser.Driver.Close();
+            client.Browser.Driver.Quit();
         }
     }
 }

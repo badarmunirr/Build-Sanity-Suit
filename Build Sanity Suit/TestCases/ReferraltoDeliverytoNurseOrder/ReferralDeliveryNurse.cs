@@ -8,7 +8,7 @@ using Microsoft.Dynamics365.UIAutomation.Browser;
 
 namespace Build_Sanity_Suit
 {
-   //[TestClass]
+   [TestClass]
     public class ReferralDeliveryNurse : TestBase
     {
         public WebClient client;
@@ -40,8 +40,9 @@ namespace Build_Sanity_Suit
                 xrmApp.Grid.Search(Variables.RefNumber);
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Grid.HighLightRecord(0);
-                client.Browser.Driver.WaitForPageToLoad();
-                xrmApp.CommandBar.ClickCommand("Assign");
+                //client.Browser.Driver.WaitForPageToLoad();
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Assign')]")));
+               // xrmApp.CommandBar.ClickCommand("Assign");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Dialogs.Assign(Dialogs.AssignTo.Team, "Hah");
 
