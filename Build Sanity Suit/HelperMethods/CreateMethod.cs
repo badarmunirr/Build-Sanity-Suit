@@ -426,7 +426,7 @@ namespace Build_Sanity_Suit
             string msdyn_postalcode = xrmApp.Entity.GetValue("msdyn_postalcode");
             Assert.IsNotNull(msdyn_postalcode);
             //Products And Services
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//li[text()='Products And Services']"))).Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//li[@title='Products And Services']"))).Click();
 
             client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Work Order Product");
@@ -1011,7 +1011,7 @@ namespace Build_Sanity_Suit
             //Assert.IsTrue(mzk_visitstatus.StartsWith("Draft"));
             string msdyn_postalcode = xrmApp.Entity.GetValue("msdyn_postalcode");
             Assert.IsNotNull(msdyn_postalcode);
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//li[text()='Products And Services']"))).Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//li[@title='Products And Services']"))).Click();
 
             client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Work Order Product");
