@@ -324,7 +324,8 @@ namespace Build_Sanity_Suit
             Assert.IsTrue(mzk_visitstatus2.StartsWith("Proposed"));
             string msdyn_postalcode = xrmApp.Entity.GetValue("msdyn_postalcode");
             Assert.IsNotNull(msdyn_postalcode);
-            xrmApp.Entity.SelectTab("Products And Services"); 
+            xrmApp.Entity.SelectTab("Products And Services");
+            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//li[@title='Products And Services']"))).Click();
             client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Entity.SubGrid.ClickCommand("workorderservicesgrid", "New Work Order Service");
 
