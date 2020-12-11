@@ -611,7 +611,7 @@ namespace Build_Sanity_Suit
             {
                 Console.WriteLine("Update Duplicate Record");
             }
-           wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Vaildate Payer')]")));
+           wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[@title='Vaildate Payer']")));
             //client.Browser.Driver.WaitForPageToLoad();
             xrmApp.CommandBar.ClickCommand("Vaildate Payer");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("confirmButton")));
