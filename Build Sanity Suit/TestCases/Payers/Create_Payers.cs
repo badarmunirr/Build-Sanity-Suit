@@ -9,7 +9,7 @@ namespace Build_Sanity_Suit
     public class A3_Create_Payers : TestBase
     {
         public string PayerNum;
-        public static WebClient client;
+        public  WebClient client;
         [TestMethod, TestCategory("Sanity")]
         public void A3_CreatePayer()
         {
