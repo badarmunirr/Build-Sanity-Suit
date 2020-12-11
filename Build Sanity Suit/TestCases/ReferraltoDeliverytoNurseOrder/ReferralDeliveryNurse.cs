@@ -21,7 +21,7 @@ namespace Build_Sanity_Suit
             {
                 client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
                 XrmApp xrmApp = new XrmApp(client);
-                WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+                WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
                 CreateMethod.Referral(xrmApp, client);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")));
                 // when support for hidden field is added need to replace this line of code
@@ -41,7 +41,7 @@ namespace Build_Sanity_Suit
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Grid.HighLightRecord(0);
                 //client.Browser.Driver.WaitForPageToLoad();
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Assign')]")));
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Assign')]"))).Click();
                // xrmApp.CommandBar.ClickCommand("Assign");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Dialogs.Assign(Dialogs.AssignTo.Team, "Hah");
@@ -59,7 +59,7 @@ namespace Build_Sanity_Suit
             {
                 client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
                 XrmApp xrmApp = new XrmApp(client);
-                WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+                WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
                 string cases = Helper.ReadReferral();
                 CreateMethod.DeliveryOrder(xrmApp, client, cases);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));
@@ -85,7 +85,7 @@ namespace Build_Sanity_Suit
 
                 client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
                 XrmApp xrmApp = new XrmApp(client);
-                WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
+                WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
                 string cases = Helper.ReadReferral();
                 CreateMethod.NurseOrder(xrmApp, client, cases);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Complete')]")));
