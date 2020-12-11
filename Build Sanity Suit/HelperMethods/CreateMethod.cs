@@ -227,7 +227,8 @@ namespace Build_Sanity_Suit
             Assert.IsTrue(mzk_visitstatus.StartsWith("Draft"));
             string msdyn_postalcode = xrmApp.Entity.GetValue("msdyn_postalcode");
             Assert.IsNotNull(msdyn_postalcode);
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//li[@title='Products And Services']"))).Click();
+            xrmApp.Entity.SelectTab("Products And Services");
+            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//li[@title='Products And Services']"))).Click();
             client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Entity.SubGrid.ClickCommand("workorderproductsgrid", "New Ancillary Item");
 
@@ -1000,9 +1001,6 @@ namespace Build_Sanity_Suit
             xrmApp.Entity.SetValue("mzk_scheduledenddatetime", mzk_scheduledenddatetime, Configdata.datePattern, Configdata.TimePattern);
 
             Lookup("mzk_deliverymethods", readData.EmployeeOrderData.mzk_deliverymethods, xrmApp, client);
-
-
-
             xrmApp.Entity.Save();
             client.Browser.Driver.WaitForPageToLoad();
             //string mzk_visitstatus =  xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
