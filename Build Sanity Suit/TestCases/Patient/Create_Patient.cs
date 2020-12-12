@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Build_Sanity_Suit
 {
 
-   [TestClass]
+   //[TestClass]
     public class A2_Create_Patient : TestBase
     {
         public string PatientNum;
