@@ -325,6 +325,7 @@ namespace Build_Sanity_Suit
             string mzk_visitstatus2 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus2.StartsWith("Proposed"));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Complete')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[@data-id='navbutton']"))).Click();
             client.Browser.Driver.WaitForPageToLoad();
             string msdyn_postalcode = xrmApp.Entity.GetValue("msdyn_postalcode");
             Assert.IsNotNull(msdyn_postalcode);
@@ -801,15 +802,17 @@ namespace Build_Sanity_Suit
         }
         public static void ManualInvoice(XrmApp xrmApp, WebClient client, string Category, string Type)
         {
+            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
+
             if (Type == "Invoice" && Category == "Organization" || Type == "Credit" && Category == "Organization")
             {
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Navigation.OpenSubArea("Referral", "Manual Invoice/Credit");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.CommandBar.ClickCommand("New");
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//label[text()='Payer']"))).SendKeys(Keys.ArrowDown);
 
-                IJavaScriptExecutor js = (IJavaScriptExecutor)client.Browser.Driver;
-                js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
+
                 DateTime mzk_actualvisitstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
                 xrmApp.Entity.SetValue("mzk_actualvisitstartdatetime", mzk_actualvisitstartdatetime, Conifgdata.datePattern, Conifgdata.TimePattern);
 
@@ -855,8 +858,7 @@ namespace Build_Sanity_Suit
                 xrmApp.Navigation.OpenSubArea("Referral", "Manual Invoice/Credit");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.CommandBar.ClickCommand("New");
-                IJavaScriptExecutor js = (IJavaScriptExecutor)client.Browser.Driver;
-                js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//label[text()='Payer']"))).SendKeys(Keys.ArrowDown);
                 DateTime mzk_actualvisitstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
                 xrmApp.Entity.SetValue("mzk_actualvisitstartdatetime", mzk_actualvisitstartdatetime, Conifgdata.datePattern, Conifgdata.TimePattern);
 
