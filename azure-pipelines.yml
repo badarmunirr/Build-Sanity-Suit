@@ -32,6 +32,9 @@ steps:
     
 - task: VSTest@2
   timeoutInMinutes: 180
+  rerunFailedTests :True
+  rerunFailedTestCasesMaxLimit :1
+  
   inputs:
     testSelector: 'testAssemblies'
     testAssemblyVer2: '$(System.DefaultWorkingDirectory)\Build Sanity Suit\bin\Release\Build Sanity Suit.dll'
