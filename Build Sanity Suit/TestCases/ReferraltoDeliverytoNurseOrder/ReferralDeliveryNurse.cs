@@ -22,7 +22,7 @@ namespace Build_Sanity_Suit
             {
                 client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
                 XrmApp xrmApp = new XrmApp(client);
-                client.Browser.Driver.Manage().Window.Maximize();
+
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
                 CreateMethod.Referral(xrmApp, client);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")));

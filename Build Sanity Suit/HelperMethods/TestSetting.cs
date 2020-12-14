@@ -18,7 +18,8 @@ namespace Build_Sanity_Suit
             Headless = false,
             UserAgent = false,
             DisableGpu = true,
-            DefaultThinkTime = 20
+            DefaultThinkTime = 20,
+            StartMaximized= true
            
         };
 
