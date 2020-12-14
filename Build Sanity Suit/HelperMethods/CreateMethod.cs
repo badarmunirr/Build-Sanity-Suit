@@ -225,7 +225,7 @@ namespace Build_Sanity_Suit
 
             string mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus.StartsWith("Draft"));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));
             client.Browser.Driver.WaitForPageToLoad();
             string msdyn_postalcode = xrmApp.Entity.GetValue("msdyn_postalcode");
             Assert.IsNotNull(msdyn_postalcode);
@@ -324,7 +324,7 @@ namespace Build_Sanity_Suit
             client.Browser.Driver.WaitForPageToLoad();
             string mzk_visitstatus2 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
             Assert.IsTrue(mzk_visitstatus2.StartsWith("Proposed"));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Complete')]")));
             client.Browser.Driver.WaitForPageToLoad();
             string msdyn_postalcode = xrmApp.Entity.GetValue("msdyn_postalcode");
             Assert.IsNotNull(msdyn_postalcode);

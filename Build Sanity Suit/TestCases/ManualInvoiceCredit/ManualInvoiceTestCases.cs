@@ -8,7 +8,7 @@ using System.IO;
 namespace Build_Sanity_Suit
 {
 
-    [TestClass]
+   // [TestClass]
     public class ManualInvoiceTestCases:TestBase
     {
         public  WebClient client=null;
@@ -18,6 +18,7 @@ namespace Build_Sanity_Suit
         {
             client = loginobj.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
             XrmApp xrmApp = new XrmApp(client);
+            client.Browser.Driver.Manage().Window.Maximize();
             CreateMethod.ManualInvoice(xrmApp,client, "Organization", "Invoice");
             client.Browser.Driver.WaitForPageToLoad();
             xrmApp.CommandBar.ClickCommand("Complete");
@@ -31,6 +32,7 @@ namespace Build_Sanity_Suit
         public void B14_TstManualInvoice_19346_Manualinvoicecreditorderstatusiscompleted()
         {
             client = loginobj.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
+            client.Browser.Driver.Manage().Window.Maximize();
             XrmApp xrmApp = new XrmApp(client);
             CreateMethod.ManualInvoice(xrmApp, client, "Organization", "Credit");
             client.Browser.Driver.WaitForPageToLoad();
@@ -48,6 +50,7 @@ namespace Build_Sanity_Suit
         {
             client = loginobj.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
             XrmApp xrmApp = new XrmApp(client);
+            client.Browser.Driver.Manage().Window.Maximize();
             CreateMethod.ManualInvoice(xrmApp, client, "Patient", "Credit");
             client.Browser.Driver.WaitForPageToLoad();
             xrmApp.CommandBar.ClickCommand("Complete");
@@ -64,6 +67,7 @@ namespace Build_Sanity_Suit
         {
             client = loginobj.RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
             XrmApp xrmApp = new XrmApp(client);
+            client.Browser.Driver.Manage().Window.Maximize();
             CreateMethod.ManualInvoice(xrmApp, client, "Patient", "Invoice");
             client.Browser.Driver.WaitForPageToLoad();
             xrmApp.CommandBar.ClickCommand("Complete");

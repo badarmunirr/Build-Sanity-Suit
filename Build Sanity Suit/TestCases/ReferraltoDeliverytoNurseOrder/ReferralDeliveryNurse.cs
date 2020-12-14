@@ -22,6 +22,7 @@ namespace Build_Sanity_Suit
             {
                 client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
                 XrmApp xrmApp = new XrmApp(client);
+                client.Browser.Driver.Manage().Window.Maximize();
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
                 CreateMethod.Referral(xrmApp, client);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")));
@@ -41,7 +42,7 @@ namespace Build_Sanity_Suit
                 xrmApp.Grid.Search(Variables.RefNumber);
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Grid.HighLightRecord(0);
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Assign')]")));
                 xrmApp.CommandBar.ClickCommand("Assign");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Dialogs.Assign(Dialogs.AssignTo.Team, "Hah");
