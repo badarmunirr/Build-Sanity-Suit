@@ -54,7 +54,7 @@ namespace Build_Sanity_Suit
             CreateReferral();
         }
 
-       // [TestMethod, TestCategory("Sanity")]
+        [TestMethod, TestCategory("Sanity")]
         [DoNotParallelize]
         public void A2_CreateDeliveryOrder()
         {

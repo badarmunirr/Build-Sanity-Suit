@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Build_Sanity_Suit
 {
-   // [TestClass]
+   [TestClass]
     public class B10_Create_WholesaleOrders:TestBase
     {
         public  WebClient client=null;
