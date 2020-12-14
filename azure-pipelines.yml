@@ -35,7 +35,7 @@ steps:
   
   inputs:
     rerunFailedTests: True
-    rerunFailedTestCasesMaxLimit: 1
+    rerunFailedTestCasesMaxLimit: 3
     testSelector: 'testAssemblies'
     testAssemblyVer2: '$(System.DefaultWorkingDirectory)\Build Sanity Suit\bin\Release\Build Sanity Suit.dll'
     searchFolder: '$(System.DefaultWorkingDirectory)\Build Sanity Suit'
