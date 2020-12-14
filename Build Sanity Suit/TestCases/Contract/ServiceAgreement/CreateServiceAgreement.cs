@@ -6,7 +6,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
-    [TestClass]
+   // [TestClass]
     public class A4_CreateServiceAgreements:TestBase
     {
         public static WebClient client;
