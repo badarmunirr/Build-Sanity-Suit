@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.Dynamics365.UIAutomation.Api.UCI;
 using Microsoft.Dynamics365.UIAutomation.Browser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -8,10 +9,10 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
-   // [TestClass]
+    [TestClass]
     public class B12_Create_EmployeeOrder : TestBase
     {
-        public  WebClient client;
+        public  WebClient client=null;
         [TestMethod, TestCategory("Sanity")]
         public void B12_CreateResourcetoAccountToEmployeeOrder()
         {
@@ -31,6 +32,9 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
+            Screenshot ss = ((ITakesScreenshot)client.Browser.Driver).GetScreenshot();
+            string path = Directory.GetCurrentDirectory() + TestContext.TestName + ".png";
+            ss.SaveAsFile(path);
             Cleanup("Employee Order No:" + Variables.WorkOrderNum + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus3);
             client.Browser.Driver.Close();
         }

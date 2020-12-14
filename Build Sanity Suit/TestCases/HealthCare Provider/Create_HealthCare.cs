@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Build_Sanity_Suit
 {
-    [TestClass]
+   // [TestClass]
     public class A1_Create_HealthCare : TestBase
     {
         public  string AccountNum;

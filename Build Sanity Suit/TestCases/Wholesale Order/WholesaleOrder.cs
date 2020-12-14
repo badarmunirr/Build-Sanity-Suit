@@ -1,16 +1,15 @@
-﻿using System;
-using Microsoft.Dynamics365.UIAutomation.Api.UCI;
+﻿using Microsoft.Dynamics365.UIAutomation.Api.UCI;
 using Microsoft.Dynamics365.UIAutomation.Browser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
+using System.IO;
 
 namespace Build_Sanity_Suit
 {
- //  [TestClass]
+    [TestClass]
     public class B10_Create_WholesaleOrders:TestBase
     {
-        public  WebClient client;
+        public  WebClient client=null;
         [TestMethod, TestCategory("Sanity")]
         public void B10_CreateWholesaleOrder()
         {
@@ -31,6 +30,10 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
+            Screenshot ss = ((ITakesScreenshot)client.Browser.Driver).GetScreenshot();
+            string path = Directory.GetCurrentDirectory() + TestContext.TestName + ".png";
+            ss.SaveAsFile(path);
+            this.TestContext.AddResultFile(path);
             Cleanup("Wholsale No:" + Variables.OrderNum + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus2);
             client.Browser.Driver.Close();
         }
