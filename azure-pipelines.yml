@@ -31,8 +31,11 @@ steps:
     versionSelector: 'latestPreRelease'
     
 - task: VSTest@2
-  timeoutInMinutes: 180
+
+  
   inputs:
+    rerunFailedTests: True
+    rerunFailedTestCasesMaxLimit: 1
     testSelector: 'testAssemblies'
     testAssemblyVer2: '$(System.DefaultWorkingDirectory)\Build Sanity Suit\bin\Release\Build Sanity Suit.dll'
     searchFolder: '$(System.DefaultWorkingDirectory)\Build Sanity Suit'
