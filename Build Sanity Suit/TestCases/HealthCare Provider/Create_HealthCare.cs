@@ -31,7 +31,7 @@ namespace Build_Sanity_Suit
                 test.Log(Status.Info, "Test Ended");
                 test.Log(Status.Pass, "Test Passed");
                 Screenshot ss = ((ITakesScreenshot)client.Browser.Driver).GetScreenshot();
-                string path = Directory.GetCurrentDirectory() + TestContext.TestName;
+                string path = Directory.GetCurrentDirectory() + TestContext.TestName + ".png"; ;
                 ss.SaveAsFile(path);
                 this.TestContext.AddResultFile(path);
 
@@ -41,7 +41,7 @@ namespace Build_Sanity_Suit
                 test.Log(Status.Info, "Test Ended");
                 test.Log(Status.Fail, "Test Failed");
                 Screenshot ss = ((ITakesScreenshot)client.Browser.Driver).GetScreenshot();
-                string path = Directory.GetCurrentDirectory() + TestContext.TestName;
+                string path = Directory.GetCurrentDirectory() + TestContext.TestName + ".png";
                 ss.SaveAsFile(path);
                 this.TestContext.AddResultFile(path);
             }
