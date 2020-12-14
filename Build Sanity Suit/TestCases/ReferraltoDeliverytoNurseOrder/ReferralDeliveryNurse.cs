@@ -5,13 +5,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using Microsoft.Dynamics365.UIAutomation.Browser;
+using System.IO;
 
 namespace Build_Sanity_Suit
 {
-   //[TestClass]
+   [TestClass]
     public class ReferralDeliveryNurse : TestBase
     {
-        public WebClient client;
+        public WebClient client=null;
 
         [TestMethod, TestCategory("Sanity")]
         [DoNotParallelize]
@@ -40,7 +41,7 @@ namespace Build_Sanity_Suit
                 xrmApp.Grid.Search(Variables.RefNumber);
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Grid.HighLightRecord(0);
-                client.Browser.Driver.WaitForPageToLoad();
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
                 xrmApp.CommandBar.ClickCommand("Assign");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Dialogs.Assign(Dialogs.AssignTo.Team, "Hah");
@@ -105,6 +106,10 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
+            Screenshot ss = ((ITakesScreenshot)client.Browser.Driver).GetScreenshot();
+            string path = Directory.GetCurrentDirectory() + TestContext.TestName + ".png";
+            ss.SaveAsFile(path);
+            this.TestContext.AddResultFile(path);
             Cleanup("Ref No:" + Variables.RefNumber + "\r\nCaseNumber:" + Variables.casenumber + "\r\nWorkOrder No:" + Variables.WorkOrderNo + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus3);
             client.Browser.Driver.Close();
         }

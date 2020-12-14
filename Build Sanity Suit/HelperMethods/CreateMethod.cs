@@ -803,6 +803,8 @@ namespace Build_Sanity_Suit
                 xrmApp.Navigation.OpenSubArea("Referral", "Manual Invoice/Credit");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.CommandBar.ClickCommand("New");
+                DateTime mzk_actualvisitstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
+                xrmApp.Entity.SetValue("mzk_actualvisitstartdatetime", mzk_actualvisitstartdatetime, Conifgdata.datePattern, Conifgdata.TimePattern);
 
                 xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_category", Value = Category });
 
@@ -814,9 +816,7 @@ namespace Build_Sanity_Suit
 
                 xrmApp.Entity.SetValue("mzk_prescriptionponumber", readData.TstManualInvoice_19273Data.mzk_prescriptionponumber);
 
-                DateTime mzk_actualvisitstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
-                xrmApp.Entity.SetValue("mzk_actualvisitstartdatetime", mzk_actualvisitstartdatetime, Conifgdata.datePattern, Conifgdata.TimePattern);
-
+               
                 //Lookupobj.Lookup("msdyn_serviceaccount", TestData19273.account);
 
                 Lookup("mzk_contract", readData.TstManualInvoice_19273Data.mzk_contract, xrmApp, client);
@@ -848,6 +848,8 @@ namespace Build_Sanity_Suit
                 xrmApp.Navigation.OpenSubArea("Referral", "Manual Invoice/Credit");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.CommandBar.ClickCommand("New");
+                DateTime mzk_actualvisitstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
+                xrmApp.Entity.SetValue("mzk_actualvisitstartdatetime", mzk_actualvisitstartdatetime, Conifgdata.datePattern, Conifgdata.TimePattern);
 
                 xrmApp.Entity.SetValue(new OptionSet { Name = "mzk_category", Value = Category });
 
@@ -859,9 +861,7 @@ namespace Build_Sanity_Suit
 
                 xrmApp.Entity.SetValue("mzk_prescriptionponumber", readData.TstManualInvoice_19347Data.mzk_prescriptionponumber);
 
-                DateTime mzk_actualvisitstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
-                xrmApp.Entity.SetValue("mzk_actualvisitstartdatetime", mzk_actualvisitstartdatetime, Conifgdata.datePattern, Conifgdata.TimePattern);
-
+               
                 //Lookupobj.Lookup("msdyn_serviceaccount", TestData19347.patient);
 
                 //Lookupobj.Lookup("mzk_service", TestData19347.service);
