@@ -42,6 +42,8 @@ namespace Build_Sanity_Suit
                 xrmApp.Grid.Search(Variables.RefNumber);
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Grid.HighLightRecord(0);
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[@data-id='navbutton']"))).Click();
+
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Assign')]")));
                 xrmApp.CommandBar.ClickCommand("Assign");
                 client.Browser.Driver.WaitForPageToLoad();
