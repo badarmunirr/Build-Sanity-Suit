@@ -19,7 +19,10 @@ namespace Build_Sanity_Suit
             UserAgent = false,
             DisableGpu = true,
             DefaultThinkTime = 20,
-            StartMaximized= true
+            StartMaximized= true,
+            Width=4000,
+            Height=2000,
+  
            
         };
 
