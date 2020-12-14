@@ -10,7 +10,7 @@ namespace Build_Sanity_Suit
     public class A1_Create_HealthCare : TestBase
     {
         public  string AccountNum;
-        public  WebClient client;
+        public WebClient client = null;
         [TestMethod, TestCategory("Sanity")]
         public void A1_CreateProvider()
         {
