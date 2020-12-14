@@ -60,7 +60,7 @@ namespace Build_Sanity_Suit
             {
                 client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
                 XrmApp xrmApp = new XrmApp(client);
-                WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
+                WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(60));
                 string cases = Helper.ReadReferral();
                 CreateMethod.DeliveryOrder(xrmApp, client, cases);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));
