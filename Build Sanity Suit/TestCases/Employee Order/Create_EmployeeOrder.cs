@@ -35,6 +35,7 @@ namespace Build_Sanity_Suit
             Screenshot ss = ((ITakesScreenshot)client.Browser.Driver).GetScreenshot();
             string path = Directory.GetCurrentDirectory() + TestContext.TestName + ".png";
             ss.SaveAsFile(path);
+            this.TestContext.AddResultFile(path);
             Cleanup("Employee Order No:" + Variables.WorkOrderNum + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus3);
             client.Browser.Driver.Close();
         }
