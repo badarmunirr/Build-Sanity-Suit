@@ -30,14 +30,14 @@ steps:
     packageFeedSelector: 'nugetOrg'
     versionSelector: 'latestPreRelease'
     
+
+    
 - task: VSTest@2
   inputs:
     testSelector: 'testAssemblies'
     testAssemblyVer2: '$(System.DefaultWorkingDirectory)\Build Sanity Suit\bin\Release\Build Sanity Suit.dll'
     searchFolder: '$(System.DefaultWorkingDirectory)\Build Sanity Suit'
-    #testFiltercriteria: 'Priority=1|Name=Executetest' 
     uiTests: true
+    vsTestVersion: '16.0'
     rerunFailedTests: true
     rerunFailedThreshold: '20'
-    rerunMaxAttempts: '2'
-    vsTestVersion: 'toolsInstaller'
