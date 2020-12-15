@@ -16,8 +16,8 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("Sanity")]
         public void B12_CreateResourcetoAccountToEmployeeOrder()
         {
-            Retry(() =>
-            {
+            //Retry(() =>
+            //{
                 RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
                 wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
                 CreateMethod.EmployeeOrder(xrmApp, client);
@@ -27,7 +27,7 @@ namespace Build_Sanity_Suit
                 Variables.mzk_visitstatus3 = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
                 Assert.IsTrue(Variables.mzk_visitstatus3.StartsWith("Proposed"));
                 Variables.WorkOrderNum = xrmApp.Entity.GetHeaderValue("msdyn_name");
-            }, 2, 1000);
+            //}, 2, 1000);
         }
         [TestCleanup]
         public void Teardown()

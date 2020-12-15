@@ -18,9 +18,8 @@ namespace Build_Sanity_Suit
         [DoNotParallelize]
         public void A1_CreateReferral()
         {
-            Retry(() =>
-            {
-
+            //Retry(() =>
+            //{
                 RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
                 wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(60));
                 CreateMethod.Referral(xrmApp, client);
@@ -47,18 +46,15 @@ namespace Build_Sanity_Suit
                 xrmApp.CommandBar.ClickCommand("Assign");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Dialogs.Assign(Dialogs.AssignTo.Team, "Hah");
-
-
-            }, 2, 1000);
+            //}, 2, 1000);
         }
 
         [TestMethod, TestCategory("Sanity")]
         [DoNotParallelize]
         public void A2_CreateDeliveryOrder()
         {
-            Retry(() =>
-            {
-
+            //Retry(() =>
+            //{
                 RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
 
                 wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(60));
@@ -71,15 +67,15 @@ namespace Build_Sanity_Suit
                 Assert.IsTrue(Variables.mzk_visitstatus3.StartsWith("Proposed"));
                 //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
                 Variables.WorkOrderNo = xrmApp.Entity.GetValue("msdyn_name");
-            }, 2, 1000);
+            //}, 2, 1000);
         }
 
         [TestMethod, TestCategory("Sanity")]
         [DoNotParallelize]
         public void A3_CreateNurseOrder()
         {
-            Retry(() =>
-            {
+            //Retry(() =>
+            //{
                 RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
                 wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
                 string cases = Helper.ReadReferral();
@@ -92,7 +88,7 @@ namespace Build_Sanity_Suit
                 //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
                 Variables.WorkOrderNo = xrmApp.Entity.GetValue("msdyn_name");
 
-            }, 2, 1000);
+            //}, 2, 1000);
         }
 
 

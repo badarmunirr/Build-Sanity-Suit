@@ -14,13 +14,13 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("Sanity")]
         public void A1_CreateProvider()
         {
-            Retry(() =>
-            {
+            //Retry(() =>
+            //{
                 RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
                 CreateMethod.Provider(xrmApp, client);
                 AccountNum = xrmApp.Entity.GetHeaderValue("accountnumber");
                 //  LoginFinops.CheckFinopsAccounts(AccountNum);
-            }, 2, 1000);
+            //}, 2, 1000);
         }
 
         [TestCleanup]

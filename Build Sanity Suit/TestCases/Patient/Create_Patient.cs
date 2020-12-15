@@ -17,8 +17,8 @@ namespace Build_Sanity_Suit
 
         public void ACreatePatient()
         {
-            Retry(() =>
-            {
+            //Retry(() =>
+            //{
                 RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
                 CreateMethod.Patient(xrmApp, client);
                 PatientNum = xrmApp.Entity.GetValue("mzk_patientmrn");
@@ -26,19 +26,19 @@ namespace Build_Sanity_Suit
                 //AddScreenShot(client, "Navigate To Patient");
                 //AddScreenShot(client, "Get Patient Number");
                 //  LoginFinops.CheckFinopsAccounts(PatientNum);
-            }, 2, 1000);
+            //}, 2, 1000);
         }
 
         [TestMethod, TestCategory("Sanity")]
         public void BPatientView()
         {
-            Retry(() =>
-            {
+            //Retry(() =>
+            //{
                 RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
                 xrmApp.Navigation.OpenSubArea("Customers", "Patients");
                 xrmApp.Grid.SwitchView("Patient");
                 xrmApp.Grid.Search("Jake Hughes");
-            }, 2, 1000);
+            //}, 2, 1000);
         }
         [TestCleanup]
         public void Teardown()

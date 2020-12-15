@@ -13,8 +13,8 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("Sanity")]
         public void B10_CreateWholesaleOrder()
         {
-            Retry(() =>
-            {
+            //Retry(() =>
+            //{
                 RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
                 // WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
                 CreateMethod.WholesaleOrder(xrmApp, client);
@@ -26,7 +26,7 @@ namespace Build_Sanity_Suit
                 Assert.IsTrue(Variables.mzk_visitstatus2.StartsWith("Proposed"));
                 client.Browser.Driver.WaitForPageToLoad();
                 Variables.OrderNum = xrmApp.Entity.GetHeaderValue("msdyn_name");
-            }, 2, 1000);
+            //}, 2, 1000);
         }
 
         [TestCleanup]
