@@ -6,7 +6,7 @@ using System.IO;
 
 namespace Build_Sanity_Suit
 {
-    //[TestClass]
+    [TestClass]
     public class A1_Create_HealthCare : TestBase
     {
         public string AccountNum;
@@ -14,13 +14,15 @@ namespace Build_Sanity_Suit
         [TestMethod, TestCategory("Sanity")]
         public void A1_CreateProvider()
         {
-
-            RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
-            CreateMethod.Provider(xrmApp, client);
-            AccountNum = xrmApp.Entity.GetHeaderValue("accountnumber");
-          //  LoginFinops.CheckFinopsAccounts(AccountNum);
+            Retry(() =>
+            {
+                RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
+                CreateMethod.Provider(xrmApp, client);
+                AccountNum = xrmApp.Entity.GetHeaderValue("accountnumber");
+                //  LoginFinops.CheckFinopsAccounts(AccountNum);
+            }, 2, 1000);
         }
-       
+
         [TestCleanup]
         public void Teardown()
         {

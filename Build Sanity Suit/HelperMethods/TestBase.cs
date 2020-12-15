@@ -11,6 +11,8 @@ using System.Diagnostics;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using OpenQA.Selenium.Support.UI;
+using System.Threading;
+using System.Runtime.CompilerServices;
 
 namespace Build_Sanity_Suit
 {
@@ -175,6 +177,30 @@ namespace Build_Sanity_Suit
 
 
 
+        }
+
+        public static void Retry(Action test, int retry = 10, int sleep = 0, [CallerMemberName] string testName = null)
+        {
+            int current = 1;
+            retry = Math.Max(1, Math.Min(retry, 10));
+            while (current <= retry)
+            {
+                try
+                {
+                    test();
+                    break;
+                }
+                catch (Exception ex) when (current < retry)
+                {
+                    Debug.WriteLine("Test {0} failed ({1}. try): {2}", testName, current, ex);
+                }
+
+                if (sleep > 0)
+                {
+                    Thread.Sleep(sleep);
+                }
+                current++;
+            }
         }
 
     }
