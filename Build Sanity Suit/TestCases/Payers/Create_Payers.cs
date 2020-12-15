@@ -7,7 +7,7 @@ using System.IO;
 
 namespace Build_Sanity_Suit
 {
-   // [TestClass]
+     [TestClass]
     public class A3_Create_Payers : TestBase
     {
         public string PayerNum;

@@ -9,7 +9,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
-   // [TestClass]
+    [TestClass]
     public class B12_Create_EmployeeOrder : TestBase
     {
        
