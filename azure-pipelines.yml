@@ -39,6 +39,7 @@ steps:
     uiTests: true
     rerunFailedTests: true
     rerunFailedThreshold: '80'
+    rerunMaxAttempts: :'2'
     vsTestVersion: 'toolsInstaller'
 
     
