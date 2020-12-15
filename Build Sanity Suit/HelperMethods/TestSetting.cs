@@ -22,6 +22,7 @@ namespace Build_Sanity_Suit
             StartMaximized= true,
             Width=4000,
             Height=2000,
+            UCITestMode=true
   
            
         };
