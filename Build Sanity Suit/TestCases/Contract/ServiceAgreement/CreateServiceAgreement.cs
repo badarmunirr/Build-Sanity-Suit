@@ -37,7 +37,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             Cleanup("Service Agreement:" + "\r\n");
-            client.Browser.Driver.Close();
+           
         }
     }
 }

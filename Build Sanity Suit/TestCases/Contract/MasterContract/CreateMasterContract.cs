@@ -8,7 +8,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
-   // [TestClass]
+  //  [TestClass]
     public class A6_CreateMasterContract: TestBase
     {
   
@@ -17,7 +17,6 @@ namespace Build_Sanity_Suit
         public void A6_CreateMaster()
         {
             RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
-
             ContractHelper.OtherInformation(xrmApp, client);
             ContractHelper.MasterGeneral(xrmApp, client);
             ContractHelper.ContractProductService(xrmApp, client);
@@ -31,7 +30,7 @@ namespace Build_Sanity_Suit
         public void Teardown()
         {
             Cleanup("Master Contract:" + "\r\n");
-            client.Browser.Driver.Close();
+            
         }
     }
 }

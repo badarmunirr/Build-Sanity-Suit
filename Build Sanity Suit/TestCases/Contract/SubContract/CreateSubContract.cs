@@ -13,22 +13,18 @@ namespace Build_Sanity_Suit
         [TestMethod]
         public void A5_CreateSub()
         {
-
             RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
-       
-
             ContractHelper.OtherInformation(xrmApp, client);
             ContractHelper.SubGeneral(xrmApp, client);
             ContractHelper.ContractDignosis(xrmApp, client);
             ContractHelper.ContractPriceList(xrmApp, client);
-
         }
 
         [TestCleanup]
         public void Teardown()
         {
             Cleanup("Sub Contract:" + "\r\n");
-            client.Browser.Driver.Close();
+            
         }
     }
 }
