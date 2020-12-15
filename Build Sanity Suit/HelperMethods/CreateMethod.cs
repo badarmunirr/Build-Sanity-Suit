@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using Microsoft.Dynamics365.UIAutomation.Browser;
 using OpenQA.Selenium.Support.UI;
-
+using OpenQA.Selenium.Interactions;
 
 namespace Build_Sanity_Suit
 {
@@ -811,7 +811,12 @@ namespace Build_Sanity_Suit
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.CommandBar.ClickCommand("New");
 
-               // wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[contains(@data-id,'mzk_actualvisitstartdatetime')]"))).Click();
+                 Actions actions = new Actions(client.Browser.Driver);
+                //actions.MoveByOffset(800, 800).ContextClick().Build().Perform();
+                actions.MoveToElement(client.Browser.Driver.FindElement(By.XPath("//h2[text()='Visit Date And Time Information']"))).ContextClick().Build().Perform();
+                actions.MoveToElement(client.Browser.Driver.FindElement(By.XPath("//input[contains(@data-id,'mzk_actualvisitstartdatetime')]"))).ContextClick().Build().Perform();
+
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[contains(@data-id,'mzk_actualvisitstartdatetime')]"))).Click();
 
                 DateTime mzk_actualvisitstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
                 xrmApp.Entity.SetValue("mzk_actualvisitstartdatetime", mzk_actualvisitstartdatetime, Conifgdata.datePattern, Conifgdata.TimePattern);
@@ -826,7 +831,7 @@ namespace Build_Sanity_Suit
 
                 xrmApp.Entity.SetValue("mzk_prescriptionponumber", readData.TstManualInvoice_19273Data.mzk_prescriptionponumber);
 
-               
+
                 //Lookupobj.Lookup("msdyn_serviceaccount", TestData19273.account);
 
                 Lookup("mzk_contract", readData.TstManualInvoice_19273Data.mzk_contract, xrmApp, client);
@@ -843,7 +848,7 @@ namespace Build_Sanity_Suit
                 client.Browser.Driver.WaitForPageToLoad();
                 LookupQuickCreate("msdyn_product", readData.TstManualInvoice_19273Data.msdyn_product, xrmApp);
 
-                
+
                 xrmApp.QuickCreate.SetValue("msdyn_quantity", readData.TstManualInvoice_19273Data.msdyn_quantity);
 
                 xrmApp.QuickCreate.Save();
@@ -858,7 +863,11 @@ namespace Build_Sanity_Suit
                 xrmApp.Navigation.OpenSubArea("Referral", "Manual Invoice/Credit");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.CommandBar.ClickCommand("New");
-               // wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[contains(@data-id,'mzk_actualvisitstartdatetime')]"))).Click();
+                // wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[contains(@data-id,'mzk_actualvisitstartdatetime')]"))).Click();
+
+                Actions actions = new Actions(client.Browser.Driver);
+                actions.MoveToElement(client.Browser.Driver.FindElement(By.XPath("//h2[text()='Visit Date And Time Information']"))).ContextClick().Build().Perform();
+                actions.MoveToElement(client.Browser.Driver.FindElement(By.XPath("//input[contains(@data-id,'mzk_actualvisitstartdatetime')]"))).ContextClick().Build().Perform();
 
                 DateTime mzk_actualvisitstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
                 xrmApp.Entity.SetValue("mzk_actualvisitstartdatetime", mzk_actualvisitstartdatetime, Conifgdata.datePattern, Conifgdata.TimePattern);
@@ -873,7 +882,7 @@ namespace Build_Sanity_Suit
 
                 xrmApp.Entity.SetValue("mzk_prescriptionponumber", readData.TstManualInvoice_19347Data.mzk_prescriptionponumber);
 
-               
+
                 //Lookupobj.Lookup("msdyn_serviceaccount", TestData19347.patient);
 
                 //Lookupobj.Lookup("mzk_service", TestData19347.service);
@@ -885,7 +894,7 @@ namespace Build_Sanity_Suit
                 //Lookupobj.Lookup("msdyn_servicerequest", TestData19347.Case);
 
                 xrmApp.Entity.Save();
-    
+
 
                 client.Browser.Driver.WaitForPageToLoad();
 
@@ -902,7 +911,7 @@ namespace Build_Sanity_Suit
                 client.Browser.Driver.WaitForPageToLoad();
                 var mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_visitstatus" });
                 Assert.IsTrue(mzk_visitstatus.StartsWith("Proposed"));
-        
+
             }
 
         }
