@@ -808,7 +808,7 @@ namespace Build_Sanity_Suit
             {
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Navigation.OpenSubArea("Referral", "Manual Invoice/Credit");
-                client.Browser.Driver.WaitForPageToLoad();
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
                 xrmApp.CommandBar.ClickCommand("New");
 
                  Actions actions = new Actions(client.Browser.Driver);
@@ -839,8 +839,8 @@ namespace Build_Sanity_Suit
                 //Lookupobj.Lookup("msdyn_servicerequest", TestData19273.Case);
 
                 xrmApp.Entity.Save();
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
 
-                client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Entity.SelectTab("Products And Services");
                 client.Browser.Driver.WaitForPageToLoad();
 
@@ -861,7 +861,9 @@ namespace Build_Sanity_Suit
             {
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.Navigation.OpenSubArea("Referral", "Manual Invoice/Credit");
-                client.Browser.Driver.WaitForPageToLoad();
+
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
+
                 xrmApp.CommandBar.ClickCommand("New");
                 // wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[contains(@data-id,'mzk_actualvisitstartdatetime')]"))).Click();
 
@@ -894,9 +896,8 @@ namespace Build_Sanity_Suit
                 //Lookupobj.Lookup("msdyn_servicerequest", TestData19347.Case);
 
                 xrmApp.Entity.Save();
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
 
-
-                client.Browser.Driver.WaitForPageToLoad();
 
 
                 xrmApp.Entity.SelectTab("Products And Services");
