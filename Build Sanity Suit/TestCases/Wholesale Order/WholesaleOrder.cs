@@ -6,15 +6,15 @@ using System.IO;
 
 namespace Build_Sanity_Suit
 {
-   [TestClass]
+     [TestClass]
     public class B10_Create_WholesaleOrders:TestBase
     {
-        public  WebClient client=null;
+
         [TestMethod, TestCategory("Sanity")]
         public void B10_CreateWholesaleOrder()
         {
-            client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
-            XrmApp xrmApp = new XrmApp(client);
+          RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
+
            // WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
             CreateMethod.WholesaleOrder(xrmApp, client);
             client.Browser.Driver.WaitForPageToLoad();
@@ -30,12 +30,9 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-            Screenshot ss = ((ITakesScreenshot)client.Browser.Driver).GetScreenshot();
-            string path = Directory.GetCurrentDirectory() + TestContext.TestName + ".png";
-            ss.SaveAsFile(path);
-            this.TestContext.AddResultFile(path);
+           
             Cleanup("Wholsale No:" + Variables.OrderNum + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus2);
-            client.Browser.Driver.Close();
+     
         }
     }
 }

@@ -9,14 +9,13 @@ namespace Build_Sanity_Suit
     [TestClass]
     public class A1_Create_HealthCare : TestBase
     {
-        public  string AccountNum;
-        public WebClient client = null;
+        public string AccountNum;
+
         [TestMethod, TestCategory("Sanity")]
         public void A1_CreateProvider()
         {
 
-            client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
-            XrmApp xrmApp = new XrmApp(client);
+            RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
             CreateMethod.Provider(xrmApp, client);
             AccountNum = xrmApp.Entity.GetHeaderValue("accountnumber");
           //  LoginFinops.CheckFinopsAccounts(AccountNum);
@@ -25,12 +24,9 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-            Screenshot ss = ((ITakesScreenshot)client.Browser.Driver).GetScreenshot();
-            string path = Directory.GetCurrentDirectory() + TestContext.TestName + ".png";
-            ss.SaveAsFile(path);
-            this.TestContext.AddResultFile(path);
+
             Cleanup("HealthCare Number:" + AccountNum + "\r\n");
-            client.Browser.Driver.Close();
+
 
         }
     }

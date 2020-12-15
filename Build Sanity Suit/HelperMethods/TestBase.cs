@@ -10,25 +10,23 @@ using OpenQA.Selenium;
 using System.Diagnostics;
 using System.Runtime.Serialization.Json;
 using System.Text;
-
+using OpenQA.Selenium.Support.UI;
 
 namespace Build_Sanity_Suit
 {
 
     public class TestBase
     {
-        public static LOGIN loginobj = new LOGIN();
+
         public static ExtentReports extent = null;
         public ExtentTest test = null;
-
-
         public readonly string ReportFile = System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Second.ToString() + "Report.html";
-
         public TestContext TestContext { get; set; }
+        public WebClient client = null;
+        public XrmApp xrmApp = null;
+        public WebDriverWait wait = null;
 
-
-
-        [TestInitialize]
+       [TestInitialize]
         public void Initialize()
         {
 
@@ -36,12 +34,10 @@ namespace Build_Sanity_Suit
             {
                 extent = new ExtentReports();
                 extent.AddSystemInfo("Browser", Enum.GetName(typeof(BrowserType), BrowserType.Chrome));
-
                 extent.AddSystemInfo("D365 CE Instance",
                     System.Configuration.ConfigurationManager.AppSettings["CRMUrl"]);
                 extent.AddSystemInfo("Result File",
                     System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\");
-
             }
 
 
@@ -49,6 +45,9 @@ namespace Build_Sanity_Suit
             htmlReporter.Config.Theme = Theme.Dark;
             extent.AttachReporter(htmlReporter);
             test = extent.CreateTest(TestContext.TestName).Info("Test Started");
+             client = new Microsoft.Dynamics365.UIAutomation.Api.UCI.WebClient(TestSetting.options);
+             xrmApp = new XrmApp(client);
+
         }
 
 
@@ -71,7 +70,11 @@ namespace Build_Sanity_Suit
 
             string Message = "\r\n" + TestContext.FullyQualifiedTestClassName + "\r\n" + TestContext.TestName + "\r\n" + TestContext.CurrentTestOutcome + "\r\n" + value + "\r\n";
             Helper.LogRecord(Message);
-
+            Screenshot ss = ((ITakesScreenshot)client.Browser.Driver).GetScreenshot();
+            string path = Directory.GetCurrentDirectory() + TestContext.TestName + ".png";
+            ss.SaveAsFile(path);
+            this.TestContext.AddResultFile(path);
+            client.Browser.Driver.Close();
 
         }
 
@@ -108,6 +111,71 @@ namespace Build_Sanity_Suit
         //    }
 
         //}
+        public void RoleBasedLogin(string user, string pwd)
+        {
+            By uid = By.Id("i0116");
+            By pwdinput = By.Id("passwordInput");
+            By submitbutton = By.Id("submitButton");
+            By nextbutton = By.Id("idSIButton9");
+            By redirect = By.Id("idSubmit_ProofUp_Redirect");
+            By skipsteup = By.PartialLinkText("Skip setup");
+            By iframe = By.CssSelector("iframe#AppLandingPage");
+             wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
+            client.Browser.Driver.Navigate().GoToUrl(Usersetting.url);
+            client.Browser.Driver.WaitUntilVisible(uid);
+            if (client.Browser.Driver.HasElement(uid))
+            {
+
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(uid)).SendKeys(user);
+                client.Browser.Driver.FindElement(uid).SendKeys(Keys.Enter);
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(pwdinput)).SendKeys(pwd);
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(submitbutton)).Click();
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(nextbutton)).SendKeys(Keys.Enter);
+
+                if (client.Browser.Driver.HasElement(redirect))
+                {
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(redirect)).SendKeys(Keys.Enter);
+                }
+                else
+                {
+                    Console.WriteLine("No Such Element");
+                }
+                //if (client.Browser.Driver.HasElement(skipsteup))
+                //{
+                //    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(skipsteup)).Click();
+
+                //}
+                //else
+                //{
+                //    Console.WriteLine("No Such Element");
+                //}
+                //if (client.Browser.Driver.HasElement(nextbutton))
+                //{
+                //    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(nextbutton)).SendKeys(Keys.Enter);
+                //}
+                //else
+                //{
+                //    Console.WriteLine("No Such Element");
+                //}
+                string url = client.Browser.Driver.Url;
+                if (url == Usersetting.url + "main.aspx?forceUCI=1&pagetype=apps")
+                {
+                    client.Browser.Driver.WaitForPageToLoad();
+                    client.Browser.Driver.WaitUntilVisible(iframe);
+                    xrmApp.Navigation.OpenApp(Usersetting.AppName);
+
+                }
+                else
+                {
+                    client.Browser.Driver.Navigate().GoToUrl(Usersetting.url);
+                    client.Browser.Driver.WaitForPageToLoad();
+                }
+
+            }
+
+
+
+        }
 
     }
 

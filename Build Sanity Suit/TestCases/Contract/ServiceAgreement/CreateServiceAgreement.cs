@@ -9,13 +9,13 @@ namespace Build_Sanity_Suit
    // [TestClass]
     public class A4_CreateServiceAgreements:TestBase
     {
-        public static WebClient client;
+
 
         [TestMethod]
         public void A4_CreateService()
         {
-            client = loginobj.RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
-            XrmApp xrmApp = new XrmApp(client);
+           RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
+
             ContractHelper.OtherInformation(xrmApp, client);
             ContractHelper.ServiceGeneral(xrmApp, client);
             ContractHelper.ContractDignosis(xrmApp, client);
@@ -25,8 +25,8 @@ namespace Build_Sanity_Suit
         [TestMethod]
         public void A5_CreateWholesaleService()
         {
-            client = loginobj.RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
-            XrmApp xrmApp = new XrmApp(client);
+            RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
+
             ContractHelper.OtherInformation(xrmApp, client);
             ContractHelper.WholesaleServiceGeneral(xrmApp, client);
             ContractHelper.ContractDignosis(xrmApp, client);

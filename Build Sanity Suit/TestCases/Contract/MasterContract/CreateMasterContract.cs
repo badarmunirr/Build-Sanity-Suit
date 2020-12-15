@@ -11,13 +11,13 @@ namespace Build_Sanity_Suit
    // [TestClass]
     public class A6_CreateMasterContract: TestBase
     {
-        public static WebClient client;
+  
 
         [TestMethod]
         public void A6_CreateMaster()
         {
-            client = loginobj.RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
-            XrmApp xrmApp = new XrmApp(client);
+            RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
+
             ContractHelper.OtherInformation(xrmApp, client);
             ContractHelper.MasterGeneral(xrmApp, client);
             ContractHelper.ContractProductService(xrmApp, client);

@@ -9,13 +9,13 @@ namespace Build_Sanity_Suit
      //[TestClass]
     public class A5_CreateSubContract:TestBase
     {
-        public static WebClient client;
+
         [TestMethod]
         public void A5_CreateSub()
         {
 
-            client = loginobj.RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
-            XrmApp xrmApp = new XrmApp(client);
+            RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
+       
 
             ContractHelper.OtherInformation(xrmApp, client);
             ContractHelper.SubGeneral(xrmApp, client);

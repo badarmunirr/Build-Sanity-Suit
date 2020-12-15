@@ -11,15 +11,14 @@ namespace Build_Sanity_Suit
     public class A3_Create_Payers : TestBase
     {
         public string PayerNum;
-        public WebClient client = null;
+ 
         [TestMethod, TestCategory("Sanity")]
         public void A3_CreatePayer()
         {
 
-            client = loginobj.RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
-            XrmApp xrmApp = new XrmApp(client);
-            CreateMethod.Payer(xrmApp, client);
-            PayerNum = xrmApp.Entity.GetHeaderValue("accountnumber");
+           RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
+           CreateMethod.Payer(xrmApp, client);
+           PayerNum = xrmApp.Entity.GetHeaderValue("accountnumber");
 
 
 
@@ -34,13 +33,8 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-
-            Screenshot ss = ((ITakesScreenshot)client.Browser.Driver).GetScreenshot();
-            string path = Directory.GetCurrentDirectory() + TestContext.TestName + ".png";
-            ss.SaveAsFile(path);
-            this.TestContext.AddResultFile(path);
             Cleanup("Payer Number:" + PayerNum + "\r\n");
-            client.Browser.Driver.Close();
+
         }
 
 

@@ -10,19 +10,19 @@ using System.Threading.Tasks;
 
 namespace Build_Sanity_Suit.TestCases
 {
-    class BulkClass
+    class BulkClass:TestBase
     {
-        public static WebClient cli;
+
         public void BulkReferraltoWorkOrder()
         {
                
         ReadData readData = Helper.ReadDataFromJSONFile();
         var CreateReferral = new Action(() =>
         {
-            LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(Usersetting.Admin, Usersetting.AdminPassword);
-            cli = client;
-            XrmApp xrmApp = new XrmApp(client);
+  
+            RoleBasedLogin(Usersetting.Admin, Usersetting.AdminPassword);
+        
+
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
 
             CreateMethod.Referral(xrmApp, client);
@@ -53,10 +53,10 @@ namespace Build_Sanity_Suit.TestCases
 
         var CreateDeliveryOrder = new Action(() =>
         {
-            LOGIN loginobj = new LOGIN();
-            WebClient client = loginobj.RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
-            cli = client;
-            XrmApp xrmApp = new XrmApp(client);
+        
+             RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
+        
+ 
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
 
 
