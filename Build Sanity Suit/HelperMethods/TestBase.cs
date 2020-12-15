@@ -20,6 +20,20 @@ namespace Build_Sanity_Suit
     public class TestBase
     {
 
+        public  string Admin = System.Configuration.ConfigurationManager.AppSettings["Admin"].ToString();
+        public  string OperationalManager = System.Configuration.ConfigurationManager.AppSettings["OperationalManager"].ToString();
+        public  string BillingManager = System.Configuration.ConfigurationManager.AppSettings["BillingManager"].ToString();
+        public  string contractManager = System.Configuration.ConfigurationManager.AppSettings["contractManager"].ToString();
+        //public  string Scheduler = System.Configuration.ConfigurationManager.AppSettings["Scheduler"].ToString();
+        //public  string IncidentViewer = System.Configuration.ConfigurationManager.AppSettings["IncidentViewer"].ToString();
+        //public  string PriceController = System.Configuration.ConfigurationManager.AppSettings["PriceController"].ToString();
+        public  string url = System.Configuration.ConfigurationManager.AppSettings["CRMUrl"].ToString();
+        public  string pwd = System.Configuration.ConfigurationManager.AppSettings["CRMPassword"].ToString();
+        public  string AdminPassword = System.Configuration.ConfigurationManager.AppSettings["AdminPassword"].ToString();
+        public  string AppName = System.Configuration.ConfigurationManager.AppSettings["AppName"].ToString();
+        public  string AppName2 = System.Configuration.ConfigurationManager.AppSettings["AppName3"].ToString();
+
+
         public static ExtentReports extent = null;
         public ExtentTest test = null;
         public readonly string ReportFile = System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + DateTime.Now.Second.ToString() + "Report.html";
@@ -28,7 +42,25 @@ namespace Build_Sanity_Suit
         public XrmApp xrmApp = null;
         public WebDriverWait wait = null;
 
-       [TestInitialize]
+
+        static  BrowserOptions options = new BrowserOptions
+        {
+            BrowserType = BrowserType.Chrome,
+            PrivateMode = true,
+            FireEvents = false,
+            Headless = false,
+            UserAgent = false,
+            DisableGpu = true,
+            DefaultThinkTime = 20,
+            StartMaximized = true,
+            //Width = 4000,
+            //Height = 2000,
+            UCITestMode = true
+
+
+        };
+
+        [TestInitialize]
         public void Initialize()
         {
 
@@ -47,8 +79,8 @@ namespace Build_Sanity_Suit
             htmlReporter.Config.Theme = Theme.Dark;
             extent.AttachReporter(htmlReporter);
             test = extent.CreateTest(TestContext.TestName).Info("Test Started");
-             client = new Microsoft.Dynamics365.UIAutomation.Api.UCI.WebClient(TestSetting.options);
-             xrmApp = new XrmApp(client);
+            client = new Microsoft.Dynamics365.UIAutomation.Api.UCI.WebClient(options);
+            xrmApp = new XrmApp(client);
 
         }
 
@@ -123,7 +155,7 @@ namespace Build_Sanity_Suit
             By skipsteup = By.PartialLinkText("Skip setup");
             By iframe = By.CssSelector("iframe#AppLandingPage");
             wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
-            client.Browser.Driver.Navigate().GoToUrl(Usersetting.url);
+            client.Browser.Driver.Navigate().GoToUrl(url);
             client.Browser.Driver.WaitUntilVisible(uid);
             if (client.Browser.Driver.HasElement(uid))
             {
@@ -160,16 +192,16 @@ namespace Build_Sanity_Suit
                 //    Console.WriteLine("No Such Element");
                 //}
                 string url = client.Browser.Driver.Url;
-                if (url == Usersetting.url + "main.aspx?forceUCI=1&pagetype=apps")
+                if (url ==url + "main.aspx?forceUCI=1&pagetype=apps")
                 {
                     client.Browser.Driver.WaitForPageToLoad();
                     client.Browser.Driver.WaitUntilVisible(iframe);
-                    xrmApp.Navigation.OpenApp(Usersetting.AppName);
+                    xrmApp.Navigation.OpenApp(AppName);
 
                 }
                 else
                 {
-                    client.Browser.Driver.Navigate().GoToUrl(Usersetting.url);
+                    client.Browser.Driver.Navigate().GoToUrl(url);
                     client.Browser.Driver.WaitForPageToLoad();
                 }
 

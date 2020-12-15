@@ -16,7 +16,7 @@ namespace Build_Sanity_Suit
         {
             //Retry(() =>
             //{
-                RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
+                RoleBasedLogin(OperationalManager, pwd);
                 CreateMethod.Provider(xrmApp, client);
                 AccountNum = xrmApp.Entity.GetHeaderValue("accountnumber");
                 //  LoginFinops.CheckFinopsAccounts(AccountNum);

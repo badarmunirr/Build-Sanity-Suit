@@ -13,7 +13,7 @@ namespace Build_Sanity_Suit
         public void B11_CreateResourcetoAccountTypeEmployee()
         {
 
-            RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
+            RoleBasedLogin(Admin, pwd);
             CreateMethod.Resource(xrmApp,client);
 
         }

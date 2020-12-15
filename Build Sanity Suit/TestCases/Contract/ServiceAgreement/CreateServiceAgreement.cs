@@ -14,7 +14,7 @@ namespace Build_Sanity_Suit
         [TestMethod]
         public void A4_CreateService()
         {
-           RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
+           RoleBasedLogin(contractManager, pwd);
 
             ContractHelper.OtherInformation(xrmApp, client);
             ContractHelper.ServiceGeneral(xrmApp, client);
@@ -25,7 +25,7 @@ namespace Build_Sanity_Suit
         [TestMethod]
         public void A5_CreateWholesaleService()
         {
-            RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
+            RoleBasedLogin(contractManager, pwd);
 
             ContractHelper.OtherInformation(xrmApp, client);
             ContractHelper.WholesaleServiceGeneral(xrmApp, client);

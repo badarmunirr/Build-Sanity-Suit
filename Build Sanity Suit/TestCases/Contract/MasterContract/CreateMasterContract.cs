@@ -16,7 +16,7 @@ namespace Build_Sanity_Suit
         [TestMethod]
         public void A6_CreateMaster()
         {
-            RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
+            RoleBasedLogin(contractManager, pwd);
             ContractHelper.OtherInformation(xrmApp, client);
             ContractHelper.MasterGeneral(xrmApp, client);
             ContractHelper.ContractProductService(xrmApp, client);

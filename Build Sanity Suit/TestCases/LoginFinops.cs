@@ -8,13 +8,13 @@ using System;
 namespace Build_Sanity_Suit
 {
 
-    [TestClass]
-    public static class LoginFinops
+   // [TestClass]
+    public  class LoginFinops:TestBase
     {
-        public static WebClient client;
+
 
         [TestMethod, TestCategory("Sanity")]
-        public static void CheckFinopsAccounts(string AcntNumber)
+        public  void CheckFinopsAccounts(string AcntNumber)
         {
             By uid = By.Id("i0116");
             By pwdinput = By.Id("passwordInput");
@@ -24,17 +24,17 @@ namespace Build_Sanity_Suit
             By skipsteup = By.PartialLinkText("Skip setup");
             By iframe = By.CssSelector("iframe#AppLandingPage");
 
-            client = new Microsoft.Dynamics365.UIAutomation.Api.UCI.WebClient(TestSetting.options);
-            XrmApp xrmApp = new XrmApp(client);
+            //client = new Microsoft.Dynamics365.UIAutomation.Api.UCI.WebClient(TestSetting.options);
+            //XrmApp xrmApp = new XrmApp(client);
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             client.Browser.Driver.Navigate().GoToUrl("https://hah-finops-e2e-test.sandbox.operations.dynamics.com");
             client.Browser.Driver.WaitUntilVisible(uid);
             if (client.Browser.Driver.HasElement(uid))
             {
 
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(uid)).SendKeys(Usersetting.Admin);
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(uid)).SendKeys(Admin);
                 client.Browser.Driver.FindElement(uid).SendKeys(Keys.Enter);
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(pwdinput)).SendKeys(Usersetting.pwd);
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(pwdinput)).SendKeys(pwd);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(submitbutton)).Click();
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(nextbutton)).SendKeys(Keys.Enter);
 

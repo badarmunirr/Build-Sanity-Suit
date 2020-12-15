@@ -13,7 +13,7 @@ namespace Build_Sanity_Suit
         [TestMethod]
         public void A5_CreateSub()
         {
-            RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
+            RoleBasedLogin(contractManager, pwd);
             ContractHelper.OtherInformation(xrmApp, client);
             ContractHelper.SubGeneral(xrmApp, client);
             ContractHelper.ContractDignosis(xrmApp, client);

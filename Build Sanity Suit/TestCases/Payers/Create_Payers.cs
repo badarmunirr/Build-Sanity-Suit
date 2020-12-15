@@ -19,11 +19,9 @@ namespace Build_Sanity_Suit
         {
             //Retry(() =>
             //{
-                RoleBasedLogin(Usersetting.contractManager, Usersetting.pwd);
+                RoleBasedLogin(contractManager, pwd);
                 CreateMethod.Payer(xrmApp, client);
                 PayerNum = xrmApp.Entity.GetHeaderValue("accountnumber");
-
-
                 //AddScreenShot(client, "Navigate To Payer");
                 //AddScreenShot(client, "Create Payer");
                 //AddScreenShot(client, "Get Payer Number");

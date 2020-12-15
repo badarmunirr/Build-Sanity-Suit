@@ -15,7 +15,7 @@ namespace Build_Sanity_Suit
         {
             //Retry(() =>
             //{
-                RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
+                RoleBasedLogin(OperationalManager, pwd);
                 // WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
                 CreateMethod.WholesaleOrder(xrmApp, client);
                 client.Browser.Driver.WaitForPageToLoad();

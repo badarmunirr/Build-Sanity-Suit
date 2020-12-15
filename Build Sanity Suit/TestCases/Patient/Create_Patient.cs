@@ -19,7 +19,7 @@ namespace Build_Sanity_Suit
         {
             //Retry(() =>
             //{
-                RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
+                RoleBasedLogin(Admin, pwd);
                 CreateMethod.Patient(xrmApp, client);
                 PatientNum = xrmApp.Entity.GetValue("mzk_patientmrn");
                 //AddScreenShot(client, "Create Patient");
@@ -34,7 +34,7 @@ namespace Build_Sanity_Suit
         {
             //Retry(() =>
             //{
-                RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
+                RoleBasedLogin(Admin, pwd);
                 xrmApp.Navigation.OpenSubArea("Customers", "Patients");
                 xrmApp.Grid.SwitchView("Patient");
                 xrmApp.Grid.Search("Jake Hughes");

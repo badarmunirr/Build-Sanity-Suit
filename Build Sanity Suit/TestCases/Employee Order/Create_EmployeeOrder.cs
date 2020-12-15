@@ -18,7 +18,7 @@ namespace Build_Sanity_Suit
         {
             //Retry(() =>
             //{
-                RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
+                RoleBasedLogin(Admin, pwd);
                 wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
                 CreateMethod.EmployeeOrder(xrmApp, client);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));

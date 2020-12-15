@@ -18,7 +18,7 @@ namespace Build_Sanity_Suit
         {
             //Retry(() =>
             //{
-                RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
+                RoleBasedLogin(BillingManager, pwd);
                 CreateMethod.ManualInvoice(xrmApp, client, "Organization", "Invoice");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.CommandBar.ClickCommand("Complete");
@@ -33,7 +33,7 @@ namespace Build_Sanity_Suit
         {
             //Retry(() =>
             //{
-                RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
+                RoleBasedLogin(BillingManager, pwd);
                 CreateMethod.ManualInvoice(xrmApp, client, "Organization", "Credit");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.CommandBar.ClickCommand("Complete");
@@ -50,7 +50,7 @@ namespace Build_Sanity_Suit
         {
             //Retry(() =>
             //{
-                RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
+                RoleBasedLogin(BillingManager, pwd);
                 CreateMethod.ManualInvoice(xrmApp, client, "Patient", "Credit");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.CommandBar.ClickCommand("Complete");
@@ -68,7 +68,7 @@ namespace Build_Sanity_Suit
 
             //Retry(() =>
             //{
-                RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
+                RoleBasedLogin(BillingManager, pwd);
                 CreateMethod.ManualInvoice(xrmApp, client, "Patient", "Invoice");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.CommandBar.ClickCommand("Complete");

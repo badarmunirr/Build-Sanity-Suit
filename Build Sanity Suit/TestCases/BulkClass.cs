@@ -20,7 +20,7 @@ namespace Build_Sanity_Suit.TestCases
         var CreateReferral = new Action(() =>
         {
   
-            RoleBasedLogin(Usersetting.Admin, Usersetting.AdminPassword);
+            RoleBasedLogin(Admin, AdminPassword);
         
 
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
@@ -54,7 +54,7 @@ namespace Build_Sanity_Suit.TestCases
         var CreateDeliveryOrder = new Action(() =>
         {
         
-             RoleBasedLogin(Usersetting.OperationalManager, Usersetting.pwd);
+             RoleBasedLogin(OperationalManager, pwd);
         
  
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120000));
