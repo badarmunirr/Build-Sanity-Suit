@@ -8,7 +8,7 @@ using System.IO;
 namespace Build_Sanity_Suit
 {
 
-   [TestClass]
+   //[TestClass]
     public class ManualInvoiceTestCases:TestBase
     {
      
