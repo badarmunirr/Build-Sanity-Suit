@@ -8,13 +8,13 @@ namespace Build_Sanity_Suit
 {
 
     [TestClass]
-    public class A2_Create_Patient : TestBase
+    public class A2CreatePatient : TestBase
     {
         public string PatientNum;
 
 
         [TestMethod, TestCategory("Sanity")]
-        public void A2_CreatePatient()
+        public void ACreatePatient()
         {
 
             RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
@@ -28,7 +28,7 @@ namespace Build_Sanity_Suit
         }
 
         [TestMethod, TestCategory("Sanity")]
-        public void B2_PatientView()
+        public void BPatientView()
         {
             RoleBasedLogin(Usersetting.Admin, Usersetting.pwd);
            
