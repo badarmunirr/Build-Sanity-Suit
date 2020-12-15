@@ -30,7 +30,6 @@ steps:
     packageFeedSelector: 'nugetOrg'
     versionSelector: 'latestPreRelease'
     
-
     
 - task: VSTest@2
   inputs:
@@ -40,7 +39,7 @@ steps:
     uiTests: true
     rerunFailedTests: true
     rerunFailedThreshold: '80'
-    vsTestVersion: '16.0'
+    vsTestVersion: 'toolsInstaller'
 
     
 
