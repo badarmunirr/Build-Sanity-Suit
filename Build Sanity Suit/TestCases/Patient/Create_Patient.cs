@@ -7,7 +7,7 @@ using System.IO;
 namespace Build_Sanity_Suit
 {
 
-   // [TestClass]
+    [TestClass]
     public class A2CreatePatient : TestBase
     {
         public string PatientNum;
