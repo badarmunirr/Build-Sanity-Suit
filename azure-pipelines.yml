@@ -40,4 +40,7 @@ steps:
     uiTests: true
     vsTestVersion: '16.0'
     rerunFailedTests: true
-    rerunFailedThreshold: '20'
+    rerunFailedTestCasesMaxLimit: '2'
+    rerunMaxAttempts: '5'
+    
+
