@@ -8,7 +8,7 @@ using System.IO;
 namespace Build_Sanity_Suit
 {
 
-   //[TestClass]
+   [TestClass]
     public class ManualInvoiceTestCases:TestBase
     {
      
@@ -67,7 +67,7 @@ namespace Build_Sanity_Suit
         {
            RoleBasedLogin(Usersetting.BillingManager, Usersetting.pwd);
          
-            client.Browser.Driver.Manage().Window.Maximize();
+
             CreateMethod.ManualInvoice(xrmApp, client, "Patient", "Invoice");
             client.Browser.Driver.WaitForPageToLoad();
             xrmApp.CommandBar.ClickCommand("Complete");
@@ -80,12 +80,9 @@ namespace Build_Sanity_Suit
         [TestCleanup]
         public void Teardown()
         {
-            Screenshot ss = ((ITakesScreenshot)client.Browser.Driver).GetScreenshot();
-            string path = Directory.GetCurrentDirectory() + TestContext.TestName + ".png";
-            ss.SaveAsFile(path);
-            this.TestContext.AddResultFile(path);
+          
             Cleanup("Manual Order No:" + Variables.InvoiceNo + "\r\nWorkOrder Status:" + Variables.mzk_visitstatus2);
-            client.Browser.Driver.Close();
+        
         }
     }
 }
