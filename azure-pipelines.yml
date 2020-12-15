@@ -36,7 +36,8 @@ steps:
   inputs:
     runInParallel: true
     rerunFailedTests: true
-    rerunFailedThreshold: '10'
+    rerunFailedThreshold: '20'
+    rerunMaxAttempts: 2
     testSelector: 'testAssemblies'
     testAssemblyVer2: '$(System.DefaultWorkingDirectory)\Build Sanity Suit\bin\Release\Build Sanity Suit.dll'
     searchFolder: '$(System.DefaultWorkingDirectory)\Build Sanity Suit'
