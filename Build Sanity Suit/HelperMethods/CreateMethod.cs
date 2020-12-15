@@ -811,6 +811,7 @@ namespace Build_Sanity_Suit
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.CommandBar.ClickCommand("New");
 
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[contains(@data-id,'mzk_actualvisitstartdatetime')]"))).Click();
 
                 DateTime mzk_actualvisitstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
                 xrmApp.Entity.SetValue("mzk_actualvisitstartdatetime", mzk_actualvisitstartdatetime, Conifgdata.datePattern, Conifgdata.TimePattern);
@@ -857,6 +858,8 @@ namespace Build_Sanity_Suit
                 xrmApp.Navigation.OpenSubArea("Referral", "Manual Invoice/Credit");
                 client.Browser.Driver.WaitForPageToLoad();
                 xrmApp.CommandBar.ClickCommand("New");
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[contains(@data-id,'mzk_actualvisitstartdatetime')]"))).Click();
+
                 DateTime mzk_actualvisitstartdatetime = DateTime.Today.AddDays(1).AddHours(10);
                 xrmApp.Entity.SetValue("mzk_actualvisitstartdatetime", mzk_actualvisitstartdatetime, Conifgdata.datePattern, Conifgdata.TimePattern);
 

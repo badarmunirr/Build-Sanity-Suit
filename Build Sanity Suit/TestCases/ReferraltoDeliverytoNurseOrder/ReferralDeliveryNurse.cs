@@ -9,7 +9,7 @@ using System.IO;
 
 namespace Build_Sanity_Suit
 {
-   [TestClass]
+  // [TestClass]
     public class ReferralDeliveryNurse : TestBase
     {
 
