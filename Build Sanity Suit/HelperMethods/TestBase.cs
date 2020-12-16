@@ -30,7 +30,7 @@ namespace Build_Sanity_Suit
         public  string url = System.Configuration.ConfigurationManager.AppSettings["CRMUrl"].ToString();
         public  string pwd = System.Configuration.ConfigurationManager.AppSettings["CRMPassword"].ToString();
         public  string AdminPassword = System.Configuration.ConfigurationManager.AppSettings["AdminPassword"].ToString();
-        public  string AppName = System.Configuration.ConfigurationManager.AppSettings["AppName"].ToString();
+        public static string AppName = System.Configuration.ConfigurationManager.AppSettings["AppName"].ToString();
         public  string AppName2 = System.Configuration.ConfigurationManager.AppSettings["AppName3"].ToString();
 
 
@@ -42,7 +42,7 @@ namespace Build_Sanity_Suit
         public XrmApp xrmApp = null;
        
 
-        static  BrowserOptions options = new BrowserOptions
+         BrowserOptions options = new BrowserOptions
         {
             BrowserType = BrowserType.Chrome,
             PrivateMode = true,
@@ -54,7 +54,7 @@ namespace Build_Sanity_Suit
             StartMaximized = true,
             //Width = 4000,
             //Height = 2000,
-            UCITestMode = true
+
 
 
         };
@@ -190,8 +190,10 @@ namespace Build_Sanity_Suit
                 //{
                 //    Console.WriteLine("No Such Element");
                 //}
-                string url = client.Browser.Driver.Url;
-                if (url ==url + "main.aspx?forceUCI=1&pagetype=apps")
+                string url1 = client.Browser.Driver.Url;
+
+            
+                if (url1 == url + "main.aspx?forceUCI=1&pagetype=apps")
                 {
                     client.Browser.Driver.WaitForPageToLoad();
                     client.Browser.Driver.WaitUntilVisible(iframe);
@@ -200,6 +202,7 @@ namespace Build_Sanity_Suit
                 }
                 else
                 {
+                  
                     client.Browser.Driver.Navigate().GoToUrl(url);
                     client.Browser.Driver.WaitForPageToLoad();
                 }
