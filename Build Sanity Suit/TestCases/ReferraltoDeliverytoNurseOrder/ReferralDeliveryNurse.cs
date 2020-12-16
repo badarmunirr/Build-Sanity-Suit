@@ -26,7 +26,7 @@ namespace Build_Sanity_Suit
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")));
                 // when support for hidden field is added need to replace this line of code
                 Variables.casenumber = client.Browser.Driver.FindElement(By.CssSelector("div[data-id='mzk_case.fieldControl-LookupResultsDropdown_mzk_case_selected_tag_text']")).Text;
-                Helper.SaveReferral(Variables.casenumber);
+                SaveReferral(Variables.casenumber);
                 client.Browser.Driver.WaitForPageToLoad();
                 string mzk_visitstatus = xrmApp.Entity.GetHeaderValue(new OptionSet { Name = "mzk_status" });
                 Assert.IsTrue(mzk_visitstatus.StartsWith("Active"));
@@ -58,7 +58,7 @@ namespace Build_Sanity_Suit
                 RoleBasedLogin(OperationalManager, pwd);
 
                  WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
-                string cases = Helper.ReadReferral();
+                string cases = ReadReferral();
                 CreateMethod.DeliveryOrder(xrmApp, client, cases);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Propose Order')]")));
                 xrmApp.CommandBar.ClickCommand("Propose Order");
@@ -78,7 +78,7 @@ namespace Build_Sanity_Suit
             //{
                 RoleBasedLogin(OperationalManager, pwd);
                 WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
-                string cases = Helper.ReadReferral();
+                string cases = ReadReferral();
                 CreateMethod.NurseOrder(xrmApp, client, cases);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'Complete')]")));
                 xrmApp.CommandBar.ClickCommand("Complete");

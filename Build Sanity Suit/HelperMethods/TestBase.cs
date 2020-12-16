@@ -102,7 +102,7 @@ namespace Build_Sanity_Suit
             extent.Flush();
 
             string Message = "\r\n" + TestContext.FullyQualifiedTestClassName + "\r\n" + TestContext.TestName + "\r\n" + TestContext.CurrentTestOutcome + "\r\n" + value + "\r\n";
-            Helper.LogRecord(Message);
+            LogRecord(Message);
             Screenshot ss = ((ITakesScreenshot)client.Browser.Driver).GetScreenshot();
             string path = Directory.GetCurrentDirectory() + TestContext.TestName + ".png";
             ss.SaveAsFile(path);
@@ -124,26 +124,60 @@ namespace Build_Sanity_Suit
             test.Info(title, MediaEntityBuilder.CreateScreenCaptureFromPath(filePath).Build());
         }
 
-        //[AssemblyInitialize]
-        //public static void AssemblyInitialize()
-        //{
-        //    var chromeProcesses = Process.GetProcessesByName("chromedriver");
-        //    foreach (var process in chromeProcesses)
-        //    {
-        //        process.Kill();
-        //    }
-        //    var geckoProcesses = Process.GetProcessesByName("geckodriver");
-        //    foreach (var process in geckoProcesses)
-        //    {
-        //        process.Kill();
-        //    }
-        //    var ieDriverServiceProcesses = Process.GetProcessesByName("IEDriverServer");
-        //    foreach (var process in ieDriverServiceProcesses)
-        //    {
-        //        process.Kill();
-        //    }
 
-        //}
+        static readonly string logFile = System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + ".txt";
+        static readonly string refile = System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\Ref" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + ".txt";
+
+        public  void LogRecord(string Message)
+        {
+
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(logFile, true))
+            {
+                file.WriteLine(Message);
+                file.Close();
+
+                
+               this.TestContext.AddResultFile(logFile);
+            }
+            //string LoggerPath = System.IO.Directory.GetCurrentDirectory() + "\\Logger.txt";
+            //File.WriteAllText(LoggerPath, Message);
+        }
+
+        public static void CheckExistingFiles()
+        {
+            DirectoryInfo d = new DirectoryInfo(System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\");//Assuming Test is your Folder
+            FileInfo[] Files = d.GetFiles("*.txt"); //Getting Text files
+            string str = "";
+            foreach (FileInfo file in Files)
+            {
+                str = str + ", " + file.Name;
+
+                if (str != refile)
+                {
+                    file.Delete();
+                }
+            }
+
+        }
+
+        public static void SaveReferral(string Message)
+        {
+            CheckExistingFiles();
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(refile, true))
+            {
+                file.WriteLine(Message);
+            }
+            //string LoggerPath = System.IO.Directory.GetCurrentDirectory() + "\\Logger.txt";
+            //File.WriteAllText(LoggerPath, Message);
+        }
+        public static string ReadReferral()
+        {
+            string[] lines = File.ReadAllLines(refile);
+            string SolutionName = lines[0].Replace("SolutionName:-", "").Trim();
+            //Console.WriteLine(SolutionName);
+
+            return SolutionName;
+        }
         public void RoleBasedLogin(string user, string pwd)
         {
             By uid = By.Id("i0116");
@@ -268,56 +302,6 @@ namespace Build_Sanity_Suit
             }
         }
 
-        static readonly string logFile = System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + ".txt";
-        static readonly string refile = System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\Ref" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + ".txt";
-
-        public static void LogRecord(string Message)
-        {
-
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(logFile, true))
-            {
-                file.WriteLine(Message);
-                file.Close();
-            }
-            //string LoggerPath = System.IO.Directory.GetCurrentDirectory() + "\\Logger.txt";
-            //File.WriteAllText(LoggerPath, Message);
-        }
-
-        public static void CheckExistingFiles()
-        {
-            DirectoryInfo d = new DirectoryInfo(System.IO.Directory.GetCurrentDirectory() + "\\TestResults\\");//Assuming Test is your Folder
-            FileInfo[] Files = d.GetFiles("*.txt"); //Getting Text files
-            string str = "";
-            foreach (FileInfo file in Files)
-            {
-                str = str + ", " + file.Name;
-
-                if (str != refile)
-                {
-                    file.Delete();
-                }
-            }
-
-        }
-
-        public static void SaveReferral(string Message)
-        {
-            CheckExistingFiles();
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(refile, true))
-            {
-                file.WriteLine(Message);
-            }
-            //string LoggerPath = System.IO.Directory.GetCurrentDirectory() + "\\Logger.txt";
-            //File.WriteAllText(LoggerPath, Message);
-        }
-        public static string ReadReferral()
-        {
-            string[] lines = File.ReadAllLines(refile);
-            string SolutionName = lines[0].Replace("SolutionName:-", "").Trim();
-            //Console.WriteLine(SolutionName);
-
-            return SolutionName;
-        }
 
 
     }
