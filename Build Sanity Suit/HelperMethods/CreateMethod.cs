@@ -81,7 +81,7 @@ namespace Build_Sanity_Suit
         {
 
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
-
+            client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Navigation.OpenSubArea("Referral", "Referrals");
             client.Browser.Driver.WaitForPageToLoad();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
@@ -166,6 +166,9 @@ namespace Build_Sanity_Suit
         public static void DeliveryOrder(XrmApp xrmApp, WebClient client, string casenumber)
         {
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
+
+
+            client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Navigation.OpenSubArea("Referral", "Cases");
 
             client.Browser.Driver.WaitForPageToLoad();
@@ -277,6 +280,8 @@ namespace Build_Sanity_Suit
         public static void NurseOrder(XrmApp xrmApp, WebClient client, string casenumber)
         {
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
+
+            client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Navigation.OpenSubArea("Referral", "Cases");
             client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Grid.Search(casenumber);

@@ -153,7 +153,7 @@ namespace Build_Sanity_Suit
             By redirect = By.Id("idSubmit_ProofUp_Redirect");
             By skipsteup = By.PartialLinkText("Skip setup");
             By iframe = By.CssSelector("iframe#AppLandingPage");
-          //  By Apname = By.XPath("//div[@title='MazikCare Referral Management']");
+            By Apname = By.XPath("//div[@title='MazikCare Referral Management']");
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             client.Browser.Driver.Navigate().GoToUrl(url);
             client.Browser.Driver.WaitUntilVisible(uid);
@@ -198,10 +198,10 @@ namespace Build_Sanity_Suit
                 {
                     client.Browser.Driver.WaitForPageToLoad();
                     client.Browser.Driver.WaitUntilVisible(iframe);
-                    //client.Browser.Driver.SwitchTo().Frame(client.Browser.Driver.FindElement(iframe));
-                    //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(Apname));
+                    client.Browser.Driver.SwitchTo().Frame(client.Browser.Driver.FindElement(iframe));
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(Apname));
                     xrmApp.Navigation.OpenApp(AppName);
-                    //client.Browser.Driver.SwitchTo().DefaultContent();
+                    client.Browser.Driver.SwitchTo().DefaultContent();
                 }
                 else
                 {
