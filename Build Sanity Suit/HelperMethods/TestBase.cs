@@ -40,8 +40,7 @@ namespace Build_Sanity_Suit
         public TestContext TestContext { get; set; }
         public WebClient client = null;
         public XrmApp xrmApp = null;
-        public WebDriverWait wait = null;
-
+       
 
         static  BrowserOptions options = new BrowserOptions
         {
@@ -154,7 +153,7 @@ namespace Build_Sanity_Suit
             By redirect = By.Id("idSubmit_ProofUp_Redirect");
             By skipsteup = By.PartialLinkText("Skip setup");
             By iframe = By.CssSelector("iframe#AppLandingPage");
-            wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
+            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             client.Browser.Driver.Navigate().GoToUrl(url);
             client.Browser.Driver.WaitUntilVisible(uid);
             if (client.Browser.Driver.HasElement(uid))
