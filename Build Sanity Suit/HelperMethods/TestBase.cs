@@ -30,7 +30,7 @@ namespace Build_Sanity_Suit
         public  string url = System.Configuration.ConfigurationManager.AppSettings["CRMUrl"].ToString();
         public  string pwd = System.Configuration.ConfigurationManager.AppSettings["CRMPassword"].ToString();
         public  string AdminPassword = System.Configuration.ConfigurationManager.AppSettings["AdminPassword"].ToString();
-        public static string AppName = System.Configuration.ConfigurationManager.AppSettings["AppName"].ToString();
+        public  string AppName = System.Configuration.ConfigurationManager.AppSettings["AppName"].ToString();
         public  string AppName2 = System.Configuration.ConfigurationManager.AppSettings["AppName3"].ToString();
 
 
