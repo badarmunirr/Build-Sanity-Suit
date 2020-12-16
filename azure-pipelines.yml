@@ -37,9 +37,9 @@ steps:
     testAssemblyVer2: '$(System.DefaultWorkingDirectory)\Build Sanity Suit\bin\Release\Build Sanity Suit.dll'
     searchFolder: '$(System.DefaultWorkingDirectory)\Build Sanity Suit'
     uiTests: true
-    rerunFailedTests: true
-    rerunFailedThreshold: '80'
-    rerunMaxAttempts: :'3'
+    #rerunFailedTests: true
+    #rerunFailedThreshold: '80'
+    #rerunMaxAttempts: :'3'
     vsTestVersion: 'toolsInstaller'
 
     
