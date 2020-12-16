@@ -559,6 +559,7 @@ namespace Build_Sanity_Suit
 
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='Payers']"))).Click();
+            client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Navigation.OpenSubArea("Customers", "Payers");
             //client.Browser.Driver.WaitForPageToLoad();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='New']")));
@@ -1005,7 +1006,6 @@ namespace Build_Sanity_Suit
 
             WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             client.Browser.Driver.WaitForPageToLoad();
-
             xrmApp.Navigation.OpenSubArea("Order Management", "Work Orders");
             client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Grid.SwitchView("All Employee Orders");
