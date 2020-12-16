@@ -25,7 +25,7 @@ namespace Build_Sanity_Suit
         public static void Address(XrmApp xrmApp, WebClient client)
         {
             client.Browser.Driver.WaitForPageToLoad();
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
+             wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             if (client.Browser.Driver.HasElement(By.XPath("//div[contains(@data-id,'address1_line1.fieldControl_container')]")))
             {
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//div[contains(@data-id,'address1_line1.fieldControl_container')]"))).Click();
@@ -80,7 +80,7 @@ namespace Build_Sanity_Suit
         public static void Referral(XrmApp xrmApp, WebClient client)
         {
 
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
+             wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
 
             xrmApp.Navigation.OpenSubArea("Referral", "Referrals");
             client.Browser.Driver.WaitForPageToLoad();
@@ -165,7 +165,7 @@ namespace Build_Sanity_Suit
 
         public static void DeliveryOrder(XrmApp xrmApp, WebClient client, string casenumber)
         {
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
+             wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             xrmApp.Navigation.OpenSubArea("Referral", "Cases");
 
             client.Browser.Driver.WaitForPageToLoad();
@@ -276,7 +276,7 @@ namespace Build_Sanity_Suit
         }
         public static void NurseOrder(XrmApp xrmApp, WebClient client, string casenumber)
         {
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
+             wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             xrmApp.Navigation.OpenSubArea("Referral", "Cases");
             client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Grid.Search(casenumber);
@@ -345,7 +345,7 @@ namespace Build_Sanity_Suit
         }
         public static void WholesaleOrder(XrmApp xrmApp, WebClient client)
         {
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
+             wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             client.Browser.Driver.WaitForPageToLoad();
             xrmApp.Navigation.OpenSubArea("Referral", "Wholesale Orders");
             client.Browser.Driver.WaitForPageToLoad();
@@ -465,7 +465,7 @@ namespace Build_Sanity_Suit
         }
         public static void Resource(XrmApp xrmApp, WebClient client)
         {
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
+             wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
 
             string UserName = readData.ResourceData.userid;
             string UserNameTrim = UserName.Remove(9);
@@ -557,7 +557,7 @@ namespace Build_Sanity_Suit
         public static void Payer(XrmApp xrmApp, WebClient client)
         {
 
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
+             wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='Payers']"))).Click();
             xrmApp.Navigation.OpenSubArea("Customers", "Payers");
             //client.Browser.Driver.WaitForPageToLoad();
@@ -641,7 +641,7 @@ namespace Build_Sanity_Suit
         }
         public static void Patient(XrmApp xrmApp, WebClient client)
         {
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
+             wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             xrmApp.Navigation.OpenSubArea("Customers", "Patients");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//button[contains(@aria-label,'New')]")));
             xrmApp.CommandBar.ClickCommand("New");
@@ -802,7 +802,7 @@ namespace Build_Sanity_Suit
         }
         public static void ManualInvoice(XrmApp xrmApp, WebClient client, string Category, string Type)
         {
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
+             wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
 
             if (Type == "Invoice" && Category == "Organization" || Type == "Credit" && Category == "Organization")
             {
@@ -919,7 +919,7 @@ namespace Build_Sanity_Suit
         public static void Provider(XrmApp xrmApp, WebClient client)
         {
 
-           WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
+            wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//span[text()='Healthcare Providers']"))).Click();
 
             xrmApp.Navigation.OpenSubArea("Customers", "Healthcare Providers");
@@ -1003,7 +1003,7 @@ namespace Build_Sanity_Suit
         {
 
 
-            WebDriverWait wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
+             wait = new WebDriverWait(client.Browser.Driver, TimeSpan.FromSeconds(120));
             client.Browser.Driver.WaitForPageToLoad();
 
             xrmApp.Navigation.OpenSubArea("Order Management", "Work Orders");
